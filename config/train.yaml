@@ -1,0 +1,11 @@
+mode: train 
+pipeline:
+  retrieval:
+    is_train: false
+    data: temp
+    config:
+      embedding_document_size: 768 
+      n_negative_sample: 5 
+      
+  reader:
+    is_train: false
