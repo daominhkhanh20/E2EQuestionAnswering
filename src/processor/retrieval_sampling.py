@@ -5,10 +5,10 @@ from sentence_transformers import SentenceTransformer, util
 
 
 class TripleRetrievalSample:
-    def __int__(self, document: str, question_positive: str, question_negative: str):
-        self.document = document
-        self.question_positive = question_positive
-        self.question_negative = question_negative
+    def __int__(self, question: str, document_positive: str, document_negative: str):
+        self.question = question
+        self.document_positive = document_positive
+        self.document_negative = document_negative
 
 
 class RetrievalGeneration:

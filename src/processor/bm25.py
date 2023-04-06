@@ -6,7 +6,7 @@ import math
 
 
 class BM25Base:
-    def __int__(self, corpus: Optional[List[str], List[List[str]]], tokenizer=None):
+    def __init__(self, corpus: Union[List[str], List[List[str]]], tokenizer=None):
         self.corpus = corpus
         self.n_docs = len(self.corpus)
         self.avg_document_length = 0

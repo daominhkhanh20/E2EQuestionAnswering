@@ -1,7 +1,9 @@
-from typing import List, Dict, Optional, Text
+from typing import List, Dict, Optional, Text, Union
 from uuid import uuid4
+import numpy as np
 import math
 import logging
+from torch import Tensor
 from collections import defaultdict
 from src.utils.io import load_json_data, write_json_file
 
@@ -56,10 +58,14 @@ class PairQuestionAnswers:
 
 class Document:
     def __init__(self, document_context: str, document_id: str = None,
-                 list_pair_question_answers: List[PairQuestionAnswers] = None):
+                 list_pair_question_answers: List[PairQuestionAnswers] = None,
+                 bm25_score: float = 0,
+                 embedding: Union[np.array, Tensor] = None):
         self.document_context = document_context
+        self.bm25_score = bm25_score
         if document_id:
             self.document_id = str(uuid4())
+        self.embedding = embedding
         self.list_pair_question_answers = list_pair_question_answers
 
     @classmethod
