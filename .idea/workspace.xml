@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be781b00-faca-4a43-8a2a-a4a05a026f4c" name="Changes" comment="" />
+    <list default="true" id="be781b00-faca-4a43-8a2a-a4a05a026f4c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/example/retrieval/train_retrieval.py" beforeDir="false" afterPath="$PROJECT_DIR$/example/retrieval/train_retrieval.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

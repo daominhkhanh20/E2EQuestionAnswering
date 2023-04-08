@@ -19,7 +19,7 @@ learner = SentenceBertLearner.from_pretrained(
     retrieval_config['model']['model_name_or_path']
 )
 
-loss_fn = MultipleNegativesRankingLoss(learner)
+loss_fn = MultipleNegativesRankingLoss(learner.model)
 learner.train(
     train_dataset=train_dataset,
     loss_fn=loss_fn,
