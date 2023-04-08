@@ -88,7 +88,7 @@ class RetrievalGeneration:
                         n_negative=n_negative
                     )
                 elif method_generation == 'sbert':
-                    query_embedding = sbert_model.encode(question)
+                    query_embedding = sbert_model.encode(question, show_progress_bar=False)
                     list_negative_docs_index = cls.sentence_transformer_generation(
                         query_embedding=query_embedding,
                         corpus_embedding=corpus_embedding,
