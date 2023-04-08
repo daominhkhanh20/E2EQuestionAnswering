@@ -8,12 +8,10 @@ from src.retrieval import BaseRetrieval
 
 
 class BM25Retrieval(BaseRetrieval, ABC):
-    def __init__(self, corpus: Corpus, tokenizer=None):
+    def __init__(self, corpus: Corpus):
         super().__init__()
-        self.list_document = corpus.list_document
-        self.corpus = [context.lower().split(" ") for context in corpus.list_document_context
-                       ]
-        self.bm25_model = BM25Scoring(corpus=self.corpus, tokenizer=tokenizer)
+        self.list_document = corpus.list_document_context
+        self.bm25_model = BM25Scoring(corpus=self.list_document)
 
     def retrieval(self, query: str, top_k: int, **kwargs) -> List[Document]:
         query = query.lower().split(" ")

@@ -6,16 +6,15 @@ import math
 
 
 class BM25Base:
-    def __init__(self, corpus: Union[List[str], List[List[str]]], tokenizer=None):
+    def __init__(self, corpus: Union[List[str], List[List[str]]]):
         self.corpus = corpus
         self.n_docs = len(self.corpus)
         self.avg_document_length = 0
         self.doc_freqs = []
         self.idf = {}
         self.doc_len = []
-        self.tokenizer = tokenizer
-        if tokenizer:
-            corpus = self._tokenizer_corpus(self.corpus)
+        if isinstance(corpus[0], str):
+            corpus = [doc.lower().split(" ") for doc in corpus]
 
         nd = self._initialize(corpus)
         self._calc_idf(nd)
@@ -41,10 +40,10 @@ class BM25Base:
         self.avg_document_length = num_doc / self.n_docs
         return nd
 
-    def _tokenizer_corpus(self, corpus: List[str]):
-        pool = Pool(cpu_count())
-        tokenized_corpus = pool.map(self.tokenizer, corpus)
-        return tokenized_corpus
+    # def _tokenizer_corpus(self, corpus: List[str]):
+    #     pool = Pool(cpu_count())
+    #     tokenized_corpus = pool.map(self.tokenizer, corpus)
+    #     return tokenized_corpus
 
     def _calc_idf(self, nd):
         raise NotImplementedError()
@@ -55,23 +54,24 @@ class BM25Base:
     def get_batch_scores(self, query, doc_ids):
         raise NotImplementedError()
 
-    def get_top_n(self, query, documents, n=5):
-
-        assert self.n_docs == len(documents), "The documents given don't match the index corpus!"
-
-        scores = self.get_scores(query)
-        top_n = np.argsort(scores)[::-1][:n]
-        return [documents[i] for i in top_n]
+    # def get_top_n(self, query, documents, n=5):
+    #
+    #     assert self.n_docs == len(documents), "The documents given don't match the index corpus!"
+    #
+    #     scores = self.get_scores(query)
+    #     top_n = np.argsort(scores)[::-1][:n]
+    #     return [documents[i] for i in top_n]
 
 
 class BM25Scoring(BM25Base, ABC):
-    def __init__(self, corpus, tokenizer=None, k1=1.5, b=0.75, epsilon=0.25, alpha=2, penalty_oov=False):
+    def __init__(self, corpus: Union[List[str], List[List[str]]], k1=1.5, b=0.75, epsilon=0.25, alpha=2,
+                 penalty_oov=False):
         self.k1 = k1
         self.b = b
         self.epsilon = epsilon
         self.alpha = alpha
         self.penalty_oov = penalty_oov
-        super().__init__(corpus, tokenizer)
+        super().__init__(corpus)
 
     def _calc_idf(self, nd):
         # collect idf sum to calculate an average idf for epsilon value
@@ -91,7 +91,9 @@ class BM25Scoring(BM25Base, ABC):
         for word in negative_idfs:
             self.idf[word] = eps
 
-    def get_scores(self, query):
+    def get_scores(self, query: Union[List, str]):
+        if isinstance(query, str):
+            query = query.lower().split(" ")
         score = np.zeros(self.n_docs)
         doc_len = np.array(self.doc_len)
         for q in query:
@@ -99,11 +101,19 @@ class BM25Scoring(BM25Base, ABC):
             if self.penalty_oov:
                 if self.idf.get(q) is not None:
                     score += self.idf.get(q) * (
-                            q_freq * (self.k1 + 1) / (q_freq + self.k1 * (1 - self.b + self.b * doc_len / self.avg_document_length)))
+                            q_freq * (self.k1 + 1) / (
+                                q_freq + self.k1 * (1 - self.b + self.b * doc_len / self.avg_document_length)))
                 else:
-                    temp = self.alpha * (self.k1 + 1) / (0 + self.k1 * (1 - self.b + self.b * doc_len / self.avg_document_length))
+                    temp = self.alpha * (self.k1 + 1) / (
+                                0 + self.k1 * (1 - self.b + self.b * doc_len / self.avg_document_length))
                     score -= temp
             else:
                 score += (self.idf.get(q) or 0) * (q_freq * (self.k1 + 1) /
-                                                   (q_freq + self.k1 * (1 - self.b + self.b * doc_len / self.avg_document_length)))
+                                                   (q_freq + self.k1 * (
+                                                               1 - self.b + self.b * doc_len / self.avg_document_length)))
         return score
+
+    def get_top_k(self, query: str, top_k: int):
+        scores = self.get_scores(query)
+        top_k_idxs = np.argsort(scores)[-top_k:]
+        return top_k_idxs

@@ -1,9 +1,15 @@
-mode: train 
 pipeline:
   retrieval:
-    is_train: false
-    data: temp
-    config:
+    is_train: true
+    data:
+      path_data: data/UITSquad/train.json
+      mode_chunking: false
+      max_length: 400
+      overlapping_size: 30
+      method_generation: sbert
+      method_train: pair
+      n_negative: 3
+    model:
       embedding_document_size: 768 
       n_negative_sample: 5 
       

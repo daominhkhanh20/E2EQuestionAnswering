@@ -1,15 +1,23 @@
 from abc import ABC
 from typing import *
 
+import numpy as np
+import math
+from tqdm import tqdm
+
 from src.retrieval import BaseRetrieval
 from src.documents import *
-from sentence_transformers import SentenceTransformer
-from sentence_transformers.evaluation import InformationRetrievalEvaluator
+from src.utils.calculate import get_top_k_retrieval
+from sentence_transformers import SentenceTransformer, util
+from sentence_transformers.evaluation import InformationRetrievalEvaluator, SentenceEvaluator
 import torch
 from torch.utils.data import Dataset, DataLoader
 from sentence_transformers.losses import MultipleNegativesRankingLoss
 from torch.optim.optimizer import Optimizer
 from torch.optim.adamw import AdamW
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class SentenceBertModel:
@@ -25,7 +33,8 @@ class SentenceBertModel:
             raise Exception(f"Can't load pretrained model sentence bert {model_name_or_path}")
         return cls(model, max_seq_length)
 
-    def train_contrastive_loss(self, train_dataset: Dataset, dev_evaluator=None,
+    def train_contrastive_loss(self, train_dataset: Dataset,
+                               dev_evaluator: Union[InformationRetrievalEvaluator, SentenceEvaluator] = None,
                                batch_size: int = 16, epochs: int = 10, use_amp: bool = True,
                                model_save_path: str = "Model", scheduler: str = 'WarmupLinear',
                                warmup_steps: int = 1000, optimizer_class: Type[Optimizer] = AdamW,
@@ -75,32 +84,74 @@ class SentenceBertModel:
             device=device
         )
 
+    def get_device(self):
+        return next(self.model.parameters()).device
+
 
 class SBertRetrieval(BaseRetrieval, ABC):
-    def __init__(self, model: SentenceBertModel):
+    def __init__(self, model: SentenceBertModel,
+                 corpus: Corpus = None,
+                 corpus_embedding: Union[np.narray, torch.Tensor] = None,
+                 convert_to_numpy: bool = False,
+                 convert_to_tensor: bool = False):
         self.model = model
+        self.corpus = corpus
+        self.corpus_embedding = corpus_embedding
+        self.convert_to_tensor = convert_to_tensor
+        self.convert_to_numpy = convert_to_numpy
+        if not convert_to_numpy and not convert_to_tensor:
+            self.convert_to_numpy = True
+        elif next(self.model.get_device()) == torch.device('cuda'):
+            self.convert_to_tensor = True
 
     def retrieval(self, query: str, top_k: int, **kwargs) -> List[Document]:
-        pass
+        indexs_result = self.query_by_embedding([query], top_k=top_k, **kwargs)[0]
+        return [
+            self.corpus.list_document[index] for index in indexs_result
+        ]
 
-    def update_embedding(self, corpus: Corpus, batch_size: int = 64):
+    def update_embedding(self, corpus: Corpus, batch_size: int = 64, **kwargs):
         """
         Update embedding for corpus
         :param corpus: Corpus document context
         :param batch_size: number document in 1 batch
         :return:
         """
-        pass
+        logger.info(f"Start encoding corpus with {len(corpus.list_document)} document")
+        n_docs = len(corpus.list_document)
+        n_batch = math.ceil(n_docs / batch_size)
+        corpus_embedding = []
+        self.corpus = corpus
+        for i in tqdm(range(n_batch)):
+            sentences = [doc.document_context
+                         for doc in corpus.list_document[
+                                    batch_size * i: min(batch_size * (i + 1),
+                                                        n_docs)]]
+            embeddings = self.model.encode_context(
+                sentences=sentences,
+                batch_size=batch_size,
+                convert_to_numpy=self.convert_to_numpy,
+                convert_to_tensor=self.convert_to_tensor
+            )
+            corpus_embedding.append(embeddings)
+        self.corpus_embedding = torch.stack(corpus_embedding, dim=0)
 
-    def query_by_embedding(self, query: List[str]):
+    def query_by_embedding(self, query: List[str], top_k: int, **kwargs):
         """
+        :param top_k: k index document will return
         :param query: question
         :return: List document id
         """
-        pass
+        query_embedding = self.model.encode_context(
+            sentences=query,
+            convert_to_tensor=self.convert_to_tensor,
+            convert_to_numpy=self.convert_to_numpy
+        )
+        return get_top_k_retrieval(query_embedding=query_embedding,
+                                   corpus_embedding=self.corpus_embedding,
+                                   top_k=top_k)
 
     @classmethod
-    def from_pretrained(cls, model_name_or_path: str):
+    def from_pretrained(cls, model_name_or_path: str, **kwargs):
         model = SentenceBertModel.from_pretrained(model_name_or_path)
         return cls(model=model)
-
