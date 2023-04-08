@@ -70,7 +70,7 @@ class SentenceBertModel:
     def encode_context(self, sentences: List[str], batch_size: int = 64,
                        show_progress_bar: bool = False, output_value: str = 'sentence_embedding',
                        convert_to_numpy: bool = False, convert_to_tensor: bool = False,
-                       normalize_embeddings: bool = False, device: torch.device = None):
+                       normalize_embeddings: bool = False, device: torch.device = None, **kwargs):
         if device is None:
             device = next(self.model.parameters()).device
         return self.model.encode(
@@ -145,7 +145,8 @@ class SBertRetrieval(BaseRetrieval, ABC):
         query_embedding = self.model.encode_context(
             sentences=query,
             convert_to_tensor=self.convert_to_tensor,
-            convert_to_numpy=self.convert_to_numpy
+            convert_to_numpy=self.convert_to_numpy,
+            **kwargs
         )
         return get_top_k_retrieval(query_embedding=query_embedding,
                                    corpus_embedding=self.corpus_embedding,

@@ -71,10 +71,7 @@ class RetrievalGeneration:
             )
 
         for idx, document in tqdm(enumerate(corpus.list_document), total=len(corpus.list_document)):
-            i = 0
             for list_pair_qa in document.list_pair_question_answers:
-                if i == 1:
-                    break
                 question = list_pair_qa.question
                 if method_generation == 'random':
                     list_negative_docs_index = cls.random_generation(
@@ -124,7 +121,6 @@ class RetrievalGeneration:
                                 label=0
                             )
                         )
-                i += 1
 
         return cls(list_retrieval_sample, **kwargs)
 
