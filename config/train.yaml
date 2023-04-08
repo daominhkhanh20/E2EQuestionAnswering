@@ -13,7 +13,7 @@ retrieval:
     model_name_or_path: keepitreal/vietnamese-sbert
     model_save_path: Model
     batch_size: 32
-    epochs: 20
+    epochs: 10
 
 reader:
   is_train: false
