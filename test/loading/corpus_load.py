@@ -1,5 +1,5 @@
-from src.documents import Corpus
-from src.utils.io import load_json_data
+from e2eqavn.documents import Corpus
+from e2eqavn.utils.io import load_json_data
 corpus = Corpus.parser_uit_squad(
     path_file='/media/dmk/D:/Data/Project/NLP/Thesis/data/UITSquad/train.json',
     mode_chunking=True,

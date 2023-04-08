@@ -1,5 +1,5 @@
-from src.retrieval import BM25Retrieval
-from src.documents import Corpus
+from e2eqavn.retrieval import BM25Retrieval
+from e2eqavn.documents import Corpus
 
 from tqdm import tqdm
 

@@ -6,7 +6,7 @@ import logging
 import hashlib
 from torch import Tensor
 from collections import defaultdict
-from src.utils.io import load_json_data, write_json_file
+from e2eqavn.utils.io import load_json_data, write_json_file
 
 logger = logging.getLogger(__name__)
 

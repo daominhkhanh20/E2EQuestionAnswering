@@ -1,7 +1,7 @@
 from typing import List, Optional, Union, Text
 from abc import abstractmethod
 
-from src.documents import Document
+from e2eqavn.documents import Document
 
 
 class BaseRetrieval:

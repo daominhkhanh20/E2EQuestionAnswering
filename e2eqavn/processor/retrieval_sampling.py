@@ -2,13 +2,13 @@ from typing import List, Optional, Dict, Text, Union
 
 import torch.cuda
 
-from src.documents import Corpus, Document
+from e2eqavn.documents import Corpus, Document
 import random
 from tqdm import tqdm
 import logging
 
-from src.processor.bm25 import BM25Scoring
-from src.utils.calculate import get_top_k_retrieval
+from e2eqavn.processor.bm25 import BM25Scoring
+from e2eqavn.utils.calculate import get_top_k_retrieval
 from sentence_transformers import SentenceTransformer, util
 
 logger = logging.getLogger(__name__)

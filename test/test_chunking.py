@@ -1,5 +1,5 @@
 import json
-from src.processor import ChunkingDocument
+from e2eqavn.processor import ChunkingDocument
 
 with open('data/UITSquad/train.json', 'r') as file:
     data = json.load(file)

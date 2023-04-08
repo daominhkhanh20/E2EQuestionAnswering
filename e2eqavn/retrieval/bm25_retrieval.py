@@ -2,9 +2,9 @@ from abc import ABC
 from typing import List, Dict
 import numpy as np
 
-from src.documents import Corpus, Document
-from src.processor import BM25Scoring
-from src.retrieval import BaseRetrieval
+from e2eqavn.documents import Corpus, Document
+from e2eqavn.processor import BM25Scoring
+from e2eqavn.retrieval import BaseRetrieval
 
 
 class BM25Retrieval(BaseRetrieval, ABC):

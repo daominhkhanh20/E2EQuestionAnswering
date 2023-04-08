@@ -1,6 +1,6 @@
-from src.documents import Corpus
-from src.processor import RetrievalGeneration
-from src.utils.io import load_json_data, load_yaml_file
+from e2eqavn.documents import Corpus
+from e2eqavn.processor import RetrievalGeneration
+from e2eqavn.utils.io import load_json_data, load_yaml_file
 config_pipeline = load_yaml_file('config/train.yaml')
 
 retrieval_config = config_pipeline['pipeline']['retrieval']

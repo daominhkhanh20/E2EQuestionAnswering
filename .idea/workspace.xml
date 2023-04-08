@@ -5,19 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be781b00-faca-4a43-8a2a-a4a05a026f4c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/data/UITSquad/sample.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/calculate.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/retrieval/retrieval_sampling.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/train.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/train.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/documents/corpus.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/documents/corpus.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/processor/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/processor/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/processor/bm25.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/processor/bm25.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/processor/retrieval_sampling.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/processor/retrieval_sampling.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/retrieval/bm25_retrieval.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/retrieval/bm25_retrieval.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/retrieval/sbert_retrieval.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/retrieval/sbert_retrieval.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/io.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/io.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/loading/corpus_load.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/loading/corpus_load.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
