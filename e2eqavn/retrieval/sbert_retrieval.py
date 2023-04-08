@@ -11,8 +11,8 @@ from e2eqavn.utils.calculate import get_top_k_retrieval
 from sentence_transformers import SentenceTransformer, util
 from sentence_transformers.evaluation import InformationRetrievalEvaluator, SentenceEvaluator
 import torch
+from torch import nn
 from torch.utils.data import Dataset, DataLoader
-from sentence_transformers.losses import MultipleNegativesRankingLoss
 from torch.optim.optimizer import Optimizer
 from torch.optim.adamw import AdamW
 import logging
@@ -20,7 +20,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class SentenceBertModel:
+class SentenceBertLearner:
     def __init__(self, model: SentenceTransformer, max_seq_length: int):
         self.model = model
         self.max_seq_length = max_seq_length
@@ -33,21 +33,20 @@ class SentenceBertModel:
             raise Exception(f"Can't load pretrained model sentence bert {model_name_or_path}")
         return cls(model, max_seq_length)
 
-    def train_contrastive_loss(self, train_dataset: Dataset,
-                               dev_evaluator: Union[InformationRetrievalEvaluator, SentenceEvaluator] = None,
-                               batch_size: int = 16, epochs: int = 10, use_amp: bool = True,
-                               model_save_path: str = "Model", scheduler: str = 'WarmupLinear',
-                               warmup_steps: int = 1000, optimizer_class: Type[Optimizer] = AdamW,
-                               optimizer_params: Dict[str, object] = {'lr': 2e-5}, weight_decay: float = 0.01,
-                               max_grad_norm: float = 1, show_progress_bar: bool = True,
-                               save_best_model: bool = True, evaluation_steps: int = 5000
-                               ):
+    def train(self, train_dataset: Dataset, loss_fn: nn.Module,
+              dev_evaluator: Union[InformationRetrievalEvaluator, SentenceEvaluator] = None,
+              batch_size: int = 16, epochs: int = 10, use_amp: bool = True,
+              model_save_path: str = "Model", scheduler: str = 'WarmupLinear',
+              warmup_steps: int = 1000, optimizer_class: Type[Optimizer] = AdamW,
+              optimizer_params: Dict[str, object] = {'lr': 2e-5}, weight_decay: float = 0.01,
+              max_grad_norm: float = 1, show_progress_bar: bool = True,
+              save_best_model: bool = True, evaluation_steps: int = 5000
+              ):
         train_loader = DataLoader(
             dataset=train_dataset,
             batch_size=batch_size,
             shuffle=True
         )
-        loss_fn = MultipleNegativesRankingLoss(model=self.model)
         self.model.fit(
             train_objectives=[(train_loader, loss_fn)],
             epochs=epochs,
@@ -89,7 +88,7 @@ class SentenceBertModel:
 
 
 class SBertRetrieval(BaseRetrieval, ABC):
-    def __init__(self, model: SentenceBertModel,
+    def __init__(self, model: SentenceBertLearner,
                  corpus: Corpus = None,
                  corpus_embedding: Union[np.narray, torch.Tensor] = None,
                  convert_to_numpy: bool = False,
@@ -154,5 +153,5 @@ class SBertRetrieval(BaseRetrieval, ABC):
 
     @classmethod
     def from_pretrained(cls, model_name_or_path: str, **kwargs):
-        model = SentenceBertModel.from_pretrained(model_name_or_path)
+        model = SentenceBertLearner.from_pretrained(model_name_or_path)
         return cls(model=model)

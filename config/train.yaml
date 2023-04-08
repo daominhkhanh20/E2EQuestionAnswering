@@ -11,7 +11,6 @@ pipeline:
       n_negative: 3
     model:
       embedding_document_size: 768 
-      n_negative_sample: 5 
-      
+
   reader:
     is_train: false

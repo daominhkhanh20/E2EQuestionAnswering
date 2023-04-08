@@ -163,7 +163,7 @@ class Corpus:
                         logger.info(f"Answer: {answer[answer_key]} \n "
                                     f"N chunk context: {len(list_context)}\n"
                                     f"List Context: {list_context} \n"
-                                    f"Answer doesn't exist in list context\n\n")
+                                    f"Answer doesn't exist in context\n\n")
 
             for idx, (key, value) in enumerate(dict_question_answers.items()):
                 list_document.append(
@@ -217,8 +217,8 @@ class Corpus:
         return list_context
 
     @classmethod
-    def parser_uit_squad(cls, path_file: str, **kwargs):
-        data = load_json_data(path_file)
+    def parser_uit_squad(cls, path_data: str, **kwargs):
+        data = load_json_data(path_data)
         list_document = []
         if kwargs.get('mode_chunking', False):
             logger.info("Turn on mode chunkng long document")

@@ -1,2 +1,5 @@
-numpy~=1.19.1
-tqdm~=4.56.0
+numpy
+PyYAML
+sentence_transformers
+torch
+tqdm
