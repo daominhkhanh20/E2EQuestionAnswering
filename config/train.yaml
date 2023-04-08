@@ -1,19 +1,17 @@
-pipeline:
-  retrieval:
-    is_train: true
-    data:
-      path_data: data/UITSquad/train.json
-      path_evaluator: data/UITSquad/dev.json
-      mode_chunking: false
-      max_length: 400
-      overlapping_size: 30
-      method_generation: random
-      method_train: triplet
-      n_negative: 3
-    model:
-      method_train: triplet
-      model_name_or_path: keepitreal/vietnamese-sbert
-      model_save_path: Model
+retrieval:
+  is_train: true
+  data:
+    path_data: data/UITSquad/train.json
+    path_evaluator: data/UITSquad/dev.json
+    mode_chunking: false
+    max_length: 400
+    overlapping_size: 30
+    method_generation: random
+    method_train: triplet
+    n_negative: 3
+  model:
+    model_name_or_path: keepitreal/vietnamese-sbert
+    model_save_path: Model
 
-  reader:
-    is_train: false
+reader:
+  is_train: false

@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be781b00-faca-4a43-8a2a-a4a05a026f4c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/e2eqavn/datasets/TripletDataset.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/retrieval/train_retrieval.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/evaluator/init_information_retrieval_evaluator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/e2eqavn/keywords.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/train.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/train.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/UITSquad/sample.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2eqavn/datasets/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/e2eqavn/datasets/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2eqavn/documents/corpus.py" beforeDir="false" afterPath="$PROJECT_DIR$/e2eqavn/documents/corpus.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/e2eqavn/processor/retrieval_sampling.py" beforeDir="false" afterPath="$PROJECT_DIR$/e2eqavn/processor/retrieval_sampling.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2eqavn/utils/calculate.py" beforeDir="false" afterPath="$PROJECT_DIR$/e2eqavn/utils/calculate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/build.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e2eqavn/retrieval/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/e2eqavn/retrieval/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e2eqavn/retrieval/sbert_retrieval.py" beforeDir="false" afterPath="$PROJECT_DIR$/e2eqavn/retrieval/sbert_retrieval.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/retrieval/train_retrieval.py" beforeDir="false" afterPath="$PROJECT_DIR$/example/retrieval/train_retrieval.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

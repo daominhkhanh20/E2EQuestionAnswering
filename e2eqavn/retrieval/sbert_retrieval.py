@@ -28,7 +28,10 @@ class SentenceBertLearner:
     @classmethod
     def from_pretrained(cls, model_name_or_path, max_seq_length: int = 512):
         try:
-            model = SentenceTransformer(model_name_or_path=model_name_or_path)
+            model = SentenceTransformer(
+                model_name_or_path=model_name_or_path,
+                device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
+            )
         except:
             raise Exception(f"Can't load pretrained model sentence bert {model_name_or_path}")
         return cls(model, max_seq_length)
@@ -44,8 +47,7 @@ class SentenceBertLearner:
               ):
         train_loader = DataLoader(
             dataset=train_dataset,
-            batch_size=batch_size,
-            shuffle=True
+            batch_size=batch_size
         )
         self.model.fit(
             train_objectives=[(train_loader, loss_fn)],
@@ -90,7 +92,7 @@ class SentenceBertLearner:
 class SBertRetrieval(BaseRetrieval, ABC):
     def __init__(self, model: SentenceBertLearner,
                  corpus: Corpus = None,
-                 corpus_embedding: Union[np.narray, torch.Tensor] = None,
+                 corpus_embedding: Union[np.array, torch.Tensor] = None,
                  convert_to_numpy: bool = False,
                  convert_to_tensor: bool = False):
         self.model = model

@@ -1,5 +1,4 @@
 from typing import List, Optional, Dict, Text, Union
-from enum import Enum
 import torch.cuda
 
 from e2eqavn.documents import Corpus, Document
@@ -8,21 +7,11 @@ from tqdm import tqdm
 import logging
 
 from e2eqavn.processor.bm25 import BM25Scoring
+from e2eqavn.keywords import *
 from e2eqavn.utils.calculate import get_top_k_retrieval
 from sentence_transformers import SentenceTransformer, util
 
 logger = logging.getLogger(__name__)
-
-
-class MethodGeneration(Enum):
-    RANDOM = 'random'
-    BM25 = 'bm25'
-    SBERT = 'sbert'
-
-
-class MethodTraining(Enum):
-    TRIPLET = 'triplet'
-    PAIR = 'pair'
 
 
 class TripleRetrievalSample:
@@ -59,10 +48,10 @@ class RetrievalGeneration:
         list_document_context = corpus.list_document_context
         list_context_index = [i for i in range(len(corpus.list_document_context))]
 
-        if method_generation.lower() not in [MethodGeneration.RANDOM, MethodGeneration.BM25, MethodGeneration.SBERT]:
+        if method_generation.lower() not in [RANDOM, BM25, SBERT]:
             raise Exception(f"Method generation '{method_generation}' isn't support")
 
-        if method_train.lower() not in [MethodTraining.TRIPLET, MethodTraining.PAIR]:
+        if method_train.lower() not in [TRIPLET, PAIR]:
             raise Exception(f"Method training '{method_train}' isn't support")
 
         logger.info(f"Start generate retrieval sample with method: {method_generation}")

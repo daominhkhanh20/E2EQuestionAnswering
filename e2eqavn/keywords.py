@@ -1,0 +1,5 @@
+RANDOM = 'random'
+BM25 = 'bm25'
+SBERT = 'sbert'
+TRIPLET = 'triplet'
+PAIR = 'pair'
