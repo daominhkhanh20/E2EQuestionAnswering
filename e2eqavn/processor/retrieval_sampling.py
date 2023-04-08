@@ -101,7 +101,7 @@ class RetrievalGeneration:
                         list_retrieval_sample.append(
                             TripleRetrievalSample(
                                 question=question,
-                                document_positive=document,
+                                document_positive=document.document_context,
                                 document_negative=list_document_context[neg_idx]
                             )
                         )
@@ -109,7 +109,7 @@ class RetrievalGeneration:
                     list_retrieval_sample.append(
                         PairRetrievalSample(
                             question=question,
-                            document=document,
+                            document=document.document_context,
                             label=1
                         )
                     )
