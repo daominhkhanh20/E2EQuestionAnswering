@@ -23,5 +23,7 @@ loss_fn = MultipleNegativesRankingLoss(learner)
 learner.train(
     train_dataset=train_dataset,
     loss_fn=loss_fn,
-    dev_evaluator=dev_evaluator
+    dev_evaluator=dev_evaluator,
+    batch_size=retrieval_config['model']['batch_size'],
+    epochs=retrieval_config['model']['epochs']
 )
