@@ -187,10 +187,13 @@ class Corpus:
                 {
                     "text": "xin chào bạn"
                     "qas": [
-                        "question" : "question1",
-                        "answers": [
-                            {"text" : "answer1"},
-                            {"text" : "answer2"}
+                        {
+                            "question" : "question1",
+                            "answers": [
+                                {"text" : "answer1"},
+                                {"text" : "answer2"}
+                            ]
+                        }
                     ]
 
                 }
