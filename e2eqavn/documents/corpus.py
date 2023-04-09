@@ -225,7 +225,7 @@ class Corpus:
         list_document = []
         if kwargs.get('mode_chunking', False):
             logger.info("Turn on mode chunkng long document")
-         i = 0
+        i = 0
         flag_stop = False
         for context in data['data']:
             for paragraph in context['paragraphs']:
@@ -236,7 +236,7 @@ class Corpus:
                 if i > 50 :
                     flag_stop = True
                     break
-                    
+
             if flag_stop:
                 break
 
