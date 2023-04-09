@@ -1,7 +1,7 @@
 from abc import abstractclassmethod
 
 
-class MRCBase:
+class BaseReader:
     def get_answer(self, query):
         pass 
     
