@@ -145,7 +145,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
                 device=self.device
             )
             corpus_embedding.append(embeddings)
-        self.corpus_embedding = torch.stack(corpus_embedding, dim=0)
+        self.corpus_embedding = torch.concat(corpus_embedding, dim=0)
 
     def query_by_embedding(self, query: List[str], top_k: int, **kwargs):
         """
