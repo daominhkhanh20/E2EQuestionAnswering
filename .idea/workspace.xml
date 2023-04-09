@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="be781b00-faca-4a43-8a2a-a4a05a026f4c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/loading/corpus_load.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/loading/corpus_load.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e2eqavn/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/e2eqavn/cli.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

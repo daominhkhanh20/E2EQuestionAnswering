@@ -15,6 +15,11 @@ def entry_point():
 
 
 @click.command()
+def version():
+    print(__version__)
+
+
+@click.command()
 @click.option(
     '--config', '-c',
     required=True,
