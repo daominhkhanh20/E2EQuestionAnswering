@@ -234,10 +234,11 @@ class Corpus:
                 )
                 i += 1
                 if i > 50 :
-                    break
                     flag_stop = True
+                    break
+                    
             if flag_stop:
-                break 
+                break
 
 
         return cls(list_document=list_document, **kwargs)
