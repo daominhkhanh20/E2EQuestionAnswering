@@ -90,12 +90,13 @@ class SentenceBertLearner:
 
 
 class SBertRetrieval(BaseRetrieval, ABC):
-    def __init__(self, model: SentenceBertLearner,
+    def __init__(self, model: SentenceBertLearner, device,
                  corpus: Corpus = None,
                  corpus_embedding: Union[np.array, torch.Tensor] = None,
                  convert_to_numpy: bool = False,
                  convert_to_tensor: bool = False):
         self.model = model
+        self.device = device
         self.corpus = corpus
         self.corpus_embedding = corpus_embedding
         self.convert_to_tensor = convert_to_tensor
@@ -110,7 +111,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
             index_selection = [doc.index for doc in kwargs.get('documents')]
         else:
             index_selection = None
-
+        print(index_selection)
         if kwargs.get('top_k_sbert', None):
             top_k = kwargs.get('top_k_sbert')
 
@@ -140,7 +141,8 @@ class SBertRetrieval(BaseRetrieval, ABC):
                 sentences=sentences,
                 batch_size=batch_size,
                 convert_to_numpy=self.convert_to_numpy,
-                convert_to_tensor=self.convert_to_tensor
+                convert_to_tensor=self.convert_to_tensor,
+                device=self.device
             )
             corpus_embedding.append(embeddings)
         self.corpus_embedding = torch.stack(corpus_embedding, dim=0)
@@ -168,5 +170,6 @@ class SBertRetrieval(BaseRetrieval, ABC):
 
     @classmethod
     def from_pretrained(cls, model_name_or_path: str, **kwargs):
-        model = SentenceBertLearner.from_pretrained(model_name_or_path)
-        return cls(model=model)
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        model = SentenceBertLearner.from_pretrained(model_name_or_path).to(device)
+        return cls(model=model,device=device)
