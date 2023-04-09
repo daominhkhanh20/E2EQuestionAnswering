@@ -4,7 +4,7 @@ from e2eqavn.documents import Corpus
 from tqdm import tqdm
 
 corpus = Corpus.parser_uit_squad(
-    path_file='/media/dmk/D:/Data/Project/NLP/Thesis/data/UITSquad/train.json',
+    path_data='/media/dmk/D:/Data/Project/NLP/Thesis/data/UITSquad/test.json',
     mode_chunking=True,
     max_length=400,
     overlapping_size=80
@@ -20,8 +20,8 @@ for document in tqdm(corpus.list_document):
     document_id = document.document_id
     for question_answer in document.list_pair_question_answers:
         n_question += 1
-        result = bm25_retrieval.retrieval(question_answer.question, top_k=list_top_k[-1])['result']
-        list_document_id = [tmp['document_id'] for tmp in result]
+        result = bm25_retrieval.retrieval(question_answer.question, top_k=list_top_k[-1])
+        list_document_id = [doc.document_id for doc in result]
         for idx, top_k in enumerate(list_top_k):
             if document_id in list_document_id[-top_k:]:
                 list_hit_top_k[idx] += 1

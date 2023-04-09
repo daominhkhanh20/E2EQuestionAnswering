@@ -1,5 +1,6 @@
 from typing import List, Dict, Optional, Text, Union
 from uuid import uuid4
+from pyvi import ViTokenizer
 import numpy as np
 import math
 import logging
@@ -61,8 +62,11 @@ class Document:
     def __init__(self, document_context: str, document_id: str = None,
                  list_pair_question_answers: List[PairQuestionAnswers] = None,
                  bm25_score: float = 0,
-                 embedding: Union[np.array, Tensor] = None):
+                 embedding: Union[np.array, Tensor] = None,
+                 pyvi_mode: bool = False):
         self.document_context = document_context
+        if pyvi_mode:
+            self.document_context = ViTokenizer.tokenize(self.document_context)
         self.bm25_score = bm25_score
         if document_id:
             self.document_id = hashlib.sha1(str(self.document_context).encode('utf-8')).hexdigest()

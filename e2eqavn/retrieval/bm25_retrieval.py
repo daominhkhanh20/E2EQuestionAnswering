@@ -10,8 +10,8 @@ from e2eqavn.retrieval import BaseRetrieval
 class BM25Retrieval(BaseRetrieval, ABC):
     def __init__(self, corpus: Corpus):
         super().__init__()
-        self.list_document = corpus.list_document_context
-        self.bm25_model = BM25Scoring(corpus=self.list_document)
+        self.list_document = corpus.list_document
+        self.bm25_model = BM25Scoring(corpus=corpus.list_document_context)
 
     def retrieval(self, query: str, top_k: int, **kwargs) -> List[Document]:
         query = query.lower().split(" ")
