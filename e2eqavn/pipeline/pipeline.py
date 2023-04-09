@@ -38,6 +38,7 @@ class Pipeline:
         while queue:
             current_node_id = list(queue.keys())[i]
             node_input = queue[current_node_id]
+            print(node_input)
             output_node = self.graph.nodes[current_node_id]['component'].run(
                 **node_input
             )

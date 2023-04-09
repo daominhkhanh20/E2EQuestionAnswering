@@ -9,7 +9,7 @@ class BaseRetrieval:
     def retrieval(self, query: str, top_k: int, **kwargs) -> List[Document]:
         raise NotImplementedError()
 
-    def run(self, query: str, top_k: int, **kwargs):
+    def run(self, query: str, top_k: int = 10, **kwargs):
         documents = self.retrieval(query=query, top_k=top_k, **kwargs)
         return {
             "query": query,
