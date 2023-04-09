@@ -14,9 +14,9 @@ class E2EQuestionAnsweringPipeline(Pipeline):
         super().__init__()
         self.pipeline = Pipeline()
         if not isinstance(retrieval, List):
-            self.pipeline.add_node(component=retrieval, name_component='Retrieval', input_component="Query")
+            self.pipeline.add_node(component=retrieval, name_component='Retrieval', input_component="root")
         else:
-            input_root = "Query"
+            input_root = "root"
             for idx, sub_retrieval in enumerate(retrieval):
                 name = f"Retrieval_{idx}"
                 self.pipeline.add_node(
