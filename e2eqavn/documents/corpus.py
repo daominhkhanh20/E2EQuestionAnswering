@@ -1,6 +1,6 @@
 from typing import List, Dict, Optional, Text, Union
 from uuid import uuid4
-from pyvi import ViTokenizer
+# from pyvi import ViTokenizer
 import numpy as np
 import math
 import logging
