@@ -140,8 +140,8 @@ class SBertRetrieval(BaseRetrieval, ABC):
             embeddings = self.model.encode_context(
                 sentences=sentences,
                 batch_size=batch_size,
-                convert_to_numpy=self.convert_to_numpy,
-                convert_to_tensor=self.convert_to_tensor,
+                convert_to_numpy=False,
+                convert_to_tensor=True,
                 device=self.device
             )
             corpus_embedding.append(embeddings)
@@ -160,8 +160,8 @@ class SBertRetrieval(BaseRetrieval, ABC):
 
         query_embedding = self.model.encode_context(
             sentences=query,
-            convert_to_tensor=self.convert_to_tensor,
-            convert_to_numpy=self.convert_to_numpy,
+            convert_to_tensor=True,
+            convert_to_numpy=False,
             device=self.device
         )
         return get_top_k_retrieval(query_embedding=query_embedding,

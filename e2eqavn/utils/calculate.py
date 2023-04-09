@@ -12,6 +12,7 @@ import hashlib
 
 logger = logging.getLogger(__name__)
 
+
 def get_top_k_retrieval(query_embedding: Union[Tensor, array],
                         corpus_embedding: Union[Tensor, array],
                         top_k: int):
