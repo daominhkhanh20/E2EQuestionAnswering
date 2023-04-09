@@ -162,7 +162,8 @@ class SBertRetrieval(BaseRetrieval, ABC):
             sentences=query,
             convert_to_tensor=self.convert_to_tensor,
             convert_to_numpy=self.convert_to_numpy,
-            **kwargs
+            device=self.device
+                   ** kwargs
         )
         return get_top_k_retrieval(query_embedding=query_embedding,
                                    corpus_embedding=corpus_embedding,
@@ -171,5 +172,6 @@ class SBertRetrieval(BaseRetrieval, ABC):
     @classmethod
     def from_pretrained(cls, model_name_or_path: str, **kwargs):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        model = SentenceBertLearner.from_pretrained(model_name_or_path).to(device)
-        return cls(model=model,device=device)
+        model = SentenceBertLearner.from_pretrained(model_name_or_path)
+        model.model = model.model.to(device)
+        return cls(model=model, device=device)
