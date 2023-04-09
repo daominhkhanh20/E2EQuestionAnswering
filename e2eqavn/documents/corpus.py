@@ -63,10 +63,12 @@ class Document:
                  list_pair_question_answers: List[PairQuestionAnswers] = None,
                  bm25_score: float = 0,
                  embedding: Union[np.array, Tensor] = None,
+                 index: int = 0,
                  pyvi_mode: bool = False):
         self.document_context = document_context
-        if pyvi_mode:
-            self.document_context = ViTokenizer.tokenize(self.document_context)
+        self.index = index
+        # if pyvi_mode:
+        #     self.document_context = ViTokenizer.tokenize(self.document_context)
         self.bm25_score = bm25_score
         if document_id:
             self.document_id = hashlib.sha1(str(self.document_context).encode('utf-8')).hexdigest()
@@ -75,8 +77,9 @@ class Document:
 
     @classmethod
     def init_document(cls, document_id: str, document_context: str,
-                      dict_question_answers: Dict[str, List]):
+                      dict_question_answers: Dict[str, List], index: int):
         """
+        :param index:
         :param document_id:
         :param document_context:
         :param dict_question_answers:
@@ -100,8 +103,8 @@ class Document:
                         list_answers=list_answer
                     )
                 )
-            return cls(document_context=document_context, document_id=document_id, list_pair_question_answers=temp)
-        return cls(document_context=document_context, document_id=document_id, list_pair_question_answers=[])
+            return cls(document_context=document_context, document_id=document_id, list_pair_question_answers=temp, index=index)
+        return cls(document_context=document_context, document_id=document_id, list_pair_question_answers=[], index=index)
 
 
 class Corpus:
@@ -112,6 +115,7 @@ class Corpus:
     answer_key: str = 'text'
     max_length: int = 400
     overlapping_size: int = 40
+    doc_th = 0
 
     def __init__(self, list_document: List[Document], **kwargs):
         self.list_document = list_document
@@ -142,9 +146,11 @@ class Corpus:
                 Document.init_document(
                     document_id=document_id,
                     document_context=document_context,
-                    dict_question_answers=dict_question_answers
+                    dict_question_answers=dict_question_answers,
+                    index=cls.doc_th
                 )
             )
+            cls.doc_th += 1
         else:
             list_context = cls.chunk_document(document_context, **kwargs)
             list_context_id = [hashlib.sha1(str(context).encode('utf-8')).hexdigest()
@@ -174,9 +180,11 @@ class Corpus:
                     Document.init_document(
                         document_id=key,
                         document_context=list_context[idx],
-                        dict_question_answers=dict_question_answers[list_context_id[idx]]
+                        dict_question_answers=dict_question_answers[list_context_id[idx]],
+                        index=cls.doc_th
                     )
                 )
+                cls.doc_th += 1
         return list_document
 
     @classmethod

@@ -106,7 +106,15 @@ class SBertRetrieval(BaseRetrieval, ABC):
             self.convert_to_tensor = True
 
     def retrieval(self, query: str, top_k: int, **kwargs) -> List[Document]:
-        indexs_result = self.query_by_embedding([query], top_k=top_k, **kwargs)[0]
+        if kwargs.get("documents", None):
+            index_selection = [doc.index for doc in kwargs.get('documents')]
+        else:
+            index_selection = None
+
+        if kwargs.get('top_k_sbert', None):
+            top_k = kwargs.get('top_k_sbert')
+
+        indexs_result = self.query_by_embedding([query], top_k=top_k, index_selection=index_selection, **kwargs)[0]
         return [
             self.corpus.list_document[index] for index in indexs_result
         ]
@@ -143,6 +151,11 @@ class SBertRetrieval(BaseRetrieval, ABC):
         :param query: question
         :return: List document id
         """
+        if kwargs.get('index_selection', None):
+            corpus_embedding = self.corpus_embedding[kwargs.get('index_selection'), :]
+        else:
+            corpus_embedding = self.corpus_embedding
+
         query_embedding = self.model.encode_context(
             sentences=query,
             convert_to_tensor=self.convert_to_tensor,
@@ -150,7 +163,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
             **kwargs
         )
         return get_top_k_retrieval(query_embedding=query_embedding,
-                                   corpus_embedding=self.corpus_embedding,
+                                   corpus_embedding=corpus_embedding,
                                    top_k=top_k)
 
     @classmethod

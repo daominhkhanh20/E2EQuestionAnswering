@@ -8,9 +8,9 @@ from e2eqavn.mrc import BaseReader
 logger = logging.getLogger(__name__)
 
 
-class E2EQuestionAnswering(Pipeline):
+class E2EQuestionAnsweringPipeline(Pipeline):
     def __init__(self, retrieval: Union[BaseRetrieval, List[BaseRetrieval]],
-                 reader: BaseReader):
+                 reader: BaseReader = None):
         super().__init__()
         self.pipeline = Pipeline()
         if not isinstance(retrieval, List):
@@ -28,12 +28,12 @@ class E2EQuestionAnswering(Pipeline):
 
     def run(self, query: str,
             top_k_bm25: int = 50,
-            top_k_retrieval: int = 10,
+            top_k_sbert: int = 10,
             **kwargs):
         output = self.pipeline.run(
             query=query,
             top_k_bm25=top_k_bm25,
-            top_k_retrieval=top_k_retrieval,
+            top_k_sbert=top_k_sbert,
             **kwargs
         )
         return output
