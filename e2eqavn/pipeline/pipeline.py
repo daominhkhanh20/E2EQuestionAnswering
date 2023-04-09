@@ -38,12 +38,13 @@ class Pipeline:
         while queue:
             current_node_id = list(queue.keys())[i]
             node_input = queue[current_node_id]
-            print(node_input)
             output_node = self.graph.nodes[current_node_id]['component'].run(
                 **node_input
             )
             queue.pop(current_node_id)
-            current_node_id = list(networkx.descendants(self.graph, current_node_id))[0]
+            current_node_id = self.get_next_node(current_node_id)
+            if current_node_id is None:
+                break
             queue[current_node_id] = output_node
         return output_node
 
@@ -52,3 +53,12 @@ class Pipeline:
         graph_picture.layout("dot")
         graph_picture.draw(path_save)
 
+    def get_next_node(self, node_id: str):
+        current_edges = self.graph.edges(node_id)
+        next_nodes = [
+            next_node for _, next_node in current_edges
+        ]
+        try:
+            return next_nodes[0]
+        except:
+            return None

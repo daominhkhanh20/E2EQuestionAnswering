@@ -12,15 +12,18 @@ corpus = Corpus.parser_uit_squad(**retrieval_config['data'])
 
 bm25_retrieval = BM25Retrieval(corpus=corpus)
 sbert_retrieval = SBertRetrieval.from_pretrained(model_name_or_path=path_model)
-sbert_retrieval.update_embedding(corpus=corpus)
+sbert_retrieval.corpus = corpus
+# sbert_retrieval.update_embedding(corpus=corpus)
 
 pipeline = E2EQuestionAnsweringPipeline(
     retrieval=[bm25_retrieval, sbert_retrieval]
 )
 
 question = "Tên gọi nào được Phạm Văn Đồng sử dụng khi làm Phó chủ nhiệm cơ quan Biện sự xứ tại Quế Lâm?"
-print(pipeline.run(
+result = pipeline.run(
     query=question,
     top_k_bm25=50,
-    top_k_sbert=5
-))
+    top_k_sbert=1
+)
+for doc in result['documents']:
+    print(doc.document_context)

@@ -15,5 +15,4 @@ class BaseRetrieval:
             "query": query,
             "documents": documents,
             "top_k": top_k,
-            **kwargs
         }

@@ -111,7 +111,6 @@ class SBertRetrieval(BaseRetrieval, ABC):
             index_selection = [doc.index for doc in kwargs.get('documents')]
         else:
             index_selection = None
-        print(index_selection)
         if kwargs.get('top_k_sbert', None):
             top_k = kwargs.get('top_k_sbert')
 
