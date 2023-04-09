@@ -163,7 +163,6 @@ class SBertRetrieval(BaseRetrieval, ABC):
             convert_to_tensor=self.convert_to_tensor,
             convert_to_numpy=self.convert_to_numpy,
             device=self.device
-                   ** kwargs
         )
         return get_top_k_retrieval(query_embedding=query_embedding,
                                    corpus_embedding=corpus_embedding,
