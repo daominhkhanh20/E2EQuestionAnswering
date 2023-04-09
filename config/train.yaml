@@ -6,7 +6,7 @@ retrieval:
     mode_chunking: false
     max_length: 250
     overlapping_size: 60
-    method_generation: sbert
+    method_generation: bm25
     method_train: triplet
     n_negative: 6
   model:
