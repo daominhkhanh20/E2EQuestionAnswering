@@ -43,6 +43,7 @@ class Pipeline:
             )
             queue.pop(current_node_id)
             current_node_id = list(networkx.descendants(self.graph, current_node_id))[0]
+            queue[current_node_id] = output_node
             i += 1
         return output_node
 
