@@ -113,10 +113,14 @@ class SBertRetrieval(BaseRetrieval, ABC):
             index_selection = None
         if kwargs.get('top_k_sbert', None):
             top_k = kwargs.get('top_k_sbert')
-        indexs_result = self.query_by_embedding([query], top_k=top_k, index_selection=index_selection, **kwargs)[0]
-        return [
-            self.corpus.list_document[index] for index in indexs_result
-        ]
+        indexs_result, similarity_score = self.query_by_embedding([query], top_k=top_k, index_selection=index_selection, **kwargs)
+        indexs_result = indexs_result[0]
+        similarity_score = similarity_score[0]
+        result = []
+        for i, idx in enumerate(indexs_result):
+            self.corpus.list_document[idx].embedding_similarity_score = similarity_score[i]
+            result.append(self.corpus.list_document[idx])
+        return result
 
     def update_embedding(self, corpus: Corpus, batch_size: int = 64, **kwargs):
         """

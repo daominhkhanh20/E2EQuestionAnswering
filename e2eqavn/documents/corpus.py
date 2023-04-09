@@ -62,6 +62,7 @@ class Document:
     def __init__(self, document_context: str, document_id: str = None,
                  list_pair_question_answers: List[PairQuestionAnswers] = None,
                  bm25_score: float = 0,
+                 embedding_similarity_score: float = 0,
                  embedding: Union[np.array, Tensor] = None,
                  index: int = 0,
                  pyvi_mode: bool = False):
@@ -70,6 +71,7 @@ class Document:
         # if pyvi_mode:
         #     self.document_context = ViTokenizer.tokenize(self.document_context)
         self.bm25_score = bm25_score
+        self.embedding_similarity_score = embedding_similarity_score
         if document_id:
             self.document_id = hashlib.sha1(str(self.document_context).encode('utf-8')).hexdigest()
         self.embedding = embedding
