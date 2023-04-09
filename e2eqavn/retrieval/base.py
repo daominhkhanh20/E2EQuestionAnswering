@@ -10,9 +10,12 @@ class BaseRetrieval:
         raise NotImplementedError()
 
     def run(self, query: str, top_k: int = 10, **kwargs):
+        if 'documents' in kwargs:
+            kwargs.pop('documents')
         documents = self.retrieval(query=query, top_k=top_k, **kwargs)
         return {
             "query": query,
             "documents": documents,
             "top_k": top_k,
+            **kwargs
         }

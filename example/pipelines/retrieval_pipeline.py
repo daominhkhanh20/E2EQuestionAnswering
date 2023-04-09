@@ -12,9 +12,7 @@ corpus = Corpus.parser_uit_squad(**retrieval_config['data'])
 
 bm25_retrieval = BM25Retrieval(corpus=corpus)
 sbert_retrieval = SBertRetrieval.from_pretrained(model_name_or_path=path_model)
-sbert_retrieval.corpus = corpus
-# sbert_retrieval.update_embedding(corpus=corpus)
-
+sbert_retrieval.update_embedding(corpus=corpus)
 pipeline = E2EQuestionAnsweringPipeline(
     retrieval=[bm25_retrieval, sbert_retrieval]
 )

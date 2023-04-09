@@ -113,7 +113,6 @@ class SBertRetrieval(BaseRetrieval, ABC):
             index_selection = None
         if kwargs.get('top_k_sbert', None):
             top_k = kwargs.get('top_k_sbert')
-
         indexs_result = self.query_by_embedding([query], top_k=top_k, index_selection=index_selection, **kwargs)[0]
         return [
             self.corpus.list_document[index] for index in indexs_result
