@@ -173,5 +173,4 @@ class SBertRetrieval(BaseRetrieval, ABC):
     def from_pretrained(cls, model_name_or_path: str, **kwargs):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model = SentenceBertLearner.from_pretrained(model_name_or_path)
-        model.model = model.model.to(device)
         return cls(model=model, device=device)
