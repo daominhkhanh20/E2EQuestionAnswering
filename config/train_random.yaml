@@ -10,10 +10,10 @@ retrieval:
     method_train: triplet
     n_negative: 6
   model:
-    model_name_or_path: sentence-transformers/distiluse-base-multilingual-cased-v2
+    model_name_or_path: sentence-transformers/stsb-xlm-r-multilingual
     model_save_path: Model
     batch_size: 32
-    epochs: 15
+    epochs: 4
 
 reader:
   is_train: false
