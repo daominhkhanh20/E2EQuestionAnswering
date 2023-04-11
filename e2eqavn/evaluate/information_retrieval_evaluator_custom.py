@@ -1,0 +1,26 @@
+from typing import *
+import logging
+
+from sentence_transformers.util import cos_sim, dot_score
+
+from e2eqavn.retrieval import *
+from e2eqavn.pipeline import E2EQuestionAnsweringPipeline
+from sentence_transformers.evaluation import InformationRetrievalEvaluator
+
+
+class InformationRetrievalEvaluatorCustom(InformationRetrievalEvaluator):
+    def __init__(self, queries: Dict[str, str], corpus: Dict[str, str], relevant_docs: Dict[str, Set[str]],
+                 corpus_chunk_size: int = 50000, mrr_at_k: List[int] = [10], ndcg_at_k: List[int] = [10],
+                 accuracy_at_k: List[int] = [1, 3, 5, 10], precision_recall_at_k: List[int] = [1, 3, 5, 10],
+                 map_at_k: List[int] = [100], show_progress_bar: bool = False, batch_size: int = 32, name: str = '',
+                 write_csv: bool = True,
+                 score_functions: List[Callable[[Tensor, Tensor], Tensor]] = {'cos_sim': cos_sim,
+                                                                              'dot_score': dot_score},
+                 main_score_function: str = None):
+        super().__init__(queries, corpus, relevant_docs, corpus_chunk_size, mrr_at_k, ndcg_at_k, accuracy_at_k,
+                         precision_recall_at_k, map_at_k, show_progress_bar, batch_size, name, write_csv,
+                         score_functions, main_score_function)
+
+    def compute_metrices(self, pipeline: E2EQuestionAnsweringPipeline, corpus_model=None,
+                         corpus_embeddings: Tensor = None) -> Dict[str, float]:
+        pass

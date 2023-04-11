@@ -113,7 +113,9 @@ class BM25Scoring(BM25Base, ABC):
                                                                1 - self.b + self.b * doc_len / self.avg_document_length)))
         return score
 
-    def get_top_k(self, query: str, top_k: int):
+    def get_top_k(self, query: Union[List[str], str], top_k: int):
+        if isinstance(query, str):
+            query = query.split(" ")
         scores = self.get_scores(query)
         top_k_idxs = np.argsort(scores)[-top_k:]
-        return top_k_idxs
+        return {idx: scores[idx] for idx in top_k_idxs}

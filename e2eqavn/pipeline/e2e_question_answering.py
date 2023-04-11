@@ -26,10 +26,13 @@ class E2EQuestionAnsweringPipeline(Pipeline):
                 )
                 input_root = name
 
-    def run(self, query: str,
+    def run(self, query: Union[str, List[str]],
             top_k_bm25: int = 50,
             top_k_sbert: int = 10,
             **kwargs):
+        if isinstance(query, str):
+            query = [query]
+
         output = self.pipeline.run(
             query=query,
             top_k_bm25=top_k_bm25,

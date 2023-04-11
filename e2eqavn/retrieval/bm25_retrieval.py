@@ -1,6 +1,8 @@
 from abc import ABC
-from typing import List, Dict
+from typing import List, Dict, Union
 import numpy as np
+import multiprocessing as mp
+from multiprocessing import Pool
 
 from e2eqavn.documents import Corpus, Document
 from e2eqavn.processor import BM25Scoring
@@ -13,17 +15,40 @@ class BM25Retrieval(BaseRetrieval, ABC):
         self.list_document = corpus.list_document
         self.bm25_model = BM25Scoring(corpus=corpus.list_document_context)
 
-    def retrieval(self, query: str, top_k: int = 10, **kwargs) -> List[Document]:
+    def retrieval(self, queries: List[str], top_k: int = 10, **kwargs) -> List[List[Document]]:
         if kwargs.get("top_k_bm25", None):
             top_k = kwargs.get("top_k_bm25")
-        else:
-            top_k = top_k
 
-        query = query.lower().split(" ")
-        scores = self.bm25_model.get_scores(query)
-        top_k_indexs = np.argsort(scores)[-top_k:]
-        results = []
-        for index in top_k_indexs:
-            self.list_document[index].bm25_score = scores[index]
-            results.append(self.list_document[index])
-        return results
+        args = [(query, top_k) for query in queries]
+        list_docs = []
+        with Pool(processes=mp.cpu_count()) as pool:
+            for mapping_idx_score in pool.starmap(self.bm25_model.get_top_k, args):
+                tmp = []
+                for idx in mapping_idx_score.keys():
+                    self.list_document[idx].bm25_score = mapping_idx_score[idx]
+                    tmp.append(self.list_document[idx])
+                list_docs.append(tmp)
+
+        # query = query.lower().split(" ")
+        # mapping_idx_score = self.bm25_model.get_top_k(query=query, top_k=top_k)
+        # results = []
+        # for index in mapping_idx_score.keys():
+        #     self.list_document[index].bm25_score = mapping_idx_score[index]
+        #     results.append(self.list_document[index])
+        return list_docs
+
+    # def batch_retrieval(self, queries: List[str], top_k: int = 10, **kwargs):
+    #     if kwargs.get("top_k_bm25", None):
+    #         top_k = kwargs.get("top_k_bm25")
+    #     else:
+    #         top_k = top_k
+    #     list_docs = []
+    #     args = [(query, top_k) for query in queries]
+    #     with Pool(processes=mp.cpu_count()) as pool:
+    #         for result in pool.starmap(self.retrieval, args):
+    #             list_docs.append(result)
+    #     if kwargs.get('return_index', None):
+    #         return [[doc.index for doc in result] for result in list_docs]
+    #     elif kwargs.get('return_id', None):
+    #         return [[doc.document_id for doc in result] for result in list_docs]
+    #     return list_docs

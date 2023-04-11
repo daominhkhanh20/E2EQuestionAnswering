@@ -28,16 +28,14 @@ for doc in corpus.list_document:
 
 results = []
 print(len(list_questions))
-list_questions = list_questions[:1000]
+list_questions = list_questions[:6000]
 start_time = time.time()
-if args.mode_parallel:
+if not args.mode_parallel:
     for question in list_questions:
         top_k_index = bm25_retrieval.retrieval(question, top_k=10)
         results.append(top_k_index)
 else:
-    mp.set_start_method('spawn')
-    with Pool(processes=2) as pool:
-        for result in pool.map(bm25_retrieval.retrieval, list_questions):
-            results.append(result)
+    # mp.set_start_method('fork')
+    results = bm25_retrieval.retrieval(list_questions)
 print(time.time() - start_time)
 

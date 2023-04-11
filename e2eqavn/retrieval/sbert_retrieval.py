@@ -95,6 +95,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
                  corpus_embedding: Union[np.array, torch.Tensor] = None,
                  convert_to_numpy: bool = False,
                  convert_to_tensor: bool = False):
+        self.list_documents = None
         self.model = model
         self.device = device
         self.corpus = corpus
@@ -106,20 +107,28 @@ class SBertRetrieval(BaseRetrieval, ABC):
         elif next(self.model.get_device()) == torch.device('cuda'):
             self.convert_to_tensor = True
 
-    def retrieval(self, query: str, top_k: int, **kwargs) -> List[Document]:
+    def retrieval(self, queries: List[str], top_k: int, **kwargs) -> List[List[Document]]:
         if kwargs.get("documents", None):
-            index_selection = [doc.index for doc in kwargs.get('documents')]
+            index_selection = [[doc.index for doc in list_doc] for list_doc in kwargs.get('documents')]
         else:
             index_selection = None
         if kwargs.get('top_k_sbert', None):
             top_k = kwargs.get('top_k_sbert')
-        indexs_result, similarity_score = self.query_by_embedding([query], top_k=top_k, index_selection=index_selection, **kwargs)
-        indexs_result = indexs_result[0]
-        similarity_score = similarity_score[0]
+        scores, top_k_indexs = self.query_by_embedding(queries, top_k=top_k,
+                                                       index_selection=index_selection, **kwargs)
+        scores = scores.cpu().numpy()
+        top_k_indexs = top_k_indexs.cpu().numpy()
         result = []
-        for i, idx in enumerate(indexs_result):
-            self.corpus.list_document[idx].embedding_similarity_score = similarity_score[i]
-            result.append(self.corpus.list_document[idx])
+        for i in range(len(queries)):
+            tmp = []
+            for j in range(top_k -1, -1, -1):
+                idx = top_k_indexs[i][j]
+                self.list_documents[idx].embedding_similarity_score = scores[i][j]
+                tmp.append(self.list_documents[idx])
+            result.append(tmp)
+        # for i, idx in enumerate(indexs_result):
+        #     self.corpus.list_document[idx].embedding_similarity_score = similarity_score[i]
+        #     result.append(self.corpus.list_document[idx])
         return result
 
     def update_embedding(self, corpus: Corpus, batch_size: int = 64, **kwargs):
@@ -134,6 +143,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
         n_batch = math.ceil(n_docs / batch_size)
         corpus_embedding = []
         self.corpus = corpus
+        self.list_documents = corpus.list_document
         for i in tqdm(range(n_batch)):
             sentences = [doc.document_context
                          for doc in corpus.list_document[
@@ -156,9 +166,9 @@ class SBertRetrieval(BaseRetrieval, ABC):
         :return: List document id
         """
         if kwargs.get('index_selection', None):
-            corpus_embedding = self.corpus_embedding[kwargs.get('index_selection'), :]
+            index_selection = torch.tensor(kwargs.get('index_selection')).to(self.device)
         else:
-            corpus_embedding = self.corpus_embedding
+            index_selection = None
 
         query_embedding = self.model.encode_context(
             sentences=query,
@@ -166,9 +176,15 @@ class SBertRetrieval(BaseRetrieval, ABC):
             convert_to_numpy=False,
             device=self.device
         )
-        return get_top_k_retrieval(query_embedding=query_embedding,
-                                   corpus_embedding=corpus_embedding,
-                                   top_k=top_k)
+
+        similarity = util.cos_sim(query_embedding, self.corpus_embedding)
+        if index_selection is not None:
+            similarity = similarity.take(index_selection)
+            scores, index = torch.topk(similarity, top_k, dim=1, sorted=True)
+            sub_index_select = index_selection.take(index)
+        else:
+            scores, sub_index_select = torch.topk(similarity, top_k, dim=1, sorted=True)
+        return scores, sub_index_select
 
     @classmethod
     def from_pretrained(cls, model_name_or_path: str, **kwargs):
