@@ -35,4 +35,5 @@ def train(config: Union[str, Text]):
         sampling = RetrievalGeneration.generate_sampling(corpus, **retrieval_config['data'])
 
 
+entry_point.add_command(version)
 entry_point.add_command(train)

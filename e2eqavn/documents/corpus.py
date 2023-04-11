@@ -8,6 +8,7 @@ import hashlib
 from torch import Tensor
 from collections import defaultdict
 from e2eqavn.utils.io import load_json_data, write_json_file
+from e2eqavn.keywords import *
 
 logger = logging.getLogger(__name__)
 
@@ -110,11 +111,11 @@ class Document:
 
 
 class Corpus:
-    context_key: str = 'context'
-    qas_key: str = 'qas'
-    question_key: str = 'question'
-    answers_key: str = 'answers'
-    answer_key: str = 'text'
+    context_key: str = CONTEXT
+    qas_key: str = QAS
+    question_key: str = QUESTION
+    answers_key: str = ANSWERS
+    answer_key: str = TEXT
     max_length: int = 400
     overlapping_size: int = 40
     doc_th = 0
