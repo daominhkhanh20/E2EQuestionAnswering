@@ -13,7 +13,7 @@ class InformationRetrievalEvaluatorCustom(InformationRetrievalEvaluator):
     def __init__(self, queries: Dict[str, str], corpus: Dict[str, str], relevant_docs: Dict[str, Set[str]],
                  corpus_chunk_size: int = 50000, mrr_at_k: List[int] = [10], ndcg_at_k: List[int] = [10],
                  accuracy_at_k: List[int] = [1, 3, 5, 10], precision_recall_at_k: List[int] = [1, 3, 5, 10],
-                 map_at_k: List[int] = [100], show_progress_bar: bool = False, batch_size: int = 32, name: str = '',
+                 map_at_k: List[int] = [10], show_progress_bar: bool = False, batch_size: int = 32, name: str = '',
                  write_csv: bool = True,
                  score_functions: List[Callable[[Tensor, Tensor], Tensor]] = {'cos_sim': cos_sim,
                                                                               'dot_score': dot_score},
