@@ -1,0 +1,20 @@
+retrieval:
+  is_train: true
+  data:
+    path_data: data/UITSquad/dev.json
+    mode_chunking: false
+    infer_mode: True
+    is_vnsquad_eval: True
+    max_length: 250
+    overlapping_size: 60
+    method_generation: random
+    method_train: triplet
+    n_negative: 6
+  model:
+    model_name_or_path: sentence-transformers/stsb-xlm-r-multilingual
+    model_save_path: Model
+    batch_size: 32
+    epochs: 5
+
+reader:
+  is_train: false

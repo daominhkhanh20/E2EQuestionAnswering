@@ -1,5 +1,6 @@
 from typing import *
 import logging
+from tqdm import trange
 
 from sentence_transformers.util import cos_sim, dot_score
 
@@ -21,6 +22,24 @@ class InformationRetrievalEvaluatorCustom(InformationRetrievalEvaluator):
                          precision_recall_at_k, map_at_k, show_progress_bar, batch_size, name, write_csv,
                          score_functions, main_score_function)
 
-    def compute_metrices(self, pipeline: E2EQuestionAnsweringPipeline, corpus_model=None,
-                         corpus_embeddings: Tensor = None) -> Dict[str, float]:
-        pass
+    def compute_metrices_retrieval(self, pipeline: E2EQuestionAnsweringPipeline,
+                                   **kwargs) -> Dict[str, float]:
+        top_k_bm25 = kwargs.get('top_k_bm25', 100)
+        top_k_sbert = max(max(self.mrr_at_k), max(self.ndcg_at_k), max(self.accuracy_at_k),
+                          max(self.precision_recall_at_k),
+                          max(self.map_at_k))
+        list_question = list(self.queries.values())
+        query_result_list = [[] for _ in range(len(self.queries))]
+
+        results = pipeline.run(
+            queries=list_question,
+            top_k_bm25=top_k_bm25,
+            top_k_sbert=top_k_sbert
+        )['documents']
+
+        for query_iter in range(len(list_question)):
+            for doc in results:
+                query_result_list[query_iter].append({'document_id': doc.document_id,
+                                                      'score': doc.embedding_similarity_score})
+        scores = self.compute_metrics(query_result_list)
+        return scores

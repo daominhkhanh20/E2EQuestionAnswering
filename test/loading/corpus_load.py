@@ -1,10 +1,11 @@
 from e2eqavn.documents import Corpus
-from e2eqavn.utils.io import load_json_data
+from e2eqavn.utils.io import load_yaml_file
+
+config = load_yaml_file('config/infer.yaml')
+retrieval_config = config['retrieval']
+print(retrieval_config['data'])
 corpus = Corpus.parser_uit_squad(
-    path_data='/media/dmk/D:/Data/Project/NLP/Thesis/data/UITSquad/train.json',
-    mode_chunking=True,
-    max_length=250,
-    overlapping_size=60
+    **retrieval_config['data']
 )
 
 # corpus_dict = load_json_data('/media/dmk/D:/Data/Project/NLP/Thesis/data/UITSquad/sample.json')
@@ -13,4 +14,4 @@ corpus = Corpus.parser_uit_squad(
 # print(corpus.list_document[10].index)
 print(f"Number documents {len(corpus.list_document)}")
 print(f"Number question: {corpus.n_pair_question_answer}")
-corpus.save_corpus('corpus.json')
+# corpus.save_corpus('corpus.json')

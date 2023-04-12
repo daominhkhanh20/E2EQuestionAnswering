@@ -131,20 +131,26 @@ class Corpus:
 
     @classmethod
     def get_documents(cls, context: Dict, **kwargs):
-        context_key = kwargs.get('context_key', cls.context_key)
-        qas_key = kwargs.get('qas_key', cls.qas_key)
-        question_key = kwargs.get('question_key', cls.question_key)
-        answers_key = kwargs.get('answers_key', cls.answers_key)
-        answer_key = kwargs.get('answer_key', cls.answer_key)
+        context_key = kwargs.get(CONTEXT_KEY, cls.context_key)
+        qas_key = kwargs.get(QAS_KEY, cls.qas_key)
+        question_key = kwargs.get(QUESTION_KEY, cls.question_key)
+        answers_key = kwargs.get(ANSWERS_KEY, cls.answers_key)
+        answer_key = kwargs.get(ANSWER_KEY, cls.answer_key)
+        infer_mode = kwargs.get(INFER_MODE, False)
+        is_vnsquad_eval = kwargs.get(IS_VNSQUAD_EVAL, False)
+
         list_document = []
         document_context = context[context_key]
-        if kwargs.get('mode_chunking', False):
+        if not kwargs.get(MODE_CHUNKING, False):
             document_id = hashlib.sha1(str(document_context).encode('utf-8')).hexdigest()
             dict_question_answers = defaultdict(list)
-            for question in context[qas_key]:
-                for answer in question[answers_key]:
-                    dict_question_answers[question[question_key]].append(answer[answer_key])
-
+            if (not infer_mode) or is_vnsquad_eval:
+                for question in context[qas_key]:
+                    if not is_vnsquad_eval:
+                        for answer in question[answers_key]:
+                            dict_question_answers[question[question_key]].append(answer[answer_key])
+                    else:
+                        dict_question_answers[question[question_key]] = []
             list_document.append(
                 Document.init_document(
                     document_id=document_id,
@@ -159,24 +165,28 @@ class Corpus:
             list_context_id = [hashlib.sha1(str(context).encode('utf-8')).hexdigest()
                                for context in list_context]
             dict_question_answers = {key: {} for key in list_context_id}
-            for question in context[qas_key]:
-                for answer in question[answers_key]:
-                    flag_exist = False
-                    for idx, context_chunk in enumerate(list_context):
-                        if answer[answer_key] in context_chunk:
-                            if question[question_key] not in dict_question_answers[list_context_id[idx]]:
-                                dict_question_answers[list_context_id[idx]][question[question_key]] = [
-                                    answer[answer_key]]
-                            else:
-                                dict_question_answers[list_context_id[idx]][question[question_key]].append(
-                                    answer[answer_key])
-                            flag_exist = True
-                            break
-                    if not flag_exist:
-                        logger.info(f"Answer: {answer[answer_key]} \n "
-                                    f"N chunk context: {len(list_context)}\n"
-                                    f"List Context: {list_context} \n"
-                                    f"Answer doesn't exist in context\n\n")
+            if not infer_mode:
+                for question in context[qas_key]:
+                    for answer in question[answers_key]:
+                        flag_exist = False
+                        for idx, context_chunk in enumerate(list_context):
+                            if answer[answer_key] in context_chunk:
+                                if question[question_key] not in dict_question_answers[list_context_id[idx]]:
+                                    dict_question_answers[list_context_id[idx]][question[question_key]] = [
+                                        answer[answer_key]]
+                                else:
+                                    dict_question_answers[list_context_id[idx]][question[question_key]].append(
+                                        answer[answer_key])
+                                flag_exist = True
+                                break
+                        if not flag_exist:
+                            logger.info(f"Answer: {answer[answer_key]} \n "
+                                        f"N chunk context: {len(list_context)}\n"
+                                        f"List Context: {list_context} \n"
+                                        f"Answer doesn't exist in context\n\n")
+            else:
+                for key in list_context_id:
+                    dict_question_answers[key] = defaultdict(list)
 
             for idx, (key, value) in enumerate(dict_question_answers.items()):
                 list_document.append(
