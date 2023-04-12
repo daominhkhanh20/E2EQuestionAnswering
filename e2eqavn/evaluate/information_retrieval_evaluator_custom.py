@@ -25,7 +25,7 @@ class InformationRetrievalEvaluatorCustom(InformationRetrievalEvaluator):
 
     def compute_metrices_retrieval(self, pipeline: E2EQuestionAnsweringPipeline,
                                    **kwargs) -> Dict[str, float]:
-        top_k_bm25 = kwargs.get('top_k_bm25', 100)
+        top_k_bm25 = kwargs.get('top_k_bm25', 30)
         top_k_sbert = max(max(self.mrr_at_k), max(self.ndcg_at_k), max(self.accuracy_at_k),
                           max(self.precision_recall_at_k),
                           max(self.map_at_k))
