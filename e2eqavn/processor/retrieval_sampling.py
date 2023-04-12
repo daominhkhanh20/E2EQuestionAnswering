@@ -134,4 +134,4 @@ class RetrievalGeneration:
 
     @classmethod
     def sentence_transformer_generation(cls, corpus_embedding, query_embedding, n_negative: int, **kwargs):
-        return list(get_top_k_retrieval(query_embedding, corpus_embedding, top_k=n_negative).reshape(-1))
+        return list(get_top_k_retrieval(query_embedding, corpus_embedding, top_k=n_negative)[0].reshape(-1))
