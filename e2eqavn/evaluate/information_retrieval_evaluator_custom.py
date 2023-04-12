@@ -21,7 +21,7 @@ class InformationRetrievalEvaluatorCustom(InformationRetrievalEvaluator):
         super().__init__(queries, corpus, relevant_docs, corpus_chunk_size, mrr_at_k, ndcg_at_k, accuracy_at_k,
                          precision_recall_at_k, map_at_k, show_progress_bar, batch_size, name, write_csv,
                          score_functions, main_score_function)
-        self.queries = list(queries.values())
+        # self.queries = list(queries.values())
 
     def compute_metrices_retrieval(self, pipeline: E2EQuestionAnsweringPipeline,
                                    **kwargs) -> Dict[str, float]:

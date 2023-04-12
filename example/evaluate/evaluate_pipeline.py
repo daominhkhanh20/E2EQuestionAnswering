@@ -24,12 +24,14 @@ context_copurs = {doc.document_id: doc.document_context for doc in corpus.list_d
 queries = {}
 relevant_docs = {}
 for doc in corpus.list_document:
-    if doc.document_id not in relevant_docs:
-        relevant_docs[doc.document_id] = set()
+    # if doc.document_id not in relevant_docs:
+    #     relevant_docs[doc.document_id] = set()
     for question_answer in doc.list_pair_question_answers:
         ques_id = hashlib.sha1(str(question_answer.question).encode('utf-8')).hexdigest()
         queries[ques_id] = question_answer.question
-        relevant_docs[doc.document_id].add(ques_id)
+        if ques_id not in relevant_docs:
+            relevant_docs[ques_id] = set()
+        relevant_docs[ques_id].add(doc.document_id)
 
 evaluator = InformationRetrievalEvaluatorCustom(
     corpus=context_copurs,
