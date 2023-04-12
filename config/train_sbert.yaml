@@ -4,16 +4,16 @@ retrieval:
     path_data: data/UITSquad/train.json
     path_evaluator: data/UITSquad/dev.json
     mode_chunking: false
-    max_length: 250
+    max_length: 300
     overlapping_size: 60
     method_generation: sbert
     method_train: triplet
-    n_negative: 6
+    n_negative: 8
   model:
     model_name_or_path: keepitreal/vietnamese-sbert
     model_save_path: Model
     batch_size: 32
-    epochs: 5
+    epochs: 10
 
 reader:
   is_train: false
