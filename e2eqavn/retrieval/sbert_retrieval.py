@@ -95,7 +95,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
                  corpus_embedding: Union[np.array, torch.Tensor] = None,
                  convert_to_numpy: bool = False,
                  convert_to_tensor: bool = False):
-        self.list_documents = None
+        self.list_documents: List[Document] = None
         self.model = model
         self.device = device
         self.corpus = corpus
@@ -123,6 +123,8 @@ class SBertRetrieval(BaseRetrieval, ABC):
             tmp = []
             for j in range(top_k):
                 idx = top_k_indexs[i][j]
+                if not index_selection and self.list_documents[idx].bm25_score == 0:
+                    continue
                 self.list_documents[idx].embedding_similarity_score = scores[i][j]
                 tmp.append(self.list_documents[idx])
             result.append(tmp)
