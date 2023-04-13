@@ -1,6 +1,5 @@
 from typing import List, Dict, Optional, Text, Union
-from uuid import uuid4
-# from pyvi import ViTokenizer
+import unicodedata
 import numpy as np
 import math
 import logging
@@ -9,6 +8,7 @@ from torch import Tensor
 from collections import defaultdict
 from e2eqavn.utils.io import load_json_data, write_json_file
 from e2eqavn.keywords import *
+from e2eqavn.utils.preprocess import process_text
 
 logger = logging.getLogger(__name__)
 
@@ -96,8 +96,10 @@ class Document:
         :return:
         """
         temp = []
+        document_context = process_text(document_context)
         if len(dict_question_answers) > 0:
             for question, list_answer in dict_question_answers.items():
+                question = process_text(question)
                 temp.append(
                     PairQuestionAnswers(
                         document_id=document_id,
@@ -106,8 +108,10 @@ class Document:
                         list_answers=list_answer
                     )
                 )
-            return cls(document_context=document_context, document_id=document_id, list_pair_question_answers=temp, index=index)
-        return cls(document_context=document_context, document_id=document_id, list_pair_question_answers=[], index=index)
+            return cls(document_context=document_context, document_id=document_id, list_pair_question_answers=temp,
+                       index=index)
+        return cls(document_context=document_context, document_id=document_id, list_pair_question_answers=[],
+                   index=index)
 
 
 class Corpus:
@@ -148,7 +152,7 @@ class Corpus:
                 for question in context[qas_key]:
                     if not is_vnsquad_eval:
                         for answer in question[answers_key]:
-                            dict_question_answers[question[question_key]].append(answer[answer_key])
+                            dict_question_answers[question[question_key]].append(process_text(answer[answer_key]))
                     else:
                         dict_question_answers[question[question_key]] = []
             list_document.append(
@@ -176,7 +180,7 @@ class Corpus:
                                         answer[answer_key]]
                                 else:
                                     dict_question_answers[list_context_id[idx]][question[question_key]].append(
-                                        answer[answer_key])
+                                        process_text(answer[answer_key]))
                                 flag_exist = True
                                 break
                         if not flag_exist:
