@@ -126,12 +126,13 @@ class SBertRetrieval(BaseRetrieval, ABC):
                 if not index_selection and self.list_documents[idx].bm25_score == 0:
                     self.list_documents[idx].embedding_similarity_score = scores[i][j] / 2
                 else:
-                    self.list_documents[idx].embedding_similarity_score = scores[i][j] 
+                    self.list_documents[idx].embedding_similarity_score = scores[i][j]
                 tmp.append(self.list_documents[idx])
             result.append(tmp)
         # for i, idx in enumerate(indexs_result):
         #     self.corpus.list_document[idx].embedding_similarity_score = similarity_score[i]
         #     result.append(self.corpus.list_document[idx])
+        result = sorted(result, key=lambda x: x.embedding_similarity_score, reverse=True)
         return result
 
     def update_embedding(self, corpus: Corpus, batch_size: int = 64, **kwargs):
