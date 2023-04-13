@@ -180,10 +180,10 @@ class SBertRetrieval(BaseRetrieval, ABC):
         similarity = util.cos_sim(query_embedding, self.corpus_embedding)
         if index_selection is not None:
             similarity = similarity.take(index_selection)
-            scores, index = torch.topk(similarity, top_k, dim=1, sorted=True)
+            scores, index = torch.topk(similarity, top_k, dim=1, sorted=True, largest=True)
             sub_index_select = index_selection.take(index)
         else:
-            scores, sub_index_select = torch.topk(similarity, top_k, dim=1, sorted=True)
+            scores, sub_index_select = torch.topk(similarity, top_k, dim=1, sorted=True, largest=True)
         return scores, sub_index_select
 
     @classmethod
