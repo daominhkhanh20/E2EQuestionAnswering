@@ -121,7 +121,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
         result = []
         for i in range(len(queries)):
             tmp = []
-            for j in range(top_k - 1, -1, -1):
+            for j in range(top_k):
                 idx = top_k_indexs[i][j]
                 self.list_documents[idx].embedding_similarity_score = scores[i][j]
                 tmp.append(self.list_documents[idx])
