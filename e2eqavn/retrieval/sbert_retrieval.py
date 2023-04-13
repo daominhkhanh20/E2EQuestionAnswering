@@ -127,6 +127,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
                     self.list_documents[idx].embedding_similarity_score = scores[i][j] / 2
                 else:
                     self.list_documents[idx].embedding_similarity_score = scores[i][j]
+                self.list_documents[idx].final_score = (self.list_documents[idx].bm25_score + self.list_documents[idx].embedding_similarity_score) / 2
                 tmp.append(self.list_documents[idx])
             tmp = sorted(tmp, key=lambda x: x.final_score, reverse=True)
             result.append(tmp)
