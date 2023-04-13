@@ -182,13 +182,13 @@ class SBertRetrieval(BaseRetrieval, ABC):
             device=self.device
         )
 
-        similarity = util.cos_sim(query_embedding, self.corpus_embedding)
+        similarity_scores = util.cos_sim(query_embedding, self.corpus_embedding)
         if index_selection is not None:
-            similarity = similarity.take(index_selection)
-            scores, index = torch.topk(similarity, top_k, dim=1, sorted=True, largest=True)
-            sub_index_select = index_selection.take(index)
+            similarity = similarity_scores[torch.arange(similarity_scores.size(0)).unsqueeze(1), index_selection]
+            scores, index = torch.topk(similarity, top_k, dim=1, sorted=False, largest=True)
+            sub_index_select = index_selection[torch.arange(index.size(0)).unsqueeze(1), index]
         else:
-            scores, sub_index_select = torch.topk(similarity, top_k, dim=1, sorted=True, largest=True)
+            scores, sub_index_select = torch.topk(similarity_scores, top_k, dim=1, sorted=False, largest=True)
         return scores, sub_index_select
 
     @classmethod
