@@ -24,8 +24,9 @@ class BM25Retrieval(BaseRetrieval, ABC):
         with Pool(processes=mp.cpu_count()) as pool:
             for mapping_idx_score in pool.starmap(self.bm25_model.get_top_k, args):
                 tmp = []
+                max_score = max(mapping_idx_score.values())
                 for idx in mapping_idx_score.keys():
-                    self.list_document[idx].bm25_score = mapping_idx_score[idx]
+                    self.list_document[idx].bm25_score = mapping_idx_score[idx] / max_score
                     tmp.append(self.list_document[idx])
                 list_docs.append(tmp)
 

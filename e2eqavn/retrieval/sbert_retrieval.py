@@ -128,7 +128,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
                 else:
                     self.list_documents[idx].embedding_similarity_score = scores[i][j]
                 tmp.append(self.list_documents[idx])
-            tmp = sorted(tmp, key=lambda x: x.embedding_similarity_score, reverse=True)
+            tmp = sorted(tmp, key=lambda x: x.final_score, reverse=True)
             result.append(tmp)
         # for i, idx in enumerate(indexs_result):
         #     self.corpus.list_document[idx].embedding_similarity_score = similarity_score[i]

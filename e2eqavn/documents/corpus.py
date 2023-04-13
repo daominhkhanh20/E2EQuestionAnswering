@@ -73,6 +73,7 @@ class Document:
         #     self.document_context = ViTokenizer.tokenize(self.document_context)
         self.bm25_score = bm25_score
         self.embedding_similarity_score = embedding_similarity_score
+        self.final_score = (self.bm25_score + self.embedding_similarity_score) / 2
         if document_id:
             self.document_id = hashlib.sha1(str(self.document_context).encode('utf-8')).hexdigest()
         self.embedding = embedding
