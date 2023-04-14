@@ -2,6 +2,7 @@ from abc import ABC
 from typing import List, Dict, Union
 import numpy as np
 import multiprocessing as mp
+from copy import copy
 from multiprocessing import Pool
 
 from e2eqavn.documents import Corpus, Document
@@ -26,8 +27,9 @@ class BM25Retrieval(BaseRetrieval, ABC):
                 tmp = []
                 max_score = max(mapping_idx_score.values())
                 for idx in mapping_idx_score.keys():
-                    self.list_document[idx].bm25_score = mapping_idx_score[idx] / max_score
-                    tmp.append(self.list_document[idx])
+                    document = copy(self.list_document[idx])
+                    document.bm25_score = mapping_idx_score[idx] / max_score
+                    tmp.append(document)
                 list_docs.append(tmp)
 
         # query = query.lower().split(" ")
