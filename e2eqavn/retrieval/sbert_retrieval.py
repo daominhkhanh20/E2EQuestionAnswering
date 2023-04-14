@@ -114,8 +114,13 @@ class SBertRetrieval(BaseRetrieval, ABC):
             index_selection = None
         if kwargs.get('top_k_sbert', None):
             top_k = kwargs.get('top_k_sbert')
+        print(queries)
+        print(top_k)
+        print(index_selection)
         scores, top_k_indexs = self.query_by_embedding(queries, top_k=top_k,
                                                        index_selection=index_selection, **kwargs)
+        print(scores)
+        print(top_k_indexs)
         scores = scores.cpu().numpy()
         top_k_indexs = top_k_indexs.cpu().numpy()
         result = []
@@ -148,7 +153,8 @@ class SBertRetrieval(BaseRetrieval, ABC):
             convert_to_tensor=True,
             batch_size=batch_size,
             show_progress_bar=True,
-            device=self.device
+            device=self.device,
+            **kwargs
         )
 
     def query_by_embedding(self, query: List[str], top_k: int, **kwargs):
