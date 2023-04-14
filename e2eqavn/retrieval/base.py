@@ -13,9 +13,9 @@ class BaseRetrieval:
         if 'documents' in kwargs:
             kwargs.pop('documents')
         documents = self.retrieval(queries=queries, top_k=top_k, **kwargs)
-        for tmp_docs in documents:
-            print([doc.index for doc in tmp_docs])
-            print([doc.embedding_similarity_score for doc in tmp_docs])
+        # for tmp_docs in documents:
+        #     print([doc.index for doc in tmp_docs])
+        #     print([doc.embedding_similarity_score for doc in tmp_docs])
         return {
             "queries": queries,
             "documents": documents,
