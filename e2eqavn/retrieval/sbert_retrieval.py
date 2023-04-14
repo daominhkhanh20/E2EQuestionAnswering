@@ -119,15 +119,15 @@ class SBertRetrieval(BaseRetrieval, ABC):
         scores = scores.cpu().numpy()
         print(top_k_indexs)
         top_k_indexs = top_k_indexs.cpu().numpy()
-        result = []
+        final_predict = []
         for i in range(len(queries)):
             tmp_documents = []
             for idx, index in enumerate(top_k_indexs[i, :]):
-                print(index)
+                print(index, self.list_documents[index].index)
                 self.list_documents[index].embedding_similarity_score = scores[i][idx]
                 tmp_documents.append(self.list_documents[index])
-            result.append(tmp_documents)
-        return result
+            final_predict.append(tmp_documents)
+        return final_predict
 
     def update_embedding(self, corpus: Corpus, batch_size: int = 64, **kwargs):
         """
@@ -168,7 +168,6 @@ class SBertRetrieval(BaseRetrieval, ABC):
         )
 
         similarity_scores = util.cos_sim(query_embedding, self.corpus_embedding)
-        print(similarity_scores)
         if index_selection is not None:
             similarity = similarity_scores[torch.arange(similarity_scores.size(0)).unsqueeze(1), index_selection]
             scores, index = torch.topk(similarity, top_k, dim=1, sorted=False, largest=True)
