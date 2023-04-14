@@ -114,20 +114,16 @@ class SBertRetrieval(BaseRetrieval, ABC):
             index_selection = None
         if kwargs.get('top_k_sbert', None):
             top_k = kwargs.get('top_k_sbert')
-        # print(queries)
-        # print(top_k)
-        # print(index_selection)
         scores, top_k_indexs = self.query_by_embedding(queries, top_k=top_k,
                                                        index_selection=index_selection, **kwargs)
-        # print(scores)
-        # print(top_k_indexs)
         scores = scores.cpu().numpy()
+        print(top_k_indexs)
+        print(scores)
         top_k_indexs = top_k_indexs.cpu().numpy()
         result = []
         for i in range(len(queries)):
             tmp_documents = []
-            for idx in range(top_k):
-                index = top_k_indexs[i][idx]
+            for idx, index in enumerate(top_k_indexs[i]):
                 self.list_documents[index].embedding_similarity_score = scores[i][idx]
                 tmp_documents.append(self.list_documents[index])
             result.append(tmp_documents)
@@ -167,10 +163,12 @@ class SBertRetrieval(BaseRetrieval, ABC):
             sentences=query,
             convert_to_tensor=True,
             convert_to_numpy=False,
+            batch_size=kwargs.get('batch_size', 32),
             device=self.device
         )
 
         similarity_scores = util.cos_sim(query_embedding, self.corpus_embedding)
+        print(similarity_scores)
         if index_selection is not None:
             similarity = similarity_scores[torch.arange(similarity_scores.size(0)).unsqueeze(1), index_selection]
             scores, index = torch.topk(similarity, top_k, dim=1, sorted=False, largest=True)
