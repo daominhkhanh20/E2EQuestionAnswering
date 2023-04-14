@@ -31,9 +31,9 @@ class E2EQuestionAnsweringPipeline(Pipeline):
             top_k_bm25: int = 50,
             top_k_sbert: int = 10,
             **kwargs):
-        # if isinstance(queries, str):
-        #     queries = [queries]
-        #
+        if isinstance(queries, str):
+            queries = [queries]
+
         # output = self.pipeline.run(
         #     queries=queries,
         #     top_k_bm25=top_k_bm25,
