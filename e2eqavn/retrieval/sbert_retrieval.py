@@ -130,7 +130,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
                 index = top_k_indexs[i][idx]
                 self.list_documents[index].embedding_similarity_score = scores[i][idx]
                 tmp_documents.append(self.list_documents[index])
-            tmp_documents.append(tmp_documents)
+            result.append(tmp_documents)
         return result
 
     def update_embedding(self, corpus: Corpus, batch_size: int = 64, **kwargs):
