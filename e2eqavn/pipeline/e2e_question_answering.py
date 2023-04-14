@@ -2,14 +2,14 @@ import logging
 from typing import *
 
 from .pipeline import Pipeline
-from e2eqavn.retrieval import BaseRetrieval, SBertRetrieval
+from e2eqavn.retrieval import BaseRetrieval
 from e2eqavn.mrc import BaseReader
 
 logger = logging.getLogger(__name__)
 
 
 class E2EQuestionAnsweringPipeline(Pipeline):
-    def __init__(self, retrieval: SBertRetrieval,
+    def __init__(self, retrieval: Union[BaseRetrieval, List[BaseRetrieval]],
                  reader: BaseReader = None):
         super().__init__()
         self.pipeline = Pipeline()
