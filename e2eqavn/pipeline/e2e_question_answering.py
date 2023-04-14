@@ -2,14 +2,14 @@ import logging
 from typing import *
 
 from .pipeline import Pipeline
-from e2eqavn.retrieval import BaseRetrieval
+from e2eqavn.retrieval import BaseRetrieval, SBertRetrieval
 from e2eqavn.mrc import BaseReader
 
 logger = logging.getLogger(__name__)
 
 
 class E2EQuestionAnsweringPipeline(Pipeline):
-    def __init__(self, retrieval: Union[BaseRetrieval, List[BaseRetrieval]],
+    def __init__(self, retrieval: SBertRetrieval,
                  reader: BaseReader = None):
         super().__init__()
         self.pipeline = Pipeline()
@@ -40,9 +40,9 @@ class E2EQuestionAnsweringPipeline(Pipeline):
         #     top_k_sbert=top_k_sbert,
         #     **kwargs
         # )
-        for retrieval in self.retrieval:
-            outs = retrieval.run(
-                queries,
-                top_k_sbert=top_k_sbert
-            )
+        outs = self.retrieval.retrieval(
+            queries,
+            top_k=10,
+            top_k_sbert=top_k_sbert
+        )
         return outs
