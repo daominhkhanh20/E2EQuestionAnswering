@@ -41,6 +41,9 @@ class Pipeline:
             output_node = self.graph.nodes[current_node_id]['component'].run(
                 **node_input
             )
+            if "documents" in output_node:
+                for doc in output_node['documents']:
+                    print(doc.document_id, doc.embedding_similarity_score)
             queue.pop(current_node_id)
             current_node_id = self.get_next_node(current_node_id)
             if current_node_id is None:
