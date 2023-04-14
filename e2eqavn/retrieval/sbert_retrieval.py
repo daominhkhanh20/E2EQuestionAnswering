@@ -4,7 +4,7 @@ from typing import *
 import numpy as np
 import math
 from tqdm import tqdm
-from copy import copy
+from copy import deepcopy
 
 from e2eqavn.retrieval import BaseRetrieval
 from e2eqavn.documents import *
@@ -123,8 +123,9 @@ class SBertRetrieval(BaseRetrieval, ABC):
         for i in range(len(queries)):
             tmp_documents = []
             for idx, index in enumerate(top_k_indexs[i, :]):
-                document = copy(self.list_documents[idx])
+                document = deepcopy(self.list_documents[idx])
                 document.embedding_similarity_score = scores[i][idx]
+                print(document.document_id, document.embedding_similarity_score)
                 tmp_documents.append(document)
             final_predict.append(tmp_documents)
         return final_predict
