@@ -124,7 +124,6 @@ class Corpus:
     answer_key: str = TEXT
     max_length: int = 400
     overlapping_size: int = 40
-    doc_th = 0
 
     def __init__(self, list_document: List[Document], **kwargs):
         self.list_document = list_document
@@ -136,7 +135,7 @@ class Corpus:
         self.__dict__.update(kwargs)
 
     @classmethod
-    def get_documents(cls, context: Dict, **kwargs):
+    def get_documents(cls, context: Dict, doc_th: int = 0, **kwargs):
         context_key = kwargs.get(CONTEXT_KEY, cls.context_key)
         qas_key = kwargs.get(QAS_KEY, cls.qas_key)
         question_key = kwargs.get(QUESTION_KEY, cls.question_key)
@@ -162,10 +161,10 @@ class Corpus:
                     document_id=document_id,
                     document_context=document_context,
                     dict_question_answers=dict_question_answers,
-                    index=cls.doc_th
+                    index=doc_th
                 )
             )
-            cls.doc_th += 1
+            doc_th += 1
         else:
             list_context = cls.chunk_document(document_context, **kwargs)
             list_context_id = [hashlib.sha1(str(context).encode('utf-8')).hexdigest()
@@ -200,11 +199,11 @@ class Corpus:
                         document_id=key,
                         document_context=list_context[idx],
                         dict_question_answers=dict_question_answers[list_context_id[idx]],
-                        index=cls.doc_th
+                        index=doc_th
                     )
                 )
-                cls.doc_th += 1
-        return list_document
+                doc_th += 1
+        return list_document, doc_th
 
     @classmethod
     def init_corpus(cls, corpus: List[Dict], **kwargs):
@@ -233,8 +232,10 @@ class Corpus:
         :return:
         """
         list_documents = []
+        doc_th = 0
         for context in corpus:
-            list_documents.extend(cls.get_documents(context, **kwargs))
+            tmp_list_documents, doc_th = cls.get_documents(context, doc_th, **kwargs)
+            list_documents.extend(tmp_list_documents)
         return cls(list_document=list_documents, **kwargs)
 
     @classmethod
@@ -253,13 +254,15 @@ class Corpus:
     @classmethod
     def parser_uit_squad(cls, path_data: str, **kwargs):
         data = load_json_data(path_data)
+        doc_th = 0
         list_document = []
         if kwargs.get('mode_chunking', False):
             logger.info("Turn on mode chunkng long document")
         for context in data['data']:
             for paragraph in context['paragraphs']:
+                tmp_list_documents, doc_th = cls.get_documents(paragraph, doc_th, **kwargs)
                 list_document.extend(
-                    cls.get_documents(paragraph, **kwargs)
+                    tmp_list_documents
                 )
 
         return cls(list_document=list_document, **kwargs)
