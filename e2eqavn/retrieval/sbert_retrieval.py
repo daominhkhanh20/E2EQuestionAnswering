@@ -140,6 +140,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
         :param batch_size: number document in 1 batch
         :return:
         """
+        self.list_documents = corpus.list_document
         logger.info(f"Start encoding corpus with {len(corpus.list_document)} document")
         self.corpus_embedding = self.model.encode_context(
             sentences=corpus.list_document_context,
