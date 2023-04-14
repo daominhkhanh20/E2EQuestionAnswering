@@ -43,6 +43,6 @@ class InformationRetrievalEvaluatorCustom(InformationRetrievalEvaluator):
         for query_iter in range(len(list_question)):
             for doc in results[query_iter]:
                 query_result_list[query_iter].append({'corpus_id': doc.document_id,
-                                                      'score': doc.final_score})
+                                                      'score': doc.embedding_similarity_score})
         scores = self.compute_metrics(query_result_list)
         return scores
