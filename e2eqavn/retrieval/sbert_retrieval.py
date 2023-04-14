@@ -146,7 +146,8 @@ class SBertRetrieval(BaseRetrieval, ABC):
             convert_to_numpy=False,
             convert_to_tensor=True,
             batch_size=batch_size,
-            show_progress_bar=True
+            show_progress_bar=True,
+            device=self.device
         )
 
     def query_by_embedding(self, query: List[str], top_k: int, **kwargs):
