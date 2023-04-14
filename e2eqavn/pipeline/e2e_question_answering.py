@@ -13,30 +13,36 @@ class E2EQuestionAnsweringPipeline(Pipeline):
                  reader: BaseReader = None):
         super().__init__()
         self.pipeline = Pipeline()
-        if not isinstance(retrieval, List):
-            self.pipeline.add_node(component=retrieval, name_component='Retrieval', input_component="root")
-        else:
-            input_root = "root"
-            for idx, sub_retrieval in enumerate(retrieval):
-                name = f"Retrieval_{idx}"
-                self.pipeline.add_node(
-                    component=sub_retrieval,
-                    name_component=name,
-                    input_component=input_root
-                )
-                input_root = name
+        self.retrieval = retrieval
+        # if not isinstance(retrieval, List):
+        #     self.pipeline.add_node(component=retrieval, name_component='Retrieval', input_component="root")
+        # else:
+        #     input_root = "root"
+        #     for idx, sub_retrieval in enumerate(retrieval):
+        #         name = f"Retrieval_{idx}"
+        #         self.pipeline.add_node(
+        #             component=sub_retrieval,
+        #             name_component=name,
+        #             input_component=input_root
+        #         )
+        #         input_root = name
 
     def run(self, queries: Union[str, List[str]],
             top_k_bm25: int = 50,
             top_k_sbert: int = 10,
             **kwargs):
-        if isinstance(queries, str):
-            queries = [queries]
-
-        output = self.pipeline.run(
-            queries=queries,
-            top_k_bm25=top_k_bm25,
-            top_k_sbert=top_k_sbert,
-            **kwargs
-        )
-        return output
+        # if isinstance(queries, str):
+        #     queries = [queries]
+        #
+        # output = self.pipeline.run(
+        #     queries=queries,
+        #     top_k_bm25=top_k_bm25,
+        #     top_k_sbert=top_k_sbert,
+        #     **kwargs
+        # )
+        for retrieval in self.retrieval:
+            outs = retrieval.run(
+                queries,
+                top_k_sbert=top_k_sbert
+            )
+        return outs
