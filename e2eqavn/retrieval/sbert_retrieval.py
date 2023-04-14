@@ -114,28 +114,23 @@ class SBertRetrieval(BaseRetrieval, ABC):
             index_selection = None
         if kwargs.get('top_k_sbert', None):
             top_k = kwargs.get('top_k_sbert')
-        print(queries)
-        print(top_k)
-        print(index_selection)
+        # print(queries)
+        # print(top_k)
+        # print(index_selection)
         scores, top_k_indexs = self.query_by_embedding(queries, top_k=top_k,
                                                        index_selection=index_selection, **kwargs)
-        print(scores)
-        print(top_k_indexs)
+        # print(scores)
+        # print(top_k_indexs)
         scores = scores.cpu().numpy()
         top_k_indexs = top_k_indexs.cpu().numpy()
         result = []
         for i in range(len(queries)):
-            tmp = []
-            for j in range(top_k):
-                idx = top_k_indexs[i][j]
-                if not index_selection and self.list_documents[idx].bm25_score == 0:
-                    self.list_documents[idx].embedding_similarity_score = scores[i][j] / 2
-                else:
-                    self.list_documents[idx].embedding_similarity_score = scores[i][j]
-                self.list_documents[idx].final_score = (self.list_documents[idx].bm25_score + self.list_documents[idx].embedding_similarity_score) / 2
-                tmp.append(self.list_documents[idx])
-            tmp = sorted(tmp, key=lambda x: x.final_score, reverse=True)
-            result.append(tmp)
+            tmp_documents = []
+            for idx in range(top_k):
+                index = top_k_indexs[i][idx]
+                self.list_documents[index].embedding_similarity_score = scores[i][idx]
+                tmp_documents.append(self.list_documents[index])
+            tmp_documents.append(tmp_documents)
         return result
 
     def update_embedding(self, corpus: Corpus, batch_size: int = 64, **kwargs):
