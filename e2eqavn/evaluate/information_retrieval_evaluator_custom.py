@@ -38,9 +38,11 @@ class InformationRetrievalEvaluatorCustom(InformationRetrievalEvaluator):
             top_k_sbert=top_k_sbert
         )['documents']
 
+        assert len(results) == len(list_question), "Number result not equal number question"
+
         for query_iter in range(len(list_question)):
             for doc in results[query_iter]:
                 query_result_list[query_iter].append({'corpus_id': doc.document_id,
-                                                      'score': doc.embedding_similarity_score})
+                                                      'score': doc.final_score})
         scores = self.compute_metrics(query_result_list)
         return scores

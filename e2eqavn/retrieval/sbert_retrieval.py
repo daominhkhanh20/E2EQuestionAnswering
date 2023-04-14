@@ -131,9 +131,6 @@ class SBertRetrieval(BaseRetrieval, ABC):
                 tmp.append(self.list_documents[idx])
             tmp = sorted(tmp, key=lambda x: x.final_score, reverse=True)
             result.append(tmp)
-        # for i, idx in enumerate(indexs_result):
-        #     self.corpus.list_document[idx].embedding_similarity_score = similarity_score[i]
-        #     result.append(self.corpus.list_document[idx])
         return result
 
     def update_embedding(self, corpus: Corpus, batch_size: int = 64, **kwargs):
@@ -144,25 +141,13 @@ class SBertRetrieval(BaseRetrieval, ABC):
         :return:
         """
         logger.info(f"Start encoding corpus with {len(corpus.list_document)} document")
-        n_docs = len(corpus.list_document)
-        n_batch = math.ceil(n_docs / batch_size)
-        corpus_embedding = []
-        self.corpus = corpus
-        self.list_documents = corpus.list_document
-        for i in tqdm(range(n_batch)):
-            sentences = [doc.document_context
-                         for doc in corpus.list_document[
-                                    batch_size * i: min(batch_size * (i + 1),
-                                                        n_docs)]]
-            embeddings = self.model.encode_context(
-                sentences=sentences,
-                batch_size=batch_size,
-                convert_to_numpy=False,
-                convert_to_tensor=True,
-                device=self.device
-            )
-            corpus_embedding.append(embeddings)
-        self.corpus_embedding = torch.concat(corpus_embedding, dim=0)
+        self.corpus_embedding = self.model.encode_context(
+            sentences=corpus.list_document_context,
+            convert_to_numpy=False,
+            convert_to_tensor=True,
+            batch_size=batch_size,
+            show_progress_bar=True
+        )
 
     def query_by_embedding(self, query: List[str], top_k: int, **kwargs):
         """
