@@ -125,6 +125,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
             tmp_documents = []
             for idx, index in enumerate(top_k_indexs[i, :]):
                 self.list_documents[index].embedding_similarity_score = scores[i][idx]
+                print(index, scores[i][idx])
                 tmp_documents.append(self.list_documents[index])
             final_predict.append(tmp_documents)
         return final_predict
