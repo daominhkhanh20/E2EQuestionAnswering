@@ -111,6 +111,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
     def retrieval(self, queries: List[str], top_k: int, **kwargs) -> List[List[Document]]:
         if kwargs.get("documents", None):
             index_selection = [[doc.index for doc in list_doc] for list_doc in kwargs.get('documents')]
+            bm25_scores = [[doc.bm25_score for doc in list_doc] for list_doc in kwargs.get('documents')]
         else:
             index_selection = None
         if kwargs.get('top_k_sbert', None):
@@ -131,7 +132,8 @@ class SBertRetrieval(BaseRetrieval, ABC):
                     document_context=self.list_documents[index].document_context,
                     embedding_similarity_score=scores[i][idx]
                 )
-                # print(self.list_documents[index].index, scores[i][idx])
+                if index_selection:
+                    document.bm25_score = bm25_scores[i][index]
                 tmp_documents.append(document)
             final_predict.append(tmp_documents)
         return final_predict

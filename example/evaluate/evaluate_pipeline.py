@@ -6,7 +6,7 @@ from e2eqavn.retrieval import *
 from e2eqavn.utils.io import load_yaml_file
 
 
-path_model = '/kaggle/input/model-temp/Model'
+path_model = 'model/Model'
 config = load_yaml_file('config/infer.yaml')
 retrieval_config = config['retrieval']
 

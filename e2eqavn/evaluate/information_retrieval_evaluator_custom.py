@@ -5,6 +5,7 @@ from tqdm import trange
 from sentence_transformers.util import cos_sim, dot_score
 
 from e2eqavn.retrieval import *
+from e2eqavn.keywords import *
 from e2eqavn.pipeline import E2EQuestionAnsweringPipeline
 from sentence_transformers.evaluation import InformationRetrievalEvaluator
 
@@ -25,7 +26,8 @@ class InformationRetrievalEvaluatorCustom(InformationRetrievalEvaluator):
 
     def compute_metrices_retrieval(self, pipeline: E2EQuestionAnsweringPipeline,
                                    **kwargs) -> Dict[str, float]:
-        top_k_bm25 = kwargs.get('top_k_bm25', 30)
+        top_k_bm25 = kwargs.get(TOP_K_BM25, 30)
+        get_scoring_method = kwargs.get(GET_SCORE, EMBEDDING_SCORE)
         top_k_sbert = max(max(self.mrr_at_k), max(self.ndcg_at_k), max(self.accuracy_at_k),
                           max(self.precision_recall_at_k),
                           max(self.map_at_k))
@@ -42,7 +44,11 @@ class InformationRetrievalEvaluatorCustom(InformationRetrievalEvaluator):
 
         for query_iter in range(len(list_question)):
             for doc in results[query_iter]:
-                query_result_list[query_iter].append({'corpus_id': doc.document_id,
-                                                      'score': doc.embedding_similarity_score})
+                if get_scoring_method == EMBEDDING_SCORE:
+                    query_result_list[query_iter].append({'corpus_id': doc.document_id,
+                                                          'score': doc.embedding_similarity_score})
+                elif get_scoring_method == COMBINE_BM25_EMBED_SCORE:
+                    query_result_list[query_iter].append({'corpus_id': doc.document_id,
+                                                          'score': (doc.bm25_score + doc.embedding_similarity_score) / 2})
         scores = self.compute_metrics(query_result_list)
         return scores
