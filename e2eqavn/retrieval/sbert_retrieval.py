@@ -131,7 +131,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
                     document_context=self.list_documents[index].document_context,
                     embedding_similarity_score=scores[i][idx]
                 )
-                print(self.list_documents[index].index, scores[i][idx])
+                # print(self.list_documents[index].index, scores[i][idx])
                 tmp_documents.append(document)
             final_predict.append(tmp_documents)
         return final_predict
