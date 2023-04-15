@@ -64,6 +64,8 @@ class Document:
                  list_pair_question_answers: List[PairQuestionAnswers] = None,
                  embedding: Union[np.array, Tensor] = None,
                  index: int = 0,
+                 bm25_score: float = 0,
+                 embedding_similarity_score: float = 0,
                  pyvi_mode: bool = False):
         self.document_context = document_context
         self.index = index

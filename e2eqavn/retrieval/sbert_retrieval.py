@@ -120,12 +120,18 @@ class SBertRetrieval(BaseRetrieval, ABC):
         scores = scores.cpu().numpy()
         top_k_indexs = top_k_indexs.cpu().numpy()
         final_predict = []
+        print(scores)
+        print(top_k_indexs)
         for i in range(len(queries)):
             tmp_documents = []
             for idx, index in enumerate(top_k_indexs[i, :]):
-                document = deepcopy(self.list_documents[idx])
-                document.embedding_similarity_score = scores[i][idx]
-                print(document.document_id, document.embedding_similarity_score)
+                document = Document(
+                    index=self.list_documents[index].index,
+                    document_id=self.list_documents[index].document_id,
+                    document_context=self.list_documents[index].document_context,
+                    embedding_similarity_score=scores[i][idx]
+                )
+                print(self.list_documents[index].index, scores[i][idx])
                 tmp_documents.append(document)
             final_predict.append(tmp_documents)
         return final_predict
@@ -137,10 +143,11 @@ class SBertRetrieval(BaseRetrieval, ABC):
         :param batch_size: number document in 1 batch
         :return:
         """
-        self.list_documents = corpus.list_document
+        self.list_documents = deepcopy(corpus.list_document)
+        document_context = deepcopy(corpus.list_document_context)
         logger.info(f"Start encoding corpus with {len(corpus.list_document)} document")
         self.corpus_embedding = self.model.encode_context(
-            sentences=corpus.list_document_context,
+            sentences=document_context,
             convert_to_numpy=False,
             convert_to_tensor=True,
             batch_size=batch_size,
