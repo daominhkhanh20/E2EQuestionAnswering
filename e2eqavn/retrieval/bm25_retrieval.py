@@ -13,7 +13,7 @@ from e2eqavn.retrieval import BaseRetrieval
 class BM25Retrieval(BaseRetrieval, ABC):
     def __init__(self, corpus: Corpus):
         super().__init__()
-        self.list_document = corpus.list_document
+        self.list_documents = corpus.list_document
         self.bm25_model = BM25Scoring(corpus=corpus.list_document_context)
 
     def retrieval(self, queries: List[str], top_k: int = 10, **kwargs) -> List[List[Document]]:
@@ -27,8 +27,12 @@ class BM25Retrieval(BaseRetrieval, ABC):
                 tmp = []
                 max_score = max(mapping_idx_score.values())
                 for idx in mapping_idx_score.keys():
-                    document = deepcopy(self.list_document[idx])
-                    document.bm25_score = mapping_idx_score[idx] / max_score
+                    document = Document(
+                        index=self.list_documents[idx].index,
+                        document_id=self.list_documents[idx].document_id,
+                        document_context=self.list_documents[idx].document_context,
+                        bm25_score=mapping_idx_score[idx] / max_score
+                    )
                     tmp.append(document)
                 list_docs.append(tmp)
 
