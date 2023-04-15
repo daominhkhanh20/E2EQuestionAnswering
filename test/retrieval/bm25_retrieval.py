@@ -16,6 +16,7 @@ bm25_retrieval = BM25Retrieval(
 list_top_k = [5, 10, 15, 50, 100, 150]
 n_question = 0
 list_hit_top_k = [0] * len(list_top_k)
+
 for document in tqdm(corpus.list_document):
     document_id = document.document_id
     for question_answer in document.list_pair_question_answers:

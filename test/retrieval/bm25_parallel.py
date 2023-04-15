@@ -28,7 +28,7 @@ for doc in corpus.list_document:
 
 results = []
 print(len(list_questions))
-list_questions = list_questions[:6000]
+list_questions = list_questions[:500]
 start_time = time.time()
 if not args.mode_parallel:
     for question in list_questions:

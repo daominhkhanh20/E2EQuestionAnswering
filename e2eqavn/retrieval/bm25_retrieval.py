@@ -4,6 +4,7 @@ import numpy as np
 import multiprocessing as mp
 from copy import deepcopy
 from multiprocessing import Pool
+from tqdm import tqdm
 import logging
 
 from e2eqavn.documents import Corpus, Document
@@ -11,6 +12,7 @@ from e2eqavn.processor import BM25Scoring
 from e2eqavn.retrieval import BaseRetrieval
 
 logger = logging.getLogger(__name__)
+
 
 class BM25Retrieval(BaseRetrieval, ABC):
     def __init__(self, corpus: Corpus):
@@ -25,7 +27,7 @@ class BM25Retrieval(BaseRetrieval, ABC):
         args = [(query, top_k) for query in queries]
         list_docs = []
         with Pool(processes=mp.cpu_count()) as pool:
-            for mapping_idx_score in pool.starmap(self.bm25_model.get_top_k, args):
+            for mapping_idx_score in tqdm(pool.starmap(self.bm25_model.get_top_k, args)):
                 tmp = []
                 max_score = max(mapping_idx_score.values())
                 for idx in mapping_idx_score.keys():

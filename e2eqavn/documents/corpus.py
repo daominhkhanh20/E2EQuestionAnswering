@@ -167,10 +167,12 @@ class Corpus:
             doc_th += 1
         else:
             list_context = cls.chunk_document(document_context, **kwargs)
+            if len(list_context) > 1:
+                logger.info(f"From 1 to {len(list_context)}")
             list_context_id = [hashlib.sha1(str(context).encode('utf-8')).hexdigest()
                                for context in list_context]
             dict_question_answers = {key: {} for key in list_context_id}
-            if not infer_mode:
+            if not infer_mode or is_vnsquad_eval:
                 for question in context[qas_key]:
                     for answer in question[answers_key]:
                         flag_exist = False
@@ -191,7 +193,7 @@ class Corpus:
                                         f"Answer doesn't exist in context\n\n")
             else:
                 for key in list_context_id:
-                    dict_question_answers[key] = defaultdict(list)
+                    dict_question_answers[key] = {}
 
             for idx, (key, value) in enumerate(dict_question_answers.items()):
                 list_document.append(
