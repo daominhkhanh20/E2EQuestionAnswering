@@ -120,8 +120,8 @@ class SBertRetrieval(BaseRetrieval, ABC):
         scores = scores.cpu().numpy()
         top_k_indexs = top_k_indexs.cpu().numpy()
         final_predict = []
-        print(scores)
-        print(top_k_indexs)
+        # print(scores)
+        # print(top_k_indexs)
         for i in range(len(queries)):
             tmp_documents = []
             for idx, index in enumerate(top_k_indexs[i, :]):
