@@ -2,6 +2,7 @@ import logging
 from typing import *
 
 from .pipeline import Pipeline
+from e2eqavn.utils.preprocess import process_text
 from e2eqavn.retrieval import BaseRetrieval
 from e2eqavn.mrc import BaseReader
 
@@ -30,6 +31,7 @@ class E2EQuestionAnsweringPipeline(Pipeline):
             top_k_bm25: int = 50,
             top_k_sbert: int = 10,
             **kwargs):
+        queries = [process_text(query) for query in queries]
         if isinstance(queries, str):
             queries = [queries]
 

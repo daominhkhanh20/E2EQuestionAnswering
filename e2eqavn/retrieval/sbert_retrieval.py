@@ -121,8 +121,6 @@ class SBertRetrieval(BaseRetrieval, ABC):
         scores = scores.cpu().numpy()
         top_k_indexs = top_k_indexs.cpu().numpy()
         final_predict = []
-        # print(scores)
-        # print(top_k_indexs)
         for i in range(len(queries)):
             tmp_documents = []
             for idx, index in enumerate(top_k_indexs[i, :]):
@@ -133,30 +131,36 @@ class SBertRetrieval(BaseRetrieval, ABC):
                     embedding_similarity_score=scores[i][idx]
                 )
                 if index_selection:
-                    document.bm25_score = bm25_scores[i][index]
+                    document.bm25_score = bm25_scores[i][idx]
+                document.score = (document.bm25_score + document.embedding_similarity_score) / 2
                 tmp_documents.append(document)
+            tmp_documents = sorted(tmp_documents, key=lambda x: x.score, reverse=True)
             final_predict.append(tmp_documents)
         return final_predict
 
-    def update_embedding(self, corpus: Corpus, batch_size: int = 64, **kwargs):
+    def update_embedding(self, corpus: Corpus = None, batch_size: int = 64, **kwargs):
         """
         Update embedding for corpus
         :param corpus: Corpus document context
         :param batch_size: number document in 1 batch
         :return:
         """
+        path_corpus_embedding = kwargs.get('path_corpus_embedding', None)
         self.list_documents = deepcopy(corpus.list_document)
-        document_context = deepcopy(corpus.list_document_context)
         logger.info(f"Start encoding corpus with {len(corpus.list_document)} document")
-        self.corpus_embedding = self.model.encode_context(
-            sentences=document_context,
-            convert_to_numpy=False,
-            convert_to_tensor=True,
-            batch_size=batch_size,
-            show_progress_bar=True,
-            device=self.device,
-            **kwargs
-        )
+        if path_corpus_embedding is not None:
+            self.corpus_embedding = torch.load(path_corpus_embedding, map_location='cpu')
+        else:
+            document_context = corpus.list_document_context
+            self.corpus_embedding = self.model.encode_context(
+                sentences=document_context,
+                convert_to_numpy=False,
+                convert_to_tensor=True,
+                batch_size=batch_size,
+                show_progress_bar=True,
+                device=self.device,
+                **kwargs
+            )
 
     def query_by_embedding(self, query: List[str], top_k: int, **kwargs):
         """
@@ -168,11 +172,12 @@ class SBertRetrieval(BaseRetrieval, ABC):
             index_selection = torch.tensor(kwargs.get('index_selection')).to(self.device)
         else:
             index_selection = None
-
+        logger.info(f"Starting encode {len(query)} questions")
         query_embedding = self.model.encode_context(
             sentences=query,
             convert_to_tensor=True,
             convert_to_numpy=False,
+            show_progress_bar=True,
             batch_size=kwargs.get('batch_size', 32),
             device=self.device
         )

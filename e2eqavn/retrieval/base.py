@@ -10,12 +10,9 @@ class BaseRetrieval:
         raise NotImplementedError()
 
     def run(self, queries: List[str], top_k: int = 10, **kwargs):
-        if 'documents' in kwargs:
-            kwargs.pop('documents')
         documents = self.retrieval(queries=queries, top_k=top_k, **kwargs)
-        # for tmp_docs in documents:
-        #     print([doc.index for doc in tmp_docs])
-        #     print([doc.embedding_similarity_score for doc in tmp_docs])
+        if "documents" in kwargs:
+            kwargs.pop("documents")
         return {
             "queries": queries,
             "documents": documents,

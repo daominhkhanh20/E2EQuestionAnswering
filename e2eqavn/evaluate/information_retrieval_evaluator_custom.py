@@ -28,9 +28,12 @@ class InformationRetrievalEvaluatorCustom(InformationRetrievalEvaluator):
                                    **kwargs) -> Dict[str, float]:
         top_k_bm25 = kwargs.get(TOP_K_BM25, 30)
         get_scoring_method = kwargs.get(GET_SCORE, EMBEDDING_SCORE)
-        top_k_sbert = max(max(self.mrr_at_k), max(self.ndcg_at_k), max(self.accuracy_at_k),
-                          max(self.precision_recall_at_k),
-                          max(self.map_at_k))
+        if kwargs.get(TOP_K_SBERT, None):
+            top_k_sbert = kwargs.get(TOP_K_SBERT)
+        else:
+            top_k_sbert = max(max(self.mrr_at_k), max(self.ndcg_at_k), max(self.accuracy_at_k),
+                              max(self.precision_recall_at_k),
+                              max(self.map_at_k))
         list_question = self.queries
         query_result_list = [[] for _ in range(len(self.queries))]
 
@@ -49,6 +52,6 @@ class InformationRetrievalEvaluatorCustom(InformationRetrievalEvaluator):
                                                           'score': doc.embedding_similarity_score})
                 elif get_scoring_method == COMBINE_BM25_EMBED_SCORE:
                     query_result_list[query_iter].append({'corpus_id': doc.document_id,
-                                                          'score': (doc.bm25_score + doc.embedding_similarity_score) / 2})
+                                                          'score': doc.score})
         scores = self.compute_metrics(query_result_list)
         return scores

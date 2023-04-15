@@ -4,11 +4,13 @@ import numpy as np
 import multiprocessing as mp
 from copy import deepcopy
 from multiprocessing import Pool
+import logging
 
 from e2eqavn.documents import Corpus, Document
 from e2eqavn.processor import BM25Scoring
 from e2eqavn.retrieval import BaseRetrieval
 
+logger = logging.getLogger(__name__)
 
 class BM25Retrieval(BaseRetrieval, ABC):
     def __init__(self, corpus: Corpus):
@@ -36,12 +38,7 @@ class BM25Retrieval(BaseRetrieval, ABC):
                     tmp.append(document)
                 list_docs.append(tmp)
 
-        # query = query.lower().split(" ")
-        # mapping_idx_score = self.bm25_model.get_top_k(query=query, top_k=top_k)
-        # results = []
-        # for index in mapping_idx_score.keys():
-        #     self.list_document[index].bm25_score = mapping_idx_score[index]
-        #     results.append(self.list_document[index])
+        logger.info(f"Result BM25: {len(list_docs)}")
         return list_docs
 
     # def batch_retrieval(self, queries: List[str], top_k: int = 10, **kwargs):

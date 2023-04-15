@@ -66,6 +66,7 @@ class Document:
                  index: int = 0,
                  bm25_score: float = 0,
                  embedding_similarity_score: float = 0,
+                 score: float = 0,
                  pyvi_mode: bool = False):
         self.document_context = document_context
         self.index = index
@@ -73,6 +74,7 @@ class Document:
         #     self.document_context = ViTokenizer.tokenize(self.document_context)
         self.bm25_score = bm25_score
         self.embedding_similarity_score = embedding_similarity_score
+        self.score = score
         if document_id:
             self.document_id = hashlib.sha1(str(self.document_context).encode('utf-8')).hexdigest()
         self.embedding = embedding

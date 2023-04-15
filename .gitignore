@@ -6,3 +6,5 @@ e2eqavn.egg-info
 Model
 model
 .idea
+corpus_embedding.pth
+vn-sentence-embedding
