@@ -1,14 +1,14 @@
 from typing import List, Optional, Dict, Text, Union
 import torch.cuda
-
-from e2eqavn.documents import Corpus, Document
+import numpy as np
 import random
+from random import sample
 from tqdm import tqdm
 import logging
 
 from e2eqavn.processor.bm25 import BM25Scoring
+from e2eqavn.documents import Corpus, Document
 from e2eqavn.keywords import *
-from e2eqavn.utils.calculate import get_top_k_retrieval
 from sentence_transformers import SentenceTransformer, util
 
 logger = logging.getLogger(__name__)
@@ -134,4 +134,10 @@ class RetrievalGeneration:
 
     @classmethod
     def sentence_transformer_generation(cls, corpus_embedding, query_embedding, n_negative: int, **kwargs):
-        return list(get_top_k_retrieval(query_embedding, corpus_embedding, top_k=n_negative)[0].reshape(-1))
+        sim_score = util.cos_sim(query_embedding, corpus_embedding).cpu().numpy().reshape(-1)
+        sort_index = np.argsort(sim_score)
+        sub_haft = int(n_negative/2)
+        top_index = sort_index[-sub_haft:]
+        random_index = sample(sort_index[:-sub_haft], n_negative - sub_haft)
+        return top_index + random_index
+

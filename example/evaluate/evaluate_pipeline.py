@@ -19,6 +19,7 @@ config = load_yaml_file('config/infer.yaml')
 retrieval_config = config['retrieval']
 
 corpus = Corpus.parser_uit_squad(**retrieval_config['data'])
+print(len(corpus.list_document))
 
 # bm25_retrieval = BM25Retrieval(corpus=corpus)
 # sbert_retrieval = SBertRetrieval.from_pretrained(model_name_or_path=path_model)
@@ -38,18 +39,18 @@ corpus = Corpus.parser_uit_squad(**retrieval_config['data'])
 #     print(doc.document_context, doc.bm25_score, doc.embedding_similarity_score)
 #     print("\n\n")
 
-context_copurs = {doc.document_id: doc.document_context for doc in corpus.list_document}
-queries = {}
-relevant_docs = {}
-for doc in corpus.list_document:
-    if len(doc.list_pair_question_answers) == 0:
-        continue
-    for question_answer in doc.list_pair_question_answers:
-        ques_id = hashlib.sha1(str(question_answer.question).encode('utf-8')).hexdigest()
-        queries[ques_id] = question_answer.question
-        if ques_id not in relevant_docs:
-            relevant_docs[ques_id] = set()
-        relevant_docs[ques_id].add(doc.document_id)
+# context_copurs = {doc.document_id: doc.document_context for doc in corpus.list_document}
+# queries = {}
+# relevant_docs = {}
+# for doc in corpus.list_document:
+#     if len(doc.list_pair_question_answers) == 0:
+#         continue
+#     for question_answer in doc.list_pair_question_answers:
+#         ques_id = hashlib.sha1(str(question_answer.question).encode('utf-8')).hexdigest()
+#         queries[ques_id] = question_answer.question
+#         if ques_id not in relevant_docs:
+#             relevant_docs[ques_id] = set()
+#         relevant_docs[ques_id].add(doc.document_id)
 
 # evaluator = InformationRetrievalEvaluatorCustom(
 #     corpus=context_copurs,

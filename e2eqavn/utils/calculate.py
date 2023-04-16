@@ -1,5 +1,6 @@
 from typing import *
 import numpy as np
+import torch
 from numpy import array
 from torch import Tensor
 from tqdm import tqdm
@@ -13,14 +14,12 @@ import hashlib
 logger = logging.getLogger(__name__)
 
 
-def get_top_k_retrieval(query_embedding: Union[Tensor, array],
-                        corpus_embedding: Union[Tensor, array],
-                        top_k: int):
-    similarity = util.cos_sim(query_embedding, corpus_embedding)
-    if isinstance(similarity, Tensor):
-        similarity = similarity.cpu().numpy()
-    index_sorted = np.argsort(similarity, axis=1)[:, -top_k:]
-    return index_sorted, np.take(similarity, index_sorted)
+# def get_top_k_sample_for_sbert(query_embedding: Union[Tensor, np.array],
+#                                corpus_embedding: Union[Tensor, np.array],
+#                                top_k: int):
+#     similarity_score = util.cos_sim(query_embedding, corpus_embedding)
+#     scores, indexs = torch.topk(similarity_score, top_k, dim=1, largest=True, sorted=True)
+#     return scores, indexs
 
 
 def prepare_information_retrieval_evaluator(data: List[Dict], **kwargs) -> InformationRetrievalEvaluator:

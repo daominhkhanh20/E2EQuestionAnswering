@@ -3,15 +3,15 @@ retrieval:
   data:
     path_data: data/UITSquad/train.json
     path_evaluator: data/UITSquad/dev.json
-    mode_chunking: false
-    max_length: 300
+    mode_chunking: True
+    max_length: 256
     overlapping_size: 60
     method_generation: sbert
     method_train: triplet
-    sbert_model_gen: keepitreal/vietnamese-sbert
+    sbert_model_gen: khanhbk20/vn-sentence-embedding
     n_negative: 8
   model:
-    model_name_or_path: keepitreal/vietnamese-sbert
+    model_name_or_path: khanhbk20/vn-sentence-embedding
     model_save_path: Model
     batch_size: 32
     epochs: 5

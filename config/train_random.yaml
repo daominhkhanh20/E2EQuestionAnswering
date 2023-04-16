@@ -3,14 +3,14 @@ retrieval:
   data:
     path_data: data/UITSquad/train.json
     path_evaluator: data/UITSquad/dev.json
-    mode_chunking: false
+    mode_chunking: True
     max_length: 250
-    overlapping_size: 60
+    overlapping_size: 100
     method_generation: random
     method_train: triplet
     n_negative: 6
   model:
-    model_name_or_path: sentence-transformers/stsb-xlm-r-multilingual
+    model_name_or_path: khanhbk20/vn-sentence-embedding
     model_save_path: Model
     batch_size: 32
     epochs: 5

@@ -8,7 +8,6 @@ from copy import deepcopy
 
 from e2eqavn.retrieval import BaseRetrieval
 from e2eqavn.documents import *
-from e2eqavn.utils.calculate import get_top_k_retrieval
 from sentence_transformers import SentenceTransformer, util
 from sentence_transformers.evaluation import InformationRetrievalEvaluator, SentenceEvaluator
 import torch
