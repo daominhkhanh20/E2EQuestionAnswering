@@ -115,7 +115,7 @@ class BM25Scoring(BM25Base, ABC):
 
     def get_top_k(self, query: Union[List[str], str], top_k: int):
         if isinstance(query, str):
-            query = query.split(" ")
+            query = query.lower().split(" ")
         scores = self.get_scores(query)
         top_k_idxs = np.argsort(scores)[-top_k:]
         return {idx: scores[idx] for idx in top_k_idxs}
