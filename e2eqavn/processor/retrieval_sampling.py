@@ -130,7 +130,12 @@ class RetrievalGeneration:
 
     @classmethod
     def bm25_generation(cls, bm25_model: BM25Scoring, query: str, n_negative: int):
-        return list(bm25_model.get_top_k(query, top_k=n_negative))
+        scores = bm25_model.get_scores(query).reshape(-1)
+        sort_index = np.argsort(scores)
+        sub_haft = int(n_negative / 2)
+        top_index = sort_index[-sub_haft:]
+        random_index = sample(sort_index[:-sub_haft], n_negative - sub_haft)
+        return top_index + random_index
 
     @classmethod
     def sentence_transformer_generation(cls, corpus_embedding, query_embedding, n_negative: int, **kwargs):

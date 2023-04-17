@@ -8,7 +8,7 @@ retrieval:
     overlapping_size: 80
     method_generation: bm25
     method_train: triplet
-    n_negative: 6
+    n_negative: 10
   model:
     model_name_or_path: khanhbk20/vn-sentence-embedding
     model_save_path: Model
