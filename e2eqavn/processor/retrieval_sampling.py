@@ -95,7 +95,6 @@ class RetrievalGeneration:
                     raise Exception("List negative index is None")
                 if idx in list_negative_docs_index:
                     list_negative_docs_index.remove(idx)
-
                 if method_train == 'triplet':
                     for neg_idx in list_negative_docs_index:
                         list_retrieval_sample.append(
@@ -131,18 +130,18 @@ class RetrievalGeneration:
     @classmethod
     def bm25_generation(cls, bm25_model: BM25Scoring, query: str, n_negative: int):
         scores = bm25_model.get_scores(query).reshape(-1)
-        sort_index = np.argsort(scores)
-        sub_haft = int(n_negative / 2)
-        top_index = sort_index[-sub_haft:]
-        random_index = sample(sort_index[:-sub_haft], n_negative - sub_haft)
-        return top_index + random_index
+        sorted_idxs = np.argsort(scores)
+        sub_haft_best = int(n_negative/2)
+        top_index = list(sorted_idxs[-sub_haft_best:])
+        random_index = list(np.random.choice(sorted_idxs[:-sub_haft_best], n_negative - sub_haft_best))
+        return random_index + top_index
 
     @classmethod
     def sentence_transformer_generation(cls, corpus_embedding, query_embedding, n_negative: int, **kwargs):
         sim_score = util.cos_sim(query_embedding, corpus_embedding).cpu().numpy().reshape(-1)
         sort_index = np.argsort(sim_score)
         sub_haft = int(n_negative/2)
-        top_index = sort_index[-sub_haft:]
-        random_index = sample(sort_index[:-sub_haft], n_negative - sub_haft)
+        top_index = list(sort_index[-sub_haft:])
+        random_index = list(sample(sort_index[:-sub_haft], n_negative - sub_haft))
         return top_index + random_index
 
