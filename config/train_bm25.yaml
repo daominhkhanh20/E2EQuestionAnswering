@@ -13,7 +13,7 @@ retrieval:
     model_name_or_path: khanhbk20/vn-sentence-embedding
     model_save_path: Model
     batch_size: 32
-    epochs: 5
+    epochs: 4
 
 reader:
   is_train: false
