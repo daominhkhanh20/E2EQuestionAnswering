@@ -77,6 +77,7 @@ class MRCReader(BaseReader, ABC):
 
     def train(self, mrc_dataset: MRCDataset, **kwargs):
         training_args = TrainingArguments(
+            report_to=None,
             output_dir=kwargs.get(OUTPUT_DIR, 'model/qa'),
             do_train=kwargs.get(DO_TRANING, True),
             do_eval=kwargs.get(DO_EVAL, True),
