@@ -13,6 +13,7 @@ dataset = MRCDataset.init_mrc_dataset(
     corpus_eval=eval_corpus,
     model_name_or_path=config_qa['model'][MODEL_NAME_OR_PATH]
 )
-
+print(len(dataset.train_dataset))
+print(len(dataset.evaluator_dataset))
 reader = MRCReader.from_pretrained(config_qa['model'][MODEL_NAME_OR_PATH])
 reader.train(dataset)

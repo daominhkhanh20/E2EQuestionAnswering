@@ -1,13 +1,16 @@
 from transformers import PreTrainedTokenizerFast, AutoTokenizer
 
-context = ["phạm văn đồng (1 tháng 3 năm 1906 – 29 tháng 4 năm 2000) là thủ tướng đầu tiên của nước cộng hòa xã hội "
-           "chủ nghĩa việt nam từ năm 1976 (từ năm 1981 gọi là chủ tịch hội đồng bộ trưởng) cho đến khi nghỉ hưu năm "
-           "1987. trước đó ông từng giữ chức vụ thủ tướng chính phủ việt nam dân chủ cộng hòa từ năm 1955 đến năm "
-           "1976. ông là vị thủ tướng việt nam tại vị lâu nhất (1955–1987). ông là học trò, cộng sự của chủ tịch hồ "
-           "chí minh. ông có tên gọi thân mật là tô, đây từng là bí danh của ông. ông còn có tên gọi là lâm bá kiệt "
-           "khi làm phó chủ nhiệm cơ quan biện sự xứ tại quế lâm (chủ nhiệm là hồ học lãm)."]
-questions = ["Kinh đô ánh sáng nổi tiếng về lĩnh vực gì?"]
-answers = ["thủ tướng chính phủ việt nam dân chủ cộng hòa"]
+context = ["ông việt phương, nguyên thư ký của thủ tướng phạm văn đồng, trong buổi họp báo giới thiệu sách của các "
+           "nhà ngoại giao, đã tiết lộ rằng khi đàm phán hiệp định geneva (1954), do đoàn việt nam không có điện đài "
+           "nên bộ trưởng ngoại giao lúc đó là phạm văn đồng đã mắc một sai lầm khi nhờ trung quốc chuyển các bức "
+           "điện về nước, do vậy trung quốc biết hết các sách lược của việt nam và sử dụng chúng để ép việt nam ký "
+           "hiệp định theo lợi ích của trung quốc. trong đàm phán phạm văn đồng sử dụng phiên dịch trung quốc nên nội "
+           "dung liên lạc giữa đoàn đàm phán và trung ương, trung quốc đều biết trước và tìm cách ngăn chặn. ông phạm "
+           "văn đồng sau này cũng thừa nhận là đoàn việt nam khi đó quá tin đoàn trung quốc. tại hội nghị ấy, "
+           "ông đồng chỉ chủ yếu tiếp xúc với đoàn liên xô và đoàn trung quốc, trong khi anh là đồng chủ tịch, "
+           "quan điểm lại khác với pháp, nhưng ông lại không tranh thủ, không hề tiếp xúc với phái đoàn anh."]
+answers = ["sử dụng chúng để ép việt nam ký hiệp định theo lợi ích của trung quốc"]
+questions = ['từ những sai lầm tại cuộc đàm phán hiệp định geneva, trung quốc đã tận dụng chúng như thế nào?']
 tokenizer = AutoTokenizer.from_pretrained('khanhbk20/mrc_testing')
 
 
@@ -25,9 +28,6 @@ def get_index(context, answer, question):
     try:
         start_index = context.index(answer)
         end_index = start_index + len(answer)
-        print(start_index)
-        print(end_index)
-        print(offset_mapping)
         token_start_index, token_end_index = -1, -1
         flag_start_index, flag_end_index = False, False
         i = 0

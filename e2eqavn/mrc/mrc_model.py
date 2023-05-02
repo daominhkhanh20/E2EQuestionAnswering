@@ -2,6 +2,7 @@ from typing import *
 from abc import ABC
 import torch
 from torch import nn, Tensor
+from torch.utils.data import DataLoader
 from transformers import RobertaPreTrainedModel, RobertaModel
 from transformers.modeling_outputs import QuestionAnsweringModelOutput
 from transformers import TrainingArguments, Trainer, AutoTokenizer
@@ -23,7 +24,8 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
 
     def forward(self, input_ids: Tensor, attention_mask: Tensor,
                 start_positions: Tensor = None, end_positions: Tensor = None,
-                return_dict: bool = None):
+                return_dict: bool = None, start_idx: Tensor = None, end_idx: Tensor = None):
+        print(input_ids.size())
         return_dict = return_dict if return_dict is not None else self.config.use_return_dict
         outputs = self.model(
             input_ids,
@@ -83,8 +85,8 @@ class MRCReader(BaseReader, ABC):
             learning_rate=kwargs.get(LEARNING_RATE, 1e-4),
             warmup_ratio=kwargs.get(WARMPUP_RATIO, 0.05),
             weight_decay=kwargs.get(WEIGHT_DECAY, 0.01),
-            per_device_train_batch_size=kwargs.get(BATCH_SIZE_TRAINING, 16),
-            per_device_eval_batch_size=kwargs.get(BATCH_SIZE_EVAL, 32),
+            per_device_train_batch_size=kwargs.get(BATCH_SIZE_TRAINING, 4),
+            per_device_eval_batch_size=kwargs.get(BATCH_SIZE_EVAL, 8),
             gradient_accumulation_steps=kwargs.get(GRADIENT_ACCUMULATION_STEPS, 1),
             logging_dir='log',
             logging_steps=kwargs.get(LOGGING_STEP, 5),
@@ -93,12 +95,14 @@ class MRCReader(BaseReader, ABC):
                 "end_positions",
                 "input_ids"
             ],
+            group_by_length=True,
             save_strategy=kwargs.get(SAVE_STRATEGY, 'epoch'),
             metric_for_best_model=kwargs.get(METRIC_FOR_BEST_MODEL, 'f1'),
             load_best_model_at_end=kwargs.get(LOAD_BEST_MODEL_AT_END, True),
             save_total_limit=kwargs.get(SAVE_TOTAL_LIMIT, 2),
             evaluation_strategy=kwargs.get(EVALUATION_STRATEGY, 'epoch')
         )
+
         data_collator = DataCollatorCustom(tokenizer=self.tokenizer)
         compute_metrics = MRCEvaluator(tokenizer=self.tokenizer)
         trainer = Trainer(

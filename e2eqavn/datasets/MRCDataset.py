@@ -4,7 +4,7 @@ import random
 from transformers import AutoTokenizer
 import logging
 
-from datasets import load_dataset, Dataset
+from datasets import load_dataset
 from e2eqavn.documents import Corpus, Document
 from e2eqavn.keywords import *
 from e2eqavn.utils.calculate import calculate_input_training_for_qa
@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 class MRCDataset:
-    def __init__(self, train_dataset: Dataset, evaluator_dataset: Dataset, **kwargs):
+    def __init__(self, train_dataset, evaluator_dataset, **kwargs):
         self.train_dataset = train_dataset
         self.evaluator_dataset = evaluator_dataset
 
@@ -43,9 +43,9 @@ class MRCDataset:
                         QUESTION: question,
                     }
                 )
-                i += 1
-            if i >= 10:
-                break
+            #     i += 1
+            # if i >= 10:
+            #     break
         dir_save = kwargs.get(FOLDER_QA_SAVE, 'data/qa')
         if not os.path.exists(dir_save):
             os.makedirs(dir_save, exist_ok=True)
@@ -53,7 +53,8 @@ class MRCDataset:
         write_json_file(examples, os.path.join(dir_save, f"{mode}.json"))
         dataset = load_dataset(
             'json',
-            data_files=os.path.join(dir_save, f"{mode}.json")
+            data_files={mode: os.path.join(dir_save, f"{mode}.json")},
+            field='data'
         )
         dataset = dataset.shuffle().map(
             calculate_input_training_for_qa,
@@ -65,13 +66,13 @@ class MRCDataset:
             }
         )
 
-        return dataset
+        return dataset[mode]
 
     @classmethod
     def init_mrc_dataset(cls, corpus_train: Corpus, corpus_eval: Corpus, **kwargs):
         train_dataset = cls.make_dataset(corpus_train, mode='train', **kwargs)
         if corpus_eval is not None:
-            eval_dataset = cls.make_dataset(corpus_eval, mode='val', **kwargs)
+            eval_dataset = cls.make_dataset(corpus_eval, mode='validation', **kwargs)
         else:
             eval_dataset = None
         return cls(train_dataset, eval_dataset)
