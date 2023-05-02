@@ -26,7 +26,7 @@ class MRCDataset:
         examples = []
         tokenizer = AutoTokenizer.from_pretrained(kwargs.get(MODEL_NAME_OR_PATH))
         is_document_right = kwargs.get(IS_DOCUMENT_RIGHT, True)
-        num_proc = kwargs.get(NUM_PROC, 10)
+        num_proc = kwargs.get(NUM_PROC, 5)
         i = 0
         for document in corpus.list_document:
             if len(document.list_pair_question_answers) == 0:
