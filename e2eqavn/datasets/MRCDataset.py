@@ -43,9 +43,9 @@ class MRCDataset:
                         QUESTION: question,
                     }
                 )
-            #     i += 1
-            # if i >= 10:
-            #     break
+                i += 1
+            if i >= 10:
+                break
         dir_save = kwargs.get(FOLDER_QA_SAVE, 'data/qa')
         if not os.path.exists(dir_save):
             os.makedirs(dir_save, exist_ok=True)
