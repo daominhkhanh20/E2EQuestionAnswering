@@ -25,7 +25,6 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
     def forward(self, input_ids: Tensor, attention_mask: Tensor,
                 start_positions: Tensor = None, end_positions: Tensor = None,
                 return_dict: bool = None, start_idx: Tensor = None, end_idx: Tensor = None):
-        print(input_ids.size())
         return_dict = return_dict if return_dict is not None else self.config.use_return_dict
         outputs = self.model(
             input_ids,

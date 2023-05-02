@@ -26,6 +26,6 @@ class MRCEvaluator:
             )
 
             predictions.append({'prediction_text': answer_pred, 'id': str(idx)})
-            references.append({'answers': {'answer_start': [start_position], 'text': answer_truth, 'id': str(idx)}})
+            references.append({'answers': {'answer_start': [start_position], 'text': [answer_truth]}, 'id': str(idx)})
         return self.metric.compute(predictions=predictions, references=references)
 
