@@ -33,7 +33,7 @@ class InformationRetrievalEvaluatorCustom(InformationRetrievalEvaluator):
         else:
             top_k_sbert = max(max(self.mrr_at_k), max(self.ndcg_at_k), max(self.accuracy_at_k),
                               max(self.precision_recall_at_k),
-                              max(self.map_at_k))
+                              max(self.map_at_k ))
         list_question = self.queries
         query_result_list = [[] for _ in range(len(self.queries))]
 

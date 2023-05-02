@@ -3,6 +3,8 @@ retrieval:
   data:
     path_data: data/UITSquad/train.json
     path_evaluator: data/UITSquad/dev.json
+
+  parameters:
     mode_chunking: True
     max_length: 256
     overlapping_size: 80
@@ -16,4 +18,9 @@ retrieval:
     epochs: 4
 
 reader:
-  is_train: false
+  is_train: true
+  data:
+    path_train: data/UITSquad/train.json
+    path_evaluator: data/UITSquad/dev.json
+  model:
+    model_name_or_path: khanhbk20/mrc_testing

@@ -8,9 +8,10 @@ from sentence_transformers.losses import MultipleNegativesRankingLoss
 
 config = load_yaml_file('config/train_bm25.yaml')
 retrieval_config = config['retrieval']
-corpus = Corpus.parser_uit_squad(**retrieval_config['data'])
+corpus = Corpus.parser_uit_squad(path_data=retrieval_config['data']['path_data'],
+                                 **retrieval_config['parameters'])
 # corpus.save_corpus('corpus.json')
-retrieval_sampling = RetrievalGeneration.generate_sampling(corpus, **retrieval_config['data'])
+retrieval_sampling = RetrievalGeneration.generate_sampling(corpus, **retrieval_config['parameters'])
 # train_dataset = TripletDataset.load_from_retrieval_sampling(retrieval_sampling)
 # dev_evaluator = make_vnsquad_retrieval_evaluator(
 #     path_data_json=retrieval_config['data']['path_evaluator']

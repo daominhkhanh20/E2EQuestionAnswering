@@ -44,20 +44,6 @@ class PairQuestionAnswers:
     #     """
     #     raise NotImplementedError()
 
-    # @classmethod
-    # def init_class(cls, document_id, document_context: str,
-    #                question: str, answers: List[str]):
-    #     tmp_list = []
-    #     for answer in answers:
-    #         tmp_list.append(
-    #             AnswerInformation(
-    #                 document_context=document_context,
-    #                 question=question,
-    #                 answer=answer
-    #             )
-    #         )
-    #     return cls(document_id, document_context, tmp_list)
-
 
 class Document:
     def __init__(self, document_context: str, document_id: str = None,
