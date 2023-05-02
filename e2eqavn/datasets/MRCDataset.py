@@ -2,12 +2,15 @@ import os
 import tempfile
 import random
 from transformers import AutoTokenizer
+import logging
 
 from datasets import load_dataset, Dataset
 from e2eqavn.documents import Corpus, Document
 from e2eqavn.keywords import *
 from e2eqavn.utils.calculate import calculate_input_training_for_qa
 from e2eqavn.utils.io import write_json_file
+
+logger = logging.getLogger(__name__)
 
 
 class MRCDataset:
@@ -17,7 +20,7 @@ class MRCDataset:
 
     @classmethod
     def make_dataset(cls, corpus: Corpus, mode: str, **kwargs):
-        print(kwargs)
+        logger.info(f"Start prepare {mode} dataset")
         if MODEL_NAME_OR_PATH not in kwargs:
             raise Exception("You must provide pretrained name for QA")
         examples = []
@@ -41,6 +44,8 @@ class MRCDataset:
                     }
                 )
                 i += 1
+            if i >= 10:
+                break
         dir_save = kwargs.get(FOLDER_QA_SAVE, 'data/qa')
         if not os.path.exists(dir_save):
             os.makedirs(dir_save, exist_ok=True)

@@ -3,3 +3,4 @@ PyYAML
 sentence_transformers
 torch
 tqdm
+networkx

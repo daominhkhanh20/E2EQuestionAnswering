@@ -8,7 +8,7 @@ from transformers import TrainingArguments, Trainer, AutoTokenizer
 
 from .base import BaseReader
 from e2eqavn.documents import Document
-from e2eqavn.datasets import DataCollatorCustom
+from e2eqavn.datasets import DataCollatorCustom, MRCDataset
 from e2eqavn.keywords import *
 from e2eqavn.evaluate import MRCEvaluator
 
@@ -74,7 +74,7 @@ class MRCReader(BaseReader, ABC):
         tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
         return cls(model, tokenizer, device)
 
-    def train(self, train_dataset, evaluator_dataset, **kwargs):
+    def train(self, mrc_dataset: MRCDataset, **kwargs):
         training_args = TrainingArguments(
             output_dir=kwargs.get(OUTPUT_DIR, 'model/qa'),
             do_train=kwargs.get(DO_TRANING, True),
@@ -104,8 +104,8 @@ class MRCReader(BaseReader, ABC):
         trainer = Trainer(
             model=self.model,
             args=training_args,
-            train_dataset=train_dataset,
-            eval_dataset=evaluator_dataset,
+            train_dataset=mrc_dataset.train_dataset,
+            eval_dataset=mrc_dataset.evaluator_dataset,
             data_collator=data_collator,
             compute_metrics=compute_metrics
         )
