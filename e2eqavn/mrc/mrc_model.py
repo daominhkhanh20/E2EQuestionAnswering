@@ -76,13 +76,14 @@ class MRCReader(BaseReader, ABC):
         return cls(model, tokenizer, device)
 
     def train(self, mrc_dataset: MRCDataset, **kwargs):
+        print(kwargs)
         training_args = TrainingArguments(
             report_to="none",
             output_dir=kwargs.get(OUTPUT_DIR, 'model/qa'),
             do_train=kwargs.get(DO_TRANING, True),
             do_eval=kwargs.get(DO_EVAL, True),
             num_train_epochs=kwargs.get(NUM_TRAIN_EPOCHS, 20),
-            learning_rate=kwargs.get(LEARNING_RATE, 1e-4),
+            learning_rate=float(kwargs.get(LEARNING_RATE, 1e-4)),
             warmup_ratio=kwargs.get(WARMPUP_RATIO, 0.05),
             weight_decay=kwargs.get(WEIGHT_DECAY, 0.01),
             per_device_train_batch_size=kwargs.get(BATCH_SIZE_TRAINING, 16),
@@ -113,7 +114,7 @@ class MRCReader(BaseReader, ABC):
             data_collator=data_collator,
             compute_metrics=compute_metrics
         )
-        trainer.train()
+        # trainer.train()
 
     def predict(self, query: Union[str, List[str]], documents: List[Document], **kwargs):
         pass
