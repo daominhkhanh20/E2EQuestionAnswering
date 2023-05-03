@@ -27,6 +27,7 @@ reader:
     mode_chunking: True
     max_length: 350
     overlapping_size: 80
+    is_valid: True
 
   model:
     model_name_or_path: khanhbk20/mrc_testing

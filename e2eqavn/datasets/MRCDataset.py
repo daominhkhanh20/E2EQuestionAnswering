@@ -22,6 +22,7 @@ class MRCDataset:
     @classmethod
     def make_dataset(cls, corpus: Corpus, mode: str, **kwargs):
         logger.info(f"Start prepare {mode} dataset")
+        logger.info(f"Filter valid = {kwargs.get(IS_VALID, False)}")
         if MODEL_NAME_OR_PATH not in kwargs:
             raise Exception("You must provide pretrained name for QA")
         examples = []
@@ -65,6 +66,8 @@ class MRCDataset:
                 'is_document_right': is_document_right
             }
         )
+        if kwargs.get(IS_VALID, False):
+            dataset = dataset.filter(lambda x: x[IS_VALID], num_proc=num_proc)
 
         return dataset[mode]
 

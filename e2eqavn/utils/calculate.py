@@ -72,9 +72,12 @@ def calculate_input_training_for_qa(example, tokenizer, is_document_right: bool)
         if token_end_index > -1 and token_start_index > -1:
             data[START_IDX] = token_start_index
             data[END_IDX] = token_end_index
+            data[IS_VALID] = True
         else:
             data[START_IDX] = cls_index
             data[END_IDX] = cls_index
+            data[IS_VALID] = False
+
             logger.info(f"""
             Answer: '{answer}' \n
             Answer start: {answer_start}  {start_index}\n
@@ -86,6 +89,8 @@ def calculate_input_training_for_qa(example, tokenizer, is_document_right: bool)
         logger.info(e)
         data[START_IDX] = cls_index
         data[END_IDX] = cls_index
+        data[IS_VALID] = False
+
         logger.info(f"""
         Answer: '{answer}' \n \
         Answer start: {answer_start}

@@ -6,12 +6,14 @@ from e2eqavn.mrc import MRCReader
 
 config = load_yaml_file('config/train_bm25.yaml')
 config_qa = config['reader']
+print(config_qa)
 train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'], **config_qa['parameters'])
 eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'], **config_qa['parameters'])
 dataset = MRCDataset.init_mrc_dataset(
     corpus_train=train_corpus,
     corpus_eval=eval_corpus,
-    model_name_or_path=config_qa['model'][MODEL_NAME_OR_PATH]
+    model_name_or_path=config_qa['model'][MODEL_NAME_OR_PATH],
+    id_valid=config_qa['parameters'].get(IS_VALID, False)
 )
 print(len(dataset.train_dataset))
 print(len(dataset.evaluator_dataset))
