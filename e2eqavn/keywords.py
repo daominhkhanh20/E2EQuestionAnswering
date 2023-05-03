@@ -14,6 +14,7 @@ QAS_KEY = 'qas_key'
 QUESTION_KEY = 'question_key'
 ANSWERS_KEY = 'answers_key'
 ANSWER_KEY = 'answer_key'
+ANSWER_START = 'answer_start'
 NUM_PROC = 'num_proc'
 FOLDER_QA_SAVE = 'folder_qa_save'
 

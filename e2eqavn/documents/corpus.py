@@ -31,11 +31,11 @@ logger = logging.getLogger(__name__)
 
 
 class PairQuestionAnswers:
-    def __init__(self, document_id: str, document_context: str, question: str, list_answers: List[str]):
+    def __init__(self, document_id: str, document_context: str, question: str, list_dict_answer: List[Dict]):
         self.document_id = document_id
         self.document_context = document_context
         self.question = question
-        self.list_answers = list_answers
+        self.list_dict_answer = list_dict_answer
 
     # def find_index_answer(self):
     #     """
@@ -86,14 +86,14 @@ class Document:
         temp = []
         document_context = process_text(document_context)
         if len(dict_question_answers) > 0:
-            for question, list_answer in dict_question_answers.items():
+            for question, list_dict_answer in dict_question_answers.items():
                 question = process_text(question)
                 temp.append(
                     PairQuestionAnswers(
                         document_id=document_id,
                         document_context=document_context,
                         question=question,
-                        list_answers=list_answer
+                        list_dict_answer=list_dict_answer
                     )
                 )
             return cls(document_context=document_context, document_id=document_id, list_pair_question_answers=temp,
@@ -110,6 +110,7 @@ class Corpus:
     answer_key: str = TEXT
     max_length: int = 400
     overlapping_size: int = 40
+    answer_start = ANSWER_START
 
     def __init__(self, list_document: List[Document], **kwargs):
         self.list_document = list_document
@@ -129,6 +130,7 @@ class Corpus:
         answer_key = kwargs.get(ANSWER_KEY, cls.answer_key)
         infer_mode = kwargs.get(INFER_MODE, False)
         is_vnsquad_eval = kwargs.get(IS_VNSQUAD_EVAL, False)
+        answer_start = kwargs.get(ANSWER_START, cls.answer_start)
 
         list_document = []
         document_context = context[context_key]
@@ -139,7 +141,12 @@ class Corpus:
                 for question in context[qas_key]:
                     if not is_vnsquad_eval:
                         for answer in question[answers_key]:
-                            dict_question_answers[question[question_key]].append(process_text(answer[answer_key]))
+                            dict_question_answers[question[question_key]].append(
+                                {
+                                    answer_key: process_text(answer[answer_key]),
+                                    answer_start: answer[answer_start]
+                                }
+                            )
                     else:
                         dict_question_answers[question[question_key]] = []
             list_document.append(
@@ -166,10 +173,18 @@ class Corpus:
                             if answer[answer_key] in context_chunk:
                                 if question[question_key] not in dict_question_answers[list_context_id[idx]]:
                                     dict_question_answers[list_context_id[idx]][question[question_key]] = [
-                                        answer[answer_key]]
+                                        {
+                                            answer_key: answer[answer_key],
+                                            answer_start: answer[answer_start]
+                                        }
+                                    ]
                                 else:
                                     dict_question_answers[list_context_id[idx]][question[question_key]].append(
-                                        process_text(answer[answer_key]))
+                                        {
+                                            answer_key: process_text(answer[answer_key]),
+                                            answer_start: answer[answer_start]
+                                        }
+                                    )
                                 flag_exist = True
                                 break
                         if not flag_exist:

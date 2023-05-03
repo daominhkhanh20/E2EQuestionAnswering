@@ -8,6 +8,7 @@ from datasets import load_dataset
 from e2eqavn.documents import Corpus, Document
 from e2eqavn.keywords import *
 from e2eqavn.utils.calculate import calculate_input_training_for_qa
+from e2eqavn.utils.preprocess import *
 from e2eqavn.utils.io import write_json_file
 
 logger = logging.getLogger(__name__)
@@ -31,21 +32,20 @@ class MRCDataset:
         for document in corpus.list_document:
             if len(document.list_pair_question_answers) == 0:
                 continue
-            document_context = document.document_context
+            document_context = preprocess_qa_text(document.document_context)
             for question_answer in document.list_pair_question_answers:
                 question = question_answer.question
-                list_answers = question_answer.list_answers
-                answer = random.choice(list_answers)
+                list_dict_answer = question_answer.list_dict_answer
+                dict_answer = random.choice(list_dict_answer)
+                answer = preprocess_qa_text(dict_answer['text'])
                 examples.append(
                     {
                         CONTEXT: document_context,
-                        ANSWER: answer,
+                        ANSWER: preprocess_answer(document_context, answer, dict_answer[ANSWER_START]),
                         QUESTION: question,
+                        ANSWER_START: dict_answer.get(ANSWER_START, None)
                     }
                 )
-            #     i += 1
-            # if i >= 10:
-            #     break
         dir_save = kwargs.get(FOLDER_QA_SAVE, 'data/qa')
         if not os.path.exists(dir_save):
             os.makedirs(dir_save, exist_ok=True)

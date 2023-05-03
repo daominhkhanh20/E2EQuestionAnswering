@@ -20,11 +20,11 @@ tokenizer = AutoTokenizer.from_pretrained(config_qa['model'][MODEL_NAME_OR_PATH]
 data_collator = DataCollatorCustom(tokenizer=tokenizer)
 print(isinstance(dataset.train_dataset, torch.utils.data.IterableDataset))
 print(dataset.train_dataset.column_names)
-for sample in dataset.train_dataset:
-    if len(sample['input_ids']) == 243:
-        print(sample['context'])
-        print(sample['question'])
-        print(sample['answer'])
+# for sample in dataset.train_dataset:
+#     if len(sample['input_ids']) == 243:
+#         print(sample['context'])
+#         print(sample['question'])
+#         print(sample['answer'])
 # loader = DataLoader(
 #     dataset=dataset.train_dataset,
 #     collate_fn=data_collator,

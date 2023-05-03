@@ -1,28 +1,18 @@
-import re
-from typing import *
-import numpy as np
-import torch
-from numpy import array
-from torch import Tensor
-from tqdm import tqdm
-import logging
-from torch import Tensor
-from transformers import AutoTokenizer
-from sentence_transformers import util
-from sentence_transformers.evaluation import InformationRetrievalEvaluator
-from .io import load_json_data
-import hashlib
-
+from e2eqavn.utils.preprocess import *
 from e2eqavn.keywords import *
-from e2eqavn.utils.preprocess import process_text
+from transformers import AutoTokenizer
+import logging
 
+tokenizer = AutoTokenizer.from_pretrained('khanhbk20/mrc_testing')
 logger = logging.getLogger(__name__)
 
 
-def calculate_input_training_for_qa(example, tokenizer, is_document_right: bool):
+def calculate_input_training_for_qa(example, is_document_right: bool = False):
     context = process_text(example[CONTEXT])
     question = process_text(example[QUESTION])
     answer = process_text(example[ANSWER])
+    if question == 'mặt trận chính của cuộc chiến chống pháp là ở miền nào?':
+        print(answer)
     answer_start = example.get(ANSWER_START, None)
     output_tokenizer_samples = tokenizer(
         context if is_document_right else question,
@@ -92,53 +82,12 @@ def calculate_input_training_for_qa(example, tokenizer, is_document_right: bool)
         return data
 
 
-def prepare_information_retrieval_evaluator(data: List[Dict], **kwargs) -> InformationRetrievalEvaluator:
-    """
-    :param data: List dictionary data
-        Exammple:
-            [
-                {
-                    "text": "xin chào bạn"
-                    "qas": [
-                        {
-                            "question" : "question1",
-                            "answers": [
-                                {"text" : "answer1"},
-                                {"text" : "answer2"}
-                            ]
-                        }
-                    ]
-
-                }
-            ]
-    :return:
-    """
-    logger.info(f"Start prepare evaluator for {len(data)} context")
-    context_key = kwargs.get('context_key', 'context')
-    qas_key = kwargs.get('qas_key', 'qas')
-    question_key = kwargs.get('question_key', 'question')
-    queries, corpus, relevant_docs = {}, {}, {}
-    for sample in tqdm(data):
-        context = sample[context_key]
-        context_id = hashlib.sha1(str(context).encode('utf-8')).hexdigest()
-        corpus[context_id] = context
-        for ques in sample[qas_key]:
-            question = ques[question_key]
-            question_id = hashlib.sha1(str(question).encode('utf-8')).hexdigest()
-            queries[question_id] = question
-            if question_id not in relevant_docs:
-                relevant_docs[question_id] = set()
-            relevant_docs[question_id].add(context_id)
-    return InformationRetrievalEvaluator(
-        queries=queries,
-        corpus=corpus,
-        relevant_docs=relevant_docs
-    )
-
-
-def make_vnsquad_retrieval_evaluator(path_data_json: str, **kwargs):
-    data = load_json_data(path_data_json)
-    temp = []
-    for context in data['data']:
-        temp.extend(context['paragraphs'])
-    return prepare_information_retrieval_evaluator(temp, **kwargs)
+example = {
+    CONTEXT: "marx đã đánh giá lại mối quan hệ của mình với những người hegel trẻ , và trong hình thức một bức thư trả lời về chủ nghĩa vô thần của bauer viết về vấn đề do thái. tiểu luận này chủ yếu gồm một sự phê bình các ý tưởng hiện thời về các quyền dân sự và nhân quyền và giải phóng con người; nó cũng bao gồm nhiều luận điểm chỉ trích đạo do thái và cả thiên chúa giáo từ quan điểm giải phóng xã hội. engels , một người cộng sản nhiệt thành , đã khơi dậy sự quan tâm của marx với tình hình của giai cấp lao động và hướng sự chú ý của marx vào kinh tế. marx trở thành một người cộng sản và đã đặt ra các quan điểm của mình trong một loạt các bài viết được gọi là các bản thảo kinh tế và triết học năm 1844 , không được xuất bản cho tới tận thập niên 1930s. trong bản thảo , marx vạch ra một quan niệm nhân đạo của chủ nghĩa cộng sản , bị ảnh hưởng bởi triết lý của ludwig feuerbach và dựa trên sự đối lập giữa bản chất xa lạ của lao động dưới chủ nghĩa tư bản và một xã hội cộng sản trong đó con người được tự do phát triển bản chất của mình trong sản xuất tập thể.",
+    QUESTION: "marx đã có hành động gì với những người hegel trẻ?",
+    ANSWER: "ánh giá lại mối quan hệ của mình",
+    ANSWER_START: 9
+}
+data = calculate_input_training_for_qa(example)
+print(data[START_IDX])
+print(data[END_IDX])
