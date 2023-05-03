@@ -6,8 +6,8 @@ from e2eqavn.mrc import MRCReader
 
 config = load_yaml_file('config/train_bm25.yaml')
 config_qa = config['reader']
-train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'])
-eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'])
+train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'], **config_qa['parameters'])
+eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'], **config_qa['parameters'])
 dataset = MRCDataset.init_mrc_dataset(
     corpus_train=train_corpus,
     corpus_eval=eval_corpus,

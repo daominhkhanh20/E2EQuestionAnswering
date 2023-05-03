@@ -15,6 +15,8 @@ QUESTION_KEY = 'question_key'
 ANSWERS_KEY = 'answers_key'
 ANSWER_KEY = 'answer_key'
 ANSWER_START = 'answer_start'
+MAX_LENGTH = 'max_length'
+OVER_LAPPING_SIZE = 'over_lapping_size'
 NUM_PROC = 'num_proc'
 FOLDER_QA_SAVE = 'folder_qa_save'
 

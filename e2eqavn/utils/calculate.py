@@ -27,7 +27,9 @@ def calculate_input_training_for_qa(example, tokenizer, is_document_right: bool)
     output_tokenizer_samples = tokenizer(
         context if is_document_right else question,
         question if is_document_right else context,
-        return_offsets_mapping=True
+        return_offsets_mapping=True,
+        max_length=512,
+        truncation=True
     )
     cls_token_id = tokenizer.cls_token_id
     input_ids = output_tokenizer_samples[INPUT_IDS]

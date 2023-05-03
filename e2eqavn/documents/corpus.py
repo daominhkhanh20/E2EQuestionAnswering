@@ -165,24 +165,30 @@ class Corpus:
             list_context_id = [hashlib.sha1(str(context).encode('utf-8')).hexdigest()
                                for context in list_context]
             dict_question_answers = {key: {} for key in list_context_id}
+            over_lapping_size = kwargs.get(OVER_LAPPING_SIZE, cls.overlapping_size)
             if not infer_mode or is_vnsquad_eval:
                 for question in context[qas_key]:
                     for answer in question[answers_key]:
                         flag_exist = False
+                        n_char = 0
                         for idx, context_chunk in enumerate(list_context):
+                            if idx == 0:
+                                n_char += len(context_chunk)
+                            else:
+                                n_char += len(" ".join(context_chunk.split(" ")[over_lapping_size:]).strip())
                             if answer[answer_key] in context_chunk:
                                 if question[question_key] not in dict_question_answers[list_context_id[idx]]:
                                     dict_question_answers[list_context_id[idx]][question[question_key]] = [
                                         {
                                             answer_key: answer[answer_key],
-                                            answer_start: answer[answer_start]
+                                            answer_start: answer[answer_start] - n_char if idx > 0 else answer[answer_start]
                                         }
                                     ]
                                 else:
                                     dict_question_answers[list_context_id[idx]][question[question_key]].append(
                                         {
                                             answer_key: process_text(answer[answer_key]),
-                                            answer_start: answer[answer_start]
+                                            answer_start: answer[answer_start] - n_char if idx > 0 else answer[answer_start]
                                         }
                                     )
                                 flag_exist = True
@@ -243,8 +249,8 @@ class Corpus:
 
     @classmethod
     def chunk_document(cls, context: str, **kwargs):
-        max_length = kwargs.get('max_length', cls.max_length)
-        overlapping_size = kwargs.get('overlapping_size', cls.overlapping_size)
+        max_length = kwargs.get(MAX_LENGTH, cls.max_length)
+        overlapping_size = kwargs.get(OVER_LAPPING_SIZE, cls.overlapping_size)
         size = max_length - overlapping_size
         list_words = context.split(" ")
         n_chunk = math.ceil(len(list_words) / size)
@@ -252,6 +258,9 @@ class Corpus:
         for i in range(n_chunk):
             temp_context = " ".join(list_words[i * size: i * size + max_length])
             list_context.append(temp_context)
+            if len(temp_context.split(" ")) > max_length:
+                print(max_length)
+                print("MDLSAMKDMLASDMOASKSAkd")
         return list_context
 
     @classmethod

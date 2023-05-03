@@ -22,5 +22,11 @@ reader:
   data:
     path_train: data/UITSquad/train.json
     path_evaluator: data/UITSquad/dev.json
+
+  parameters:
+    mode_chunking: True
+    max_length: 350
+    overlapping_size: 80
+
   model:
     model_name_or_path: khanhbk20/mrc_testing
