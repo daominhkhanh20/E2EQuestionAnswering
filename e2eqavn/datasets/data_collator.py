@@ -20,8 +20,6 @@ class DataCollatorCustom:
                 batch_first=True
             )
 
-        for sample in batch:
-            print(len(sample[INPUT_IDS]))
         input_ids = collate_fn(
             [
                 torch.tensor(sample[INPUT_IDS]) for sample in batch
