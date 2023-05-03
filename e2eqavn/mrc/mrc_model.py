@@ -114,7 +114,7 @@ class MRCReader(BaseReader, ABC):
             data_collator=data_collator,
             compute_metrics=compute_metrics
         )
-        # trainer.train()
+        trainer.train()
 
     def predict(self, query: Union[str, List[str]], documents: List[Document], **kwargs):
         pass
