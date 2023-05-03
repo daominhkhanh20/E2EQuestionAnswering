@@ -31,3 +31,9 @@ reader:
 
   model:
     model_name_or_path: khanhbk20/mrc_testing
+    num_train_epoch: 80
+    batch_size_training: 16
+    batch_size_eval: 32
+    gradient_accumulation_steps: 1
+    save_strategy: epoch
+    metric_for_best_model: f1

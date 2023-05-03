@@ -114,10 +114,6 @@ class MRCReader(BaseReader, ABC):
             compute_metrics=compute_metrics
         )
         trainer.train()
-        # train_loader = trainer.get_train_dataloader()
-        # sample = next(iter(train_loader))
-        # for key, value in sample.items():
-        #     print(f"{key} {value.size()}")
 
     def predict(self, query: Union[str, List[str]], documents: List[Document], **kwargs):
         pass

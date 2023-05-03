@@ -73,6 +73,7 @@ class MRCDataset:
 
     @classmethod
     def init_mrc_dataset(cls, corpus_train: Corpus, corpus_eval: Corpus, **kwargs):
+        print(kwargs)
         train_dataset = cls.make_dataset(corpus_train, mode='train', **kwargs)
         if corpus_eval is not None:
             eval_dataset = cls.make_dataset(corpus_eval, mode='validation', **kwargs)
