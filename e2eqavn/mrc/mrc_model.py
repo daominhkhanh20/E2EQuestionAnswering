@@ -89,7 +89,7 @@ class MRCReader(BaseReader, ABC):
             per_device_eval_batch_size=kwargs.get(BATCH_SIZE_EVAL, 32),
             gradient_accumulation_steps=kwargs.get(GRADIENT_ACCUMULATION_STEPS, 1),
             logging_dir='log',
-            logging_steps=kwargs.get(LOGGING_STEP, 5),
+            logging_steps=kwargs.get(LOGGING_STEP, 2),
             label_names=[
                 "start_positions",
                 "end_positions",
