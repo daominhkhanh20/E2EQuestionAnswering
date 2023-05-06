@@ -64,6 +64,10 @@ class QATextProcessor:
                 answer_start_raw += step
                 flag = True
                 break
+        if not flag and context.count(answer) == 1:
+            answer_start_raw = context.index(answer)
+            flag = True
+
         if flag:
             context_previous = self.strip_context(context[: answer_start_raw])
             answer = self.strip_answer_string(answer)
