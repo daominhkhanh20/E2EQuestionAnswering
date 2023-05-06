@@ -62,6 +62,7 @@ METRIC_FOR_BEST_MODEL = 'metric_for_best_model'
 LOAD_BEST_MODEL_AT_END = 'load_best_model_at_end'
 SAVE_TOTAL_LIMIT = 'save_total_limit'
 EVALUATION_STRATEGY = 'evaluation_strategy'
+LOGGING_STRATEGY = 'logging_strategy'
 BATCH_SIZE_TRAINING = 'batch_size_training'
 BATCH_SIZE_EVAL = 'batch_size_eval'
 
