@@ -95,7 +95,7 @@ class MRCReader(BaseReader, ABC):
                 "input_ids"
             ],
             group_by_length=True,
-            save_strategy=kwargs.get(SAVE_STRATEGY, 'epoch'),
+            save_strategy=kwargs.get(SAVE_STRATEGY, 'no'),
             metric_for_best_model=kwargs.get(METRIC_FOR_BEST_MODEL, 'f1'),
             load_best_model_at_end=kwargs.get(LOAD_BEST_MODEL_AT_END, True),
             save_total_limit=kwargs.get(SAVE_TOTAL_LIMIT, 2),
