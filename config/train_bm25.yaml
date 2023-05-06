@@ -36,6 +36,6 @@ reader:
     batch_size_training: 16
     batch_size_eval: 32
     gradient_accumulation_steps: 1
-    save_strategy: no
+    save_strategy: epoch
     metric_for_best_model: f1
     logging_step: 1
