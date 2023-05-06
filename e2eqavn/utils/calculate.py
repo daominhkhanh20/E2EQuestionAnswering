@@ -99,6 +99,44 @@ def calculate_input_training_for_qa(example, tokenizer, is_document_right: bool)
         return data
 
 
+def calculate_input_training_for_qav2(example: dict, tokenizer, max_length: int):
+    # question_ids context_ids
+    max_length -= 3  # for 3 special token sos, pad
+    context = example[CONTEXT]
+    question = example[QUESTION]
+    answer_start_idx = example[ANSWER_WORD_START_IDX]
+    answer_end_idx = example[ANSWER_WORD_END_IDX]
+    context_ids = [tokenizer.convert_tokens_to_ids(tokenizer.tokenize(word)) for word in context.split(" ")]
+    question_ids = [tokenizer.convert_tokens_to_ids(tokenizer.tokenize(word)) for word in question.split(" ")]
+    arr_size_sub_word_context_ids = [len(sub_ids) for sub_ids in context_ids]
+    arr_size_sub_word_question_ids = [len(sub_ids) for sub_ids in question_ids]
+    is_valid = True
+    if sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids) > max_length:
+        if sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids[:answer_end_idx + 1]) > max_length:
+            is_valid = False
+        else:
+            current_length = sum(arr_size_sub_word_question_ids) + sum(
+                arr_size_sub_word_context_ids[: answer_end_idx + 1])
+            tmp = answer_end_idx + 1
+            while current_length + arr_size_sub_word_context_ids[tmp] < max_length:
+                current_length += arr_size_sub_word_context_ids[tmp]
+                tmp += 1
+            context_ids = context_ids[: tmp + 1]
+    question_ids = [[tokenizer.bos_token_id]] + question_ids + [[tokenizer.eos_token_id]]
+    context_ids = context_ids + [[tokenizer.eos_token_id]]
+    start_index = 2 + sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids[: answer_start_idx])
+    end_index = 2 + sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids[: answer_end_idx])
+    input_ids = [id for sub_ids in question_ids + context_ids for id in sub_ids]
+    attention_mask = [1] * len(input_ids)
+    return {
+        INPUT_IDS: input_ids,
+        ATTENTION_MASK: attention_mask,
+        START_IDX: start_index,
+        END_IDX: end_index,
+        'is_valid': is_valid
+    }
+
+
 def prepare_information_retrieval_evaluator(data: List[Dict], **kwargs) -> InformationRetrievalEvaluator:
     """
     :param data: List dictionary data

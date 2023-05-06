@@ -1,3 +1,4 @@
-from e2eqavn.processor.chunk import ChunkingDocument
-from e2eqavn.processor.bm25 import BM25Scoring
-from e2eqavn.processor.retrieval_sampling import *
+from .chunk import ChunkingDocument
+from .bm25 import BM25Scoring
+from .retrieval_sampling import *
+from .qa_ext_processor import QATextProcessor
