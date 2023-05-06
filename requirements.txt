@@ -6,3 +6,4 @@ tqdm
 networkx
 pandas 
 datasets
+nltk

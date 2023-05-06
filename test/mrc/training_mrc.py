@@ -14,7 +14,7 @@ dataset = MRCDataset.init_mrc_dataset(
     model_name_or_path=config_qa['model'][MODEL_NAME_OR_PATH],
     id_valid=config_qa['parameters'].get('is_valid', False)
 )
-# print(len(dataset.train_dataset))
-# print(len(dataset.evaluator_dataset))
-# reader = MRCReader.from_pretrained(config_qa['model'][MODEL_NAME_OR_PATH])
-# reader.train(dataset, **config_qa['model'])
+print(len(dataset.train_dataset))
+print(len(dataset.evaluator_dataset))
+reader = MRCReader.from_pretrained(config_qa['model'][MODEL_NAME_OR_PATH])
+reader.train(dataset, **config_qa['model'])
