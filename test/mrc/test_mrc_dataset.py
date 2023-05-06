@@ -11,6 +11,8 @@ config = load_yaml_file('config/train_bm25.yaml')
 config_qa = config['reader']
 train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'])
 eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'])
+# train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'], **config_qa['parameters'])
+# eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'], **config_qa['parameters'])
 dataset = MRCDataset.init_mrc_dataset(
     corpus_train=train_corpus,
     corpus_eval=eval_corpus,
@@ -21,20 +23,28 @@ print(len(dataset.train_dataset))
 print(len(dataset.evaluator_dataset))
 tokenizer = AutoTokenizer.from_pretrained(config_qa['model'][MODEL_NAME_OR_PATH])
 data_collator = DataCollatorCustom(tokenizer=tokenizer)
-print(isinstance(dataset.train_dataset, torch.utils.data.IterableDataset))
 print(dataset.train_dataset.column_names)
-# for sample in dataset.train_dataset:
-#     if len(sample['input_ids']) == 243:
-#         print(sample['context'])
-#         print(sample['question'])
-#         print(sample['answer'])
-# loader = DataLoader(
-#     dataset=dataset.train_dataset,
-#     collate_fn=data_collator,
-#     batch_size=3
-# )
-# print(next(iter(loader)).keys())
-# print(dataset.train_dataset[0])
+
+# # for sample in dataset.train_dataset:
+# #     if len(sample['input_ids']) == 243:
+# #         print(sample['context'])
+# #         print(sample['question'])
+# #         print(sample['answer'])
+loader = DataLoader(
+    dataset=dataset.train_dataset,
+    collate_fn=data_collator,
+    batch_size=16
+)
+for sample in dataset.train_dataset:
+    if len(sample['input_ids']) > 512:
+        print(len(sample['input_ids']))
+print('*'*50)
+for idx, sample in enumerate(loader):
+    if sample['input_ids'].size(1) > 512:
+        print(sample['input_ids'].size(1))
+# sample = next(iter(loader))
+# for key, value in sample.items():
+#     print(f"{key} {value.size()}")
 
 
 

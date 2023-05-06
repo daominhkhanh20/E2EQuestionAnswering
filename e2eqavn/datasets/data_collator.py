@@ -19,7 +19,6 @@ class DataCollatorCustom:
                 padding_value=padding_value,
                 batch_first=True
             )
-
         input_ids = collate_fn(
             [
                 torch.tensor(sample[INPUT_IDS]) for sample in batch

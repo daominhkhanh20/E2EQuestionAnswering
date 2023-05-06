@@ -27,7 +27,7 @@ class MRCDataset:
         if MODEL_NAME_OR_PATH not in kwargs:
             raise Exception("You must provide pretrained name for QA")
         tokenizer = AutoTokenizer.from_pretrained(kwargs.get(MODEL_NAME_OR_PATH))
-        is_document_right = kwargs.get(IS_DOCUMENT_RIGHT, True)
+        # is_document_right = kwargs.get(IS_DOCUMENT_RIGHT, True)
         num_proc = kwargs.get(NUM_PROC, 5)
         qa_text_processor = QATextProcessor(
             context_key=kwargs.get(CONTEXT_KEY, 'context'),
@@ -57,9 +57,7 @@ class MRCDataset:
                 'tokenizer': tokenizer,
                 'max_length': kwargs.get(MAX_LENGTH, 512)
             }
-        )
-        if kwargs.get(IS_VALID, False):
-            dataset = dataset.filter(lambda x: x[IS_VALID], num_proc=num_proc)
+        ).filter(lambda x: x['is_valid'], num_proc=num_proc)
 
         return dataset[mode]
 

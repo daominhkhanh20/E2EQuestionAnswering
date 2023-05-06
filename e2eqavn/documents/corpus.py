@@ -172,27 +172,28 @@ class Corpus:
                         flag_exist = False
                         n_char = 0
                         for idx, context_chunk in enumerate(list_context):
-                            if idx == 0:
-                                n_char += len(context_chunk)
-                            else:
-                                n_char += len(" ".join(context_chunk.split(" ")[over_lapping_size:]).strip())
                             if answer[answer_key] in context_chunk:
                                 if question[question_key] not in dict_question_answers[list_context_id[idx]]:
                                     dict_question_answers[list_context_id[idx]][question[question_key]] = [
                                         {
-                                            answer_key: answer[answer_key],
-                                            answer_start: answer[answer_start] - n_char if idx > 0 else answer[answer_start]
+                                            answer_key: process_text(answer[answer_key]),
+                                            answer_start: answer[answer_start] - n_char
                                         }
                                     ]
                                 else:
                                     dict_question_answers[list_context_id[idx]][question[question_key]].append(
                                         {
                                             answer_key: process_text(answer[answer_key]),
-                                            answer_start: answer[answer_start] - n_char if idx > 0 else answer[answer_start]
+                                            answer_start: answer[answer_start] - n_char
                                         }
                                     )
                                 flag_exist = True
                                 break
+                            if idx == 0:
+                                n_char += len(context_chunk)
+                            else:
+                                n_char += len(" ".join(context_chunk.split(" ")[over_lapping_size:]).strip())
+
                         if not flag_exist:
                             logger.info(f"Answer: {answer[answer_key]} \n "
                                         f"N chunk context: {len(list_context)}\n"
