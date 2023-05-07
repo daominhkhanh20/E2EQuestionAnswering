@@ -13,12 +13,18 @@ class DataCollatorCustom:
         self.tokenizer = tokenizer
 
     def __call__(self, batch):
+        for sample in batch:
+            start_idx = sum(sample[WORDS_LENGTH][: sample[START_IDX]])
+            end_idx = sum(sample[WORDS_LENGTH][: sample[END_IDX] + 1])
+            sample[SPAN_ANSWER_IDS] = sample[INPUT_IDS][start_idx: end_idx]
+
         def collate_fn(list_tensor: List[Tensor], padding_value: int):
             return pad_sequence(
                 list_tensor,
                 padding_value=padding_value,
                 batch_first=True
             )
+
         input_ids = collate_fn(
             [
                 torch.tensor(sample[INPUT_IDS]) for sample in batch
@@ -29,13 +35,24 @@ class DataCollatorCustom:
             [torch.tensor(sample[ATTENTION_MASK]) for sample in batch],
             padding_value=0
         )
+
+        words_length = collate_fn(
+            [torch.tensor(sample[WORDS_LENGTH]) for sample in batch],
+            padding_value=0
+        )
+        span_answer_ids = collate_fn(
+            [torch.tensor(sample[SPAN_ANSWER_IDS]) for sample in batch],
+            padding_value=-100
+        )
         start_idxs = torch.tensor([sample[START_IDX] for sample in batch])
         end_idxs = torch.tensor([sample[END_IDX] for sample in batch])
         return {
             'input_ids': input_ids,
             'attention_mask': attention_masks,
             'start_positions': start_idxs,
-            'end_positions': end_idxs
+            'end_positions': end_idxs,
+            'words_length': words_length,
+            'span_answer_ids': span_answer_ids
         }
 
 # def data_collator_fn(samples):

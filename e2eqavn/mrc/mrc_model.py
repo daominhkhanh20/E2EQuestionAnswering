@@ -24,7 +24,8 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
 
     def forward(self, input_ids: Tensor, attention_mask: Tensor,
                 start_positions: Tensor = None, end_positions: Tensor = None,
-                return_dict: bool = None, start_idx: Tensor = None, end_idx: Tensor = None):
+                return_dict: bool = None, start_idx: Tensor = None, end_idx: Tensor = None,
+                words_length: Tensor = None, span_answer_ids: Tensor = None):
         return_dict = return_dict if return_dict is not None else self.config.use_return_dict
         outputs = self.model(
             input_ids,
@@ -32,10 +33,16 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
             return_dict=return_dict
         )
         sequence_output = outputs[0]
-        sequence_output = torch.mul(
-            sequence_output,
-            attention_mask.unsqueeze(-1).expand_as(sequence_output)
-        )
+        batch_size = input_ids.size(0)
+        n_sub_word = input_ids.size(1)
+        n_word = words_length.size(1)
+        align_matrix = torch.zeros(batch_size, n_word, n_sub_word)
+        for i, sample_length in enumerate(words_length):
+            for j in range(len(sample_length)):
+                tmp_idx = torch.sum(sample_length[:j])
+                align_matrix[i][j][tmp_idx: tmp_idx + sample_length[j]] = 1 if sample_length[j] > 0 else 0
+        align_matrix = align_matrix.to(sequence_output.device)
+        sequence_output = torch.bmm(align_matrix, sequence_output)
         outs = self.qa_outputs(sequence_output)
         start_logits, end_logits = outs.split(1, dim=-1)
         start_logits = start_logits.squeeze(-1).contiguous()
@@ -98,7 +105,9 @@ class MRCReader(BaseReader, ABC):
             label_names=[
                 "start_positions",
                 "end_positions",
-                "input_ids"
+                "span_answer_ids",
+                "input_ids",
+                "words_length"
             ],
             group_by_length=True,
             save_strategy=kwargs.get(SAVE_STRATEGY, 'no'),

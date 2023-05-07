@@ -127,27 +127,27 @@ def calculate_input_training_for_qav2(example: dict, tokenizer, max_length: int)
             context_ids = context_ids[: tmp]
     question_final_ids = [[tokenizer.bos_token_id]] + question_ids + [[tokenizer.eos_token_id]]
     context_final_ids = context_ids + [[tokenizer.eos_token_id]]
-    start_index = 2 + sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids[: answer_start_idx])
-    end_index = 2 + sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids[: answer_end_idx + 1]) - 1
     input_ids = [id for sub_ids in question_final_ids + context_final_ids for id in sub_ids]
+    words_length = [len(item) for item in question_final_ids + context_final_ids]
     if len(input_ids) > original_max_length:
         is_valid = False
 
-    if is_valid:
-        answer_decode = tokenizer.convert_tokens_to_string(tokenizer.convert_ids_to_tokens(input_ids[start_index: end_index + 1]))
-        if answer_decode != example[ANSWER]:
-            is_valid = False
-            # print(" ".join(context.split(" ")[answer_start_idx: answer_end_idx + 1]))
-            # print(answer_decode, len(answer_decode))
-            # print(example[ANSWER], len(example[ANSWER]))
-            # print('\n')
-        # assert tokenizer.decode(input_ids[start_index: end_index + 1]) == example[ANSWER]
+    # if is_valid:
+    #     answer_decode = tokenizer.convert_tokens_to_string(tokenizer.convert_ids_to_tokens(input_ids[start_index: end_index + 1]))
+    #     if answer_decode != example[ANSWER]:
+    #         is_valid = False
+    #         # print(" ".join(context.split(" ")[answer_start_idx: answer_end_idx + 1]))
+    #         # print(answer_decode, len(answer_decode))
+    #         # print(example[ANSWER], len(example[ANSWER]))
+    #         # print('\n')
+    #     # assert tokenizer.decode(input_ids[start_index: end_index + 1]) == example[ANSWER]
     attention_mask = [1] * len(input_ids)
     return {
         INPUT_IDS: input_ids,
         ATTENTION_MASK: attention_mask,
-        START_IDX: start_index,
-        END_IDX: end_index,
+        START_IDX: answer_start_idx + len(question_final_ids) if len(example[ANSWER]) > 0 else 0,
+        END_IDX: answer_end_idx + len(question_final_ids) if len(example[ANSWER]) > 0 else 0,
+        WORDS_LENGTH: words_length,
         'is_valid': is_valid
     }
 
