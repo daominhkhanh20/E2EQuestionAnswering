@@ -81,6 +81,8 @@ class QATextProcessor:
             context = f"{context_previous} {answer} {context_next}"
             answer_word_start_idx = len(context_previous.split(" "))
             answer_word_end_idx = answer_word_start_idx + len(answer.split(" ")) - 1
+            assert " ".join(context.split(" ")[answer_word_start_idx: answer_word_end_idx + 1]) == answer, "Index " \
+                                                                                                           "wrong"
             example = {
                 self.context_key: context,
                 self.question_key: question,

@@ -30,13 +30,13 @@ reader:
     is_valid: True
 
   model:
-    model_name_or_path: nguyenvulebinh/vi-mrc-large
+    model_name_or_path: khanhbk20/mrc_testing
     num_train_epochs: 40
     learning_rate: 3e-4
     batch_size_training: 16
     batch_size_eval: 32
     gradient_accumulation_steps: 1
     save_strategy: epoch
-    logging_strategy: epoch
+    logging_strategy: steps
     metric_for_best_model: f1
     logging_step: 1

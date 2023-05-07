@@ -42,7 +42,10 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
         end_logits = end_logits.squeeze(-1).contiguous()
         loss = None
         if start_positions is not None and end_positions is not None:
-            loss_fn = nn.CrossEntropyLoss()
+            ignore_index = start_logits.size(1)
+            start_positions = start_positions.clamp(0, ignore_index)
+            end_positions = end_positions.clamp(0, ignore_index)
+            loss_fn = nn.CrossEntropyLoss(ignore_index=ignore_index)
             loss = (
                            loss_fn(start_logits, start_positions) + loss_fn(end_logits, end_positions)
                    ) / 2

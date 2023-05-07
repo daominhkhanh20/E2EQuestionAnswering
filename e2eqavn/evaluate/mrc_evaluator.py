@@ -17,12 +17,12 @@ class MRCEvaluator:
         ):
             start_idx_pred = np.argmax(start_logit)
             end_idx_pred = np.argmax(end_logit)
-            answer_pred = self.tokenizer.decode(
-                input_id[start_idx_pred: end_idx_pred + 1], skip_special_tokens=True
+            answer_pred = self.tokenizer.convert_tokens_to_string(
+                self.tokenizer.convert_ids_to_tokens(input_id[start_idx_pred: end_idx_pred + 1])
             )
 
-            answer_truth = self.tokenizer.decode(
-                input_id[start_position: end_position + 1], skip_special_tokens=True
+            answer_truth = self.tokenizer.convert_tokens_to_string(
+                self.tokenizer.convert_ids_to_tokens(input_id[start_position: end_position + 1])
             )
 
             predictions.append({'prediction_text': answer_pred, 'id': str(idx)})
