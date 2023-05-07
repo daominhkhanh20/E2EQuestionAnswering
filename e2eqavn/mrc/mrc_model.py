@@ -2,16 +2,21 @@ from typing import *
 from abc import ABC
 import torch
 from torch import nn, Tensor
+import wandb
+import os
 from torch.utils.data import DataLoader
 from transformers import RobertaPreTrainedModel, RobertaModel
 from transformers.modeling_outputs import QuestionAnsweringModelOutput
 from transformers import TrainingArguments, Trainer, AutoTokenizer
-
+from dotenv import load_dotenv
 from .base import BaseReader
 from e2eqavn.documents import Document
 from e2eqavn.datasets import DataCollatorCustom, MRCDataset
 from e2eqavn.keywords import *
 from e2eqavn.evaluate import MRCEvaluator
+load_dotenv()
+wandb_api_key = os.getenv("WANDB_API")
+wandb.login(key=wandb_api_key)
 
 
 class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
@@ -71,6 +76,8 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
 
 class MRCReader(BaseReader, ABC):
     def __init__(self, model, tokenizer, device):
+        self.train_dataset = None
+        self.eval_dataset = None
         self.compute_metrics = None
         self.trainer = None
         self.device = device
@@ -89,6 +96,7 @@ class MRCReader(BaseReader, ABC):
 
     def init_trainer(self, mrc_dataset: MRCDataset, **kwargs):
         training_args = TrainingArguments(
+            report_to='wandb',
             output_dir=kwargs.get(OUTPUT_DIR, 'model/qa'),
             do_train=kwargs.get(DO_TRANING, True if mrc_dataset.train_dataset is not None else False),
             do_eval=kwargs.get(DO_EVAL, True if mrc_dataset.evaluator_dataset is not None else False),
@@ -119,6 +127,8 @@ class MRCReader(BaseReader, ABC):
 
         data_collator = DataCollatorCustom(tokenizer=self.tokenizer)
         self.compute_metrics = MRCEvaluator(tokenizer=self.tokenizer)
+        self.train_dataset = mrc_dataset.train_dataset
+        self.eval_dataset = mrc_dataset.evaluator_dataset
         self.trainer = Trainer(
             model=self.model,
             args=training_args,
@@ -130,6 +140,8 @@ class MRCReader(BaseReader, ABC):
 
     def train(self):
         self.trainer.train()
+        self.compute_metrics.log_predict = []  # refresh log
+        self.eval_dataset(self.eval_dataset)
 
     def evaluate(self, dataset):
         self.trainer.evaluate(dataset)
