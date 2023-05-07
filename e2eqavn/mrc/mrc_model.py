@@ -91,7 +91,10 @@ class MRCReader(BaseReader, ABC):
     def from_pretrained(cls, model_name_or_path: str, **kwargs):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model = MRCQuestionAnsweringModel.from_pretrained(model_name_or_path).to(device)
-        tokenizer = AutoTokenizer.from_pretrained('khanhbk20/mrc_testing')
+        try:
+            tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
+        except:
+            tokenizer = AutoTokenizer.from_pretrained('khanhbk20/mrc_testing')
         return cls(model, tokenizer, device)
 
     def init_trainer(self, mrc_dataset: MRCDataset, **kwargs):
