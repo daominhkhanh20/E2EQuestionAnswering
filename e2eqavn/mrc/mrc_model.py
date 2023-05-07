@@ -64,6 +64,8 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
 
 class MRCReader(BaseReader, ABC):
     def __init__(self, model, tokenizer, device):
+        self.compute_metrics = None
+        self.trainer = None
         self.device = device
         self.model = model.to(device)
         self.tokenizer = tokenizer
@@ -74,15 +76,15 @@ class MRCReader(BaseReader, ABC):
     @classmethod
     def from_pretrained(cls, model_name_or_path: str, **kwargs):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        model = MRCQuestionAnsweringModel.from_pretrained(model_name_or_path)
-        tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
+        model = MRCQuestionAnsweringModel.from_pretrained(model_name_or_path).to(device)
+        tokenizer = AutoTokenizer.from_pretrained('khanhbk20/mrc_testing')
         return cls(model, tokenizer, device)
 
-    def train(self, mrc_dataset: MRCDataset, **kwargs):
+    def init_trainer(self, mrc_dataset: MRCDataset, **kwargs):
         training_args = TrainingArguments(
             output_dir=kwargs.get(OUTPUT_DIR, 'model/qa'),
-            do_train=kwargs.get(DO_TRANING, True),
-            do_eval=kwargs.get(DO_EVAL, True),
+            do_train=kwargs.get(DO_TRANING, True if mrc_dataset.train_dataset is not None else False),
+            do_eval=kwargs.get(DO_EVAL, True if mrc_dataset.evaluator_dataset is not None else False),
             num_train_epochs=kwargs.get(NUM_TRAIN_EPOCHS, 20),
             learning_rate=float(kwargs.get(LEARNING_RATE, 1e-4)),
             warmup_ratio=kwargs.get(WARMPUP_RATIO, 0.05),
@@ -107,16 +109,22 @@ class MRCReader(BaseReader, ABC):
         )
 
         data_collator = DataCollatorCustom(tokenizer=self.tokenizer)
-        compute_metrics = MRCEvaluator(tokenizer=self.tokenizer)
-        trainer = Trainer(
+        self.compute_metrics = MRCEvaluator(tokenizer=self.tokenizer)
+        self.trainer = Trainer(
             model=self.model,
             args=training_args,
             train_dataset=mrc_dataset.train_dataset,
             eval_dataset=mrc_dataset.evaluator_dataset,
             data_collator=data_collator,
-            compute_metrics=compute_metrics
+            compute_metrics=self.compute_metrics
         )
-        trainer.train()
+
+    def train(self):
+        self.trainer.train()
+
+    def evaluate(self, dataset):
+        self.trainer.evaluate(dataset)
+        self.compute_metrics.save_log()
 
     def predict(self, query: Union[str, List[str]], documents: List[Document], **kwargs):
         pass
