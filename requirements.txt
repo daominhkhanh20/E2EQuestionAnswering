@@ -9,3 +9,4 @@ datasets
 nltk
 python-dotenv
 wandb
+kaggle
