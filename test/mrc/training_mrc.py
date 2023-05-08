@@ -9,6 +9,7 @@ config = load_yaml_file('config/train_qa.yaml')
 config_qa = config['reader']
 # train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'])
 # eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'])
+wandb.init(config_qa)
 print(config_qa['parameters'].get('mode_chunking', False))
 train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'], **config_qa['parameters'])
 eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'], **config_qa['parameters'])

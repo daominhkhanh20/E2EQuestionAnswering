@@ -63,7 +63,7 @@ class MRCDataset:
 
     @classmethod
     def init_mrc_dataset(cls, corpus_train: Corpus = None, corpus_eval: Corpus = None, **kwargs):
-        wandb.init(name=f"chunking_{str(kwargs.get('mode_chunking', False))}_max_length_{kwargs.get(MAX_LENGTH, 512)}")
+        # wandb.init(name=f"chunking_{str(kwargs.get('mode_chunking', False))}_max_length_{kwargs.get(MAX_LENGTH, 512)}")
         if corpus_train is not None:
             train_dataset = cls.make_dataset(corpus_train, mode='train', **kwargs)
         else:
