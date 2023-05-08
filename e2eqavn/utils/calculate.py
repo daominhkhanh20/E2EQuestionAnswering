@@ -146,28 +146,27 @@ def tokenize_function(example, tokenizer):
         "is_valid": valid
     }
 
+
 def calculate_input_training_for_qav2(example: dict, tokenizer, max_length: int):
     # question_ids context_ids
-    max_length = 368
     original_max_length = max_length
-    max_length -= 5  # for 3 special token sos, pad
     context = example[CONTEXT]
     question = example[QUESTION]
     answer_start_idx = example[ANSWER_WORD_START_IDX]
     answer_end_idx = example[ANSWER_WORD_END_IDX]
-    context_ids = [tokenizer.convert_tokens_to_ids(tokenizer.tokenize(word)) for word in context.split(" ")]
-    question_ids = [tokenizer.convert_tokens_to_ids(tokenizer.tokenize(word)) for word in question.split(" ")]
+    context_ids = [tokenizer.convert_tokens_to_ids(tokenizer.tokenize(word)) for word in context.split()]
+    question_ids = [tokenizer.convert_tokens_to_ids(tokenizer.tokenize(word)) for word in question.split()]
     arr_size_sub_word_context_ids = [len(sub_ids) for sub_ids in context_ids]
     arr_size_sub_word_question_ids = [len(sub_ids) for sub_ids in question_ids]
     is_valid = True
-    if sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids) > max_length:
-        if sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids[:answer_end_idx + 1]) > max_length:
+    if sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids) > max_length - 5:
+        if sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids[:answer_end_idx + 1]) > max_length - 5:
             is_valid = False
         else:
             current_length = sum(arr_size_sub_word_question_ids) + sum(
-                arr_size_sub_word_context_ids[: answer_end_idx + 1])
+                arr_size_sub_word_context_ids[: answer_end_idx + 1]) + 3  # for 3 special token
             tmp = answer_end_idx + 1
-            while current_length + arr_size_sub_word_context_ids[tmp] < max_length:
+            while current_length + arr_size_sub_word_context_ids[tmp] < max_length and tmp < len(context_ids):
                 current_length += arr_size_sub_word_context_ids[tmp]
                 tmp += 1
             context_ids = context_ids[: tmp]

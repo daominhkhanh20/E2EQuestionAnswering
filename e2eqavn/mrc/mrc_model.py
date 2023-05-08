@@ -21,6 +21,8 @@ wandb.login(key=wandb_api_key)
 
 
 class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
+    config_class = RobertaConfig
+
     def __init__(self, config):
         super().__init__(config)
         self.num_labels = config.num_labels
@@ -59,9 +61,10 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
             start_positions = start_positions.clamp(0, ignore_index)
             end_positions = end_positions.clamp(0, ignore_index)
             loss_fn = nn.CrossEntropyLoss(ignore_index=ignore_index)
-            loss = (
-                           loss_fn(start_logits, start_positions) + loss_fn(end_logits, end_positions)
-                   ) / 2
+            start_loss = loss_fn(start_logits, start_positions)
+            end_loss = loss_fn(end_logits, end_positions)
+            loss = (start_loss + end_loss) / 2
+
         if not return_dict:
             output = (start_logits, end_logits) + outputs[2:]
             return ((loss,) + output) if loss is not None else output
@@ -73,7 +76,6 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
             hidden_states=outputs.hidden_states,
             attentions=outputs.attentions
         )
-
 
 
 class MRCQuestionAnswering(RobertaPreTrainedModel, ABC):
@@ -205,7 +207,7 @@ class MRCReader(BaseReader, ABC):
     @classmethod
     def from_pretrained(cls, model_name_or_path: str, **kwargs):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        model = MRCQuestionAnswering.from_pretrained(model_name_or_path).to(device)
+        model = MRCQuestionAnsweringModel.from_pretrained(model_name_or_path).to(device)
         try:
             tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
         except:
