@@ -9,9 +9,9 @@ import torch
 
 config = load_yaml_file('config/train_qa_chunking.yaml')
 config_qa = config['reader']
-train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'])
-eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'])
-print(train_corpus.list_document[0].document_context)
+print(config_qa['parameters'].get('mode_chunking', False))
+train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'], **config_qa['parameters'])
+eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'], **config_qa['parameters'])
 # train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'], **config_qa['parameters'])
 # eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'], **config_qa['parameters'])
 dataset = MRCDataset.init_mrc_dataset(
