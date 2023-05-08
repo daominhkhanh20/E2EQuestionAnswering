@@ -7,7 +7,7 @@ import logging
 from datasets import load_dataset
 from e2eqavn.documents import Corpus, Document
 from e2eqavn.keywords import *
-from e2eqavn.utils.calculate import tokenize_function, calculate_input_training_for_qav2
+from e2eqavn.utils.calculate import calculate_input_training_for_qav2
 from e2eqavn.utils.preprocess import *
 from e2eqavn.utils.io import write_json_file
 from e2eqavn.processor import QATextProcessor
@@ -24,6 +24,7 @@ class MRCDataset:
     def make_dataset(cls, corpus: Corpus, mode: str, **kwargs):
         logger.info(f"Start prepare {mode} dataset")
         logger.info(f"Filter valid = {kwargs.get(IS_VALID, False)}")
+        logger.info(f"Max length sentence = {kwargs.get(MAX_LENGTH, 512)}")
         if MODEL_NAME_OR_PATH not in kwargs:
             raise Exception("You must provide pretrained name for QA")
         tokenizer = AutoTokenizer.from_pretrained(kwargs.get(MODEL_NAME_OR_PATH))

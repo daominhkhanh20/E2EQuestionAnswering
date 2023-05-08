@@ -100,51 +100,51 @@ logger = logging.getLogger(__name__)
 #         """)
 #         return data
 #
-
-def tokenize_function(example, tokenizer):
-    example["question"] = example["question"].split()
-    example["context"] = example["context"].split()
-    # max_len_single_sentence = tokenizer.max_len_single_sentence
-    max_len_single_sentence = 368
-
-    question_sub_words_ids = [tokenizer.convert_tokens_to_ids(tokenizer.tokenize(w)) for w in example["question"]]
-    context_sub_words_ids = [tokenizer.convert_tokens_to_ids(tokenizer.tokenize(w)) for w in example["context"]]
-    valid = True
-    if len([j for i in question_sub_words_ids + context_sub_words_ids for j in
-            i]) > max_len_single_sentence - 1:
-        question_ids = [j for i in question_sub_words_ids for j in i]
-        context_ids = [j for i in context_sub_words_ids[:example['answer_word_end_idx'] + 1] for j in i]
-        remain_tokens = max_len_single_sentence - 1 - len(question_ids)
-        if len(question_ids + context_ids) < max_len_single_sentence - 1:
-            context_sub_words_ids_revise = context_sub_words_ids[:example['answer_word_end_idx'] + 1]
-            idx = example['answer_word_end_idx'] + 1
-            while len([j for i in (context_sub_words_ids_revise + [context_sub_words_ids[idx]]) for j in
-                       i]) < remain_tokens and idx < len(context_sub_words_ids):
-                context_sub_words_ids_revise.append(context_sub_words_ids[idx])
-                idx += 1
-            context_sub_words_ids = context_sub_words_ids_revise
-        else:
-            valid = False
-
-    question_sub_words_ids = [[tokenizer.bos_token_id]] + question_sub_words_ids + [[tokenizer.eos_token_id]]
-    context_sub_words_ids = context_sub_words_ids + [[tokenizer.eos_token_id]]
-
-    input_ids = [j for i in question_sub_words_ids + context_sub_words_ids for j in i]
-    if len(input_ids) > max_len_single_sentence + 2:
-        valid = False
-
-    words_lengths = [len(item) for item in question_sub_words_ids + context_sub_words_ids]
-    attention_mask = [1] * len(input_ids)
-    return {
-        "input_ids": input_ids,
-        ATTENTION_MASK: attention_mask,
-        "words_length": words_lengths,
-        "start_idx": (example['answer_word_start_idx'] + len(question_sub_words_ids)) if len(
-            example["answer"]) > 0 else 0,
-        "end_idx": (example['answer_word_end_idx'] + len(question_sub_words_ids)) if len(
-            example["answer"]) > 0 else 0,
-        "is_valid": valid
-    }
+#
+# def tokenize_function(example, tokenizer):
+#     example["question"] = example["question"].split()
+#     example["context"] = example["context"].split()
+#     # max_len_single_sentence = tokenizer.max_len_single_sentence
+#     max_len_single_sentence = 368
+#
+#     question_sub_words_ids = [tokenizer.convert_tokens_to_ids(tokenizer.tokenize(w)) for w in example["question"]]
+#     context_sub_words_ids = [tokenizer.convert_tokens_to_ids(tokenizer.tokenize(w)) for w in example["context"]]
+#     valid = True
+#     if len([j for i in question_sub_words_ids + context_sub_words_ids for j in
+#             i]) > max_len_single_sentence - 1:
+#         question_ids = [j for i in question_sub_words_ids for j in i]
+#         context_ids = [j for i in context_sub_words_ids[:example['answer_word_end_idx'] + 1] for j in i]
+#         remain_tokens = max_len_single_sentence - 1 - len(question_ids)
+#         if len(question_ids + context_ids) < max_len_single_sentence - 1:
+#             context_sub_words_ids_revise = context_sub_words_ids[:example['answer_word_end_idx'] + 1]
+#             idx = example['answer_word_end_idx'] + 1
+#             while len([j for i in (context_sub_words_ids_revise + [context_sub_words_ids[idx]]) for j in
+#                        i]) < remain_tokens and idx < len(context_sub_words_ids):
+#                 context_sub_words_ids_revise.append(context_sub_words_ids[idx])
+#                 idx += 1
+#             context_sub_words_ids = context_sub_words_ids_revise
+#         else:
+#             valid = False
+#
+#     question_sub_words_ids = [[tokenizer.bos_token_id]] + question_sub_words_ids + [[tokenizer.eos_token_id]]
+#     context_sub_words_ids = context_sub_words_ids + [[tokenizer.eos_token_id]]
+#
+#     input_ids = [j for i in question_sub_words_ids + context_sub_words_ids for j in i]
+#     if len(input_ids) > max_len_single_sentence + 2:
+#         valid = False
+#
+#     words_lengths = [len(item) for item in question_sub_words_ids + context_sub_words_ids]
+#     attention_mask = [1] * len(input_ids)
+#     return {
+#         "input_ids": input_ids,
+#         ATTENTION_MASK: attention_mask,
+#         "words_length": words_lengths,
+#         "start_idx": (example['answer_word_start_idx'] + len(question_sub_words_ids)) if len(
+#             example["answer"]) > 0 else 0,
+#         "end_idx": (example['answer_word_end_idx'] + len(question_sub_words_ids)) if len(
+#             example["answer"]) > 0 else 0,
+#         "is_valid": valid
+#     }
 
 
 def calculate_input_training_for_qav2(example: dict, tokenizer, max_length: int):
@@ -177,15 +177,6 @@ def calculate_input_training_for_qav2(example: dict, tokenizer, max_length: int)
     if len(input_ids) > original_max_length:
         is_valid = False
 
-    # if is_valid:
-    #     answer_decode = tokenizer.convert_tokens_to_string(tokenizer.convert_ids_to_tokens(input_ids[start_index: end_index + 1]))
-    #     if answer_decode != example[ANSWER]:
-    #         is_valid = False
-    #         # print(" ".join(context.split(" ")[answer_start_idx: answer_end_idx + 1]))
-    #         # print(answer_decode, len(answer_decode))
-    #         # print(example[ANSWER], len(example[ANSWER]))
-    #         # print('\n')
-    #     # assert tokenizer.decode(input_ids[start_index: end_index + 1]) == example[ANSWER]
     attention_mask = [1] * len(input_ids)
     return {
         INPUT_IDS: input_ids,
