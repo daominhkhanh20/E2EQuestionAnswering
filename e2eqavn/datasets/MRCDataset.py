@@ -3,7 +3,7 @@ import tempfile
 import random
 from transformers import AutoTokenizer
 import logging
-
+import wandb
 from datasets import load_dataset
 from e2eqavn.documents import Corpus, Document
 from e2eqavn.keywords import *
@@ -23,7 +23,6 @@ class MRCDataset:
     @classmethod
     def make_dataset(cls, corpus: Corpus, mode: str, **kwargs):
         logger.info(f"Start prepare {mode} dataset")
-        logger.info(f"Filter valid = {kwargs.get(IS_VALID, False)}")
         logger.info(f"Max length sentence = {kwargs.get(MAX_LENGTH, 512)}")
         if MODEL_NAME_OR_PATH not in kwargs:
             raise Exception("You must provide pretrained name for QA")
@@ -64,6 +63,7 @@ class MRCDataset:
 
     @classmethod
     def init_mrc_dataset(cls, corpus_train: Corpus = None, corpus_eval: Corpus = None, **kwargs):
+        wandb.init(name=f"chunking_{str(kwargs.get('mode_chunking', False))}_max_length_{kwargs.get(MAX_LENGTH, 512)}")
         if corpus_train is not None:
             train_dataset = cls.make_dataset(corpus_train, mode='train', **kwargs)
         else:

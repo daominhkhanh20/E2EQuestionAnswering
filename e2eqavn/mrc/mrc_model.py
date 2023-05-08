@@ -1,24 +1,17 @@
 from typing import *
 from abc import ABC
 import torch
-from torch import nn, Tensor
-import wandb
 import os
-from torch.utils.data import DataLoader
+from torch import nn, Tensor
 from transformers import RobertaPreTrainedModel, RobertaModel, RobertaConfig
 from transformers.modeling_outputs import QuestionAnsweringModelOutput
 from transformers import TrainingArguments, Trainer, AutoTokenizer
-from dotenv import load_dotenv
 from .base import BaseReader
 from e2eqavn.documents import Document
 from e2eqavn.utils.io import load_json_data
 from e2eqavn.datasets import DataCollatorCustom, MRCDataset
 from e2eqavn.keywords import *
 from e2eqavn.evaluate import MRCEvaluator
-
-load_dotenv()
-wandb_api_key = os.getenv("WANDB_API")
-wandb.login(key=wandb_api_key)
 
 
 class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
