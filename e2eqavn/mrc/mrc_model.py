@@ -27,7 +27,7 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
 
     def __init__(self, config):
         super().__init__(config)
-        self.model = RobertaModel(config, add_pooling_layer=False)
+        self.roberta = RobertaModel(config, add_pooling_layer=False)
         self.qa_outputs = nn.Linear(config.hidden_size, config.num_labels)
 
     def forward(self,
