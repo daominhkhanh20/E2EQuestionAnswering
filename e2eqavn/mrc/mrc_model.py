@@ -28,19 +28,30 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
     def __init__(self, config):
         super().__init__(config)
         self.num_labels = config.num_labels
-        self.model = RobertaModel(config, add_pooling_layer=False)
-        self.qa_outputs = nn.Linear(config.hidden_size, self.num_labels)
-        # self.init_weights()
 
-    def forward(self, input_ids: Tensor, attention_mask: Tensor,
-                start_positions: Tensor = None, end_positions: Tensor = None,
-                return_dict: bool = None, start_idx: Tensor = None, end_idx: Tensor = None,
-                words_length: Tensor = None, span_answer_ids: Tensor = None, token_type_ids=None,
-                position_ids=None, head_mask=None, inputs_embeds=None, output_attentions=None,
-                output_hidden_states=None):
+        self.roberta = RobertaModel(config, add_pooling_layer=False)
+        self.qa_outputs = nn.Linear(config.hidden_size, config.num_labels)
+
+    def forward(self,
+                input_ids=None,
+                words_length=None,
+                start_idx=None,
+                end_idx=None,
+                attention_mask=None,
+                token_type_ids=None,
+                position_ids=None,
+                head_mask=None,
+                inputs_embeds=None,
+                start_positions=None,
+                end_positions=None,
+                span_answer_ids=None,
+                output_attentions=None,
+                output_hidden_states=None,
+                return_dict=None, ):
 
         return_dict = return_dict if return_dict is not None else self.config.use_return_dict
-        outputs = self.model(
+
+        outputs = self.roberta(
             input_ids,
             attention_mask=attention_mask,
             token_type_ids=token_type_ids,
