@@ -27,23 +27,21 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
 
     def __init__(self, config):
         super().__init__(config)
-        self.num_labels = config.num_labels
-
-        self.roberta = RobertaModel(config, add_pooling_layer=False)
+        self.model = RobertaModel(config, add_pooling_layer=False)
         self.qa_outputs = nn.Linear(config.hidden_size, config.num_labels)
 
     def forward(self,
-                input_ids=None,
-                words_length=None,
+                input_ids: Tensor = None,
+                words_length: Tensor = None,
                 start_idx=None,
                 end_idx=None,
-                attention_mask=None,
+                attention_mask: Tensor = None,
                 token_type_ids=None,
                 position_ids=None,
                 head_mask=None,
                 inputs_embeds=None,
-                start_positions=None,
-                end_positions=None,
+                start_positions: Tensor = None,
+                end_positions: Tensor = None,
                 span_answer_ids=None,
                 output_attentions=None,
                 output_hidden_states=None,
