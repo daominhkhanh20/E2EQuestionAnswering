@@ -7,7 +7,7 @@ import logging
 from datasets import load_dataset
 from e2eqavn.documents import Corpus, Document
 from e2eqavn.keywords import *
-from e2eqavn.utils.calculate import tokenize_function
+from e2eqavn.utils.calculate import tokenize_function, calculate_input_training_for_qav2
 from e2eqavn.utils.preprocess import *
 from e2eqavn.utils.io import write_json_file
 from e2eqavn.processor import QATextProcessor
@@ -50,7 +50,7 @@ class MRCDataset:
         )
 
         dataset = dataset.shuffle().map(
-            tokenize_function,
+            calculate_input_training_for_qav2,
             batched=False,
             num_proc=num_proc,
             fn_kwargs={
