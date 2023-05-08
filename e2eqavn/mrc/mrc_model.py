@@ -204,7 +204,7 @@ class MRCReader(BaseReader, ABC):
     @classmethod
     def from_pretrained(cls, model_name_or_path: str, **kwargs):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        model = MRCQuestionAnsweringModel.from_pretrained(model_name_or_path).to(device)
+        model = MRCQuestionAnswering.from_pretrained(model_name_or_path).to(device)
         try:
             tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
         except:
