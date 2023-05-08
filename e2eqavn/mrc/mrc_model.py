@@ -22,7 +22,8 @@ wandb.login(key=wandb_api_key)
 
 class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
     config_class = RobertaConfig
-
+    _keys_to_ignore_on_load_unexpected = [r"pooler"]
+    _keys_to_ignore_on_load_missing = [r"position_ids"]
     def __init__(self, config):
         super().__init__(config)
         self.num_labels = config.num_labels
@@ -53,6 +54,7 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
         n_sub_word = input_ids.size(1)
         n_word = words_length.size(1)
         align_matrix = torch.zeros(batch_size, n_word, n_sub_word)
+
         for i, sample_length in enumerate(words_length):
             for j in range(len(sample_length)):
                 tmp_idx = torch.sum(sample_length[:j])
@@ -66,6 +68,10 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
         end_logits = end_logits.squeeze(-1).contiguous()
         loss = None
         if start_positions is not None and end_positions is not None:
+            if len(start_positions.size()) > 1:
+                start_positions = start_positions.squeeze(-1)
+            if len(end_positions.size()) > 1:
+                end_positions = end_positions.squeeze(-1)
             ignore_index = start_logits.size(1)
             start_positions = start_positions.clamp(0, ignore_index)
             end_positions = end_positions.clamp(0, ignore_index)
