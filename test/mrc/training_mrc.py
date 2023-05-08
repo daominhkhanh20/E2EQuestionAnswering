@@ -5,7 +5,7 @@ from e2eqavn.keywords import *
 from e2eqavn.mrc import MRCReader
 import wandb
 
-config = load_yaml_file('config/train_qa_chunking.yaml')
+config = load_yaml_file('config/train_qa.yaml')
 config_qa = config['reader']
 # train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'])
 # eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'])
