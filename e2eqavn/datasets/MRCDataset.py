@@ -55,7 +55,7 @@ class MRCDataset:
             num_proc=num_proc,
             fn_kwargs={
                 'tokenizer': tokenizer,
-                # 'max_length': kwargs.get(MAX_LENGTH, 512)
+                'max_length': kwargs.get(MAX_LENGTH, 368)
             }
         ).filter(lambda x: x['is_valid'], num_proc=num_proc)
 
