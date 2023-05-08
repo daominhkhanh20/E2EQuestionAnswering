@@ -174,14 +174,14 @@ class Corpus:
                                 if question[question_key] not in dict_question_answers[list_context_id[idx]]:
                                     dict_question_answers[list_context_id[idx]][question[question_key]] = [
                                         {
-                                            answer_key: process_text(answer[answer_key]),
+                                            answer_key: answer[answer_key],
                                             answer_start: answer[answer_start] - n_char
                                         }
                                     ]
                                 else:
                                     dict_question_answers[list_context_id[idx]][question[question_key]].append(
                                         {
-                                            answer_key: process_text(answer[answer_key]),
+                                            answer_key: answer[answer_key],
                                             answer_start: answer[answer_start] - n_char
                                         }
                                     )

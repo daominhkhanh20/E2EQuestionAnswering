@@ -7,7 +7,7 @@ from transformers import AutoTokenizer
 from torch.utils.data import DataLoader
 import torch
 
-config = load_yaml_file('config/train_bm25.yaml')
+config = load_yaml_file('config/train_qa_chunking.yaml')
 config_qa = config['reader']
 train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'])
 eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'])

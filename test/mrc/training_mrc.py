@@ -3,6 +3,7 @@ from e2eqavn.datasets import MRCDataset
 from e2eqavn.utils.io import load_yaml_file
 from e2eqavn.keywords import *
 from e2eqavn.mrc import MRCReader
+import wandb
 
 config = load_yaml_file('config/train_qa.yaml')
 config_qa = config['reader']
