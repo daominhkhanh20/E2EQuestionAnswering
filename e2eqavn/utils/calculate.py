@@ -166,7 +166,7 @@ def calculate_input_training_for_qav2(example: dict, tokenizer, max_length: int)
             current_length = sum(arr_size_sub_word_question_ids) + sum(
                 arr_size_sub_word_context_ids[: answer_end_idx + 1]) + 3  # for 3 special token
             tmp = answer_end_idx + 1
-            while current_length + arr_size_sub_word_context_ids[tmp] < max_length and tmp < len(context_ids):
+            while current_length + arr_size_sub_word_context_ids[tmp] < max_length and tmp < len(arr_size_sub_word_context_ids) - 1:
                 current_length += arr_size_sub_word_context_ids[tmp]
                 tmp += 1
             context_ids = context_ids[: tmp]
