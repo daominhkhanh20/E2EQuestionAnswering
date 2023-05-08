@@ -96,7 +96,7 @@ class MRCQuestionAnswering(RobertaPreTrainedModel, ABC):
     def forward(
             self,
             input_ids=None,
-            words_lengths=None,
+            words_length=None,
             start_idx=None,
             end_idx=None,
             attention_mask=None,
@@ -142,10 +142,10 @@ class MRCQuestionAnswering(RobertaPreTrainedModel, ABC):
         # Compute align word sub_word matrix
         batch_size = input_ids.shape[0]
         max_sub_word = input_ids.shape[1]
-        max_word = words_lengths.shape[1]
+        max_word = words_length.shape[1]
         align_matrix = torch.zeros((batch_size, max_word, max_sub_word))
 
-        for i, sample_length in enumerate(words_lengths):
+        for i, sample_length in enumerate(words_length):
             for j in range(len(sample_length)):
                 start_idx = torch.sum(sample_length[:j])
                 align_matrix[i][j][start_idx: start_idx + sample_length[j]] = 1 if sample_length[j] > 0 else 0
