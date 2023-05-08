@@ -69,22 +69,24 @@ class QATextProcessor:
         if not flag and context.count(answer) == 1:
             answer_start_raw = context.index(answer)
             flag = True
+        if answer.strip() == "":
+            flag = False
 
         if flag:
             context_previous = self.strip_context(context[: answer_start_raw])
             answer = self.strip_answer_string(answer)
             context_next = self.strip_context(context[answer_start_raw + len(answer):])
 
-            context_previous = " ".join(self.string_tokenize(context_previous))
-            context_next = " ".join(self.string_tokenize(context_next))
-            answer = " ".join(self.string_tokenize(answer))
-            question = " ".join(self.string_tokenize(question))
+            context_previous = " ".join(self.string_tokenize(context_previous)).strip()
+            context_next = " ".join(self.string_tokenize(context_next)).strip()
+            answer = " ".join(self.string_tokenize(answer)).strip()
+            question = " ".join(self.string_tokenize(question)).strip()
 
             context = f"{context_previous} {answer} {context_next}"
-            answer_word_start_idx = len(context_previous.split(" "))
-            answer_word_end_idx = answer_word_start_idx + len(answer.split(" ")) - 1
-            assert " ".join(context.split(" ")[answer_word_start_idx: answer_word_end_idx + 1]) == answer, "Index " \
-                                                                                                           "wrong"
+            answer_start_idx = len(f"{context_previous} {answer}".strip()) - len(answer)
+            answer_word_start_idx = len(context[:answer_start_idx].split())
+            answer_word_end_idx = answer_word_start_idx + len(answer.split()) - 1
+            assert " ".join(context.split()[answer_word_start_idx: answer_word_end_idx + 1]) == answer, "Index wrong"
             example = {
                 self.context_key: context,
                 self.question_key: question,

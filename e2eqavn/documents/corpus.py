@@ -84,10 +84,8 @@ class Document:
         :return:
         """
         temp = []
-        document_context = process_text(document_context)
         if len(dict_question_answers) > 0:
             for question, list_dict_answer in dict_question_answers.items():
-                question = process_text(question)
                 temp.append(
                     PairQuestionAnswers(
                         document_id=document_id,
@@ -143,7 +141,7 @@ class Corpus:
                         for answer in question[answers_key]:
                             dict_question_answers[question[question_key]].append(
                                 {
-                                    answer_key: process_text(answer[answer_key]),
+                                    answer_key: answer[answer_key],
                                     answer_start: answer[answer_start]
                                 }
                             )

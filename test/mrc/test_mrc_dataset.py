@@ -11,6 +11,7 @@ config = load_yaml_file('config/train_bm25.yaml')
 config_qa = config['reader']
 train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'])
 eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'])
+print(train_corpus.list_document[0].document_context)
 # train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'], **config_qa['parameters'])
 # eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'], **config_qa['parameters'])
 dataset = MRCDataset.init_mrc_dataset(
@@ -19,11 +20,11 @@ dataset = MRCDataset.init_mrc_dataset(
     model_name_or_path=config_qa['model'][MODEL_NAME_OR_PATH],
     id_valid=config_qa['parameters'].get('is_valid', False)
 )
-print(len(dataset.train_dataset))
-print(len(dataset.evaluator_dataset))
-tokenizer = AutoTokenizer.from_pretrained(config_qa['model'][MODEL_NAME_OR_PATH])
-data_collator = DataCollatorCustom(tokenizer=tokenizer)
-print(dataset.train_dataset.column_names)
+# print(len(dataset.train_dataset))
+# print(len(dataset.evaluator_dataset))
+# tokenizer = AutoTokenizer.from_pretrained(config_qa['model'][MODEL_NAME_OR_PATH])
+# data_collator = DataCollatorCustom(tokenizer=tokenizer)
+# print(dataset.train_dataset.column_names)
 
 # # for sample in dataset.train_dataset:
 # #     if len(sample['input_ids']) == 243:

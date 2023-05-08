@@ -7,7 +7,7 @@ import logging
 from datasets import load_dataset
 from e2eqavn.documents import Corpus, Document
 from e2eqavn.keywords import *
-from e2eqavn.utils.calculate import calculate_input_training_for_qav2
+from e2eqavn.utils.calculate import tokenize_function
 from e2eqavn.utils.preprocess import *
 from e2eqavn.utils.io import write_json_file
 from e2eqavn.processor import QATextProcessor
@@ -50,12 +50,12 @@ class MRCDataset:
         )
 
         dataset = dataset.shuffle().map(
-            calculate_input_training_for_qav2,
+            tokenize_function,
             batched=False,
             num_proc=num_proc,
             fn_kwargs={
                 'tokenizer': tokenizer,
-                'max_length': kwargs.get(MAX_LENGTH, 512)
+                # 'max_length': kwargs.get(MAX_LENGTH, 512)
             }
         ).filter(lambda x: x['is_valid'], num_proc=num_proc)
 
