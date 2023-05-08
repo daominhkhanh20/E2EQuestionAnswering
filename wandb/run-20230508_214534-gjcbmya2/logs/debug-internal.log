@@ -1,8 +1,0 @@
-2023-05-08 21:45:34,361 INFO    StreamThr :14008 [internal.py:wandb_internal():89] W&B internal server running at pid: 14008, started at: 2023-05-08 21:45:34.360715
-2023-05-08 21:45:34,362 DEBUG   HandlerThread:14008 [handler.py:handle_request():144] handle_request: status
-2023-05-08 21:45:34,365 INFO    WriterThread:14008 [datastore.py:open_for_write():85] open: /media/dmk/D:/Data/Project/NLP/Thesis/wandb/run-20230508_214534-gjcbmya2/run-gjcbmya2.wandb
-2023-05-08 21:45:34,365 DEBUG   SenderThread:14008 [sender.py:send():375] send: header
-2023-05-08 21:45:34,656 DEBUG   HandlerThread:14008 [handler.py:handle_request():144] handle_request: shutdown
-2023-05-08 21:45:34,657 INFO    HandlerThread:14008 [handler.py:finish():845] shutting down handler
-2023-05-08 21:45:35,366 INFO    WriterThread:14008 [datastore.py:close():298] close: /media/dmk/D:/Data/Project/NLP/Thesis/wandb/run-20230508_214534-gjcbmya2/run-gjcbmya2.wandb
-2023-05-08 21:45:35,366 INFO    SenderThread:14008 [sender.py:finish():1550] shutting down sender
