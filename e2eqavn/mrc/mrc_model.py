@@ -33,12 +33,20 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
     def forward(self, input_ids: Tensor, attention_mask: Tensor,
                 start_positions: Tensor = None, end_positions: Tensor = None,
                 return_dict: bool = None, start_idx: Tensor = None, end_idx: Tensor = None,
-                words_length: Tensor = None, span_answer_ids: Tensor = None):
+                words_length: Tensor = None, span_answer_ids: Tensor = None, token_type_ids=None,
+                position_ids=None, head_mask=None, inputs_embeds=None, output_attentions=None, output_hidden_states=None):
+
         return_dict = return_dict if return_dict is not None else self.config.use_return_dict
         outputs = self.model(
             input_ids,
-            attention_mask,
-            return_dict=return_dict
+            attention_mask=attention_mask,
+            token_type_ids=token_type_ids,
+            position_ids=position_ids,
+            head_mask=head_mask,
+            inputs_embeds=inputs_embeds,
+            output_attentions=output_attentions,
+            output_hidden_states=output_hidden_states,
+            return_dict=return_dict,
         )
         sequence_output = outputs[0]
         batch_size = input_ids.size(0)
@@ -49,6 +57,7 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
             for j in range(len(sample_length)):
                 tmp_idx = torch.sum(sample_length[:j])
                 align_matrix[i][j][tmp_idx: tmp_idx + sample_length[j]] = 1 if sample_length[j] > 0 else 0
+
         align_matrix = align_matrix.to(sequence_output.device)
         sequence_output = torch.bmm(align_matrix, sequence_output)
         outs = self.qa_outputs(sequence_output)
