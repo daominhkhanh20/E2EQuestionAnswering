@@ -9,3 +9,4 @@ model
 corpus_embedding.pth
 vn-sentence-embedding
 wandb
+data/qa
