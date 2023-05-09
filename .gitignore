@@ -8,3 +8,4 @@ model
 .idea
 corpus_embedding.pth
 vn-sentence-embedding
+wandb

@@ -97,6 +97,7 @@ class QATextProcessor:
             }
         else:
             logger.info(f"Answer isn't context\n"
+                        f"Count: {context.count(answer)}\n"
                         f"Answer: {answer} \n"
                         f"Answer start: {answer_start_raw}\n"
                         f"Question: {question} \n"
