@@ -25,16 +25,17 @@ reader:
 
   parameters:
     mode_chunking: False
-    max_length: 512
+    max_length_document: 300
 
   model:
     model_name_or_path: khanhbk20/mrc_testing
     num_train_epochs: 30
     learning_rate: 5e-5
-    batch_size_training: 64
-    batch_size_eval: 64
+    batch_size_training: 32
+    batch_size_eval: 32
     gradient_accumulation_steps: 1
     save_strategy: epoch
     logging_strategy: steps
     metric_for_best_model: f1
     logging_step: 1
+    max_length: 450

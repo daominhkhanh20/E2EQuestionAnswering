@@ -27,7 +27,6 @@ class MRCDataset:
         if MODEL_NAME_OR_PATH not in kwargs:
             raise Exception("You must provide pretrained name for QA")
         tokenizer = AutoTokenizer.from_pretrained(kwargs.get(MODEL_NAME_OR_PATH))
-        # is_document_right = kwargs.get(IS_DOCUMENT_RIGHT, True)
         num_proc = kwargs.get(NUM_PROC, 5)
         qa_text_processor = QATextProcessor(
             context_key=kwargs.get(CONTEXT_KEY, 'context'),
@@ -63,7 +62,6 @@ class MRCDataset:
 
     @classmethod
     def init_mrc_dataset(cls, corpus_train: Corpus = None, corpus_eval: Corpus = None, **kwargs):
-        # wandb.init(name=f"chunking_{str(kwargs.get('mode_chunking', False))}_max_length_{kwargs.get(MAX_LENGTH, 512)}")
         if corpus_train is not None:
             train_dataset = cls.make_dataset(corpus_train, mode='train', **kwargs)
         else:

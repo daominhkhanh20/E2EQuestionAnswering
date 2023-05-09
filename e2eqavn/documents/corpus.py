@@ -106,7 +106,7 @@ class Corpus:
     question_key: str = QUESTION
     answers_key: str = ANSWERS
     answer_key: str = TEXT
-    max_length: int = 400
+    max_length_document: int = 400
     overlapping_size: int = 40
     answer_start = ANSWER_START
 
@@ -158,8 +158,6 @@ class Corpus:
             doc_th += 1
         else:
             list_context = cls.chunk_document(document_context, **kwargs)
-            # if len(list_context) > 1:
-            #     logger.info(f"From 1 to {len(list_context)}")
             list_context_id = [hashlib.sha1(str(context).encode('utf-8')).hexdigest()
                                for context in list_context]
             dict_question_answers = {key: {} for key in list_context_id}
@@ -248,7 +246,7 @@ class Corpus:
 
     @classmethod
     def chunk_document(cls, context: str, **kwargs):
-        max_length = kwargs.get(MAX_LENGTH, cls.max_length)
+        max_length = kwargs.get(MAX_LENGTH_DOCUMENT, cls.max_length_document)
         overlapping_size = kwargs.get(OVER_LAPPING_SIZE, cls.overlapping_size)
         size = max_length - overlapping_size
         list_words = context.split(" ")
@@ -269,6 +267,7 @@ class Corpus:
         list_document = []
         if kwargs.get('mode_chunking', False):
             logger.info("Turn on mode chunkng long document")
+            logger.info(f"Max length for 1 document: {kwargs.get(MAX_LENGTH_DOCUMENT, cls.max_length_document)}")
         for context in data['data']:
             for paragraph in context['paragraphs']:
                 tmp_list_documents, doc_th = cls.get_documents(paragraph, doc_th, **kwargs)
