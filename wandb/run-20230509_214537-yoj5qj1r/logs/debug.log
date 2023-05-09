@@ -1,0 +1,33 @@
+2023-05-09 21:45:37,063 INFO    MainThread:19296 [wandb_setup.py:_flush():76] Current SDK version is 0.15.2
+2023-05-09 21:45:37,063 INFO    MainThread:19296 [wandb_setup.py:_flush():76] Configure stats pid to 19296
+2023-05-09 21:45:37,064 INFO    MainThread:19296 [wandb_setup.py:_flush():76] Loading settings from /home/dmk/.config/wandb/settings
+2023-05-09 21:45:37,064 INFO    MainThread:19296 [wandb_setup.py:_flush():76] Loading settings from /media/dmk/D:/Data/Project/NLP/Thesis/wandb/settings
+2023-05-09 21:45:37,064 WARNING MainThread:19296 [wandb_setup.py:_flush():76] Unknown environment variable: WANDB_API
+2023-05-09 21:45:37,064 INFO    MainThread:19296 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2023-05-09 21:45:37,064 INFO    MainThread:19296 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'test/mrc/training_mrc.py', 'program': 'test/mrc/training_mrc.py'}
+2023-05-09 21:45:37,064 INFO    MainThread:19296 [wandb_setup.py:_flush():76] Applying login settings: {'api_key': '***REDACTED***'}
+2023-05-09 21:45:37,064 INFO    MainThread:19296 [wandb_setup.py:_flush():76] Applying login settings: {'api_key': '***REDACTED***'}
+2023-05-09 21:45:37,064 INFO    MainThread:19296 [wandb_init.py:_log_setup():507] Logging user logs to /media/dmk/D:/Data/Project/NLP/Thesis/wandb/run-20230509_214537-yoj5qj1r/logs/debug.log
+2023-05-09 21:45:37,064 INFO    MainThread:19296 [wandb_init.py:_log_setup():508] Logging internal logs to /media/dmk/D:/Data/Project/NLP/Thesis/wandb/run-20230509_214537-yoj5qj1r/logs/debug-internal.log
+2023-05-09 21:45:37,064 INFO    MainThread:19296 [wandb_init.py:init():547] calling init triggers
+2023-05-09 21:45:37,064 INFO    MainThread:19296 [wandb_init.py:init():555] wandb.init called with sweep_config: {}
+config: {'mode_chunking': True, 'max_length': 400, 'overlapping_size': 80, 'is_valid': True, 'model_name_or_path': 'khanhbk20/mrc_testing', 'num_train_epochs': 30, 'learning_rate': '5e-5', 'batch_size_training': 16, 'batch_size_eval': 32, 'gradient_accumulation_steps': 1, 'save_strategy': 'epoch', 'logging_strategy': 'steps', 'metric_for_best_model': 'f1', 'logging_step': 1}
+2023-05-09 21:45:37,064 INFO    MainThread:19296 [wandb_init.py:init():596] starting backend
+2023-05-09 21:45:37,064 INFO    MainThread:19296 [wandb_init.py:init():600] setting up manager
+2023-05-09 21:45:37,066 INFO    MainThread:19296 [backend.py:_multiprocessing_setup():108] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2023-05-09 21:45:37,069 INFO    MainThread:19296 [wandb_init.py:init():606] backend started and connected
+2023-05-09 21:45:37,075 INFO    MainThread:19296 [wandb_init.py:init():700] updated telemetry
+2023-05-09 21:45:37,096 INFO    MainThread:19296 [wandb_init.py:init():737] communicating run to backend with 60.0 second timeout
+2023-05-09 21:45:37,873 INFO    MainThread:19296 [wandb_run.py:_on_init():2177] communicating current version
+2023-05-09 21:45:38,193 INFO    MainThread:19296 [wandb_run.py:_on_init():2186] got version response 
+2023-05-09 21:45:38,193 INFO    MainThread:19296 [wandb_init.py:init():787] starting run threads in backend
+2023-05-09 21:45:45,069 WARNING MsgRouterThr:19296 [router.py:message_loop():77] message_loop has been closed
+2023-05-09 21:45:53,385 ERROR   MainThread:19296 [wandb_init.py:init():1168] transport failed
+Traceback (most recent call last):
+  File "/home/dmk/anaconda3/envs/thesis/lib/python3.7/site-packages/wandb/sdk/wandb_init.py", line 1150, in init
+    run = wi.init()
+  File "/home/dmk/anaconda3/envs/thesis/lib/python3.7/site-packages/wandb/sdk/wandb_init.py", line 799, in init
+    run_start_result = run_start_handle.wait(timeout=30)
+  File "/home/dmk/anaconda3/envs/thesis/lib/python3.7/site-packages/wandb/sdk/lib/mailbox.py", line 281, in wait
+    raise MailboxError("transport failed")
+wandb.sdk.lib.mailbox.MailboxError: transport failed

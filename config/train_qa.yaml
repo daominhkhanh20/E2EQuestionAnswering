@@ -25,7 +25,6 @@ reader:
 
   parameters:
     mode_chunking: False
-    max_length_document: 300
 
   model:
     model_name_or_path: khanhbk20/mrc_testing

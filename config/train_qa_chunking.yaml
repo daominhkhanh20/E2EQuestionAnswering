@@ -25,7 +25,7 @@ reader:
 
   parameters:
     mode_chunking: True
-    max_length: 400
+    max_length_document: 300
     overlapping_size: 80
     is_valid: True
 
@@ -40,3 +40,4 @@ reader:
     logging_strategy: steps
     metric_for_best_model: f1
     logging_step: 1
+    max_length: 450

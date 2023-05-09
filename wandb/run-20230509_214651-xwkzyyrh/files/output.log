@@ -1,0 +1,29 @@
+2023-05-09 21:46:55,693 INFO e2eqavn.documents.corpus:269 - Turn on mode chunkng long document
+2023-05-09 21:46:55,694 INFO e2eqavn.documents.corpus:270 - Max length for 1 document: 400
+2023-05-09 21:46:56,202 INFO e2eqavn.documents.corpus:269 - Turn on mode chunkng long document
+2023-05-09 21:46:56,202 INFO e2eqavn.documents.corpus:270 - Max length for 1 document: 400
+2023-05-09 21:46:56,257 INFO e2eqavn.datasets.MRCDataset:25 - Start prepare train dataset
+2023-05-09 21:46:56,257 INFO e2eqavn.datasets.MRCDataset:26 - Max length sentence = 400
+2023-05-09 21:47:08,735 INFO e2eqavn.processor.qa_ext_processor:140 - **************************************************
+2023-05-09 21:47:08,736 INFO e2eqavn.processor.qa_ext_processor:141 - Total 0 document failed
+2023-05-09 21:47:08,736 INFO e2eqavn.processor.qa_ext_processor:142 - **************************************************
+Traceback (most recent call last):
+  File "test/mrc/training_mrc.py", line 21, in <module>
+    mode_chunking=config_qa['parameters'].get('mode_chunking', False)
+  File "/media/dmk/D:/Data/Project/NLP/Thesis/e2eqavn/datasets/MRCDataset.py", line 66, in init_mrc_dataset
+    train_dataset = cls.make_dataset(corpus_train, mode='train', **kwargs)
+  File "/media/dmk/D:/Data/Project/NLP/Thesis/e2eqavn/datasets/MRCDataset.py", line 44, in make_dataset
+    write_json_file(examples, os.path.join(dir_save, f"{mode}.json"))
+  File "/media/dmk/D:/Data/Project/NLP/Thesis/e2eqavn/utils/io.py", line 17, in write_json_file
+    json.dump(data, file, ensure_ascii=False, indent=4)
+  File "/home/dmk/anaconda3/envs/thesis/lib/python3.7/json/__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "/home/dmk/anaconda3/envs/thesis/lib/python3.7/json/encoder.py", line 431, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/home/dmk/anaconda3/envs/thesis/lib/python3.7/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/home/dmk/anaconda3/envs/thesis/lib/python3.7/json/encoder.py", line 325, in _iterencode_list
+    yield from chunks
+  File "/home/dmk/anaconda3/envs/thesis/lib/python3.7/json/encoder.py", line 385, in _iterencode_dict
+    yield _encoder(value)
+KeyboardInterrupt

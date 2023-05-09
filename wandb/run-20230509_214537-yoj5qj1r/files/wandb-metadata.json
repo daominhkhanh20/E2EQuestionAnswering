@@ -1,0 +1,57 @@
+{
+    "os": "Linux-5.15.0-71-generic-x86_64-with-debian-bullseye-sid",
+    "python": "3.7.16",
+    "heartbeatAt": "2023-05-09T14:45:38.226693",
+    "startedAt": "2023-05-09T14:45:37.050578",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "test/mrc/training_mrc.py",
+    "codePath": "test/mrc/training_mrc.py",
+    "git": {
+        "remote": "https://github.com/daominhkhanh20/E2EQuestionAnswering.git",
+        "commit": "ffc256912240d25c18763aa5750a18729e0060e6"
+    },
+    "email": "khanhc1k36@gmail.com",
+    "root": "/media/dmk/D:/Data/Project/NLP/Thesis",
+    "host": "daominhkhanh",
+    "username": "dmk",
+    "executable": "/home/dmk/anaconda3/envs/thesis/bin/python3",
+    "cpu_count": 2,
+    "cpu_count_logical": 4,
+    "cpu_freq": {
+        "current": 2900.01575,
+        "min": 400.0,
+        "max": 3100.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2700.0,
+            "min": 400.0,
+            "max": 3100.0
+        },
+        {
+            "current": 2700.0,
+            "min": 400.0,
+            "max": 3100.0
+        },
+        {
+            "current": 2700.0,
+            "min": 400.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.008,
+            "min": 400.0,
+            "max": 3100.0
+        }
+    ],
+    "disk": {
+        "total": 228.16955184936523,
+        "used": 151.34927368164062
+    },
+    "memory": {
+        "total": 15.495796203613281
+    }
+}
