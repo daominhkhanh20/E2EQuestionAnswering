@@ -56,7 +56,8 @@ class MRCDataset:
                 'tokenizer': tokenizer,
                 'max_length': kwargs.get(MAX_LENGTH, 368)
             }
-        ).filter(lambda x: x['is_valid'], num_proc=num_proc)
+        ).filter(lambda x: x['is_valid'], num_proc=num_proc) \
+            .filter(lambda x: x['input_ids'] is not None, num_proc=num_proc)
 
         return dataset[mode]
 

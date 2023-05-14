@@ -160,24 +160,38 @@ def calculate_input_training_for_qav2(example: dict, tokenizer, max_length: int)
     arr_size_sub_word_question_ids = [len(sub_ids) for sub_ids in question_ids]
     is_valid = True
     if sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids) > max_length - 5:
-        if sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids[:answer_end_idx + 1]) > max_length - 5:
+        if sum(arr_size_sub_word_question_ids) + sum(
+                arr_size_sub_word_context_ids[:answer_end_idx + 1]) > max_length - 5:
             is_valid = False
         else:
             current_length = sum(arr_size_sub_word_question_ids) + sum(
                 arr_size_sub_word_context_ids[: answer_end_idx + 1]) + 3  # for 3 special token
             tmp = answer_end_idx + 1
-            while current_length + arr_size_sub_word_context_ids[tmp] < max_length and tmp < len(arr_size_sub_word_context_ids) - 1:
+            while current_length + arr_size_sub_word_context_ids[tmp] < max_length and tmp < len(
+                    arr_size_sub_word_context_ids) - 1:
                 current_length += arr_size_sub_word_context_ids[tmp]
                 tmp += 1
             context_ids = context_ids[: tmp]
-    question_final_ids = [[tokenizer.bos_token_id]] + question_ids + [[tokenizer.eos_token_id]]
-    context_final_ids = context_ids + [[tokenizer.eos_token_id]]
+    if tokenizer.bos_token_id is not None and tokenizer.eos_token_id is not None:
+        bos_token_id = tokenizer.bos_token_id
+        eos_token_id = tokenizer.eos_token_id
+    else:
+        temp_sample = tokenizer('xin chào')
+        bos_token_id = temp_sample['input_ids'][0]
+        eos_token_id = temp_sample['input_ids'][-1]
+
+    question_final_ids = [[bos_token_id]] + question_ids + [[eos_token_id]]
+    context_final_ids = context_ids + [[eos_token_id]]
     input_ids = [id for sub_ids in question_final_ids + context_final_ids for id in sub_ids]
     words_length = [len(item) for item in question_final_ids + context_final_ids]
     if len(input_ids) > original_max_length:
         is_valid = False
 
     attention_mask = [1] * len(input_ids)
+    if input_ids is None:
+        print(example[CONTEXT])
+        print(example[ANSWER])
+        print(example[QUESTION])
     return {
         INPUT_IDS: input_ids,
         ATTENTION_MASK: attention_mask,
