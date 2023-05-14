@@ -27,7 +27,7 @@ reader:
     mode_chunking: False
 
   model:
-    model_name_or_path: khanhbk20/mrc_testing
+    model_name_or_path: FPTAI/vibert-base-cased
     num_train_epochs: 20
     learning_rate: 5e-5
     batch_size_training: 32
