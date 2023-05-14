@@ -16,6 +16,8 @@ from e2eqavn.evaluate import MRCEvaluator
 
 class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
     config_class = RobertaConfig
+    _keys_to_ignore_on_load_unexpected = [r"pooler"]
+    _keys_to_ignore_on_load_missing = [r"position_ids"]
 
     def __init__(self, config):
         super().__init__(config)
