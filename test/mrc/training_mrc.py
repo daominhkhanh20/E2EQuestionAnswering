@@ -1,14 +1,20 @@
 from e2eqavn.documents import Corpus
 from e2eqavn.datasets import MRCDataset
-from e2eqavn.utils.io import load_yaml_file
+from e2eqavn.utils.io import load_yaml_file, write_json_file
 from e2eqavn.keywords import *
 from e2eqavn.mrc import MRCReader
 import wandb
+import os
+
 
 config = load_yaml_file('config/train_qa_chunking.yaml')
 config_qa = config['reader']
 # train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'])
 # eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'])
+if not os.path.exists(config_qa['model'].get(OUTPUT_DIR, 'model/qa')):
+    os.makedirs(config_qa['model'].get(OUTPUT_DIR, 'model/qa'))
+write_json_file(config_qa, os.path.join(config_qa['model'].get(OUTPUT_DIR, 'model/qa'), 'parameter.json'))
+
 config = {**config_qa['parameters'], **config_qa['model']}
 wandb.init(project='E2E_QA_THESIS', config=config)
 train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'], **config_qa['parameters'])
