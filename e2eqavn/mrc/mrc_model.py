@@ -8,7 +8,7 @@ from transformers.modeling_outputs import QuestionAnsweringModelOutput
 from transformers import TrainingArguments, Trainer, AutoTokenizer
 from .base import BaseReader
 from e2eqavn.documents import Document
-from e2eqavn.utils.io import load_json_data
+from e2eqavn.utils.io import load_json_data, write_json_file
 from e2eqavn.datasets import DataCollatorCustom, MRCDataset
 from e2eqavn.keywords import *
 from e2eqavn.evaluate import MRCEvaluator
@@ -129,6 +129,9 @@ class MRCReader(BaseReader, ABC):
         return cls(model, tokenizer, device)
 
     def init_trainer(self, mrc_dataset: MRCDataset, **kwargs):
+        if not os.path.exists(kwargs.get(OUTPUT_DIR, 'model/qa')):
+            os.makedirs(kwargs.get(OUTPUT_DIR, 'model/qa'))
+        write_json_file(kwargs, os.path.join(kwargs.get(OUTPUT_DIR, 'model/qa'), 'parameter.json'))
         training_args = TrainingArguments(
             report_to='wandb',
             output_dir=kwargs.get(OUTPUT_DIR, 'model/qa'),
