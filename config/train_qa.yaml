@@ -37,4 +37,4 @@ reader:
     logging_strategy: steps
     metric_for_best_model: f1
     logging_step: 1
-    max_length: 450
+    max_length: 400
