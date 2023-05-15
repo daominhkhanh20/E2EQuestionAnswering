@@ -149,6 +149,10 @@ logger = logging.getLogger(__name__)
 
 def calculate_input_training_for_qav2(example: dict, tokenizer, max_length: int):
     # question_ids context_ids
+    if not example[IS_VALID]:
+        return {
+            IS_VALID: False
+        }
     original_max_length = max_length
     context = example[CONTEXT]
     question = example[QUESTION]
@@ -188,10 +192,7 @@ def calculate_input_training_for_qav2(example: dict, tokenizer, max_length: int)
         is_valid = False
 
     attention_mask = [1] * len(input_ids)
-    if input_ids is None:
-        print(example[CONTEXT])
-        print(example[ANSWER])
-        print(example[QUESTION])
+
     return {
         INPUT_IDS: input_ids,
         ATTENTION_MASK: attention_mask,

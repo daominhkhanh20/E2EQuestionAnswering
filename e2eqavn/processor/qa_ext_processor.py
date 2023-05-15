@@ -26,16 +26,18 @@ class QATextProcessor:
         self.answer_word_end_idx_key = answer_word_end_idx_key
         self.cnt_failed = 0
 
-    def string_tokenize(self, text: str):
-        words = text.split(" ")
-        list_words = []
-        for word in words:
-            if self.dict_word_map.get(word, None) is None:
-                self.dict_word_map[word] = " ".join(word_tokenize(word)).replace('``', '"').replace("''", '"')
-            list_words.append(self.dict_word_map[word])
-        return list_words
+        self.dict_map = dict({})
 
-    def strip_answer_string(self, text: str):
+    def string_tokenize(self, text):
+        words = text.split()
+        words_norm = []
+        for w in words:
+            if self.dict_map.get(w, None) is None:
+                self.dict_map[w] = ' '.join(word_tokenize(w)).replace('``', '"').replace("''", '"')
+            words_norm.append(self.dict_map[w])
+        return words_norm
+
+    def strip_answer_string(self, text):
         text = text.strip()
         while text[-1] in '.,/><;:\'"[]{}+=-_)(*&^!~`':
             if text[0] != '(' and text[-1] == ')' and '(' in text:
@@ -50,10 +52,11 @@ class QATextProcessor:
         text = text.strip()
         return text
 
-    def strip_context(self, text: str):
+    def strip_context(self, text):
         text = text.replace('\n', ' ')
-        text = re.sub('\s+', ' ', text)
-        return text.strip()
+        text = re.sub(r'\s+', ' ', text)
+        text = text.strip()
+        return text
 
     def process_example(self, example: dict):
         question = example[self.question_key]
