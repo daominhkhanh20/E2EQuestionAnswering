@@ -5,7 +5,7 @@ import os
 from torch import nn, Tensor
 from transformers import RobertaPreTrainedModel, RobertaModel, RobertaConfig
 from transformers.modeling_outputs import QuestionAnsweringModelOutput
-from transformers import TrainingArguments, Trainer, AutoTokenizer
+from transformers import TrainingArguments, Trainer, AutoTokenizer, AutoModelForQuestionAnswering, default_data_collator
 from .base import BaseReader
 from e2eqavn.documents import Document
 from e2eqavn.utils.io import load_json_data, write_json_file
@@ -122,7 +122,8 @@ class MRCReader(BaseReader, ABC):
     @classmethod
     def from_pretrained(cls, model_name_or_path: str, **kwargs):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        model = MRCQuestionAnsweringModel.from_pretrained(model_name_or_path).to(device)
+        # model = MRCQuestionAnsweringModel.from_pretrained(model_name_or_path).to(device)
+        model = AutoModelForQuestionAnswering.from_pretrained(model_name_or_path).to(device)
         try:
             tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
         except:
@@ -146,13 +147,13 @@ class MRCReader(BaseReader, ABC):
             logging_dir='log',
             logging_strategy=kwargs.get(LOGGING_STRATEGY, 'epoch'),
             logging_steps=kwargs.get(LOGGING_STEP, 2),
-            label_names=[
-                "start_positions",
-                "end_positions",
-                "span_answer_ids",
-                "input_ids",
-                "words_length"
-            ],
+            # label_names=[
+            #     "start_positions",
+            #     "end_positions",
+            #     "span_answer_ids",
+            #     "input_ids",
+            #     "words_length"
+            # ],
             group_by_length=True,
             save_strategy=kwargs.get(SAVE_STRATEGY, 'no'),
             metric_for_best_model=kwargs.get(METRIC_FOR_BEST_MODEL, 'f1'),
@@ -161,8 +162,9 @@ class MRCReader(BaseReader, ABC):
             evaluation_strategy=kwargs.get(EVALUATION_STRATEGY, 'epoch')
         )
 
-        data_collator = DataCollatorCustom(tokenizer=self.tokenizer)
-        self.compute_metrics = MRCEvaluator(tokenizer=self.tokenizer)
+        # data_collator = DataCollatorCustom(tokenizer=self.tokenizer)
+        # self.compute_metrics = MRCEvaluator(tokenizer=self.tokenizer)
+        data_collator = default_data_collator
         self.train_dataset = mrc_dataset.train_dataset
         self.eval_dataset = mrc_dataset.evaluator_dataset
         self.trainer = Trainer(
@@ -171,7 +173,8 @@ class MRCReader(BaseReader, ABC):
             train_dataset=mrc_dataset.train_dataset,
             eval_dataset=mrc_dataset.evaluator_dataset,
             data_collator=data_collator,
-            compute_metrics=self.compute_metrics
+            tokenizer=self.tokenizer
+            # compute_metrics=self.compute_metrics
         )
 
     def train(self):

@@ -94,6 +94,7 @@ class QATextProcessor:
                 self.context_key: context,
                 self.question_key: question,
                 self.answer_key: answer,
+                self.answer_start_key: answer_start_raw,
                 self.answer_word_start_idx_key: answer_word_start_idx,
                 self.answer_word_end_idx_key: answer_word_end_idx,
                 IS_VALID: True
@@ -111,6 +112,7 @@ class QATextProcessor:
                 self.context_key: context,
                 self.question_key: question,
                 self.answer_key: "",
+                self.answer_start_key: answer_start_raw,
                 self.answer_word_start_idx_key: 0,
                 self.answer_word_end_idx_key: 0,
                 IS_VALID: False
