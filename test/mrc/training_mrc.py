@@ -16,7 +16,7 @@ if not os.path.exists(config_qa['model'].get(OUTPUT_DIR, 'model/qa')):
 write_json_file(config_qa, os.path.join(config_qa['model'].get(OUTPUT_DIR, 'model/qa'), 'parameter.json'))
 
 config = {**config_qa['parameters'], **config_qa['model']}
-wandb.init(project='E2E_QA_THESIS', config=config)
+wandb.init(project='E2E_QA_THESISV2', config=config)
 train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'], **config_qa['parameters'])
 eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'], **config_qa['parameters'])
 dataset = MRCDataset.init_mrc_dataset(
