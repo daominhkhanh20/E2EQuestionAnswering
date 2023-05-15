@@ -27,7 +27,7 @@ reader:
     mode_chunking: False
 
   model:
-    model_name_or_path: FPTAI/vibert-base-cased
+    model_name_or_path: xlm-roberta-base
     num_train_epochs: 20
     learning_rate: 5e-5
     batch_size_training: 16
@@ -37,4 +37,4 @@ reader:
     logging_strategy: steps
     metric_for_best_model: f1
     logging_step: 1
-    max_length: 400
+    max_length: 368
