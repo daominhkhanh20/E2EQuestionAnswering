@@ -22,5 +22,5 @@ __author__ = 'khanhdm'
 __version__ = 'V1.2'
 
 load_dotenv()
-# wandb_api_key = os.getenv("WANDB_API")
-# wandb.login(key=wandb_api_key)
+wandb_api_key = os.getenv("WANDB_API")
+wandb.login(key=wandb_api_key)
