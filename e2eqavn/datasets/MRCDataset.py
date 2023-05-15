@@ -40,6 +40,7 @@ class MRCDataset:
         dir_save = kwargs.get(FOLDER_QA_SAVE, 'data/qa')
         if not os.path.exists(dir_save):
             os.makedirs(dir_save, exist_ok=True)
+        logger.info(f"Dataset for {mode} has {len(examples)} sample")
         examples = {'data': examples}
         write_json_file(examples, os.path.join(dir_save, f"{mode}.json"))
         dataset = load_dataset(

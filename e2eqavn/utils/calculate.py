@@ -149,10 +149,6 @@ logger = logging.getLogger(__name__)
 
 def calculate_input_training_for_qav2(example: dict, tokenizer, max_length: int):
     # question_ids context_ids
-    if not example[IS_VALID]:
-        return {
-            IS_VALID: False
-        }
     original_max_length = max_length
     context = example[CONTEXT]
     question = example[QUESTION]
@@ -162,6 +158,16 @@ def calculate_input_training_for_qav2(example: dict, tokenizer, max_length: int)
     question_ids = [tokenizer.convert_tokens_to_ids(tokenizer.tokenize(word)) for word in question.split()]
     arr_size_sub_word_context_ids = [len(sub_ids) for sub_ids in context_ids]
     arr_size_sub_word_question_ids = [len(sub_ids) for sub_ids in question_ids]
+    if not example[IS_VALID] or sum(arr_size_sub_word_context_ids) > 300 or sum(arr_size_sub_word_question_ids) > 100:
+        return {
+            INPUT_IDS: None,
+            ATTENTION_MASK: None,
+            START_IDX: 0,
+            END_IDX: 0,
+            WORDS_LENGTH: None,
+            'is_valid': False
+        }
+
     is_valid = True
     if sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids) > max_length - 5:
         if sum(arr_size_sub_word_question_ids) + sum(
