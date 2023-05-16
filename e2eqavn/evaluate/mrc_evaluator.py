@@ -1,3 +1,5 @@
+import os.path
+
 import numpy as np
 from datasets import load_metric
 from e2eqavn.utils.io import write_json_file
@@ -37,6 +39,9 @@ class MRCEvaluator:
         return self.metric.compute(predictions=predictions, references=references)
 
     def save_log(self, path: str = 'log/result.json'):
+        path_folder = path.rsplit('/', 1)[-1]
+        if not os.path.exists(path_folder):
+            os.makedirs(path_folder, exist_ok=True)
         write_json_file(self.log_predict, path)
         self.log_predict = []
 
