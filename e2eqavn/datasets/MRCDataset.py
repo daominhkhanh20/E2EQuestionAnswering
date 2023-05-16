@@ -50,7 +50,7 @@ class MRCDataset:
         )
 
         dataset = dataset.shuffle().map(
-            calculate_input_training_for_qav2,
+            tokenize_function,
             batched=False,
             num_proc=num_proc,
             fn_kwargs={
