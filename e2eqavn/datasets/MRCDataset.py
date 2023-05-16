@@ -36,7 +36,7 @@ class MRCDataset:
             answer_word_start_idx_key=kwargs.get(ANSWER_WORD_START_IDX, 'answer_word_start_idx'),
             answer_word_end_idx_key=kwargs.get(ANSWER_WORD_END_IDX, 'answer_word_end_idx')
         )
-        examples = qa_text_processor.make_example(corpus)[:100]
+        examples = qa_text_processor.make_example(corpus)
         dir_save = kwargs.get(FOLDER_QA_SAVE, 'data/qa')
         if not os.path.exists(dir_save):
             os.makedirs(dir_save, exist_ok=True)
