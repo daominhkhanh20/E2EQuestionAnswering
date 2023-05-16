@@ -1,6 +1,6 @@
 numpy
 PyYAML
-sentence_transformers
+sentence-transformers
 torch
 tqdm
 networkx
