@@ -39,7 +39,7 @@ class MRCEvaluator:
         return self.metric.compute(predictions=predictions, references=references)
 
     def save_log(self, path: str = 'log/result.json'):
-        path_folder = path.rsplit('/', 1)[-1]
+        path_folder = path.rsplit('/', 1)[0]
         if not os.path.exists(path_folder):
             os.makedirs(path_folder, exist_ok=True)
         write_json_file(self.log_predict, path)

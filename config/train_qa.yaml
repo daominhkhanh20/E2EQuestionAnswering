@@ -28,7 +28,7 @@ reader:
 
   model:
     model_name_or_path: xlm-roberta-base
-    num_train_epochs: 25
+    num_train_epochs: 1
     learning_rate: 5e-5
     batch_size_training: 16
     batch_size_eval: 16
