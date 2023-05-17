@@ -27,7 +27,7 @@ reader:
     mode_chunking: False
 
   model:
-    model_name_or_path: xlm-roberta-base
+    model_name_or_path: khanhbk20/mrc_testing
     num_train_epochs: 1
     learning_rate: 5e-5
     batch_size_training: 16
