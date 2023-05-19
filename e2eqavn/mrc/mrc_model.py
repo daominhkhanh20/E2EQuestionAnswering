@@ -120,7 +120,6 @@ class MRCReader(BaseReader, ABC):
         self.tokenizer = tokenizer
         self.data_collator = DataCollatorCustom(tokenizer=self.tokenizer)
 
-
     @classmethod
     def from_pretrained(cls, model_name_or_path: str, **kwargs):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -196,16 +195,26 @@ class MRCReader(BaseReader, ABC):
                 "score_end": score_end
             })
         return results
-    
-    def predict(self, query: List[str], documents: List[Document], **kwargs):
-        assert len(query) == len(documents), "Number question must equal number document"
-        for question, list_document in zip(query, documents):
-            
-                        
-            
+
+    def predict(self, queries: List[str], documents: List[List[Document]], **kwargs):
+        logger.info(f'Number documents: {len(documents)}')
+        assert len(queries) == len(documents), "Number question must equal number document"
+        results = []
+        for question, list_document in zip(queries, documents):
+            results.append(
+                self.qa_inference(
+                    question=question,
+                    documents=[
+                        doc.document_context for doc in list_document
+                    ]
+                )
+            )
+            logger.info(results)
+        return results
+
     def qa_inference(self, question: str, documents: List[str]):
         questions = [question] * len(documents)
-        
+
         input_features_raw = make_input_feature_qa(
             questions=questions,
             documents=documents,

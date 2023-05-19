@@ -5,10 +5,10 @@ from e2eqavn.documents import Document
 
 class BaseReader:
     @abstractmethod
-    def predict(self, query: Union[str, List[str]], documents: List[Document], **kwargs):
+    def predict(self, query: Union[str, List[str]], documents: List[List[Document]], **kwargs):
         raise Exception("Not implemented")
 
-    def run(self, query: Union[str, List[str]], documents: List[Document], **kwargs):
+    def run(self, query: Union[str, List[str]], documents: List[List[Document]], **kwargs):
         if isinstance(query, str):
             query = [query]
             
