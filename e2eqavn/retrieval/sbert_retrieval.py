@@ -152,7 +152,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
         self.list_documents = deepcopy(corpus.list_document)
         if os.path.isfile(path_corpus_embedding):
             logger.info(f"Loading corpus embedding at {path_corpus_embedding}")
-            self.corpus_embedding = torch.load(path_corpus_embedding, map_location='cpu')
+            self.corpus_embedding = torch.load(path_corpus_embedding, map_location=self.device)
         else:
             logger.info(f"Start encoding corpus with {len(corpus.list_document)} document")
             document_context = corpus.list_document_context
