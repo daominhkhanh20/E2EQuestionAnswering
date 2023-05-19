@@ -3,6 +3,7 @@ from e2eqavn.documents import Corpus
 from e2eqavn.retrieval import *
 from e2eqavn.mrc import * 
 from e2eqavn.utils.io import load_yaml_file
+import time
 
 path_model = 'khanhbk20/vn-sentence-embedding'
 config = load_yaml_file('config/train_random.yaml')
@@ -20,9 +21,11 @@ pipeline = E2EQuestionAnsweringPipeline(
 )
 
 question = "Tên gọi nào được Phạm Văn Đồng sử dụng khi làm Phó chủ nhiệm cơ quan Biện sự xứ tại Quế Lâm?"
+start_time = time.time()
 result = pipeline.run(
     queries=question,
     top_k_bm25=50,
     top_k_sbert=3
 )
 print(result)
+print(time.time() - start_time)
