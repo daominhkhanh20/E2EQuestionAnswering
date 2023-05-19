@@ -21,5 +21,6 @@ class BaseReader:
         else:
             return {
                 "query": queries,
+                "documents": documents,
                 "answer": self.predict(queries, documents, **kwargs)
             }
