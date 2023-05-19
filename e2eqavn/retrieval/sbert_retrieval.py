@@ -189,7 +189,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
             scores, index = torch.topk(similarity, top_k, dim=1, largest=True, sorted=False, )
             sub_index_select = index_selection[torch.arange(index.size(0)).unsqueeze(1), index]
         else:
-            scores, sub_index_select = torch.topk(similarity_scores, top_k, dim=1, largest=True, sorted=False,)
+            scores, sub_index_select = torch.topk(similarity_scores, top_k, dim=1, largest=True, sorted=False, )
         return scores, sub_index_select
 
     @classmethod

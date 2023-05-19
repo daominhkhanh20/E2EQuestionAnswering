@@ -239,6 +239,3 @@ class MRCReader(BaseReader, ABC):
     def evaluate(self, dataset):
         self.trainer.evaluate(dataset)
         self.compute_metrics.save_log()
-
-    def predict(self, query: Union[str, List[str]], documents: List[Document], **kwargs):
-        pass
