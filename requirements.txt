@@ -1,7 +1,7 @@
 numpy
 PyYAML
 sentence-transformers
--i https://download.pytorch.org/whl/cpu torch
+torch
 tqdm
 networkx
 pandas 

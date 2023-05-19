@@ -2,8 +2,9 @@ import logging
 import sys
 import warnings
 import os
-import wandb
 from dotenv import load_dotenv
+load_dotenv()
+
 warnings.filterwarnings("ignore")
 
 logger = logging.getLogger(__name__)
@@ -21,6 +22,3 @@ logger.propagate = False
 __author__ = 'khanhdm'
 __version__ = 'V1.2'
 
-load_dotenv()
-wandb_api_key = os.getenv("WANDB_API")
-wandb.login(key=wandb_api_key)

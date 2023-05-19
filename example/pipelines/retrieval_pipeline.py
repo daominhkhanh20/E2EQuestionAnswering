@@ -22,5 +22,5 @@ result = pipeline.run(
     top_k_bm25=50,
     top_k_sbert=3
 )
-for doc in result['documents'][0]:
-    print(doc.document_context)
+# for doc in result['documents'][0]:
+#     print(doc.document_context)

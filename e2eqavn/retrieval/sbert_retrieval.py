@@ -45,6 +45,8 @@ class SentenceBertLearner:
               max_grad_norm: float = 1, show_progress_bar: bool = True,
               save_best_model: bool = True, evaluation_steps: int = 5000
               ):
+        wandb_api_key = os.getenv("WANDB_API")
+        wandb.login(key=wandb_api_key)
         train_loader = DataLoader(
             dataset=train_dataset,
             batch_size=batch_size

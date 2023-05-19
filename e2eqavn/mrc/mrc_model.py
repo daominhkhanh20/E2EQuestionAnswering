@@ -13,6 +13,7 @@ from e2eqavn.utils.io import load_json_data, write_json_file
 from e2eqavn.datasets import DataCollatorCustom, MRCDataset
 from e2eqavn.keywords import *
 from e2eqavn.evaluate import MRCEvaluator
+import wandb
 
 
 class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
@@ -197,12 +198,14 @@ class MRCReader(BaseReader, ABC):
         return results
     
     def predict(self, query: List[str], documents: List[Document], **kwargs):
-        # for question, document in zip(query, documents):
-        pass
+        assert len(query) == len(documents), "Number question must equal number document"
+        for question, list_document in zip(query, documents):
             
+                        
             
     def qa_inference(self, question: str, documents: List[str]):
         questions = [question] * len(documents)
+        
         input_features_raw = make_input_feature_qa(
             questions=questions,
             documents=documents,
@@ -210,11 +213,16 @@ class MRCReader(BaseReader, ABC):
             max_length=368
         )
         input_features = self.data_collator(input_features_raw)
+        for key, value in input_features.items():
+            if isinstance(value, Tensor):
+                input_features[key] = value.to(self.device)
         outs = self.model(**input_features)
         results = self.extract_answer(input_features_raw, outs)
         return results
 
     def train(self):
+        wandb_api_key = os.getenv("WANDB_API")
+        wandb.login(key=wandb_api_key)
         self.trainer.train()
         self.compute_metrics.log_predict = []  # refresh log
         self.evaluate(self.eval_dataset)

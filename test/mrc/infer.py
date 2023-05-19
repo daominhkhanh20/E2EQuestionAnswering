@@ -14,5 +14,5 @@ context1 = " ".join(qa_process.string_tokenize(qa_process.strip_context(context1
 context2 = " ".join(qa_process.string_tokenize(qa_process.strip_context(context2))).strip()
 
 question = " ".join(qa_process.string_tokenize(question)).strip()
-mrc_reader = MRCReader.from_pretrained('model/qa/checkpoint-1144')
+mrc_reader = MRCReader.from_pretrained('nguyenvulebinh/vi-mrc-large')
 print(mrc_reader.qa_inference(question=question, documents=[context1, context2]))
