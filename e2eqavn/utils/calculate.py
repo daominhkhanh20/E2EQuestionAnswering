@@ -147,6 +147,39 @@ def tokenize_function(example, tokenizer):
     }
 
 
+def make_input_feature_qa(questions: List[str], documents: List[str], tokenizer, max_length: int = 368):
+    assert len(questions) == len(documents), "Number question isn't equal number document"
+    input_feature = []
+    for question, document in zip(questions, documents):
+        context_ids = [tokenizer.convert_tokens_to_ids(tokenizer.tokenize(word)) for word in document.split()]
+        question_ids = [tokenizer.convert_tokens_to_ids(tokenizer.tokenize(word)) for word in question.split()]
+        arr_size_sub_word_context_ids = [len(sub_ids) for sub_ids in context_ids]
+        arr_size_sub_word_question_ids = [len(sub_ids) for sub_ids in question_ids]
+        if sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids) > max_length - 3:
+            question_ids = question_ids[:64]
+            context_ids = context_ids[: max_length - 3 - len(question_ids)]
+
+        if tokenizer.bos_token_id is not None and tokenizer.eos_token_id is not None:
+            bos_token_id = tokenizer.bos_token_id
+            eos_token_id = tokenizer.eos_token_id
+        else:
+            temp_sample = tokenizer('xin chào')
+            bos_token_id = temp_sample['input_ids'][0]
+            eos_token_id = temp_sample['input_ids'][-1]
+
+        question_final_ids = [[bos_token_id]] + question_ids + [[eos_token_id]]
+        context_final_ids = context_ids + [[eos_token_id]]
+        input_ids = [id for sub_ids in question_final_ids + context_final_ids for id in sub_ids]
+        words_length = [len(item) for item in question_final_ids + context_final_ids]
+        attention_mask = [1] * len(input_ids)
+        input_feature.append({
+            INPUT_IDS: input_ids,
+            ATTENTION_MASK: attention_mask,
+            WORDS_LENGTH: words_length
+        })
+    return input_feature
+
+
 def calculate_input_training_for_qav2(example: dict, tokenizer, max_length: int):
     # question_ids context_ids
     if not example[IS_VALID]:
@@ -180,7 +213,7 @@ def calculate_input_training_for_qav2(example: dict, tokenizer, max_length: int)
         bos_token_id = tokenizer.bos_token_id
         eos_token_id = tokenizer.eos_token_id
     else:
-        temp_sample = tokenizer('xin chÃ o')
+        temp_sample = tokenizer('xin chào')
         bos_token_id = temp_sample['input_ids'][0]
         eos_token_id = temp_sample['input_ids'][-1]
 

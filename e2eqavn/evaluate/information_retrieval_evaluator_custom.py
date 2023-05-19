@@ -6,7 +6,7 @@ from sentence_transformers.util import cos_sim, dot_score
 
 from e2eqavn.retrieval import *
 from e2eqavn.keywords import *
-from e2eqavn.pipeline import E2EQuestionAnsweringPipeline
+# from e2eqavn.pipeline import E2EQuestionAnsweringPipeline
 from sentence_transformers.evaluation import InformationRetrievalEvaluator
 
 
@@ -24,7 +24,7 @@ class InformationRetrievalEvaluatorCustom(InformationRetrievalEvaluator):
                          score_functions, main_score_function)
         self.queries = list(queries.values())
 
-    def compute_metrices_retrieval(self, pipeline: E2EQuestionAnsweringPipeline,
+    def compute_metrices_retrieval(self, pipeline,
                                    **kwargs) -> Dict[str, float]:
         top_k_bm25 = kwargs.get(TOP_K_BM25, 30)
         get_scoring_method = kwargs.get(GET_SCORE, EMBEDDING_SCORE)

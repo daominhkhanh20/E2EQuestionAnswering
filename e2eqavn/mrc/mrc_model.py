@@ -6,8 +6,9 @@ from torch import nn, Tensor
 from transformers import RobertaPreTrainedModel, RobertaModel, RobertaConfig
 from transformers.modeling_outputs import QuestionAnsweringModelOutput
 from transformers import TrainingArguments, Trainer, AutoTokenizer
-from .base import BaseReader
+from e2eqavn.mrc import BaseReader
 from e2eqavn.documents import Document
+from e2eqavn.utils.calculate import *
 from e2eqavn.utils.io import load_json_data, write_json_file
 from e2eqavn.datasets import DataCollatorCustom, MRCDataset
 from e2eqavn.keywords import *
@@ -16,6 +17,7 @@ from e2eqavn.evaluate import MRCEvaluator
 
 class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
     config_class = RobertaConfig
+
     # _keys_to_ignore_on_load_unexpected = [r"pooler"]
     # _keys_to_ignore_on_load_missing = [r"position_ids"]
 
@@ -115,9 +117,8 @@ class MRCReader(BaseReader, ABC):
         self.device = device
         self.model = model.to(device)
         self.tokenizer = tokenizer
+        self.data_collator = DataCollatorCustom(tokenizer=self.tokenizer)
 
-    def encode(self, query: str, documents: List[Document], **kwargs):
-        pass
 
     @classmethod
     def from_pretrained(cls, model_name_or_path: str, **kwargs):
@@ -161,7 +162,6 @@ class MRCReader(BaseReader, ABC):
             evaluation_strategy=kwargs.get(EVALUATION_STRATEGY, 'epoch')
         )
 
-        data_collator = DataCollatorCustom(tokenizer=self.tokenizer)
         self.compute_metrics = MRCEvaluator(tokenizer=self.tokenizer)
         self.train_dataset = mrc_dataset.train_dataset
         self.eval_dataset = mrc_dataset.evaluator_dataset
@@ -170,9 +170,49 @@ class MRCReader(BaseReader, ABC):
             args=training_args,
             train_dataset=mrc_dataset.train_dataset,
             eval_dataset=mrc_dataset.evaluator_dataset,
-            data_collator=data_collator,
+            data_collator=self.data_collator,
             compute_metrics=self.compute_metrics
         )
+
+    def extract_answer(self, input_features, outputs):
+        results = []
+        for input_feature, start_logit, end_logit in zip(input_features, outputs.start_logits, outputs.end_logits):
+            input_ids = input_feature[INPUT_IDS]
+            words_length = input_feature[WORDS_LENGTH]
+            answer_start_idx = sum(words_length[: torch.argmax(start_logit)])
+            answer_end_idx = sum(words_length[: torch.argmax(end_logit) + 1])
+            if answer_start_idx <= answer_end_idx:
+                answer = self.tokenizer.convert_tokens_to_string(
+                    self.tokenizer.convert_ids_to_tokens(input_ids[answer_start_idx:answer_end_idx])
+                )
+            else:
+                answer = " "
+            score_start = torch.max(torch.softmax(start_logit, dim=-1)).cpu().detach().numpy().tolist()
+            score_end = torch.max(torch.softmax(end_logit, dim=-1)).cpu().detach().numpy().tolist()
+            results.append({
+                "answer": answer,
+                "score_start": score_start,
+                "score_end": score_end
+            })
+        return results
+    
+    def predict(self, query: List[str], documents: List[Document], **kwargs):
+        # for question, document in zip(query, documents):
+        pass
+            
+            
+    def qa_inference(self, question: str, documents: List[str]):
+        questions = [question] * len(documents)
+        input_features_raw = make_input_feature_qa(
+            questions=questions,
+            documents=documents,
+            tokenizer=self.tokenizer,
+            max_length=368
+        )
+        input_features = self.data_collator(input_features_raw)
+        outs = self.model(**input_features)
+        results = self.extract_answer(input_features_raw, outs)
+        return results
 
     def train(self):
         self.trainer.train()

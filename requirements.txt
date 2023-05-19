@@ -1,7 +1,7 @@
 numpy
 PyYAML
 sentence-transformers
-torch
+-i https://download.pytorch.org/whl/cpu torch
 tqdm
 networkx
 pandas 
@@ -10,3 +10,5 @@ nltk
 python-dotenv
 wandb
 kaggle
+matplotlib
+seaborn

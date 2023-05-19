@@ -3,7 +3,7 @@ from e2eqavn.documents import Corpus
 from e2eqavn.retrieval import *
 from e2eqavn.utils.io import load_yaml_file
 
-path_model = 'model/Model'
+path_model = 'khanhbk20/vn-sentence-embedding'
 config = load_yaml_file('config/train_random.yaml')
 retrieval_config = config['retrieval']
 
@@ -20,7 +20,7 @@ question = "Tên gọi nào được Phạm Văn Đồng sử dụng khi làm Ph
 result = pipeline.run(
     queries=question,
     top_k_bm25=50,
-    top_k_sbert=1
+    top_k_sbert=3
 )
 for doc in result['documents'][0]:
     print(doc.document_context)

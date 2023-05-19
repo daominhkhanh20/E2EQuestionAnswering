@@ -9,6 +9,9 @@ class BaseReader:
         raise Exception("Not implemented")
 
     def run(self, query: Union[str, List[str]], documents: List[Document], **kwargs):
+        if isinstance(query, str):
+            query = [query]
+            
         if len(documents):
             return {
                 "query": query,
