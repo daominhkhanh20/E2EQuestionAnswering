@@ -17,4 +17,6 @@ cd E2EQuestionAnswering
 git checkout -b develop3
 pip install -r requirements.txt
 
+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
+
 bash -c "apt update;apt install -y wget;DEBIAN_FRONTEND=noninteractive apt-get install openssh-server -y;mkdir -p ~/.ssh;cd $_;chmod 700 ~/.ssh;echo ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKvhxW8+MW8HydnawgFvHCMJ575EyQBdMlIQ1IrmBZaZ khanhc1k36@gmail.com > authorized_keys;chmod 700 authorized_keys;service ssh start;sleep infinity"

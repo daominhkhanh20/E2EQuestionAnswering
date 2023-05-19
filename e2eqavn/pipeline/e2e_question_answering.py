@@ -26,6 +26,12 @@ class E2EQuestionAnsweringPipeline(Pipeline):
                     input_component=input_root
                 )
                 input_root = name
+        if reader is not None:
+            self.pipeline.add_node(
+                component=reader,
+                name_component='reader',
+                input_component=input_root
+            )
 
     def run(self, queries: Union[str, List[str]],
             top_k_bm25: int = 50,
