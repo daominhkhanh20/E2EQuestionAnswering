@@ -132,6 +132,7 @@ class MRCReader(BaseReader, ABC):
         return cls(model, tokenizer, device)
 
     def init_trainer(self, mrc_dataset: MRCDataset, **kwargs):
+        self.path_model_checkpoint = kwargs.get(OUTPUT_DIR, 'model/qa')
         training_args = TrainingArguments(
             report_to='wandb',
             output_dir=kwargs.get(OUTPUT_DIR, 'model/qa'),
@@ -238,4 +239,4 @@ class MRCReader(BaseReader, ABC):
 
     def evaluate(self, dataset):
         self.trainer.evaluate(dataset)
-        self.compute_metrics.save_log()
+        self.compute_metrics.save_log(path=self.path_model_checkpoint)

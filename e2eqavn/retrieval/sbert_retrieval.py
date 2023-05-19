@@ -16,6 +16,8 @@ from torch.utils.data import Dataset, DataLoader
 from torch.optim.optimizer import Optimizer
 from torch.optim.adamw import AdamW
 import logging
+import os
+import wandb
 
 logger = logging.getLogger(__name__)
 
@@ -146,10 +148,10 @@ class SBertRetrieval(BaseRetrieval, ABC):
         :param batch_size: number document in 1 batch
         :return:
         """
-        path_corpus_embedding = kwargs.get('path_corpus_embedding', None)
+        path_corpus_embedding = kwargs.get('path_corpus_embedding', 'embedding/corpus_embedding.pth')
         self.list_documents = deepcopy(corpus.list_document)
         logger.info(f"Start encoding corpus with {len(corpus.list_document)} document")
-        if path_corpus_embedding is not None:
+        if os.path.isfile(path_corpus_embedding):
             self.corpus_embedding = torch.load(path_corpus_embedding, map_location='cpu')
         else:
             document_context = corpus.list_document_context
@@ -162,7 +164,11 @@ class SBertRetrieval(BaseRetrieval, ABC):
                 device=self.device,
                 **kwargs
             )
-
+            folder = path_corpus_embedding.rsplit('/', 1)[0]
+            if not os.path.exists(folder):
+                os.makedirs(folder, exist_ok=True)
+            torch.save(self.corpus_embedding, path_corpus_embedding)
+            logger.info(f"Save corpus embedding at {path_corpus_embedding}")
     def query_by_embedding(self, query: List[str], top_k: int, **kwargs):
         """
         :param top_k: k index document will return
