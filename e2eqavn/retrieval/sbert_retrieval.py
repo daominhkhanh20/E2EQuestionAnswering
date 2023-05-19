@@ -150,10 +150,11 @@ class SBertRetrieval(BaseRetrieval, ABC):
         """
         path_corpus_embedding = kwargs.get('path_corpus_embedding', 'embedding/corpus_embedding.pth')
         self.list_documents = deepcopy(corpus.list_document)
-        logger.info(f"Start encoding corpus with {len(corpus.list_document)} document")
         if os.path.isfile(path_corpus_embedding):
+            logger.info(f"Loading corpus embedding at {path_corpus_embedding}")
             self.corpus_embedding = torch.load(path_corpus_embedding, map_location='cpu')
         else:
+            logger.info(f"Start encoding corpus with {len(corpus.list_document)} document")
             document_context = corpus.list_document_context
             self.corpus_embedding = self.model.encode_context(
                 sentences=document_context,
@@ -169,6 +170,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
                 os.makedirs(folder, exist_ok=True)
             torch.save(self.corpus_embedding, path_corpus_embedding)
             logger.info(f"Save corpus embedding at {path_corpus_embedding}")
+
     def query_by_embedding(self, query: List[str], top_k: int, **kwargs):
         """
         :param top_k: k index document will return
