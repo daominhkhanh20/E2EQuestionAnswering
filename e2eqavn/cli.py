@@ -11,6 +11,7 @@ from e2eqavn.keywords import *
 from e2eqavn.utils.calculate import *
 from e2eqavn.retrieval import *
 from e2eqavn.mrc import *
+from e2eqavn.evaluate import *
 
 
 @click.group()
@@ -82,8 +83,8 @@ def train(config: Union[str, Text]):
     default='config/config.yaml',
     help='Path config model'
 )
-@click.argument('mode', default=None, help="Choose option evaluate model (Retrieval, Reader or both)")
-def evaluate(config: Union[str, Text]):
+@click.argument('mode', default=None, help="Choose option evaluate model (retrieval, reader or both)")
+def evaluate(config: Union[str, Text], mode):
     config_pipeline = load_yaml_file(config)
     train_corpus = Corpus.parser_uit_squad(
         config_pipeline[DATA][PATH_TRAIN],
@@ -91,7 +92,9 @@ def evaluate(config: Union[str, Text]):
     )
     retrieval_config = config_pipeline.get(RETRIEVAL, None)
     reader_config = config_pipeline.get(READER, None)
-    if retrieval_config:
+    if mode == 'retrieval':
+        retrieval_model = SBertRetrieval.from_pretrained(retrieval_config[MODEL][MODEL_NAME_OR_PATH])
+        information_evaluator = InformationRetrievalEvaluatorCustom
 
 
     if reader_config:
