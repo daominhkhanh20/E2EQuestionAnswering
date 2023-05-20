@@ -11,7 +11,7 @@ from e2eqavn.keywords import *
 import wandb
 import os
 
-mode = 'retrieval'
+mode = None
 config_pipeline = load_yaml_file('config/train_qa.yaml')
 retrieval_config = config_pipeline.get(RETRIEVAL, None)
 reader_config = config_pipeline.get(READER, None)
