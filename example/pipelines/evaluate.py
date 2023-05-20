@@ -15,16 +15,16 @@ mode = 'retrieval'
 config_pipeline = load_yaml_file('config/train_qa.yaml')
 retrieval_config = config_pipeline.get(RETRIEVAL, None)
 reader_config = config_pipeline.get(READER, None)
-pipeline = E2EQuestionAnsweringPipeline()
 if (mode == 'retrieval' or mode is None) and retrieval_config:
     corpus, queries, relevant_docs = make_input_for_retrieval_evaluator(
         path_data_json=config_pipeline[DATA][PATH_EVALUATOR]
     )
     retrieval_model = SBertRetrieval.from_pretrained(retrieval_config[MODEL][MODEL_NAME_OR_PATH])
-    pipeline.add_component(
-        component=retrieval_model,
-        name_component='retrieval'
-    )
+    # pipeline.add_component(
+    #     component=retrieval_model,
+    #     name_component='retrieval'
+    # )
+    pipeline = E2EQuestionAnsweringPipeline(retrieval=[retrieval_model])
     information_evaluator = InformationRetrievalEvaluatorCustom(
         queries=queries,
         corpus=corpus,
