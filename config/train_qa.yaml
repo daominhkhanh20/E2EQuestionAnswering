@@ -12,7 +12,7 @@ retrieval:
   parameters:
     method_generation: bm25
     method_train: triplet
-    n_negative: 10
+    n_negative: 2
   model:
     model_name_or_path: khanhbk20/vn-sentence-embedding
     model_save_path: model/retrieval
