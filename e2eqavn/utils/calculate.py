@@ -236,7 +236,7 @@ def calculate_input_training_for_qav2(example: dict, tokenizer, max_length: int)
     }
 
 
-def prepare_information_retrieval_evaluator(data: List[Dict], **kwargs) -> InformationRetrievalEvaluator:
+def prepare_input_for_retrieval_evaluator(data: List[Dict], **kwargs):
     """
     :param data: List dictionary data
         Exammple:
@@ -273,17 +273,21 @@ def prepare_information_retrieval_evaluator(data: List[Dict], **kwargs) -> Infor
             if question_id not in relevant_docs:
                 relevant_docs[question_id] = set()
             relevant_docs[question_id].add(context_id)
+    return corpus, queries, relevant_docs
+
+
+def make_input_for_retrieval_evaluator(path_data_json, **kwargs):
+    data = load_json_data(path_data_json)
+    temp = []
+    for context in data['data']:
+        temp.extend(context['paragraphs'])
+    return prepare_input_for_retrieval_evaluator(temp, **kwargs)
+
+
+def make_vnsquad_retrieval_evaluator(path_data_json: str, **kwargs):
+    corpus, queries, relevant_docs = make_input_for_retrieval_evaluator(path_data_json)
     return InformationRetrievalEvaluator(
         queries=queries,
         corpus=corpus,
         relevant_docs=relevant_docs
     )
-
-def make_inform
-
-def make_vnsquad_retrieval_evaluator(path_data_json: str, **kwargs):
-    data = load_json_data(path_data_json)
-    temp = []
-    for context in data['data']:
-        temp.extend(context['paragraphs'])
-    return prepare_information_retrieval_evaluator(temp, **kwargs)
