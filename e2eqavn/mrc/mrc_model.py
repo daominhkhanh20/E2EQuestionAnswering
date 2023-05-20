@@ -239,4 +239,4 @@ class MRCReader(BaseReader, ABC):
 
     def evaluate(self, dataset):
         self.trainer.evaluate(dataset)
-        self.compute_metrics.save_log(path=self.path_model_checkpoint)
+        self.compute_metrics.save_log(path=f"{self.path_model_checkpoint}/log_predict.json")

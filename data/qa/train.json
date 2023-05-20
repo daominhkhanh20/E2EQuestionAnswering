@@ -799,6 +799,30 @@
             "answer_word_start_idx": 65,
             "answer_word_end_idx": 87,
             "id_valid": true
+        },
+        {
+            "context": "Thực vật có hoa cung cấp một tỷ lệ lớn các nguồn thực phẩm cho con người , có thể là trực tiếp hay gián tiếp qua thức ăn cho gia súc , gia cầm . Trong số các họ thực vật có hoa thì họ Hòa thảo ( Poaceae ) là quan trọng nhất , cung cấp phần lớn các loại lương thực như lúa , ngô , lúa mì , lúa mạch , kê , yến mạch , lúa mạch đen , mía , lúa miến , trong khi họ Đậu ( Fabaceae ) đứng hàng thứ hai . Các họ quan trọng khác là họ Cà ( Solanaceae ) với khoai tây , cà chua và hạt tiêu , hay họ Bầu bí ( Cucurbitaceae ) với bầu , bí , dưa hấu , dưa chuột , hay họ Cải ( Brassicaceae ) , với mù tạc , cải bắp , và họ Hoa tán ( Apiaceae ) . Nhiều loại quả có từ họ Cam ( Rutaceae ) , họ Hoa hồng ( Rosaceae ) như táo , đào , mơ , mận v.v .",
+            "question": "Họ thực vật có hoa nào có vai trò quan trọng đứng sau họ Hoà ?",
+            "answer": "Đậu",
+            "answer_word_start_idx": 92,
+            "answer_word_end_idx": 92,
+            "id_valid": true
+        },
+        {
+            "context": "Thực vật có hoa cung cấp một tỷ lệ lớn các nguồn thực phẩm cho con người , có thể là trực tiếp hay gián tiếp qua thức ăn cho gia súc , gia cầm . Trong số các họ thực vật có hoa thì họ Hòa thảo ( Poaceae ) là quan trọng nhất , cung cấp phần lớn các loại lương thực như lúa , ngô , lúa mì , lúa mạch , kê , yến mạch , lúa mạch đen , mía , lúa miến , trong khi họ Đậu ( Fabaceae ) đứng hàng thứ hai . Các họ quan trọng khác là họ Cà ( Solanaceae ) với khoai tây , cà chua và hạt tiêu , hay họ Bầu bí ( Cucurbitaceae ) với bầu , bí , dưa hấu , dưa chuột , hay họ Cải ( Brassicaceae ) , với mù tạc , cải bắp , và họ Hoa tán ( Apiaceae ) . Nhiều loại quả có từ họ Cam ( Rutaceae ) , họ Hoa hồng ( Rosaceae ) như táo , đào , mơ , mận v.v .",
+            "question": "Táo , đào và mơ thuộc họ thực vật có hoa nào ?",
+            "answer": "Hoa hồng",
+            "answer_word_start_idx": 174,
+            "answer_word_end_idx": 175,
+            "id_valid": true
+        },
+        {
+            "context": "Thực vật có hoa cung cấp một tỷ lệ lớn các nguồn thực phẩm cho con người , có thể là trực tiếp hay gián tiếp qua thức ăn cho gia súc , gia cầm . Trong số các họ thực vật có hoa thì họ Hòa thảo ( Poaceae ) là quan trọng nhất , cung cấp phần lớn các loại lương thực như lúa , ngô , lúa mì , lúa mạch , kê , yến mạch , lúa mạch đen , mía , lúa miến , trong khi họ Đậu ( Fabaceae ) đứng hàng thứ hai . Các họ quan trọng khác là họ Cà ( Solanaceae ) với khoai tây , cà chua và hạt tiêu , hay họ Bầu bí ( Cucurbitaceae ) với bầu , bí , dưa hấu , dưa chuột , hay họ Cải ( Brassicaceae ) , với mù tạc , cải bắp , và họ Hoa tán ( Apiaceae ) . Nhiều loại quả có từ họ Cam ( Rutaceae ) , họ Hoa hồng ( Rosaceae ) như táo , đào , mơ , mận v.v .",
+            "question": "Hạt tiêu thuộc họ thực vật có hoa nào ?",
+            "answer": "Cà",
+            "answer_word_start_idx": 108,
+            "answer_word_end_idx": 108,
+            "id_valid": true
         }
     ]
 }

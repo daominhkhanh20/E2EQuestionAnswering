@@ -52,10 +52,8 @@ def train(config: Union[str, Text]):
         )
         retrieval_learner.train(
             train_dataset=train_dataset,
-            loss_fn_config=retrieval_config[MODEL].get(LOSS_FN, None),
             dev_evaluator=dev_evaluator,
-            batch_size=retrieval_config[MODEL].get(BATCH_SIZE, 16),
-            epochs=retrieval_config[MODEL].get(EPOCHS, 1)
+            **retrieval_config[MODEL]
         )
 
     if reader_config:

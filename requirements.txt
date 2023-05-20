@@ -12,3 +12,4 @@ wandb
 kaggle
 matplotlib
 seaborn
+accelerate

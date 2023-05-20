@@ -18,7 +18,7 @@ retrieval:
     model_save_path: model/retrieval
     batch_size: 32
     epochs: 4
-    loss_fn:
+    loss_fn_config:
       name: MultipleNegativesRankingLoss
 
 reader:

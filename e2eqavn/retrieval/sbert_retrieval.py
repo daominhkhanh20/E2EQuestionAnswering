@@ -10,6 +10,7 @@ from e2eqavn.retrieval import BaseRetrieval
 from e2eqavn.documents import *
 import sentence_transformers
 from sentence_transformers import SentenceTransformer, util, losses
+from sentence_transformers.losses import * 
 from sentence_transformers.evaluation import InformationRetrievalEvaluator, SentenceEvaluator
 import torch
 from torch import nn
@@ -52,7 +53,7 @@ class SentenceBertLearner:
               warmup_steps: int = 1000, optimizer_class: Type[Optimizer] = AdamW,
               optimizer_params: Dict[str, object] = {'lr': 2e-5}, weight_decay: float = 0.01,
               max_grad_norm: float = 1, show_progress_bar: bool = True,
-              save_best_model: bool = True, evaluation_steps: int = 5000
+              save_best_model: bool = True, evaluation_steps: int = 5000, **kwargs
               ):
         wandb_api_key = os.getenv("WANDB_API")
         wandb.login(key=wandb_api_key)
@@ -63,7 +64,7 @@ class SentenceBertLearner:
         if loss_fn_config is None:
             loss_fn_name = 'MultipleNegativesRankingLoss'
         else:
-            loss_fn_name = loss_fn_config.get(NAME, 'MultipleNegativesRankingLoss')(self.model)
+            loss_fn_name = loss_fn_config.get(NAME, 'MultipleNegativesRankingLoss')
             try:
                 loss_fn_config.pop(NAME)
             except:
@@ -73,7 +74,7 @@ class SentenceBertLearner:
             raise Exception("You muss provide loss function which support in Sentence Transformer Library. \n"
                             "You can visit in https://www.sbert.net/docs/package_reference/losses.html"
                             " and get your loss function you like")
-        loss_fn = MAPPING_LOSS[loss_fn_name](**loss_fn_config)
+        loss_fn = MAPPING_LOSS[loss_fn_name](self.model, **loss_fn_config)
         self.model.fit(
             train_objectives=[(train_loader, loss_fn)],
             epochs=epochs,
