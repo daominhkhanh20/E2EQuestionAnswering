@@ -10,7 +10,7 @@ from e2eqavn.retrieval import BaseRetrieval
 from e2eqavn.documents import *
 import sentence_transformers
 from sentence_transformers import SentenceTransformer, util, losses
-from sentence_transformers.losses import * 
+from sentence_transformers.losses import *
 from sentence_transformers.evaluation import InformationRetrievalEvaluator, SentenceEvaluator
 import torch
 from torch import nn
@@ -212,7 +212,8 @@ class SBertRetrieval(BaseRetrieval, ABC):
             batch_size=kwargs.get('batch_size', 32),
             device=self.device
         )
-
+        print(self.corpus_embedding is None)
+        print(query_embedding is None)
         similarity_scores = util.cos_sim(query_embedding, self.corpus_embedding)
         if index_selection is not None:
             similarity = similarity_scores[torch.arange(similarity_scores.size(0)).unsqueeze(1), index_selection]
