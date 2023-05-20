@@ -11,14 +11,15 @@ from e2eqavn.keywords import  *
 import wandb
 import os
 
+mode = None
 config_pipeline = load_yaml_file('config/train_qa.yaml')
 train_corpus = Corpus.parser_uit_squad(
-    config_pipeline[DATA][PATH_TRAIN],
-    **config_pipeline.get(CONFIG_DATA, {})
-)
+        config_pipeline[DATA][PATH_TRAIN],
+        **config_pipeline.get(CONFIG_DATA, {})
+    )
 retrieval_config = config_pipeline.get(RETRIEVAL, None)
 reader_config = config_pipeline.get(READER, None)
-if retrieval_config:
+if (mode == 'retrieval' or mode is None) and retrieval_config:
     retrieval_sample = RetrievalGeneration.generate_sampling(train_corpus, **retrieval_config[PARAMETERS])
     train_dataset = TripletDataset.load_from_retrieval_sampling(retrieval_sample=retrieval_sample)
     dev_evaluator = make_vnsquad_retrieval_evaluator(
@@ -34,7 +35,7 @@ if retrieval_config:
         **retrieval_config[MODEL]
     )
 
-if reader_config:
+if (mode == 'reader' or mode is None) and reader_config:
     eval_corpus = Corpus.parser_uit_squad(
         config_pipeline[DATA][PATH_EVALUATOR],
         **config_pipeline.get(CONFIG_DATA, {})

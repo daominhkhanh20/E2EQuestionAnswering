@@ -32,7 +32,8 @@ def version():
     default='config/config.yaml',
     help='Path config model'
 )
-def train(config: Union[str, Text]):
+@click.argument('mode', default=None, help="Choose option evaluate model (retrieval, reader or both)")
+def train(config: Union[str, Text], mode: str):
     config_pipeline = load_yaml_file(config)
     train_corpus = Corpus.parser_uit_squad(
         config_pipeline[DATA][PATH_TRAIN],
@@ -40,7 +41,7 @@ def train(config: Union[str, Text]):
     )
     retrieval_config = config_pipeline.get(RETRIEVAL, None)
     reader_config = config_pipeline.get(READER, None)
-    if retrieval_config:
+    if (mode == 'retrieval' or mode is None) and retrieval_config:
         retrieval_sample = RetrievalGeneration.generate_sampling(train_corpus, **retrieval_config[PARAMETERS])
         train_dataset = TripletDataset.load_from_retrieval_sampling(retrieval_sample=retrieval_sample)
         dev_evaluator = make_vnsquad_retrieval_evaluator(
@@ -56,7 +57,7 @@ def train(config: Union[str, Text]):
             **retrieval_config[MODEL]
         )
 
-    if reader_config:
+    if (mode == 'reader' or mode is None) and reader_config:
         eval_corpus = Corpus.parser_uit_squad(
             config_pipeline[DATA][PATH_EVALUATOR],
             **config_pipeline.get(CONFIG_DATA, {})
@@ -81,7 +82,7 @@ def train(config: Union[str, Text]):
     default='config/config.yaml',
     help='Path config model'
 )
-@click.argument('mode', default=None, help="Choose option evaluate model (retrieval, reader or both)")
+@click.argument('mode', default='retrieval', help="Choose option evaluate model (retrieval, reader or both)")
 def evaluate(config: Union[str, Text], mode):
     config_pipeline = load_yaml_file(config)
     train_corpus = Corpus.parser_uit_squad(
