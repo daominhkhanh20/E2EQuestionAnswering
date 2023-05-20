@@ -101,21 +101,20 @@ logger = logging.getLogger(__name__)
 #         return data
 #
 #
-def tokenize_function(example, tokenizer):
+def tokenize_function(example, tokenizer, max_length: int):
     example["question"] = example["question"].split()
     example["context"] = example["context"].split()
-    # max_len_single_sentence = tokenizer.max_len_single_sentence
-    max_len_single_sentence = 368
+    # max_length = tokenizer.max_length
 
     question_sub_words_ids = [tokenizer.convert_tokens_to_ids(tokenizer.tokenize(w)) for w in example["question"]]
     context_sub_words_ids = [tokenizer.convert_tokens_to_ids(tokenizer.tokenize(w)) for w in example["context"]]
     valid = True
     if len([j for i in question_sub_words_ids + context_sub_words_ids for j in
-            i]) > max_len_single_sentence - 1:
+            i]) > max_length - 1:
         question_ids = [j for i in question_sub_words_ids for j in i]
         context_ids = [j for i in context_sub_words_ids[:example['answer_word_end_idx'] + 1] for j in i]
-        remain_tokens = max_len_single_sentence - 1 - len(question_ids)
-        if len(question_ids + context_ids) < max_len_single_sentence - 1:
+        remain_tokens = max_length - 1 - len(question_ids)
+        if len(question_ids + context_ids) < max_length - 1:
             context_sub_words_ids_revise = context_sub_words_ids[:example['answer_word_end_idx'] + 1]
             idx = example['answer_word_end_idx'] + 1
             while len([j for i in (context_sub_words_ids_revise + [context_sub_words_ids[idx]]) for j in
@@ -130,7 +129,7 @@ def tokenize_function(example, tokenizer):
     context_sub_words_ids = context_sub_words_ids + [[tokenizer.eos_token_id]]
 
     input_ids = [j for i in question_sub_words_ids + context_sub_words_ids for j in i]
-    if len(input_ids) > max_len_single_sentence + 2:
+    if len(input_ids) > max_length + 2:
         valid = False
 
     words_lengths = [len(item) for item in question_sub_words_ids + context_sub_words_ids]

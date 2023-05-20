@@ -5,10 +5,11 @@ import numpy as np
 import math
 from tqdm import tqdm
 from copy import deepcopy
-
+from inspect import getmembers, isclass
 from e2eqavn.retrieval import BaseRetrieval
 from e2eqavn.documents import *
-from sentence_transformers import SentenceTransformer, util
+import sentence_transformers
+from sentence_transformers import SentenceTransformer, util, losses
 from sentence_transformers.evaluation import InformationRetrievalEvaluator, SentenceEvaluator
 import torch
 from torch import nn
@@ -20,6 +21,12 @@ import os
 import wandb
 
 logger = logging.getLogger(__name__)
+
+MAPPING_LOSS = {}
+list_fn = getmembers(losses, isclass)
+for fn_name, fn in list_fn:
+    if 'loss' in fn_name.lower():
+        MAPPING_LOSS[fn_name] = fn
 
 
 class SentenceBertLearner:
@@ -38,7 +45,7 @@ class SentenceBertLearner:
             raise Exception(f"Can't load pretrained model sentence bert {model_name_or_path}")
         return cls(model, max_seq_length)
 
-    def train(self, train_dataset: Dataset, loss_fn: nn.Module,
+    def train(self, train_dataset: Dataset, loss_fn_config: Dict = None,
               dev_evaluator: Union[InformationRetrievalEvaluator, SentenceEvaluator] = None,
               batch_size: int = 16, epochs: int = 10, use_amp: bool = True,
               model_save_path: str = "Model", scheduler: str = 'WarmupLinear',
@@ -53,6 +60,16 @@ class SentenceBertLearner:
             dataset=train_dataset,
             batch_size=batch_size
         )
+        if loss_fn_config is None:
+            loss_fn_name = 'MultipleNegativesRankingLoss'
+        else:
+            loss_fn_name = loss_fn_config.get(NAME, 'MultipleNegativesRankingLoss')
+            loss_fn_config.pop(loss_fn_name)
+        if loss_fn_name not in MAPPING_LOSS.keys():
+            raise Exception("You muss provide loss function which support in Sentence Transformer Library. \n"
+                            "You can visit in https://www.sbert.net/docs/package_reference/losses.html"
+                            " and get your loss function you like")
+        loss_fn = MAPPING_LOSS[loss_fn_name](**loss_fn_config)
         self.model.fit(
             train_objectives=[(train_loader, loss_fn)],
             epochs=epochs,

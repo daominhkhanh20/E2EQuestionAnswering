@@ -59,8 +59,8 @@
         {
             "context": "Nổi tiếng với tên gọi Kinh đô ánh sáng , Paris là một trung tâm văn hóa lớn của thế giới và cũng là một trong những thành phố du lịch thu hút nhất . Sự nhộn nhịp , các công trình kiến trúc và không khí nghệ sĩ đã giúp Paris mỗi năm có đến 30 triệu khách nước ngoài . Thành phố còn được xem như kinh đô của thời trang cao cấp với nhiều khu phố xa xỉ cùng các trung tâm thương mại lớn . Là nơi đặt trụ sở chính của các tổ chức quốc tế như OECD , UNESCO ... cộng với những hoạt động đa dạng về tài chính , kinh doanh , chính trị và du lịch đã khiến Paris trở thành một trong những trung tâm trung chuyển lớn nhất trên thế giới và được coi như một trong bốn \" thành phố toàn cầu \" cùng với New York , Luân Đôn và Tokyo .",
             "question": "Kinh đô ánh sáng nổi tiếng như thế nào trong lĩnh vực thời trang mua sắm ?",
-            "answer": "Thành phố còn được xem như kinh đô của thời trang cao cấp với nhiều khu phố xa xỉ cùng các trung tâm thương mại lớn",
-            "answer_word_start_idx": 62,
+            "answer": "kinh đô của thời trang cao cấp với nhiều khu phố xa xỉ cùng các trung tâm thương mại lớn",
+            "answer_word_start_idx": 68,
             "answer_word_end_idx": 87,
             "id_valid": true
         },
@@ -75,8 +75,8 @@
         {
             "context": "Nổi tiếng với tên gọi Kinh đô ánh sáng , Paris là một trung tâm văn hóa lớn của thế giới và cũng là một trong những thành phố du lịch thu hút nhất . Sự nhộn nhịp , các công trình kiến trúc và không khí nghệ sĩ đã giúp Paris mỗi năm có đến 30 triệu khách nước ngoài . Thành phố còn được xem như kinh đô của thời trang cao cấp với nhiều khu phố xa xỉ cùng các trung tâm thương mại lớn . Là nơi đặt trụ sở chính của các tổ chức quốc tế như OECD , UNESCO ... cộng với những hoạt động đa dạng về tài chính , kinh doanh , chính trị và du lịch đã khiến Paris trở thành một trong những trung tâm trung chuyển lớn nhất trên thế giới và được coi như một trong bốn \" thành phố toàn cầu \" cùng với New York , Luân Đôn và Tokyo .",
             "question": "Điều gì đã khiến Paris trở thành nơi trung chuyển trên toàn cầu ?",
-            "answer": "nơi đặt trụ sở chính của các tổ chức quốc tế như OECD , UNESCO ... cộng với những hoạt động đa dạng về tài chính , kinh doanh , chính trị và du lịch",
-            "answer_word_start_idx": 90,
+            "answer": "Là nơi đặt trụ sở chính của các tổ chức quốc tế như OECD , UNESCO ... cộng với những hoạt động đa dạng về tài chính , kinh doanh , chính trị và du lịch",
+            "answer_word_start_idx": 89,
             "answer_word_end_idx": 124,
             "id_valid": true
         },
@@ -267,16 +267,16 @@
         {
             "context": "Dòng sông Seine chảy qua Paris theo hình một cánh cung : vào thành phố từ phía đông nam và ra khỏi thành phố phía tây bắc . Hơn 30 cây cầu của Paris bắc qua dòng sông này . Còn có hai dòng chảy khác qua Paris . Sông Bièvre phía nam , ngày nay ngầm hoàn toàn dưới đất . Kênh Saint-Martin hoàn thành 1825 dài 4,5 km , nối với bồn Villette và vào thành phố ở phía đông bắc . Kênh Saint-Martin chảy ngầm dưới đất cho tới phố Faubourg-du-Temple ở quảng trường Bastille rồi tiếp tục chảy lộ thiên và nối với sông Seine ở phía thượng lưu của đảo Île Saint-Louis . Một con kênh khác là Saint-Denis , cũng nối với bồn Villette theo hướng Saint-Denis , dài 4,5 km và hoàn thành vào năm 1821 . Con kênh này gặp sông Seine ở phần hạ lưu và không đi qua Paris . Một dòng sông nữa là Marne , chảy gần Paris qua Seine-Saint-Denis , Val-de-Marne và gặp sông Seine ở phía đông nam thành phố .",
             "question": "Điểm cuối của kênh Saint-Denis ở đâu ?",
-            "answer": "sông Seine ở phần hạ lưu",
-            "answer_word_start_idx": 148,
-            "answer_word_end_idx": 153,
+            "answer": "thượng lưu của đảo Île Saint-Louis",
+            "answer_word_start_idx": 111,
+            "answer_word_end_idx": 116,
             "id_valid": true
         },
         {
             "context": "Paris có khí hậu ôn đới đại dương . Ảnh hưởng của đại dương chiếm ưu thế , thể hiện như : mùa hè mát , trung bình 18°C ; mùa đông không quá lạnh , trung bình 6 °C ; các mùa đều mưa nhiều và thời tiết thất thường . Lượng mưa trung bình ở Paris là 641 mm . Mưa tuyết không nhiều , chủ yếu vào những tháng lạnh nhất như tháng 1 , tháng 2 , nhưng đôi khi vào tận tháng 4 . Tuy vậy khí hậu Paris cũng đôi khi đột biến . Nhiệt độ cao nhất ghi được tại đây là vào ngày 28 tháng 6 năm 1948 , lên đến 40,4 °C . Còn nhiệt độ thấp nhất ghi lại được vào ngày 10 tháng 12 năm 1879 , xuống tới -23,9 °C . Mùa hè năm 2003 , cùng với châu Âu , Paris cũng phải chịu một trận nắng nóng lịch sử .",
             "question": "Nguyên nhân chủ yếu nào tạo nên khí hậu của Paris ?",
-            "answer": "Ảnh hưởng của đại dương",
-            "answer_word_start_idx": 9,
+            "answer": "đại dương",
+            "answer_word_start_idx": 12,
             "answer_word_end_idx": 13,
             "id_valid": true
         },
@@ -321,11 +321,11 @@
             "id_valid": true
         },
         {
-            "context": "Paris có một lịch sử lâu đời , gắn liền với lịch sử Pháp và cả châu Âu . Từ một thành trì của người Parisii thuộc bộ tộc Gaulois , nơi đây trở thành một thành phố La Mã vào thế kỷ 1 . Tới thế kỷ 6 , vua Clovis I lấy Paris làm thủ đô cho vương quốc Franc . Trải qua nhiều thế kỷ biến động , mặc dù không liên lục , Paris vẫn là thủ đô của Pháp . Tới thế kỷ 16 , thành phố là nơi nổ ra Cách mạng Pháp , rồi sau đó trở thành thủ đô của Đệ nhất đế chế thời Napoléon Bonaparte . Vào thế kỷ 17 , Paris bắt đầu có những phát triển vượt bậc và được quy hoạch lại dưới thời Napoléon III . Sau Công xã Paris , thành phố bước vào thời kỳ Belle Époque và trở thành trung tâm văn hóa của cả châu Âu . Qua hai cuộc chiến tranh thế giới , Paris ít bị hủy hoại và tiếp tục phát triển mạnh mẽ trong giai đoạn hậu chiến . Ngày nay , thành phố tiếp tục là một trung tâm văn hóa , kinh tế của cả thế giới .",
+            "context": " Paris có một lịch sử lâu đời , gắn liền với lịch sử Pháp và cả châu Âu . Từ một thành trì của người Parisii thuộc bộ tộc Gaulois , nơi đây trở thành một thành phố La Mã vào thế kỷ 1 . Tới thế kỷ 6 , vua Clovis I lấy Paris làm thủ đô cho vương quốc Franc . Trải qua nhiều thế kỷ biến động , mặc dù không liên lục , Paris vẫn là thủ đô của Pháp . Tới thế kỷ 16 , thành phố là nơi nổ ra Cách mạng Pháp , rồi sau đó trở thành thủ đô của Đệ nhất đế chế thời Napoléon Bonaparte . Vào thế kỷ 17 , Paris bắt đầu có những phát triển vượt bậc và được quy hoạch lại dưới thời Napoléon III . Sau Công xã Paris , thành phố bước vào thời kỳ Belle Époque và trở thành trung tâm văn hóa của cả châu Âu . Qua hai cuộc chiến tranh thế giới , Paris ít bị hủy hoại và tiếp tục phát triển mạnh mẽ trong giai đoạn hậu chiến . Ngày nay , thành phố tiếp tục là một trung tâm văn hóa , kinh tế của cả thế giới .",
             "question": "Cuộc cách mạng Pháp lần đầu tiên diễn ra ở đâu ?",
             "answer": "Paris",
-            "answer_word_start_idx": 77,
-            "answer_word_end_idx": 77,
+            "answer_word_start_idx": 0,
+            "answer_word_end_idx": 0,
             "id_valid": true
         },
         {
@@ -337,10 +337,10 @@
             "id_valid": true
         },
         {
-            "context": " Cách đây ít nhất 40.000 năm đã có sự hiện diện của con người ở vùng Île-de-France , bằng chứng là những công cụ đá được tìm thấy ở bờ sông Seine . Vào đầu thời kỳ Đồ đá mới , khoảng năm 4.000 đến 3.800 trước Công Nguyên , con người đã sinh sống thường xuyên ở bờ trái một nhánh cũ của sông Seine , thuộc Quận 12 ngày nay . Dường như sự sống của con người đã liên tục ở đây suốt thời kỳ Đồ đá mới , nhưng không có nhiều hiểu biết về khoảng thời gian từ thời Tiền sử cho tới thời kỳ Gaule La Mã .",
+            "context": "Cách đây ít nhất 40.000 năm đã có sự hiện diện của con người ở vùng Île-de-France , bằng chứng là những công cụ đá được tìm thấy ở bờ sông Seine . Vào đầu thời kỳ Đồ đá mới , khoảng năm 4.000 đến 3.800 trước Công Nguyên , con người đã sinh sống thường xuyên ở bờ trái một nhánh cũ của sông Seine , thuộc Quận 12 ngày nay . Dường như sự sống của con người đã liên tục ở đây suốt thời kỳ Đồ đá mới , nhưng không có nhiều hiểu biết về khoảng thời gian từ thời Tiền sử cho tới thời kỳ Gaule La Mã .",
             "question": "Con người lần đầu xuất hiện ở Paris vào lúc nào ?",
-            "answer": "Cách đây ít nhất 40.000 năm",
-            "answer_word_start_idx": 0,
+            "answer": "40.000 năm",
+            "answer_word_start_idx": 4,
             "answer_word_end_idx": 5,
             "id_valid": true
         },
@@ -443,8 +443,8 @@
         {
             "context": "Năm 987 , dòng họ Capet lên trị vì . Khi đó , Paris và Orléans là hai thành phố lớn nhất trong lãnh thổ và vương triều Capet đã chọn Orléans . Hugues Capet , mặc dù cung điện ở Île de la Cité nhưng ít khi sống ở đây . Robert II thì đến Paris thường xuyên hơn . Từ thế kỷ 11 , Paris trở thành một trung tâm quan trọng của giáo dục tôn giáo . Quyền lực hoàng gia dần được tập trung ở Paris và thành phố trở lại thành thủ đô của vương quốc từ thời vua Louis VI , rồi Philippe Auguste . Là điểm giao của các con đường buôn bán lớn , Paris trở nên giàu có nhờ thương mại . Lúa mì vào thành phố từ phố Saint-Honoré , dạ ở phố Saint-Denis , và cá từ biển Bắc và biển Manche đến Paris ở phố Poissonniers ... Vào năm 1150 , dân số Paris ước tính khoảng 50.000 người .",
             "question": "Paris đã trở lại làm thủ đô từ vua nào lên ngôi ?",
-            "answer": "Louis VI",
-            "answer_word_start_idx": 104,
+            "answer": "vua Louis VI",
+            "answer_word_start_idx": 103,
             "answer_word_end_idx": 105,
             "id_valid": true
         },
@@ -507,8 +507,8 @@
         {
             "context": "Năm 1337 nổ ra cuộc chiến tranh Trăm năm . Sự bất mãn của dân chúng đã nuôi tham vọng của quan thái thú Étienne Marcel gây nên chính biến lớn đầu tiên trong lịch sử Pháp vào năm 1358 . Điều này khiến các vị vua không còn ở trong trung tâm thành mà tới Hôtel Saint-Pol , rồi Hôtel des Tournelles , nơi dễ dàng thoát khi có binh biến . Năm 1407 nổ ra cuộc nội chiến giữa hai phe Armagnacs và Bourguignons , tới 1420 mới kết thúc . Chiến tranh Trăm năm vẫn tiếp tục , Paris nằm trong phần lãnh thổ do người Anh kiểm soát . Năm 1429 , Jeanne d'Arc thất bại trong việc đánh đổ người Anh và đồng minh là Bourguignons rồi bị thiêu sống năm 1431 . Tới năm 1453 , thời vua Charles VII , chiến tranh kết thúc . Nhưng Charles VII và con trai là Louis XI lại chuyển đến Val de Loire .",
             "question": "Vì sao vua di chuyển đến Hôtel Saint-Pol ?",
-            "answer": "dễ dàng thoát khi có binh biến",
-            "answer_word_start_idx": 65,
+            "answer": "nơi dễ dàng thoát khi có binh biến",
+            "answer_word_start_idx": 64,
             "answer_word_end_idx": 71,
             "id_valid": true
         },
@@ -571,9 +571,9 @@
         {
             "context": "Kể từ Louis XIII , và tiếp đó là Louis XIV , các vị vua Pháp chuyển đến sống tại cung điện Versailles . Năm 1682 triều đình cũng chuyển về Versailles , Jean-Baptiste Colbert trở thành người quản lý Paris . Mặc dù Versailles nằm rất gần Paris , nhưng trong suốt thời gian trị vì Louis XIV chỉ đến Paris 24 lần để dự các buổi lễ chính thức . Năm 1715 , công tước Philippe II , khi đó là nhiếp chính , rời Versailles về Palais-Royal trong Paris . Tiếp đó vị vua trẻ Louis XV sống tại cung điện Tuileries . Một lần nữa , triều đình quay về Paris . Nhưng từ 1722 , Louis XV lại trở lại cung điện Versailles .",
             "question": "Cung điện Tuileries nằm ở đâu ?",
-            "answer": "Palais-Royal",
-            "answer_word_start_idx": 89,
-            "answer_word_end_idx": 89,
+            "answer": "Paris",
+            "answer_word_start_idx": 114,
+            "answer_word_end_idx": 114,
             "id_valid": true
         },
         {
@@ -587,9 +587,9 @@
         {
             "context": "Trong thế kỷ 18 , Paris trở thành trung tâm tri thức , nơi sản sinh những tư tưởng của Khai sáng , là thời kỳ hoàng kim của các phòng khách văn học . Thế kỷ 18 còn là giai đoạn Paris phát triển mạnh mẽ về kinh tế khiến dân số tăng nhanh , đạt tới con số 640.000 người trước khi nổ ra Cách mạng Pháp . Thành phố khi đó trải rộng bằng khoảng 6 quận trung tâm của Paris hiện nay , vườn Luxembourg đánh dấu ranh giới phía tây . Tuy ở Versailles , Louis XV vẫn yêu thích thành phố , quyết định xây dựng quảng trường Louis XV - tức quảng trường Concorde - cùng việc mở ra trường quân sự École militaire vào năm 1752 . Và hơn hết là việc xây dựng một nhà thờ ở Sainte-Geneviève vào năm 1754 , chính là Điện Panthéon .",
             "question": "Nhà thờ Sainte-Geneviève nằm ở đâu ?",
-            "answer": "Paris",
-            "answer_word_start_idx": 83,
-            "answer_word_end_idx": 83,
+            "answer": "Sainte-Geneviève",
+            "answer_word_start_idx": 146,
+            "answer_word_end_idx": 146,
             "id_valid": true
         },
         {
@@ -603,9 +603,9 @@
         {
             "context": "Việc chiếm ngục Bastille ngày 14 tháng 7 năm 1789 là bước đầu tiên . Jacques de Flesselles - prévôt des marchands của thành phố , tương đương thị trưởng - bị giết . Ngày 15 tháng 7 , nhà thiên văn Jean Sylvain Bailly tới Tòa thị chính trở thành thị trưởng đầu tiên của Paris . Đến cuối tháng 7 thì tinh thần chủ quyền nhân dân lan ra khắp nước Pháp . Ngày 4 tháng 8 , Quốc hội tuyên bố bãi bỏ chế độ phong kiến . Ngày 5 tháng 10 , những người nổi dậy tới Versailles vào buổi tối . Sáng ngày 6 , họ chiếm lâu đài và buộc nhà vua phải quay trở lại Paris , trú ngụ ở cung điện Tuileries . Sau đó một Quốc hội lập hiến được triệu tập ở Tuileries ngày 19 tháng 10 .",
             "question": "Ai là người có quyền lực cao nhất Paris thời gian sau khi bỏ chế độ phong kiến ?",
-            "answer": "nhà thiên văn Jean Sylvain Bailly",
-            "answer_word_start_idx": 39,
-            "answer_word_end_idx": 44,
+            "answer": "Quốc hội",
+            "answer_word_start_idx": 134,
+            "answer_word_end_idx": 135,
             "id_valid": true
         },
         {
@@ -619,9 +619,9 @@
         {
             "context": "Việc chiếm ngục Bastille ngày 14 tháng 7 năm 1789 là bước đầu tiên . Jacques de Flesselles - prévôt des marchands của thành phố , tương đương thị trưởng - bị giết . Ngày 15 tháng 7 , nhà thiên văn Jean Sylvain Bailly tới Tòa thị chính trở thành thị trưởng đầu tiên của Paris . Đến cuối tháng 7 thì tinh thần chủ quyền nhân dân lan ra khắp nước Pháp . Ngày 4 tháng 8 , Quốc hội tuyên bố bãi bỏ chế độ phong kiến . Ngày 5 tháng 10 , những người nổi dậy tới Versailles vào buổi tối . Sáng ngày 6 , họ chiếm lâu đài và buộc nhà vua phải quay trở lại Paris , trú ngụ ở cung điện Tuileries . Sau đó một Quốc hội lập hiến được triệu tập ở Tuileries ngày 19 tháng 10 .",
             "question": "Vì sao nhà vua phải bỏ cung điện owrVersailles để về Paris ?",
-            "answer": "những người nổi dậy tới Versailles",
+            "answer": "những người nổi dậy tới Versailles vào buổi tối . Sáng ngày 6 , họ chiếm lâu đài và buộc nhà vua phải quay trở lại Paris",
             "answer_word_start_idx": 96,
-            "answer_word_end_idx": 101,
+            "answer_word_end_idx": 122,
             "id_valid": true
         },
         {
@@ -747,9 +747,9 @@
         {
             "context": "Trong thời kỳ Belle Époque , Paris có những bước phát triển kinh tế quan trọng . Năm 1913 , thành phố có tới một ngàn công ty với một triệu nhân công . Trong khoảng thời quan 1900 tới 1913 , sau sự ra đời của điện ảnh , 175 rạp chiếu phim được mở ở Paris . Các đại cửa hàng cũng bắt đầu xuất hiện , mở đầu là Le Bon Marché , rồi tới La Samaritaine , Galeries Lafayette ... Hai cuộc triển lãm thế giới vào năm 1889 và 1900 minh chứng cho giai đoạn hoàng kim của Belle Époque . Tháp Eiffel xây dựng nhân triển lãm năm 1889 , kỷ niệm 100 năm Cách mạng Pháp . Tuyến tàu điện ngầm đầu tiên cùng Grand Palais , Petit Palais và cầu Alexandre-III hoàn thành năm 1900 . Công nghiệp phát triển chuyển ra ngoài ngoại thành : hãng ô tô Renault ở Boulogne-Billancourt và Citroën ở Suresnes . Một số lĩnh vực khác , như ngành in và báo chí , vẫn ở lại trong nội ô thành phố . Belle Époque cũng là thời kỳ mà Paris trở thành trung tâm văn hóa của thế giới . Thành phố sản sinh ra nhiều nghệ sĩ lớn cùng rất nhiều các nhà văn , họa sĩ nổi tiếng của Pháp và khắp nơi trên thế giới tới Paris .",
             "question": "Paris trở thành trung tâm văn hóa thế giới vào thời gian nào ?",
-            "answer": "Belle Époque",
-            "answer_word_start_idx": 187,
-            "answer_word_end_idx": 188,
+            "answer": "thời kỳ Belle Époque",
+            "answer_word_start_idx": 1,
+            "answer_word_end_idx": 4,
             "id_valid": true
         },
         {

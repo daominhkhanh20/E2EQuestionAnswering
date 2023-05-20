@@ -1,31 +1,28 @@
+data:
+  path_train: data/UITSquad/train.json
+  path_evaluator: data/UITSquad/dev.json
+
+config_data:
+  max_length_document: 300
+  mode_chunking: false
+  overlapping_size: 80
+
 retrieval:
   is_train: true
-  data:
-    path_data: data/UITSquad/train.json
-    path_evaluator: data/UITSquad/dev.json
-
   parameters:
-    mode_chunking: True
-    max_length: 256
-    overlapping_size: 80
     method_generation: bm25
     method_train: triplet
     n_negative: 10
   model:
     model_name_or_path: khanhbk20/vn-sentence-embedding
-    model_save_path: Model
+    model_save_path: model/retrieval
     batch_size: 32
     epochs: 4
+    loss_fn:
+      name: MultipleNegativesRankingLoss
 
 reader:
   is_train: true
-  data:
-    path_train: data/UITSquad/train.json
-    path_evaluator: data/UITSquad/dev.json
-
-  parameters:
-    mode_chunking: False
-
   model:
     model_name_or_path: khanhbk20/mrc_testing
     num_train_epochs: 1

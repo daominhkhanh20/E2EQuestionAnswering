@@ -1,3 +1,16 @@
+## cli keyword
+PIPELINE = 'pipeline'
+RETRIEVAL = 'retrieval'
+READER = 'reader'
+DATA = 'data'
+PATH_TRAIN = 'path_train'
+PATH_EVALUATOR = 'path_evaluator'
+CONFIG_DATA = 'config_data'
+PARAMETERS = 'parameters'
+NAME = 'name'
+LOSS_FN = 'loss_fn'
+MODEL = 'model'
+
 RANDOM = 'random'
 BM25 = 'bm25'
 SBERT = 'sbert'
@@ -68,6 +81,8 @@ EVALUATION_STRATEGY = 'evaluation_strategy'
 LOGGING_STRATEGY = 'logging_strategy'
 BATCH_SIZE_TRAINING = 'batch_size_training'
 BATCH_SIZE_EVAL = 'batch_size_eval'
+BATCH_SIZE = 'batch_size'
+EPOCHS = 'epochs'
 
 
 

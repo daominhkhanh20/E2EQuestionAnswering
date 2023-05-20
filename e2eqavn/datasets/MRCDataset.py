@@ -36,7 +36,7 @@ class MRCDataset:
             answer_word_start_idx_key=kwargs.get(ANSWER_WORD_START_IDX, 'answer_word_start_idx'),
             answer_word_end_idx_key=kwargs.get(ANSWER_WORD_END_IDX, 'answer_word_end_idx')
         )
-        examples = qa_text_processor.make_example(corpus)[:100]
+        examples = qa_text_processor.make_example(corpus)
         dir_save = kwargs.get(FOLDER_QA_SAVE, 'data/qa')
         if not os.path.exists(dir_save):
             os.makedirs(dir_save, exist_ok=True)
@@ -50,12 +50,12 @@ class MRCDataset:
         )
 
         dataset = dataset.shuffle().map(
-            tokenize_function,
+            calculate_input_training_for_qav2,
             batched=False,
             num_proc=num_proc,
             fn_kwargs={
                 'tokenizer': tokenizer,
-                # 'max_length': kwargs.get(MAX_LENGTH, 368)
+                'max_length': kwargs.get(MAX_LENGTH, 368)
             }
         ).filter(lambda x: x['is_valid'], num_proc=num_proc)
 
