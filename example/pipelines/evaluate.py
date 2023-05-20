@@ -19,7 +19,12 @@ if (mode == 'retrieval' or mode is None) and retrieval_config:
     corpus, queries, relevant_docs = make_input_for_retrieval_evaluator(
         path_data_json=config_pipeline[DATA][PATH_EVALUATOR]
     )
+    eval_corpus = Corpus.parser_uit_squad(
+        config_pipeline[DATA][PATH_EVALUATOR],
+        **config_pipeline.get(CONFIG_DATA, {})
+    )
     retrieval_model = SBertRetrieval.from_pretrained(retrieval_config[MODEL][MODEL_NAME_OR_PATH])
+    retrieval_model.update_embedding(corpus=eval_corpus)
     # pipeline.add_component(
     #     component=retrieval_model,
     #     name_component='retrieval'
