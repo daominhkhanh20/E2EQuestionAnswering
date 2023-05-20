@@ -64,7 +64,11 @@ class SentenceBertLearner:
             loss_fn_name = 'MultipleNegativesRankingLoss'
         else:
             loss_fn_name = loss_fn_config.get(NAME, 'MultipleNegativesRankingLoss')
-            loss_fn_config.pop(loss_fn_name)
+            try:
+                loss_fn_config.pop(NAME)
+            except:
+                logger.info("Create loss function")
+
         if loss_fn_name not in MAPPING_LOSS.keys():
             raise Exception("You muss provide loss function which support in Sentence Transformer Library. \n"
                             "You can visit in https://www.sbert.net/docs/package_reference/losses.html"

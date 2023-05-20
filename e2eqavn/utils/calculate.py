@@ -10,6 +10,7 @@ from torch import Tensor
 from transformers import AutoTokenizer
 from sentence_transformers import util
 from sentence_transformers.evaluation import InformationRetrievalEvaluator
+# from e2eqavn.evaluate import InformationRetrievalEvaluatorCustom
 from .io import load_json_data
 import hashlib
 
