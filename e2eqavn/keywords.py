@@ -10,6 +10,8 @@ PARAMETERS = 'parameters'
 NAME = 'name'
 LOSS_FN = 'loss_fn'
 MODEL = 'model'
+SAVE_LOG = 'save_log'
+PATH_SAVE_LOG = 'path_save_log'
 
 RANDOM = 'random'
 BM25 = 'bm25'

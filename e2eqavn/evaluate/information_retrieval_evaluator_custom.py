@@ -1,13 +1,16 @@
 from typing import *
 import logging
 from tqdm import trange
-
+import logging
+import pandas as pd
 from sentence_transformers.util import cos_sim, dot_score
 
 from e2eqavn.retrieval import *
 from e2eqavn.keywords import *
 # from e2eqavn.pipeline import E2EQuestionAnsweringPipeline
 from sentence_transformers.evaluation import InformationRetrievalEvaluator
+
+logger = logging.getLogger(__name__)
 
 
 class InformationRetrievalEvaluatorCustom(InformationRetrievalEvaluator):
@@ -33,7 +36,7 @@ class InformationRetrievalEvaluatorCustom(InformationRetrievalEvaluator):
         else:
             top_k_sbert = max(max(self.mrr_at_k), max(self.ndcg_at_k), max(self.accuracy_at_k),
                               max(self.precision_recall_at_k),
-                              max(self.map_at_k ))
+                              max(self.map_at_k))
         list_question = self.queries
         query_result_list = [[] for _ in range(len(self.queries))]
 
@@ -54,4 +57,9 @@ class InformationRetrievalEvaluatorCustom(InformationRetrievalEvaluator):
                     query_result_list[query_iter].append({'corpus_id': doc.document_id,
                                                           'score': doc.score})
         scores = self.compute_metrics(query_result_list)
+        if kwargs.get(SAVE_LOG, True):
+            df = pd.DataFrame.from_dict(scores).rename_axis('top_k').reset_index()
+            path_save = kwargs.get(PATH_SAVE_LOG, 'retrieval_accurate.csv')
+            df.to_csv(path_save, index=False)
+            logger.info(f"Save retrieval evaluate log at {path_save}")
         return scores

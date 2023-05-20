@@ -111,6 +111,7 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
 
 class MRCReader(BaseReader, ABC):
     def __init__(self, model, tokenizer, device):
+        self.path_model_checkpoint = None
         self.train_dataset = None
         self.eval_dataset = None
         self.compute_metrics = None
@@ -119,6 +120,7 @@ class MRCReader(BaseReader, ABC):
         self.model = model.to(device)
         self.tokenizer = tokenizer
         self.data_collator = DataCollatorCustom(tokenizer=self.tokenizer)
+        self.compute_metrics = MRCEvaluator(tokenizer=self.tokenizer)
 
     @classmethod
     def from_pretrained(cls, model_name_or_path: str, **kwargs):
@@ -163,7 +165,6 @@ class MRCReader(BaseReader, ABC):
             evaluation_strategy=kwargs.get(EVALUATION_STRATEGY, 'epoch')
         )
 
-        self.compute_metrics = MRCEvaluator(tokenizer=self.tokenizer)
         self.train_dataset = mrc_dataset.train_dataset
         self.eval_dataset = mrc_dataset.evaluator_dataset
         self.trainer = Trainer(

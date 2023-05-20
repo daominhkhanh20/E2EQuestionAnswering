@@ -14,25 +14,32 @@ class E2EQuestionAnsweringPipeline(Pipeline):
                  reader: BaseReader = None):
         super().__init__()
         self.pipeline = Pipeline()
+        self.input_root = 'root'
         if retrieval is not None:
             if not isinstance(retrieval, List):
                 self.pipeline.add_node(component=retrieval, name_component='Retrieval', input_component="root")
             else:
-                input_root = "root"
                 for idx, sub_retrieval in enumerate(retrieval):
                     name = f"Retrieval_{idx}"
                     self.pipeline.add_node(
                         component=sub_retrieval,
                         name_component=name,
-                        input_component=input_root
+                        input_component=self.input_root
                     )
-                    input_root = name
+                    self.input_root = name
         if reader is not None:
             self.pipeline.add_node(
                 component=reader,
                 name_component='reader',
-                input_component=input_root
+                input_component=self.input_root
             )
+
+    def add_component(self, component, name_component: str):
+        self.pipeline.add_node(
+            component=component,
+            name_component=name_component,
+            input_component=self.input_root
+        )
 
     def run(self, queries: Union[str, List[str]],
             top_k_bm25: int = 50,
