@@ -63,7 +63,7 @@ class SentenceBertLearner:
         if loss_fn_config is None:
             loss_fn_name = 'MultipleNegativesRankingLoss'
         else:
-            loss_fn_name = loss_fn_config.get(NAME, 'MultipleNegativesRankingLoss')
+            loss_fn_name = loss_fn_config.get(NAME, 'MultipleNegativesRankingLoss')(self.model)
             try:
                 loss_fn_config.pop(NAME)
             except:

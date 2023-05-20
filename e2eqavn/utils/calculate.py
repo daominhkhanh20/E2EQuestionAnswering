@@ -258,9 +258,9 @@ def prepare_information_retrieval_evaluator(data: List[Dict], **kwargs) -> Infor
     :return:
     """
     logger.info(f"Start prepare evaluator for {len(data)} context")
-    context_key = kwargs.get('context_key', 'context')
-    qas_key = kwargs.get('qas_key', 'qas')
-    question_key = kwargs.get('question_key', 'question')
+    context_key = kwargs.get(CONTEXT_KEY, 'context')
+    qas_key = kwargs.get(QAS_KEY, 'qas')
+    question_key = kwargs.get(QUESTION_KEY, 'question')
     queries, corpus, relevant_docs = {}, {}, {}
     for sample in tqdm(data):
         context = sample[context_key]
@@ -279,6 +279,7 @@ def prepare_information_retrieval_evaluator(data: List[Dict], **kwargs) -> Infor
         relevant_docs=relevant_docs
     )
 
+def make_inform
 
 def make_vnsquad_retrieval_evaluator(path_data_json: str, **kwargs):
     data = load_json_data(path_data_json)

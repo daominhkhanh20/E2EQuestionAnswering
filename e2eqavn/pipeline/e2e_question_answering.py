@@ -10,22 +10,23 @@ logger = logging.getLogger(__name__)
 
 
 class E2EQuestionAnsweringPipeline(Pipeline):
-    def __init__(self, retrieval: Union[BaseRetrieval, List[BaseRetrieval]],
+    def __init__(self, retrieval: Union[BaseRetrieval, List[BaseRetrieval]] = None,
                  reader: BaseReader = None):
         super().__init__()
         self.pipeline = Pipeline()
-        if not isinstance(retrieval, List):
-            self.pipeline.add_node(component=retrieval, name_component='Retrieval', input_component="root")
-        else:
-            input_root = "root"
-            for idx, sub_retrieval in enumerate(retrieval):
-                name = f"Retrieval_{idx}"
-                self.pipeline.add_node(
-                    component=sub_retrieval,
-                    name_component=name,
-                    input_component=input_root
-                )
-                input_root = name
+        if retrieval is not None:
+            if not isinstance(retrieval, List):
+                self.pipeline.add_node(component=retrieval, name_component='Retrieval', input_component="root")
+            else:
+                input_root = "root"
+                for idx, sub_retrieval in enumerate(retrieval):
+                    name = f"Retrieval_{idx}"
+                    self.pipeline.add_node(
+                        component=sub_retrieval,
+                        name_component=name,
+                        input_component=input_root
+                    )
+                    input_root = name
         if reader is not None:
             self.pipeline.add_node(
                 component=reader,
