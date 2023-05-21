@@ -5,7 +5,7 @@ import re
 import random
 from e2eqavn.documents import Corpus
 from e2eqavn.keywords import *
-nltk.download('punkt')
+nltk.download('punk',quiet=True)
 
 logger = logging.getLogger(__name__)
 

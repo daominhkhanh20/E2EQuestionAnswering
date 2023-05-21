@@ -40,6 +40,7 @@ class E2EQuestionAnsweringPipeline(Pipeline):
             name_component=name_component,
             input_component=self.input_root
         )
+        self.input_root = name_component
 
     def run(self, queries: Union[str, List[str]],
             top_k_bm25: int = 50,

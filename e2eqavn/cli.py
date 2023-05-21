@@ -34,7 +34,7 @@ def version():
     default='config/config.yaml',
     help='Path config model'
 )
-@click.argument('mode', default=None, help="Choose option evaluate model (retrieval, reader or both)")
+@click.argument('mode', default=None)
 def train(config: Union[str, Text], mode: str):
     config_pipeline = load_yaml_file(config)
     train_corpus = Corpus.parser_uit_squad(
@@ -84,17 +84,22 @@ def train(config: Union[str, Text], mode: str):
     default='config/config.yaml',
     help='Path config model'
 )
-@click.argument('mode', default='retrieval', help="Choose option evaluate model (retrieval, reader or both)")
+@click.argument('mode', default='retrieval')
 def evaluate(config: Union[str, Text], mode):
     config_pipeline = load_yaml_file(config)
     retrieval_config = config_pipeline.get(RETRIEVAL, None)
     reader_config = config_pipeline.get(READER, None)
     pipeline = E2EQuestionAnsweringPipeline()
+    eval_corpus = Corpus.parser_uit_squad(
+        config_pipeline[DATA][PATH_EVALUATOR],
+        **config_pipeline.get(CONFIG_DATA, {})
+    )
     if (mode == 'retrieval' or mode is None) and retrieval_config:
         corpus, queries, relevant_docs = make_input_for_retrieval_evaluator(
             path_data_json=config_pipeline[DATA][PATH_EVALUATOR]
         )
         retrieval_model = SBertRetrieval.from_pretrained(retrieval_config[MODEL][MODEL_NAME_OR_PATH])
+        retrieval_model.update_embedding(eval_corpus)
         pipeline.add_component(
             component=retrieval_model,
             name_component='retrieval'
@@ -109,10 +114,6 @@ def evaluate(config: Union[str, Text], mode):
         )
 
     if (mode == 'reader' or mode is None) and reader_config:
-        eval_corpus = Corpus.parser_uit_squad(
-            config_pipeline[DATA][PATH_EVALUATOR],
-            **config_pipeline.get(CONFIG_DATA, {})
-        )
         mrc_dataset = MRCDataset.init_mrc_dataset(
             corpus_eval=eval_corpus,
             model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing'),
@@ -125,5 +126,64 @@ def evaluate(config: Union[str, Text], mode):
         reader_model.evaluate(mrc_dataset.evaluator_dataset)
 
 
+@click.command()
+@click.option(
+    '--config', '-c',
+    required=True,
+    help='Path config model'
+)
+@click.option(
+    '--question', '-q',
+    required=True,
+)
+@click.option(
+    '--top_k_bm25', '-bm25',
+    default=10,
+    help='Top k retrieval by BM25 algorithm'
+)
+@click.option(
+    '--top_k_sbert', '-sbert',
+    default=3,
+    help='Top k retrieval by sentence-bert algorithm'
+)
+@click.argument('mode', default='retrieval')
+def test(config: Union[str, Text], question: str, top_k_bm25: int, top_k_sbert: int, mode: str):
+    config_pipeline = load_yaml_file(config)
+    retrieval_config = config_pipeline.get(RETRIEVAL, None)
+    reader_config = config_pipeline.get(READER, None)
+    pipeline = E2EQuestionAnsweringPipeline()
+    corpus = Corpus.parser_uit_squad(
+        config_pipeline[DATA][PATH_TRAIN],
+        **config_pipeline.get(CONFIG_DATA, {})
+    )
+    if (mode == 'retrieval' or mode is None) and retrieval_config:
+        bm25_retrieval = BM25Retrieval(corpus=corpus)
+        pipeline.add_component(
+            component=bm25_retrieval,
+            name_component='retrieval_1'
+        )
+        retrieval_model = SBertRetrieval.from_pretrained(retrieval_config[MODEL][MODEL_NAME_OR_PATH])
+        retrieval_model.update_embedding(corpus=corpus)
+        pipeline.add_component(
+            component=retrieval_model,
+            name_component='retrieval_2'
+        )
+
+    if (mode == 'reader' or mode is None) and reader_config:
+        reader_model = MRCReader.from_pretrained(
+            model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing')
+        )
+        pipeline.add_component(
+            component=reader_model,
+            name_component='reader'
+        )
+    return pipeline.run(
+        queries=question,
+        top_k_bm25=top_k_bm25,
+        top_k_sbert=top_k_sbert
+    )
+
+
 entry_point.add_command(version)
 entry_point.add_command(train)
+entry_point.add_command(evaluate)
