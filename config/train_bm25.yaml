@@ -24,14 +24,14 @@ reader:
     path_evaluator: data/UITSquad/dev.json
 
   parameters:
-    mode_chunking: True
-    max_length: 300
+    mode_chunking: False
+    max_length: 512
     overlapping_size: 80
     is_valid: True
 
   model:
     model_name_or_path: khanhbk20/mrc_testing
-    num_train_epochs: 40
+    num_train_epochs: 30
     learning_rate: 5e-5
     batch_size_training: 16
     batch_size_eval: 32

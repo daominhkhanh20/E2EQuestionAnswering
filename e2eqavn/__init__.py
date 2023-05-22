@@ -1,6 +1,9 @@
 import logging
 import sys
 import warnings
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 warnings.filterwarnings("ignore")
 
@@ -17,4 +20,5 @@ logger.setLevel(logging.INFO)
 logger.propagate = False
 
 __author__ = 'khanhdm'
-__version__ = 'V1.2'
+__version__ = 'V1.1'
+

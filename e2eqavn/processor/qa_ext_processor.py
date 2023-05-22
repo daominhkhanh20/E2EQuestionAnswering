@@ -5,7 +5,7 @@ import re
 import random
 from e2eqavn.documents import Corpus
 from e2eqavn.keywords import *
-nltk.download('punkt')
+nltk.download('punk',quiet=True)
 
 logger = logging.getLogger(__name__)
 
@@ -26,16 +26,18 @@ class QATextProcessor:
         self.answer_word_end_idx_key = answer_word_end_idx_key
         self.cnt_failed = 0
 
-    def string_tokenize(self, text: str):
-        words = text.split(" ")
-        list_words = []
-        for word in words:
-            if self.dict_word_map.get(word, None) is None:
-                self.dict_word_map[word] = " ".join(word_tokenize(word)).replace('``', '"').replace("''", '"')
-            list_words.append(self.dict_word_map[word])
-        return list_words
+        self.dict_map = dict({})
 
-    def strip_answer_string(self, text: str):
+    def string_tokenize(self, text):
+        words = text.split()
+        words_norm = []
+        for w in words:
+            if self.dict_map.get(w, None) is None:
+                self.dict_map[w] = ' '.join(word_tokenize(w)).replace('``', '"').replace("''", '"')
+            words_norm.append(self.dict_map[w])
+        return words_norm
+
+    def strip_answer_string(self, text):
         text = text.strip()
         while text[-1] in '.,/><;:\'"[]{}+=-_)(*&^!~`':
             if text[0] != '(' and text[-1] == ')' and '(' in text:
@@ -50,10 +52,11 @@ class QATextProcessor:
         text = text.strip()
         return text
 
-    def strip_context(self, text: str):
+    def strip_context(self, text):
         text = text.replace('\n', ' ')
-        text = re.sub('\s+', ' ', text)
-        return text.strip()
+        text = re.sub(r'\s+', ' ', text)
+        text = text.strip()
+        return text
 
     def process_example(self, example: dict):
         question = example[self.question_key]
@@ -69,22 +72,24 @@ class QATextProcessor:
         if not flag and context.count(answer) == 1:
             answer_start_raw = context.index(answer)
             flag = True
+        if answer.strip() == "":
+            flag = False
 
         if flag:
             context_previous = self.strip_context(context[: answer_start_raw])
             answer = self.strip_answer_string(answer)
             context_next = self.strip_context(context[answer_start_raw + len(answer):])
 
-            context_previous = " ".join(self.string_tokenize(context_previous))
-            context_next = " ".join(self.string_tokenize(context_next))
-            answer = " ".join(self.string_tokenize(answer))
-            question = " ".join(self.string_tokenize(question))
+            context_previous = " ".join(self.string_tokenize(context_previous)).strip()
+            context_next = " ".join(self.string_tokenize(context_next)).strip()
+            answer = " ".join(self.string_tokenize(answer)).strip()
+            question = " ".join(self.string_tokenize(question)).strip()
 
             context = f"{context_previous} {answer} {context_next}"
-            answer_word_start_idx = len(context_previous.split(" "))
-            answer_word_end_idx = answer_word_start_idx + len(answer.split(" ")) - 1
-            assert " ".join(context.split(" ")[answer_word_start_idx: answer_word_end_idx + 1]) == answer, "Index " \
-                                                                                                           "wrong"
+            answer_start_idx = len(f"{context_previous} {answer}".strip()) - len(answer)
+            answer_word_start_idx = len(context[:answer_start_idx].split())
+            answer_word_end_idx = answer_word_start_idx + len(answer.split()) - 1
+            assert " ".join(context.split()[answer_word_start_idx: answer_word_end_idx + 1]) == answer, "Index wrong"
             example = {
                 self.context_key: context,
                 self.question_key: question,
@@ -95,6 +100,7 @@ class QATextProcessor:
             }
         else:
             logger.info(f"Answer isn't context\n"
+                        f"Count: {context.count(answer)}\n"
                         f"Answer: {answer} \n"
                         f"Answer start: {answer_start_raw}\n"
                         f"Question: {question} \n"

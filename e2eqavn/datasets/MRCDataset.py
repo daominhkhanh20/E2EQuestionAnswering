@@ -3,11 +3,11 @@ import tempfile
 import random
 from transformers import AutoTokenizer
 import logging
-
+import wandb
 from datasets import load_dataset
 from e2eqavn.documents import Corpus, Document
 from e2eqavn.keywords import *
-from e2eqavn.utils.calculate import calculate_input_training_for_qav2
+from e2eqavn.utils.calculate import *
 from e2eqavn.utils.preprocess import *
 from e2eqavn.utils.io import write_json_file
 from e2eqavn.processor import QATextProcessor
@@ -23,11 +23,10 @@ class MRCDataset:
     @classmethod
     def make_dataset(cls, corpus: Corpus, mode: str, **kwargs):
         logger.info(f"Start prepare {mode} dataset")
-        logger.info(f"Filter valid = {kwargs.get(IS_VALID, False)}")
+        logger.info(f"Max length sentence = {kwargs.get(MAX_LENGTH, 512)}")
         if MODEL_NAME_OR_PATH not in kwargs:
             raise Exception("You must provide pretrained name for QA")
         tokenizer = AutoTokenizer.from_pretrained(kwargs.get(MODEL_NAME_OR_PATH))
-        # is_document_right = kwargs.get(IS_DOCUMENT_RIGHT, True)
         num_proc = kwargs.get(NUM_PROC, 5)
         qa_text_processor = QATextProcessor(
             context_key=kwargs.get(CONTEXT_KEY, 'context'),
@@ -41,6 +40,7 @@ class MRCDataset:
         dir_save = kwargs.get(FOLDER_QA_SAVE, 'data/qa')
         if not os.path.exists(dir_save):
             os.makedirs(dir_save, exist_ok=True)
+        logger.info(f"Dataset for {mode} has {len(examples)} sample")
         examples = {'data': examples}
         write_json_file(examples, os.path.join(dir_save, f"{mode}.json"))
         dataset = load_dataset(
@@ -55,7 +55,7 @@ class MRCDataset:
             num_proc=num_proc,
             fn_kwargs={
                 'tokenizer': tokenizer,
-                'max_length': kwargs.get(MAX_LENGTH, 512)
+                'max_length': kwargs.get(MAX_LENGTH, 368)
             }
         ).filter(lambda x: x['is_valid'], num_proc=num_proc)
 

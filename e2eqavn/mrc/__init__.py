@@ -1,2 +1,2 @@
-from .base import BaseReader
-from .mrc_model import MRCReader
+from e2eqavn.mrc.base import BaseReader
+from e2eqavn.mrc.mrc_model import MRCReader

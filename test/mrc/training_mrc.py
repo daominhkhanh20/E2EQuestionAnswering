@@ -1,24 +1,60 @@
 from e2eqavn.documents import Corpus
 from e2eqavn.datasets import MRCDataset
-from e2eqavn.utils.io import load_yaml_file
+from e2eqavn.utils.io import load_yaml_file, write_json_file
 from e2eqavn.keywords import *
 from e2eqavn.mrc import MRCReader
+import wandb
+import os
 
-config = load_yaml_file('config/train_bm25.yaml')
-config_qa = config['reader']
-train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'])
-eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'])
 
-# train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'], **config_qa['parameters'])
-# eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'], **config_qa['parameters'])
-dataset = MRCDataset.init_mrc_dataset(
+config_pipeline = load_yaml_file('config/train_qa.yaml')
+train_corpus = Corpus.parser_uit_squad(
+        config_pipeline[DATA][PATH_TRAIN],
+        **config_pipeline.get(CONFIG_DATA, {})
+    )
+retrieval_config = config_pipeline.get(RETRIEVAL, None)
+reader_config = config_pipeline.get(READER, None)
+eval_corpus = Corpus.parser_uit_squad(
+            config_pipeline[DATA][PATH_EVALUATOR],
+            **config_pipeline.get(CONFIG_DATA, {})
+        )
+mrc_dataset = MRCDataset.init_mrc_dataset(
     corpus_train=train_corpus,
     corpus_eval=eval_corpus,
-    model_name_or_path=config_qa['model'][MODEL_NAME_OR_PATH],
-    id_valid=config_qa['parameters'].get('is_valid', False)
+    model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing'),
+    max_length=reader_config[MODEL].get(MAX_LENGTH, 368)
 )
-print(len(dataset.train_dataset))
-print(len(dataset.evaluator_dataset))
-reader = MRCReader.from_pretrained(config_qa['model'][MODEL_NAME_OR_PATH])
-reader.init_trainer(dataset, **config_qa['model'])
-reader.train()
+reader_model = MRCReader.from_pretrained(
+    model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing')
+)
+reader_model.init_trainer(mrc_dataset=mrc_dataset, **reader_config[MODEL])
+reader_model.train()
+
+
+
+# # train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'])
+# # eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'])
+# if not os.path.exists(config_qa['model'].get(OUTPUT_DIR, 'model/qa')):
+#     os.makedirs(config_qa['model'].get(OUTPUT_DIR, 'model/qa'))
+# write_json_file(config_qa, os.path.join(config_qa['model'].get(OUTPUT_DIR, 'model/qa'), 'parameter.json'))
+
+# # config = {**config_qa['parameters'], **config_qa['model']}
+# # wandb.init(project='E2E_QA_THESISV2', config=config)
+# train_corpus = Corpus.parser_uit_squad(config['data']['path_train'], **config.get('config_qa', {}))
+# eval_corpus = Corpus.parser_uit_squad(config['data']['path_evaluator'], **config.get('config_qa', {}))
+# dataset = MRCDataset.init_mrc_dataset(
+#     corpus_train=train_corpus,
+#     corpus_eval=eval_corpus,
+#     model_name_or_path=config_qa['model'][MODEL_NAME_OR_PATH],
+#     max_length=config['config_data'].get('max_length', config_qa['model'].get('max_length', 400)),
+#     mode_chunking=config['config_data'].get('mode_chunking', False)
+# )
+# print(len(dataset.train_dataset))
+# print(len(dataset.evaluator_dataset))
+# # reader = MRCReader.from_pretrained(config_qa['model'][MODEL_NAME_OR_PATH])
+# # reader.init_trainer(dataset, **config_qa['model'])
+# # # reader.train()
+# # loader = reader.trainer.get_train_dataloader()
+# # sample = next(iter(loader))
+# # outs = reader.model(**sample)
+# # print(outs.keys())

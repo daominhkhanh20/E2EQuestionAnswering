@@ -1,0 +1,37 @@
+data:
+  path_train: data/UITSquad/train.json
+  path_evaluator: data/UITSquad/dev.json
+
+config_data:
+  max_length_document: 300
+  mode_chunking: false
+  overlapping_size: 80
+
+retrieval:
+  is_train: true
+  parameters:
+    method_generation: bm25
+    method_train: triplet
+    n_negative: 2
+  model:
+    model_name_or_path: khanhbk20/vn-sentence-embedding
+    model_save_path: model/retrieval
+    batch_size: 32
+    epochs: 4
+    loss_fn_config:
+      name: MultipleNegativesRankingLoss
+
+reader:
+  is_train: true
+  model:
+    model_name_or_path: 'nguyenvulebinh/vi-mrc-large'
+    num_train_epochs: 1
+    learning_rate: 5e-5
+    batch_size_training: 16
+    batch_size_eval: 16
+    gradient_accumulation_steps: 1
+    save_strategy: epoch
+    logging_strategy: steps
+    metric_for_best_model: f1
+    logging_step: 1
+    max_length: 368
