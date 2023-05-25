@@ -21,6 +21,6 @@ class BaseReader:
         else:
             return {
                 "query": queries,
-                "documents": documents,
+                "documents": [[doc.__dict__ for doc in list_document] for list_document in documents],
                 "answer": self.predict(queries, documents, **kwargs)
             }
