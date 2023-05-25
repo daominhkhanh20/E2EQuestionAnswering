@@ -14,7 +14,7 @@ export KAGGLE_USERNAME='daominhkhanh'
 export KAGGLE_KEY="53d2021e6812290870fc3520cbeee5ea"
 
 cd E2EQuestionAnswering
-git checkout -b develop3
+git checkout -b develop
 pip install -r requirements.txt
 
 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

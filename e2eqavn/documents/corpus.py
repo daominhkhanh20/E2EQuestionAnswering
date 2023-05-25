@@ -275,9 +275,6 @@ class Corpus:
                     tmp_list_documents
                 )
 
-            if len(list_document) > 20:
-                break
-
         return cls(list_document=list_document, **kwargs)
 
     def save_corpus(self, path_file: str):
