@@ -12,6 +12,7 @@ LOSS_FN = 'loss_fn'
 MODEL = 'model'
 SAVE_LOG = 'save_log'
 PATH_SAVE_LOG = 'path_save_log'
+TOP_K_QA = 'top_k_qa'
 
 RANDOM = 'random'
 BM25 = 'bm25'

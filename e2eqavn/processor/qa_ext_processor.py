@@ -1,11 +1,9 @@
-import nltk
 from nltk import word_tokenize
 import logging
 import re
 import random
 from e2eqavn.documents import Corpus
 from e2eqavn.keywords import *
-nltk.download('punk',quiet=True)
 
 logger = logging.getLogger(__name__)
 

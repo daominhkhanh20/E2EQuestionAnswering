@@ -194,9 +194,10 @@ class MRCReader(BaseReader, ABC):
             results.append({
                 "answer": answer,
                 "score_start": score_start,
-                "score_end": score_end
+                "score_end": score_end,
+                "score": score_end * score_start
             })
-        return results
+        return sorted(results, key=lambda x: x['score'], reverse=True)
 
     def predict(self, queries: List[str], documents: List[List[Document]], **kwargs):
         logger.info(f'Number documents: {len(documents)}')
@@ -208,15 +209,16 @@ class MRCReader(BaseReader, ABC):
                     question=question,
                     documents=[
                         doc.document_context for doc in list_document
-                    ]
+                    ],
+                    **kwargs
                 )
             )
             logger.info(results)
         return results
 
-    def qa_inference(self, question: str, documents: List[str]):
+    def qa_inference(self, question: str, documents: List[str], **kwargs):
         questions = [question] * len(documents)
-
+        top_k_qa = kwargs.get(TOP_K_QA, 1)
         input_features_raw = make_input_feature_qa(
             questions=questions,
             documents=documents,
@@ -228,7 +230,7 @@ class MRCReader(BaseReader, ABC):
             if isinstance(value, Tensor):
                 input_features[key] = value.to(self.device)
         outs = self.model(**input_features)
-        results = self.extract_answer(input_features_raw, outs)
+        results = self.extract_answer(input_features_raw, outs)[:top_k_qa]
         return results
 
     def train(self):

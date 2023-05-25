@@ -170,7 +170,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
         :param batch_size: number document in 1 batch
         :return:
         """
-        path_corpus_embedding = kwargs.get('path_corpus_embedding', 'embedding/corpus_embedding.pth')
+        path_corpus_embedding = kwargs.get('path_corpus_embedding', 'model/retrieval/corpus_embedding.pth')
         self.list_documents = deepcopy(corpus.list_document)
         if os.path.isfile(path_corpus_embedding):
             logger.info(f"Loading corpus embedding at {path_corpus_embedding}")

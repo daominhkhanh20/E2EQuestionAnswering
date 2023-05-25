@@ -45,6 +45,7 @@ class E2EQuestionAnsweringPipeline(Pipeline):
     def run(self, queries: Union[str, List[str]],
             top_k_bm25: int = 50,
             top_k_sbert: int = 10,
+            top_k_qa: int = 1,
             **kwargs):
         if isinstance(queries, str):
             queries = [queries]
@@ -54,6 +55,7 @@ class E2EQuestionAnsweringPipeline(Pipeline):
             queries=queries,
             top_k_bm25=top_k_bm25,
             top_k_sbert=top_k_sbert,
+            top_k_qa=top_k_qa,
             **kwargs
         )
         return output
