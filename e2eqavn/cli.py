@@ -14,6 +14,7 @@ from e2eqavn.mrc import *
 from e2eqavn.evaluate import *
 from e2eqavn.utils.calculate import make_input_for_retrieval_evaluator
 from e2eqavn.pipeline import E2EQuestionAnsweringPipeline
+import pprint
 
 
 @click.group()
@@ -137,17 +138,22 @@ def evaluate(config: Union[str, Text], mode):
     required=True,
 )
 @click.option(
-    '--top_k_bm25', '-bm25',
+    '--top_k_bm25',
     default=10,
     help='Top k retrieval by BM25 algorithm'
 )
 @click.option(
-    '--top_k_sbert', '-sbert',
+    '--top_k_sbert',
     default=3,
     help='Top k retrieval by sentence-bert algorithm'
 )
+@click.option(
+    '--top_k_qa',
+    default=1,
+    help='Top k retrieval by sentence-bert algorithm'
+)
 @click.argument('mode', default='retrieval')
-def test(config: Union[str, Text], question: str, top_k_bm25: int, top_k_sbert: int, mode: str):
+def test(config: Union[str, Text], question: str, top_k_bm25: int, top_k_sbert: int, top_k_qa: int, mode: str):
     config_pipeline = load_yaml_file(config)
     retrieval_config = config_pipeline.get(RETRIEVAL, None)
     reader_config = config_pipeline.get(READER, None)
@@ -177,10 +183,13 @@ def test(config: Union[str, Text], question: str, top_k_bm25: int, top_k_sbert: 
             component=reader_model,
             name_component='reader'
         )
-    return pipeline.run(
-        queries=question,
-        top_k_bm25=top_k_bm25,
-        top_k_sbert=top_k_sbert
+    pprint.pprint(
+        pipeline.run(
+            queries=question,
+            top_k_bm25=top_k_bm25,
+            top_k_sbert=top_k_sbert,
+            top_k_qa=top_k_qa
+        )
     )
 
 
