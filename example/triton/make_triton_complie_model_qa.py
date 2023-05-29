@@ -25,7 +25,7 @@ input_features = make_input_feature_qa(
     tokenizer=tokenizer
 )
 
-for key, value in input_features.items():
+for key, value in input_features[0].items():
     if isinstance(value, Tensor):
         input_features[key] = value.to(device)
 
