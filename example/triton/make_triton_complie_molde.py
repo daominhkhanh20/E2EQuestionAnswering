@@ -24,7 +24,7 @@ def make_input_sbert(sentence: str):
 
 class SbertTritonModel(nn.Module):
     def __init__(self, corpus):
-        super(SbertTritonModel).__init__()
+        super().__init__()
         self.model = SentenceTransformer('khanhbk20/vn-sentence-embedding')
         self.device = torch.device('cuda' if torch.cuda.is_available() else "cpu")
         self.corpus_embedding = self.model.encode(
