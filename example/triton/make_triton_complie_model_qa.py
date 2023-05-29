@@ -19,7 +19,7 @@ context1 = "Phạm Văn Đồng (1 tháng 3 năm 1906 – 29 tháng 4 năm 2000)
 
 question = " ".join(qa_process.string_tokenize(question)).strip()
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-model = MRCQuestionAnsweringModel.from_pretrained('checkpoint').eval()
+model = MRCQuestionAnsweringModel.from_pretrained('checkpoint').to(device).eval()
 input_features = make_input_feature_qa(
     questions=[question],
     documents=[context1],
