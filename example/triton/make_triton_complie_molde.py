@@ -41,7 +41,7 @@ class SbertTritonModel(nn.Module):
         embedding = self.model.forward(input_feature)['sentence_embedding']
         sub_corpus_embedding = self.corpus_embedding[torch.arange(self.corpus_embedding.size(0)), index_selection]
         sim_score = util.cos_sim(embedding, sub_corpus_embedding)
-        scores, index = torch.topk(sim_score, top_k, dim=1, largest=True, sorted=True)
+        scores, index = torch.topk(sim_score, top_k.item(), dim=1, largest=True, sorted=True)
         return index
 
 
@@ -54,7 +54,7 @@ traced_script_module = torch.jit.trace(model, (
         input_feature['attention_mask'].to(device),
         input_feature['token_type_ids'].to(device),
         torch.tensor([1, 2, 3, 4]).to(device),
-        3
+        torch.tensor([2]).to(device)
     )
 )
 traced_script_module.save('model.pt')
