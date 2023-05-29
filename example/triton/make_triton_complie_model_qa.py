@@ -35,4 +35,4 @@ traced_script_module = torch.jit.trace(model, (
     input_features['words_length'].to(device),
 )
                                        )
-traced_script_module.save('model_compile/ws.pt')
+traced_script_module.save('model_compile/qa.pt')

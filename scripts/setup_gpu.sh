@@ -19,7 +19,7 @@ cd E2EQuestionAnswering
 git checkout -b develop
 pip install -r requirements.txt
 
-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
+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
 git config --global user.email "khanhc1k36@gmail.com"
 git config --global user.name "daominhkhanh20"
 
