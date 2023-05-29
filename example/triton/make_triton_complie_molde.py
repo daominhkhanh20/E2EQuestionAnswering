@@ -23,12 +23,12 @@ def make_input_sbert(sentence: str):
 
 
 class SbertTritonModel(nn.Module):
-    def __init__(self, corpus):
+    def __init__(self, corpus:Corpus):
         super().__init__()
         self.model = SentenceTransformer('khanhbk20/vn-sentence-embedding')
         self.device = torch.device('cuda' if torch.cuda.is_available() else "cpu")
         self.corpus_embedding = self.model.encode(
-            sentences=[doc.document_context for doc in corpus],
+            sentences=[doc.document_context for doc in corpus.list_document],
             convert_to_tensor=True,
             convert_to_numpy=False,
             show_progress_bar=True,
