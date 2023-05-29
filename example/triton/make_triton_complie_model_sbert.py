@@ -58,4 +58,4 @@ traced_script_module = torch.jit.trace(sbert_model, (
     torch.tensor([2]).to(device)
 )
                                        )
-traced_script_module.save('model_compile/model.pt')
+traced_script_module.save('model_compile/sbert.pt')
