@@ -3,6 +3,7 @@ import torch.cuda
 from e2eqavn.mrc import *
 from e2eqavn.processor import QATextProcessor
 from e2eqavn.utils.calculate import *
+from e2eqavn.datasets import DataCollatorCustom
 from e2eqavn.mrc import MRCQuestionAnsweringModel
 from transformers import AutoTokenizer
 
@@ -24,8 +25,9 @@ input_features = make_input_feature_qa(
     documents=[context1],
     tokenizer=tokenizer
 )
-
-for key, value in input_features[0].items():
+data_collator = DataCollatorCustom(tokenizer=tokenizer)
+input_features = data_collator(input_features)
+for key, value in input_features.items():
     if isinstance(value, Tensor):
         input_features[key] = value.to(device)
 
