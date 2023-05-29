@@ -28,14 +28,13 @@ class SbertTritonModel(nn.Module):
         self.model = SentenceTransformer('khanhbk20/vn-sentence-embedding')
         self.device = torch.device('cuda' if torch.cuda.is_available() else "cpu")
         self.corpus_embedding = self.model.encode(
-            sentences=[doc.document_context for doc in corpus.list_document][:100],
+            sentences=[doc.document_context for doc in corpus.list_document],
             convert_to_tensor=True,
             convert_to_numpy=False,
             show_progress_bar=True,
             batch_size=64,
             device=self.device
         )
-        
 
     def forward(self, input_ids, attention_mask, token_type_ids, index_selection, top_k):
         input_feature = {'input_ids': input_ids, 'attention_mask': attention_mask, 'token_type_ids': token_type_ids}
