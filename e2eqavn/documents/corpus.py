@@ -278,17 +278,18 @@ class Corpus:
         return cls(list_document=list_document, **kwargs)
 
     def save_corpus(self, path_file: str):
-        infor = {}
+        infor = []
         for document in self.list_document:
-            infor[document.document_id] = {
+            temp = {
                 "context": document.document_context,
                 "qas": []
             }
             for question_answer in document.list_pair_question_answers:
-                infor[document.document_id]['qas'].append(
+                temp['qas'].append(
                     {
                         "question": question_answer.question,
-                        "answers": question_answer.list_answers
+                        "answers": question_answer.list_dict_answer
                     }
                 )
+            infor.append(temp)
         write_json_file(infor, path_file)

@@ -14,4 +14,4 @@ corpus = Corpus.parser_uit_squad(
 # print(corpus.list_document[10].index)
 print(f"Number documents {len(corpus.list_document)}")
 print(f"Number question: {corpus.n_pair_question_answer}")
-# corpus.save_corpus('corpus.json')
+corpus.save_corpus('/home/dmk/Documents/ThesisDeploy/ThesisDeploy/model/bm25_retrieval/1/corpus.json')

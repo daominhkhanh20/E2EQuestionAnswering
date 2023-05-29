@@ -15,7 +15,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='e2eqavn',
-    cmdclass={'install': Install},
+    # cmdclass={'install': Install},
     version=__version__,
     description='e2eqavn is end to end pipeline for question answering',
     packages=find_packages(),

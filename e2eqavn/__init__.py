@@ -20,5 +20,5 @@ logger.setLevel(logging.INFO)
 logger.propagate = False
 
 __author__ = 'khanhdm'
-__version__ = 'V1.1.0'
+__version__ = '2.1'
 

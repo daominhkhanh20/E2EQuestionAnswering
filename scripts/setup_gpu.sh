@@ -9,6 +9,8 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
 
 export PATH=/workspace/miniconda3/bin:$PATH
+export PATH=/root/miniconda3/bin:$PATH
+
 
 export KAGGLE_USERNAME='daominhkhanh'
 export KAGGLE_KEY="53d2021e6812290870fc3520cbeee5ea"

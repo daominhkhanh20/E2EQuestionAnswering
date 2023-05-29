@@ -95,7 +95,7 @@ def evaluate(config: Union[str, Text], mode):
         config_pipeline[DATA][PATH_EVALUATOR],
         **config_pipeline.get(CONFIG_DATA, {})
     )
-    if (mode == 'retrieval' or mode is None) and retrieval_config:
+    if mode in ['retrieval', 'pipeline'] and retrieval_config:
         corpus, queries, relevant_docs = make_input_for_retrieval_evaluator(
             path_data_json=config_pipeline[DATA][PATH_EVALUATOR]
         )
@@ -114,7 +114,7 @@ def evaluate(config: Union[str, Text], mode):
             pipeline=pipeline
         )
 
-    if (mode == 'reader' or mode is None) and reader_config:
+    if mode in ['reader', 'pipeline'] and reader_config:
         mrc_dataset = MRCDataset.init_mrc_dataset(
             corpus_eval=eval_corpus,
             model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing'),
@@ -162,7 +162,7 @@ def test(config: Union[str, Text], question: str, top_k_bm25: int, top_k_sbert: 
         config_pipeline[DATA][PATH_TRAIN],
         **config_pipeline.get(CONFIG_DATA, {})
     )
-    if (mode == 'retrieval' or mode is None) and retrieval_config:
+    if mode in ['retrieval', 'pipeline'] and retrieval_config:
         bm25_retrieval = BM25Retrieval(corpus=corpus)
         pipeline.add_component(
             component=bm25_retrieval,
@@ -175,7 +175,7 @@ def test(config: Union[str, Text], question: str, top_k_bm25: int, top_k_sbert: 
             name_component='retrieval_2'
         )
 
-    if (mode == 'reader' or mode is None) and reader_config:
+    if mode in ['reader', 'pipeline'] and reader_config:
         reader_model = MRCReader.from_pretrained(
             model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing')
         )
@@ -183,16 +183,21 @@ def test(config: Union[str, Text], question: str, top_k_bm25: int, top_k_sbert: 
             component=reader_model,
             name_component='reader'
         )
-    pprint.pprint(
-        pipeline.run(
+    output = pipeline.run(
             queries=question,
             top_k_bm25=top_k_bm25,
             top_k_sbert=top_k_sbert,
             top_k_qa=top_k_qa
         )
+    if 'documents' in output:
+        output['documents'] = [[doc.__dict__ for doc in list_document] for list_document in output['documents']]
+    pprint.pprint(
+        output
     )
 
 
 entry_point.add_command(version)
 entry_point.add_command(train)
 entry_point.add_command(evaluate)
+entry_point.add_command(test)
+
