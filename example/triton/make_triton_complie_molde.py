@@ -23,7 +23,7 @@ def make_input_sbert(sentence: str):
 
 
 class SbertTritonModel(nn.Module):
-    def __init__(self, corpus:Corpus):
+    def __init__(self, corpus: Corpus):
         super().__init__()
         self.model = SentenceTransformer('khanhbk20/vn-sentence-embedding')
         self.device = torch.device('cuda' if torch.cuda.is_available() else "cpu")
@@ -49,12 +49,12 @@ sentence = 'xin chào bạn'
 sbert_model = SbertTritonModel(corpus=train_corpus).eval()
 input_feature = make_input_sbert(sentence)
 torch.tensor([1, 2, 3, 4]).to(device)
-traced_script_module = torch.jit.trace(model, (
-        input_feature['input_ids'].to(device),
-        input_feature['attention_mask'].to(device),
-        input_feature['token_type_ids'].to(device),
-        torch.tensor([1, 2, 3, 4]).to(device),
-        torch.tensor([2]).to(device)
-    )
+traced_script_module = torch.jit.trace(sbert_model, (
+    input_feature['input_ids'].to(device),
+    input_feature['attention_mask'].to(device),
+    input_feature['token_type_ids'].to(device),
+    torch.tensor([1, 2, 3, 4]).to(device),
+    torch.tensor([2]).to(device)
 )
+                                       )
 traced_script_module.save('model.pt')
