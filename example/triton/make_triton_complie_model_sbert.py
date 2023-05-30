@@ -28,22 +28,21 @@ class SbertTritonModel(nn.Module):
         self.model = SentenceTransformer('khanhbk20/vn-sentence-embedding')
         self.device = torch.device('cuda' if torch.cuda.is_available() else "cpu")
         self.corpus_embedding = self.model.encode(
-            sentences=[doc.document_context for doc in corpus.list_document][:100],
+            sentences=[doc.document_context for doc in corpus.list_document],
             convert_to_tensor=True,
             convert_to_numpy=False,
             show_progress_bar=True,
             batch_size=64,
             device=self.device
         )
-        
 
-    def forward(self, input_ids, attention_mask, token_type_ids, index_selection, top_k):
-        input_feature = {'input_ids': input_ids, 'attention_mask': attention_mask, 'token_type_ids': token_type_ids}
+    def forward(self, sbert_input_ids, sbert_attention_mask, sbert_token_type_ids, bm25_index_selection, top_k_sbert):
+        input_feature = {'input_ids': sbert_input_ids, 'attention_mask': sbert_attention_mask, 'token_type_ids': sbert_token_type_ids}
         embedding = self.model.forward(input_feature)['sentence_embedding']
-        sub_corpus_embedding = self.corpus_embedding[index_selection.reshape(-1), :]
+        sub_corpus_embedding = self.corpus_embedding[bm25_index_selection.reshape(-1), :]
         sim_score = util.cos_sim(embedding, sub_corpus_embedding)
-        scores, index = torch.topk(sim_score, top_k.item(), dim=1, largest=True, sorted=True)
-        return index
+        scores, sbert_index_selection = torch.topk(sim_score, top_k_sbert.item(), dim=1, largest=True, sorted=True)
+        return sbert_index_selection, sbert_input_ids
 
 
 sentence = 'xin chào bạn'
@@ -58,4 +57,4 @@ traced_script_module = torch.jit.trace(sbert_model, (
     torch.tensor([2]).to(device)
 )
                                        )
-traced_script_module.save('model_compile/sbert.pt')
+traced_script_module.save('model_compile/sbert/model.pt')

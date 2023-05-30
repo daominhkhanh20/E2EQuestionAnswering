@@ -13,12 +13,17 @@ from torch import nn
 class QaModel(nn.Module):
     def __init__(self):
         super().__init__()
-        self.model = MRCQuestionAnsweringModel.from_pretrained('checkpoint')
+        self.model = MRCQuestionAnsweringModel.from_pretrained('khanhbk20/mrc_testing')
 
-    def forward(self, input_ids, attention_mask, words_length):
-        input_feature = {'input_ids': input_ids, 'attention_mask': attention_mask, 'words_length': words_length}
-        outs = self.model(**input_feature)
-        return outs.start_logits, outs.end_logits, input_ids, words_length
+    def forward(self, input_ids, attention_mask, align_matrix):
+        input_feature = {'input_ids': input_ids, 'attention_mask': attention_mask}
+        context_embedding = self.model.roberta(**input_feature, return_dict=True)[0]
+        context_embedding_align = torch.bmm(align_matrix, context_embedding)
+        logits = self.model.qa_outputs(context_embedding_align)
+        start_logits, end_logits = logits.split(1, dim=-1)
+        start_logits = start_logits.squeeze(-1).contiguous().to(torch.float32)
+        end_logits = end_logits.squeeze(-1).contiguous().to(torch.float32)
+        return start_logits, end_logits, input_ids, align_matrix
 
 
 tokenizer = AutoTokenizer.from_pretrained('khanhbk20/mrc_testing')
@@ -39,16 +44,17 @@ input_features = make_input_feature_qa(
     documents=[context1],
     tokenizer=tokenizer
 )
-data_collator = DataCollatorCustom(tokenizer=tokenizer)
+data_collator = DataCollatorCustom(tokenizer=tokenizer, mode_triton=True)
 input_features = data_collator(input_features)
 for key, value in input_features.items():
     if isinstance(value, Tensor):
         input_features[key] = value.to(device)
 
-traced_script_module = torch.jit.trace(model, (
-    input_features['input_ids'].to(device),
-    input_features['attention_mask'].to(device),
-    input_features['words_length'].to(device),
+traced_script_module = torch.jit.trace(
+    model, (
+        input_features['input_ids'].to(device),
+        input_features['attention_mask'].to(device),
+        input_features['align_matrix'].to(device),
+    ), strict=False
 )
-                                       )
-traced_script_module.save('model_compile/qa.pt')
+traced_script_module.save('model_compile/qa/model.pt')
