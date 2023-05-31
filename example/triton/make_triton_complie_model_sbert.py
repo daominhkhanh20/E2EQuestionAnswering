@@ -37,15 +37,18 @@ class SbertTritonModel(nn.Module):
         )
 
     def forward(self, sbert_input_ids, sbert_attention_mask, sbert_token_type_ids, bm25_index_selection, top_k_sbert):
-        input_feature = {'input_ids': sbert_input_ids, 'attention_mask': sbert_attention_mask, 'token_type_ids': sbert_token_type_ids}
+        input_feature = {'input_ids': sbert_input_ids, 'attention_mask': sbert_attention_mask,
+                         'token_type_ids': sbert_token_type_ids}
         embedding = self.model.forward(input_feature)['sentence_embedding']
         sub_corpus_embedding = self.corpus_embedding[bm25_index_selection.reshape(-1), :]
         sim_score = util.cos_sim(embedding, sub_corpus_embedding)
-        scores, sbert_index_selection = torch.topk(sim_score, top_k_sbert.item(), dim=1, largest=True, sorted=True)
+        scores, indexs = torch.topk(sim_score, top_k_sbert.item(), dim=1, largest=True, sorted=True)
+        sbert_index_selection = bm25_index_selection[torch.arange(indexs.size(0)), indexs]
+        print(sbert_index_selection)
         return sbert_index_selection, sbert_input_ids
 
 
-sentence = 'xin chào bạn'
+sentence = 'Paris nằm ở điểm gặp nhau của các hành trình'
 sbert_model = SbertTritonModel(corpus=train_corpus).eval()
 input_feature = make_input_sbert(sentence)
 torch.tensor([1, 2, 3, 4]).to(device)
@@ -53,7 +56,7 @@ traced_script_module = torch.jit.trace(sbert_model, (
     input_feature['input_ids'].to(device),
     input_feature['attention_mask'].to(device),
     input_feature['token_type_ids'].to(device),
-    torch.tensor([[1, 2, 3, 4]]).to(device),
+    torch.tensor([[0, 2516, 339, 25, 192, 243, 138, 7, 9, 2537, 1893, 2]]).to(device),
     torch.tensor([2]).to(device)
 )
                                        )
