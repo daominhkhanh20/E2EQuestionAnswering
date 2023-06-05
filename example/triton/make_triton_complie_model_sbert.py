@@ -73,7 +73,7 @@ class SbertTritonModel(nn.Module):
 
 
 sentence = 'Cơ sở giáo dục phương Tây đầu tiên có'
-sbert_model = SbertTritonModel(corpus=corpus).eval()
+sbert_model = SbertTritonModel(corpus=corpus).to(device).eval()
 input_feature = make_input_sbert(sentence)
 torch.tensor([1, 2, 3, 4]).to(device)
 traced_script_module = torch.jit.trace(sbert_model, (
