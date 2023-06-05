@@ -24,6 +24,7 @@ if not args.from_mongo:
         **config_pipeline.get(CONFIG_DATA, {})
     )
 else:
+    print('Load data from mongodb')
     client = MongoClient(
         "mongodb+srv://dataintergration:nhom10@cluster0.hqw7c.mongodb.net/test")
     database = client['wikipedia']
@@ -32,6 +33,7 @@ else:
     wiki_collections_process = database[f'DocumentsProcess_{MAX_LENGTH}_{OVERLAPPING_SIZE}']
     all_document = list(wiki_collections_process.find())
     corpus = [document['text'] for document in all_document]
+    print("Load done")
 
 model = SentenceTransformer('khanhbk20/vn-sentence-embedding')
 device = torch.device('cuda' if torch.cuda.is_available() else "cpu")
