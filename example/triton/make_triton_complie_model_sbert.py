@@ -1,3 +1,4 @@
+from typing import *
 from sentence_transformers import SentenceTransformer, util
 from e2eqavn.documents import Corpus
 from e2eqavn.datasets import MRCDataset
@@ -7,13 +8,31 @@ from e2eqavn.mrc import MRCReader
 import wandb
 import os
 import torch
+from pymongo import MongoClient
 from torch import nn
+import argparse
 
-config_pipeline = load_yaml_file('config/train_qa.yaml')
-train_corpus = Corpus.parser_uit_squad(
-    config_pipeline[DATA][PATH_TRAIN],
-    **config_pipeline.get(CONFIG_DATA, {})
-)
+parser = argparse.ArgumentParser()
+parser.add_argument('--from_mongo', default=False, type=lambda x: x.lower() == 'true')
+
+args = parser.parse_args()
+
+if not args.from_mongo:
+    config_pipeline = load_yaml_file('config/train_qa.yaml')
+    corpus = Corpus.parser_uit_squad(
+        config_pipeline[DATA][PATH_TRAIN],
+        **config_pipeline.get(CONFIG_DATA, {})
+    )
+else:
+    client = MongoClient(
+        "mongodb+srv://dataintergration:nhom10@cluster0.hqw7c.mongodb.net/test")
+    database = client['wikipedia']
+    MAX_LENGTH = 350
+    OVERLAPPING_SIZE = 50
+    wiki_collections_process = database[f'DocumentsProcess_{MAX_LENGTH}_{OVERLAPPING_SIZE}']
+    all_document = list(wiki_collections_process.find())
+    corpus = [document['text'] for document in all_document]
+
 model = SentenceTransformer('khanhbk20/vn-sentence-embedding')
 device = torch.device('cuda' if torch.cuda.is_available() else "cpu")
 
@@ -23,12 +42,16 @@ def make_input_sbert(sentence: str):
 
 
 class SbertTritonModel(nn.Module):
-    def __init__(self, corpus: Corpus):
+    def __init__(self, corpus: Union[Corpus, List[str]]):
         super().__init__()
         self.model = SentenceTransformer('khanhbk20/vn-sentence-embedding')
         self.device = torch.device('cuda' if torch.cuda.is_available() else "cpu")
+        if isinstance(corpus, Corpus):
+            list_texts = [doc.document_context for doc in corpus.list_document]
+        else:
+            list_texts = corpus
         self.corpus_embedding = self.model.encode(
-            sentences=[doc.document_context for doc in corpus.list_document],
+            sentences=list_texts,
             convert_to_tensor=True,
             convert_to_numpy=False,
             show_progress_bar=True,
@@ -48,15 +71,15 @@ class SbertTritonModel(nn.Module):
         return sbert_index_selection, sbert_input_ids
 
 
-sentence = 'Paris nằm ở điểm gặp nhau của các hành trình'
-sbert_model = SbertTritonModel(corpus=train_corpus).eval()
+sentence = 'Cơ sở giáo dục phương Tây đầu tiên có'
+sbert_model = SbertTritonModel(corpus=corpus).eval()
 input_feature = make_input_sbert(sentence)
 torch.tensor([1, 2, 3, 4]).to(device)
 traced_script_module = torch.jit.trace(sbert_model, (
     input_feature['input_ids'].to(device),
     input_feature['attention_mask'].to(device),
     input_feature['token_type_ids'].to(device),
-    torch.tensor([[0, 2516, 339, 25, 192, 243, 138, 7, 9, 2537, 1893, 2]]).to(device),
+    torch.tensor([[0, 1, 339, 25, 192, 243, 138, 7, 9, 2537, 1893, 2]]).to(device),
     torch.tensor([2]).to(device)
 )
                                        )
