@@ -57,7 +57,7 @@ class SbertTritonModel(nn.Module):
             convert_to_tensor=True,
             convert_to_numpy=False,
             show_progress_bar=True,
-            batch_size=64,
+            batch_size=128,
             device=self.device
         )
 
@@ -69,7 +69,6 @@ class SbertTritonModel(nn.Module):
         sim_score = util.cos_sim(embedding, sub_corpus_embedding)
         scores, indexs = torch.topk(sim_score, top_k_sbert.item(), dim=1, largest=True, sorted=True)
         sbert_index_selection = bm25_index_selection[torch.arange(indexs.size(0)), indexs]
-        print(sbert_index_selection)
         return sbert_index_selection, sbert_input_ids
 
 
