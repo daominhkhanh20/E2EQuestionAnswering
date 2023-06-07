@@ -6,6 +6,7 @@ from e2eqavn.utils.io import load_yaml_file, write_json_file
 from e2eqavn.keywords import *
 from e2eqavn.mrc import MRCReader
 import wandb
+import json
 import os
 import torch
 from pymongo import MongoClient
@@ -31,8 +32,18 @@ else:
     MAX_LENGTH = 350
     OVERLAPPING_SIZE = 50
     wiki_collections_process = database[f'DocumentsProcess_{MAX_LENGTH}_{OVERLAPPING_SIZE}']
-    all_document = list(wiki_collections_process.find())
-    corpus = [document['text'] for document in all_document]
+    corpus = []
+    list_docs = []
+    for document in wiki_collections_process.find():
+        list_docs.append({
+            'context': document['text'],
+            'qas': []
+        })
+        corpus.append(document['text'])
+        if len(list_docs) > 60000:
+            break
+    with open('model_compile/corpus.json', 'w') as file:
+        json.dump(list_docs, file, indent=4, ensure_ascii=False)
     print("Load done")
 
 model = SentenceTransformer('khanhbk20/vn-sentence-embedding')

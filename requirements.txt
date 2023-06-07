@@ -17,3 +17,4 @@ protobuf==3.20
 colorlog
 fastapi
 uvicorn
+pymongo[srv]

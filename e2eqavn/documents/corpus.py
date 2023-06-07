@@ -119,6 +119,7 @@ class Corpus:
             self.n_pair_question_answer += len(document.list_pair_question_answers)
         self.__dict__.update(kwargs)
 
+
     @classmethod
     def get_documents(cls, context: Dict, doc_th: int = 0, **kwargs):
         context_key = kwargs.get(CONTEXT_KEY, cls.context_key)
@@ -135,7 +136,7 @@ class Corpus:
         if not kwargs.get(MODE_CHUNKING, False):
             document_id = hashlib.sha1(str(document_context).encode('utf-8')).hexdigest()
             dict_question_answers = defaultdict(list)
-            if (not infer_mode) or is_vnsquad_eval:
+            if len(context[qas_key]) > 0:
                 for question in context[qas_key]:
                     if not is_vnsquad_eval:
                         for answer in question[answers_key]:
@@ -212,12 +213,12 @@ class Corpus:
         return list_document, doc_th
 
     @classmethod
-    def init_corpus(cls, corpus: List[Dict], **kwargs):
+    def init_corpus(cls, path_data, **kwargs):
         """
         :param max_length: maximum number word for 1 document
         :param overlapping: overlapping size for 2  document adjacency pair
         :param mode_chunking: on or off mode chunking long document
-        :param corpus: dictionary context, question and answer
+        :param path_data: path to file data and  must have the below form
             Exammple:
             [
                 {
@@ -237,6 +238,7 @@ class Corpus:
 
         :return:
         """
+        corpus = load_json_data(path_data)
         list_documents = []
         doc_th = 0
         for context in corpus:
@@ -276,6 +278,10 @@ class Corpus:
                 )
 
         return cls(list_document=list_document, **kwargs)
+
+    @classmethod
+    def parser_normal(cls, path_data: str, **kwargs):
+        data = load_json_data(path_data)
 
     def save_corpus(self, path_file: str):
         infor = []
