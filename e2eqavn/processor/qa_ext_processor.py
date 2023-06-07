@@ -1,3 +1,4 @@
+import nltk
 from nltk import word_tokenize
 import logging
 import re
@@ -6,6 +7,7 @@ from e2eqavn.documents import Corpus
 from e2eqavn.keywords import *
 
 logger = logging.getLogger(__name__)
+nltk.download('punkt', quiet=True)
 
 
 class QATextProcessor:
