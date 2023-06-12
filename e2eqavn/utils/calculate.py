@@ -156,8 +156,10 @@ def make_input_feature_qa(questions: List[str], documents: List[str], tokenizer,
         arr_size_sub_word_context_ids = [len(sub_ids) for sub_ids in context_ids]
         arr_size_sub_word_question_ids = [len(sub_ids) for sub_ids in question_ids]
         if sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids) > max_length - 3:
-            question_ids = question_ids[:64]
-            context_ids = context_ids[: max_length - 3 - len(question_ids)]
+            i = len(context_ids)
+            while sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids[:i]) > max_length - 3:
+                i -= 1
+            context_ids = context_ids[: i]
 
         if tokenizer.bos_token_id is not None and tokenizer.eos_token_id is not None:
             bos_token_id = tokenizer.bos_token_id

@@ -8,13 +8,14 @@ from e2eqavn.mrc import MRCReader
 import wandb
 import json
 import os
+from dotenv import load_dotenv
 import torch
 from pymongo import MongoClient
 from torch import nn
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--from_mongo', default=False, type=lambda x: x.lower() == 'true')
+parser.add_argument('--from_mongo', default=True, type=lambda x: x.lower() == 'true')
 
 args = parser.parse_args()
 
@@ -26,12 +27,10 @@ if not args.from_mongo:
     )
 else:
     print('Load data from mongodb')
-    client = MongoClient(
-        "mongodb+srv://dataintergration:nhom10@cluster0.hqw7c.mongodb.net/test")
+    client = MongoClient(os.getenv('MONGO_URI'))
     database = client['wikipedia']
     MAX_LENGTH = 350
-    OVERLAPPING_SIZE = 50
-    wiki_collections_process = database[f'DocumentsProcess_{MAX_LENGTH}_{OVERLAPPING_SIZE}']
+    wiki_collections_process = database[f'DocumentsProcess_{MAX_LENGTH}']
     corpus = []
     list_docs = []
     for document in wiki_collections_process.find():
