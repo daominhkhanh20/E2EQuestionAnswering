@@ -15,6 +15,7 @@ from e2eqavn.evaluate import *
 from e2eqavn.utils.calculate import make_input_for_retrieval_evaluator
 from e2eqavn.pipeline import E2EQuestionAnsweringPipeline
 import pprint
+from datasets import load_metric
 
 
 @click.group()
@@ -85,8 +86,26 @@ def train(config: Union[str, Text], mode: str):
     default='config/config.yaml',
     help='Path config model'
 )
+@click.option(
+    '--top_k_bm25',
+    default=10,
+    help='Top k retrieval by BM25 algorithm'
+)
+@click.option(
+    '--top_k_sbert',
+    default=3,
+    help='Top k retrieval by sentence-bert algorithm'
+)
+@click.option(
+    '--top_k_qa',
+    default=1,
+    help='Top k retrieval by sentence-bert algorithm'
+)
 @click.argument('mode', default='retrieval')
-def evaluate(config: Union[str, Text], mode):
+def evaluate(config: Union[str, Text], mode,
+             top_k_bm25: int,
+             top_k_sbert: int,
+             top_k_qa: int):
     config_pipeline = load_yaml_file(config)
     retrieval_config = config_pipeline.get(RETRIEVAL, None)
     reader_config = config_pipeline.get(READER, None)
@@ -95,6 +114,13 @@ def evaluate(config: Union[str, Text], mode):
         config_pipeline[DATA][PATH_EVALUATOR],
         **config_pipeline.get(CONFIG_DATA, {})
     )
+    if mode == 'pipeline':
+        bm25_retrieval = BM25Retrieval(corpus=eval_corpus)
+        pipeline.add_component(
+            component=bm25_retrieval,
+            name_component='bm25_retrieval'
+        )
+
     if mode in ['retrieval', 'pipeline'] and retrieval_config:
         corpus, queries, relevant_docs = make_input_for_retrieval_evaluator(
             path_data_json=config_pipeline[DATA][PATH_EVALUATOR]
@@ -103,16 +129,18 @@ def evaluate(config: Union[str, Text], mode):
         retrieval_model.update_embedding(eval_corpus)
         pipeline.add_component(
             component=retrieval_model,
-            name_component='retrieval'
+            name_component='sbert_retrieval'
         )
-        information_evaluator = InformationRetrievalEvaluatorCustom(
-            queries=queries,
-            corpus=corpus,
-            relevant_docs=relevant_docs
-        )
-        information_evaluator.compute_metrices_retrieval(
-            pipeline=pipeline
-        )
+        if mode == 'retrieval':
+            logger.info("Start evaluate retrieval")
+            information_evaluator = InformationRetrievalEvaluatorCustom(
+                queries=queries,
+                corpus=corpus,
+                relevant_docs=relevant_docs
+            )
+            information_evaluator.compute_metrices_retrieval(
+                pipeline=pipeline
+            )
 
     if mode in ['reader', 'pipeline'] and reader_config:
         mrc_dataset = MRCDataset.init_mrc_dataset(
@@ -123,8 +151,46 @@ def evaluate(config: Union[str, Text], mode):
         reader_model = MRCReader.from_pretrained(
             model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing')
         )
-        reader_model.init_trainer(mrc_dataset=mrc_dataset, **reader_config[MODEL])
-        reader_model.evaluate(mrc_dataset.evaluator_dataset)
+        if mode == 'reader':
+            logger.info("Start evaluate reader")
+            reader_model.init_trainer(mrc_dataset=mrc_dataset, **reader_config[MODEL])
+            reader_model.evaluate(mrc_dataset.evaluator_dataset)
+        elif mode == 'pipeline':
+            pipeline.add_component(
+                component=reader_model,
+                name_component='reader'
+            )
+
+    if mode == 'pipeline':
+        logger.info("Start evaluate pipeline")
+        metric_fn = load_metric('squad')
+        predictions, ground_truth, list_questions = [], [], []
+        ground_truth = []
+        idx = 0
+        for doc in eval_corpus.list_document:
+            for list_pair_ques_ans in doc.list_pair_question_answers:
+                for pair_ques_answers in list_pair_ques_ans:
+                    question = pair_ques_answers.question
+                    list_questions.append(question)
+                    answers = [ans[eval_corpus[ANSWER_KEY]] for ans in pair_ques_answers.list_dic_answer]
+                    ground_truth.append(
+                        {
+                            'answers': {'text': answers},
+                            'id': str(idx)
+                        }
+                    )
+                    idx += 1
+        pred_answers = pipeline.run(
+            queries=list_questions,
+            top_k_bm25=top_k_bm25,
+            top_k_sbert=top_k_sbert,
+            top_k_qa=top_k_qa
+        )
+        for idx, ans_pred in enumerate(pred_answers['answer']):
+            predictions.append(
+                {'prediction_text': ans_pred['answer'], 'id': str(idx)}
+            )
+        logger.info(f"Evaluate E2E pipeline: {metric_fn.compute(predictions=predictions, reference=ground_truth)}")
 
 
 @click.command()
@@ -184,11 +250,11 @@ def test(config: Union[str, Text], question: str, top_k_bm25: int, top_k_sbert: 
             name_component='reader'
         )
     output = pipeline.run(
-            queries=question,
-            top_k_bm25=top_k_bm25,
-            top_k_sbert=top_k_sbert,
-            top_k_qa=top_k_qa
-        )
+        queries=question,
+        top_k_bm25=top_k_bm25,
+        top_k_sbert=top_k_sbert,
+        top_k_qa=top_k_qa
+    )
     if 'documents' in output:
         output['documents'] = [[doc.__dict__ for doc in list_document] for list_document in output['documents']]
     pprint.pprint(
@@ -200,4 +266,3 @@ entry_point.add_command(version)
 entry_point.add_command(train)
 entry_point.add_command(evaluate)
 entry_point.add_command(test)
-

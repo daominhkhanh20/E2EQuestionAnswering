@@ -17,18 +17,22 @@ corpus = Corpus.parser_uit_squad(**retrieval_config['data'])
 bm25_retrieval = BM25Retrieval(corpus=corpus)
 sbert_retrieval = SBertRetrieval.from_pretrained(model_name_or_path=path_model)
 sbert_retrieval.update_embedding(corpus=corpus)
-mrc_reader = MRCReader.from_pretrained('nguyenvulebinh/vi-mrc-large')
+mrc_reader = MRCReader.from_pretrained('model/qa/checkpoint-1144')
 pipeline = E2EQuestionAnsweringPipeline(
     retrieval=[bm25_retrieval, sbert_retrieval],
     reader=mrc_reader
 )
 
-question = "Tên gọi nào được Phạm Văn Đồng sử dụng khi làm Phó chủ nhiệm cơ quan Biện sự xứ tại Quế Lâm?"
+questions = [
+    "Tên gọi nào được Phạm Văn Đồng sử dụng khi làm Phó chủ nhiệm cơ quan Biện sự xứ tại Quế Lâm?",
+    "Phạm Văn Đồng giữ chức vụ gì trong bộ máy Nhà nước Cộng hòa Xã hội chủ nghĩa Việt Nam?"
+    ]
 start_time = time.time()
 result = pipeline.run(
-    queries=question,
+    queries=questions,
     top_k_bm25=50,
-    top_k_sbert=3
+    top_k_sbert=3,
+    top_k_qa=1
 )
 pp.pprint(result)
 print(time.time() - start_time)

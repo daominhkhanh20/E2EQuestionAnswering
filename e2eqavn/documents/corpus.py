@@ -8,6 +8,7 @@ from torch import Tensor
 from collections import defaultdict
 from e2eqavn.utils.io import load_json_data, write_json_file
 from e2eqavn.keywords import *
+from unicodedata import normalize
 from e2eqavn.utils.preprocess import process_text
 
 logger = logging.getLogger(__name__)
@@ -132,7 +133,7 @@ class Corpus:
         answer_start = kwargs.get(ANSWER_START, cls.answer_start)
 
         list_document = []
-        document_context = context[context_key]
+        document_context = normalize('NFC', context[context_key])
         if not kwargs.get(MODE_CHUNKING, False):
             document_id = hashlib.sha1(str(document_context).encode('utf-8')).hexdigest()
             dict_question_answers = defaultdict(list)
