@@ -203,7 +203,7 @@ class MRCReader(BaseReader, ABC):
         logger.info(f'Number documents: {len(documents)}')
         assert len(queries) == len(documents), "Number question must equal number document"
         results = []
-        for question, list_document in zip(queries, documents):
+        for question, list_document in tqdm(zip(queries, documents), total=len(documents)):
             results.append(
                 self.qa_inference(
                     question=question,
@@ -213,7 +213,6 @@ class MRCReader(BaseReader, ABC):
                     **kwargs
                 )
             )
-            logger.info(results)
         return results
 
     def qa_inference(self, question: str, documents: List[str], **kwargs):

@@ -13,12 +13,13 @@ export PATH=/root/miniconda3/bin:$PATH
 export PATH=/workspace/miniconda3/bin:$PATH
 export KAGGLE_USERNAME='daominhkhanh'
 export KAGGLE_KEY="53d2021e6812290870fc3520cbeee5ea"
+export PATH=/root/miniconda3/bin:$PATH
 
 cd E2EQuestionAnswering
 git checkout -b develop
 pip install -r requirements.txt
 
-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
+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
 git config --global user.email "khanhc1k36@gmail.com"
 git config --global user.name "daominhkhanh20"
 

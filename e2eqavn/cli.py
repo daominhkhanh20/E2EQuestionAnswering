@@ -96,16 +96,11 @@ def train(config: Union[str, Text], mode: str):
     default=3,
     help='Top k retrieval by sentence-bert algorithm'
 )
-@click.option(
-    '--top_k_qa',
-    default=1,
-    help='Top k retrieval by sentence-bert algorithm'
-)
 @click.argument('mode', default='retrieval')
 def evaluate(config: Union[str, Text], mode,
              top_k_bm25: int,
-             top_k_sbert: int,
-             top_k_qa: int):
+             top_k_sbert: int
+             ):
     config_pipeline = load_yaml_file(config)
     retrieval_config = config_pipeline.get(RETRIEVAL, None)
     reader_config = config_pipeline.get(READER, None)
@@ -168,27 +163,26 @@ def evaluate(config: Union[str, Text], mode,
         ground_truth = []
         idx = 0
         for doc in eval_corpus.list_document:
-            for list_pair_ques_ans in doc.list_pair_question_answers:
-                for pair_ques_answers in list_pair_ques_ans:
-                    question = pair_ques_answers.question
-                    list_questions.append(question)
-                    answers = [ans[eval_corpus[ANSWER_KEY]] for ans in pair_ques_answers.list_dic_answer]
-                    ground_truth.append(
-                        {
-                            'answers': {'text': answers},
-                            'id': str(idx)
-                        }
-                    )
-                    idx += 1
+            for pair_ques_ans in doc.list_pair_question_answers:
+                question = pair_ques_ans.question
+                list_questions.append(question)
+                answers = [ans[eval_corpus.answer_key] for ans in pair_ques_ans.list_dict_answer]
+                ground_truth.append(
+                    {
+                        'answers': {'text': answers},
+                        'id': str(idx)
+                    }
+                )
+                idx += 1
         pred_answers = pipeline.run(
             queries=list_questions,
             top_k_bm25=top_k_bm25,
             top_k_sbert=top_k_sbert,
-            top_k_qa=top_k_qa
+            top_k_qa=1
         )
         for idx, ans_pred in enumerate(pred_answers['answer']):
             predictions.append(
-                {'prediction_text': ans_pred['answer'], 'id': str(idx)}
+                {'prediction_text': ans_pred[0]['answer'], 'id': str(idx)}
             )
         logger.info(f"Evaluate E2E pipeline: {metric_fn.compute(predictions=predictions, reference=ground_truth)}")
 
