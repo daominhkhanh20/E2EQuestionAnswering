@@ -18,7 +18,7 @@ corpus = Corpus.parser_uit_squad(
 bm25_retrieval = BM25Retrieval(corpus=corpus)
 sbert_retrieval = SBertRetrieval.from_pretrained(model_name_or_path=path_model)
 sbert_retrieval.update_embedding(corpus=corpus)
-mrc_reader = MRCReader.from_pretrained('model/qa/checkpoint-1144')
+mrc_reader = MRCReader.from_pretrained('khanhbk20/mrc_dev')
 pipeline = E2EQuestionAnsweringPipeline(
     retrieval=[bm25_retrieval, sbert_retrieval],
     reader=mrc_reader
