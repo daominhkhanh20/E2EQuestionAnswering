@@ -231,8 +231,8 @@ class MRCReader(BaseReader, ABC):
             if isinstance(value, Tensor):
                 input_features[key] = value.to(self.device)
         outs = self.model(**input_features)
-        results = self.extract_answer(input_features_raw, outs)[:top_k_qa]
-        return results
+        results = self.extract_answer(input_features_raw, outs)
+        return results[:top_k_qa], results
 
     def train(self):
         wandb_api_key = os.getenv("WANDB_API")

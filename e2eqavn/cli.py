@@ -208,7 +208,7 @@ def evaluate(config: Union[str, Text], mode,
                             'reader_score': doc_reader.get('score', 0),
                             'answer_start_idx': doc_reader.get('answer_start_idx', 0),
                             'answer_end_idx': doc_reader.get('answer_end_idx', 0)
-                        } for doc_retrieval, doc_reader in zip(pred_answers['documents'][idx], pred_answers['answer'][idx])
+                        } for doc_retrieval, doc_reader in zip(pred_answers['documents'][idx], pred_answers['reader_logging'][idx])
                     ]
                     }
                 )

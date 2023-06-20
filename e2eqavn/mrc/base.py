@@ -19,8 +19,10 @@ class BaseReader:
                 **kwargs
             }
         else:
+            predict, raw_predict = self.predict(queries, documents, **kwargs)
             return {
                 "query": queries,
                 "documents": documents,
-                "answer": self.predict(queries, documents, **kwargs)
+                "answer": predict,
+                'reader_logging': raw_predict
             }
