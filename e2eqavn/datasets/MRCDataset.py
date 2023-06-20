@@ -36,7 +36,10 @@ class MRCDataset:
             answer_word_start_idx_key=kwargs.get(ANSWER_WORD_START_IDX, 'answer_word_start_idx'),
             answer_word_end_idx_key=kwargs.get(ANSWER_WORD_END_IDX, 'answer_word_end_idx')
         )
-        examples = qa_text_processor.make_example(corpus)
+        examples = qa_text_processor.make_example(corpus,
+                                                  make_negative_mrc=kwargs.get(MAKE_NEGATIVE_MRC, False),
+                                                  n_negative_mrc=kwargs.get(N_NEGATIVE_MRC, 2)
+                                                  )
         dir_save = kwargs.get(FOLDER_QA_SAVE, 'data/qa')
         if not os.path.exists(dir_save):
             os.makedirs(dir_save, exist_ok=True)
@@ -69,6 +72,8 @@ class MRCDataset:
             train_dataset = None
 
         if corpus_eval is not None:
+            if kwargs.get(MAKE_NEGATIVE_MRC, False):
+                kwargs[MAKE_NEGATIVE_MRC] = False
             eval_dataset = cls.make_dataset(corpus_eval, mode='validation', **kwargs)
         else:
             eval_dataset = None

@@ -48,13 +48,15 @@ class DataCollatorCustom:
             )
             start_idxs = torch.tensor([sample[START_IDX] for sample in batch])
             end_idxs = torch.tensor([sample[END_IDX] for sample in batch])
+            is_negative_sample = torch.Tensor([sample[IS_NEGATIVE_SAMPLE] for sample in batch])
             return {
                 'input_ids': input_ids,
                 'attention_mask': attention_masks,
                 'start_positions': start_idxs,
                 'end_positions': end_idxs,
                 'words_length': words_length,
-                'span_answer_ids': span_answer_ids
+                'span_answer_ids': span_answer_ids,
+                'is_negative_sample': is_negative_sample
             }
 
         data = {

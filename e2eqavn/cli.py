@@ -71,10 +71,12 @@ def train(config: Union[str, Text], mode: str):
             corpus_train=train_corpus,
             corpus_eval=eval_corpus,
             model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing'),
-            max_length=reader_config[MODEL].get(MAX_LENGTH, 368)
+            max_length=reader_config[MODEL].get(MAX_LENGTH, 368),
+            **reader_config.get(DATA_ARGUMENT, {})
         )
         reader_model = MRCReader.from_pretrained(
-            model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing')
+            model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing'),
+            lambda_weight=reader_config.get(DATA_ARGUMENT, {}).get(LAMBDA_WEIGHT, 0.6)
         )
         reader_model.init_trainer(mrc_dataset=mrc_dataset, **reader_config[MODEL])
         reader_model.train()
@@ -193,7 +195,8 @@ def evaluate(config: Union[str, Text], mode,
             predictions.append(
                 {'prediction_text': ans_pred[0].get('answer', ""), 'id': str(idx)}
             )
-            ground_truth[idx]['answers']['answer_start'] = [ans_pred[0]['answer_start_idx']] * len(ground_truth[idx]['answers']['text'])
+            ground_truth[idx]['answers']['answer_start'] = [ans_pred[0]['answer_start_idx']] * len(
+                ground_truth[idx]['answers']['text'])
             if logging_result_pipeline:
                 results_logging.append({
                     'question': list_questions[idx],
@@ -208,9 +211,10 @@ def evaluate(config: Union[str, Text], mode,
                             'reader_score': doc_reader.get('score', 0),
                             'answer_start_idx': doc_reader.get('answer_start_idx', 0),
                             'answer_end_idx': doc_reader.get('answer_end_idx', 0)
-                        } for doc_retrieval, doc_reader in zip(pred_answers['documents'][idx], pred_answers['reader_logging'][idx])
+                        } for doc_retrieval, doc_reader in
+                        zip(pred_answers['documents'][idx], pred_answers['reader_logging'][idx])
                     ]
-                    }
+                }
                 )
         if logging_result_pipeline:
             write_json_file(results_logging, 'logging.json')

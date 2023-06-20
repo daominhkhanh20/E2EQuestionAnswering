@@ -5,6 +5,8 @@ import re
 import random
 from e2eqavn.documents import Corpus
 from e2eqavn.keywords import *
+from e2eqavn.processor import BM25Scoring
+from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
 
@@ -117,9 +119,14 @@ class QATextProcessor:
 
         return example
 
-    def make_example(self, corpus: Corpus):
+    def make_example(self, corpus: Corpus, **kwargs):
+        if kwargs.get(MAKE_NEGATIVE_MRC, False):
+            logger.info("Turn on mode make negative sample for mrc")
+            logger.info("Start sampling negative by BM25")
+            bm25_scoring = BM25Scoring(corpus=[doc.document_context for doc in corpus.list_document])
+        list_documents = corpus.list_document
         examples = []
-        for document in corpus.list_document:
+        for index, document in tqdm(enumerate(corpus.list_document), total=len(corpus.list_document)):
             if len(document.list_pair_question_answers) == 0:
                 continue
             document_context = document.document_context
@@ -139,6 +146,19 @@ class QATextProcessor:
                 if not example[IS_VALID]:
                     continue
                 examples.append(example)
+                if kwargs.get(MAKE_NEGATIVE_MRC, False):
+                    n_negative = kwargs.get(N_NEGATIVE_MRC, 2)
+                    top_k_doc = bm25_scoring.get_top_k(question, top_k=n_negative)
+                    for idx in top_k_doc:
+                        if idx != index:
+                            examples.append({
+                                self.context_key: list_documents[idx].document_context,
+                                self.question_key: question,
+                                self.answer_key: None,
+                                self.answer_word_start_idx_key: 0,
+                                self.answer_word_end_idx_key: 0,
+                                IS_VALID: True
+                            })
 
         logger.info(f"*" * 50)
         logger.info(f"Total {self.cnt_failed} document failed")
