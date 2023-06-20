@@ -17,6 +17,8 @@ from e2eqavn.pipeline import E2EQuestionAnsweringPipeline
 import pprint
 from datasets import load_metric
 
+logger = logging.getLogger(__name__)
+
 
 @click.group()
 def entry_point():
@@ -36,7 +38,6 @@ def version():
     default='config/config.yaml',
     help='Path config model'
 )
-@click.argument('mode', default=None)
 def train(config: Union[str, Text], mode: str):
     config_pipeline = load_yaml_file(config)
     train_corpus = Corpus.parser_uit_squad(
@@ -45,7 +46,7 @@ def train(config: Union[str, Text], mode: str):
     )
     retrieval_config = config_pipeline.get(RETRIEVAL, None)
     reader_config = config_pipeline.get(READER, None)
-    if (mode == 'retrieval' or mode is None) and retrieval_config:
+    if retrieval_config.get(IS_TRAIN, False):
         retrieval_sample = RetrievalGeneration.generate_sampling(train_corpus, **retrieval_config[PARAMETERS])
         train_dataset = TripletDataset.load_from_retrieval_sampling(retrieval_sample=retrieval_sample)
         dev_evaluator = make_vnsquad_retrieval_evaluator(
@@ -61,7 +62,7 @@ def train(config: Union[str, Text], mode: str):
             **retrieval_config[MODEL]
         )
 
-    if (mode == 'reader' or mode is None) and reader_config:
+    if reader_config.get(IS_TRAIN, False):
         eval_corpus = Corpus.parser_uit_squad(
             config_pipeline[DATA][PATH_EVALUATOR],
             **config_pipeline.get(CONFIG_DATA, {})
@@ -96,9 +97,15 @@ def train(config: Union[str, Text], mode: str):
     default=3,
     help='Top k retrieval by sentence-bert algorithm'
 )
+@click.option(
+    '--logging_result_pipeline',
+    default=True,
+    help='Logging result predict to file'
+)
 @click.argument('mode', default='retrieval')
 def evaluate(config: Union[str, Text], mode,
              top_k_bm25: int,
+             logging_result_pipeline: bool,
              top_k_sbert: int
              ):
     config_pipeline = load_yaml_file(config)
@@ -140,11 +147,11 @@ def evaluate(config: Union[str, Text], mode,
     if mode in ['reader', 'pipeline'] and reader_config:
         mrc_dataset = MRCDataset.init_mrc_dataset(
             corpus_eval=eval_corpus,
-            model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing'),
+            model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_dev'),
             max_length=reader_config[MODEL].get(MAX_LENGTH, 368)
         )
         reader_model = MRCReader.from_pretrained(
-            model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing')
+            model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_dev')
         )
         if mode == 'reader':
             logger.info("Start evaluate reader")
@@ -182,7 +189,7 @@ def evaluate(config: Union[str, Text], mode,
         )
         for idx, ans_pred in enumerate(pred_answers['answer']):
             predictions.append(
-                {'prediction_text': ans_pred[0]['answer'], 'id': str(idx)}
+                {'prediction_text': ans_pred[0].get('answer', ""), 'id': str(idx)}
             )
         logger.info(f"Evaluate E2E pipeline: {metric_fn.compute(predictions=predictions, reference=ground_truth)}")
 
