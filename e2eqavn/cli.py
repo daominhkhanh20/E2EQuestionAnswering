@@ -198,7 +198,7 @@ def evaluate(config: Union[str, Text], mode,
                     'question': list_questions[idx],
                     'answer_pred': ans_pred[0].get('answer', ""),
                     'answer_truth': ground_truth[idx],
-                    'retrieval_result': [doc.__dict__ for doc in pred_answers[idx]['documents']]
+                    'retrieval_result': [doc.__dict__ for doc in pred_answers['documents'][idx]]
                 })
         if logging_result_pipeline:
             write_json_file(results_logging, 'logging.json')
@@ -255,7 +255,7 @@ def test(config: Union[str, Text], question: str, top_k_bm25: int, top_k_sbert: 
 
     if mode in ['reader', 'pipeline'] and reader_config:
         reader_model = MRCReader.from_pretrained(
-            model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing')
+            model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_dev')
         )
         pipeline.add_component(
             component=reader_model,
