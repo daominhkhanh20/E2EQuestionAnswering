@@ -198,7 +198,9 @@ def evaluate(config: Union[str, Text], mode,
                     'question': list_questions[idx],
                     'answer_pred': ans_pred[0].get('answer', ""),
                     'answer_truth': ground_truth[idx],
-                    'retrieval_result': [doc.__dict__ for doc in pred_answers['documents'][idx]]
+                    'retrieval_result': [
+                        {'doc': doc.document_context, 'bm25_score': doc.bm25_score}
+                    ] for doc in pred_answers['documents'][idx]
                 })
         if logging_result_pipeline:
             write_json_file(results_logging, 'logging.json')
