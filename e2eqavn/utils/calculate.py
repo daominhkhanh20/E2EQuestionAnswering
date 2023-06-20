@@ -156,8 +156,10 @@ def make_input_feature_qa(questions: List[str], documents: List[str], tokenizer,
         arr_size_sub_word_context_ids = [len(sub_ids) for sub_ids in context_ids]
         arr_size_sub_word_question_ids = [len(sub_ids) for sub_ids in question_ids]
         if sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids) > max_length - 3:
-            question_ids = question_ids[:64]
-            context_ids = context_ids[: max_length - 3 - len(question_ids)]
+            i = len(context_ids)
+            while sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids[:i]) > max_length - 3:
+                i -= 1
+            context_ids = context_ids[: i]
 
         if tokenizer.bos_token_id is not None and tokenizer.eos_token_id is not None:
             bos_token_id = tokenizer.bos_token_id
@@ -191,6 +193,7 @@ def calculate_input_training_for_qav2(example: dict, tokenizer, max_length: int)
     question = example[QUESTION]
     answer_start_idx = example[ANSWER_WORD_START_IDX]
     answer_end_idx = example[ANSWER_WORD_END_IDX]
+    answer_raw = example[ANSWER]
     context_ids = [tokenizer.convert_tokens_to_ids(tokenizer.tokenize(word)) for word in context.split()]
     question_ids = [tokenizer.convert_tokens_to_ids(tokenizer.tokenize(word)) for word in question.split()]
     arr_size_sub_word_context_ids = [len(sub_ids) for sub_ids in context_ids]
@@ -201,14 +204,21 @@ def calculate_input_training_for_qav2(example: dict, tokenizer, max_length: int)
                 arr_size_sub_word_context_ids[:answer_end_idx + 1]) > max_length - 5:
             is_valid = False
         else:
-            current_length = sum(arr_size_sub_word_question_ids) + sum(
-                arr_size_sub_word_context_ids[: answer_end_idx + 1]) + 3  # for 3 special token
-            tmp = answer_end_idx + 1
-            while current_length + arr_size_sub_word_context_ids[tmp] < max_length and tmp < len(
-                    arr_size_sub_word_context_ids) - 1:
-                current_length += arr_size_sub_word_context_ids[tmp]
-                tmp += 1
-            context_ids = context_ids[: tmp]
+            if answer_raw is not None:
+                current_length = sum(arr_size_sub_word_question_ids) + sum(
+                    arr_size_sub_word_context_ids[: answer_end_idx + 1]) + 3  # for 3 special token
+                tmp = answer_end_idx + 1
+                while current_length + arr_size_sub_word_context_ids[tmp] < max_length and tmp < len(
+                        arr_size_sub_word_context_ids) - 1:
+                    current_length += arr_size_sub_word_context_ids[tmp]
+                    tmp += 1
+                context_ids = context_ids[: tmp]
+            else:
+                i = len(context_ids)
+                while sum(arr_size_sub_word_question_ids) + sum(arr_size_sub_word_context_ids[:i]) > max_length - 3:
+                    i -= 1
+                context_ids = context_ids[: i]
+
     if tokenizer.bos_token_id is not None and tokenizer.eos_token_id is not None:
         bos_token_id = tokenizer.bos_token_id
         eos_token_id = tokenizer.eos_token_id
@@ -225,14 +235,16 @@ def calculate_input_training_for_qav2(example: dict, tokenizer, max_length: int)
         is_valid = False
 
     attention_mask = [1] * len(input_ids)
-
     return {
         INPUT_IDS: input_ids,
         ATTENTION_MASK: attention_mask,
-        START_IDX: (answer_start_idx + len(question_final_ids)) if len(example[ANSWER]) > 0 else 0,
-        END_IDX: (answer_end_idx + len(question_final_ids)) if len(example[ANSWER]) > 0 else 0,
+        START_IDX: (answer_start_idx + len(question_final_ids)) if answer_raw is not None and len(
+            example[ANSWER]) > 0 else 0,
+        END_IDX: (answer_end_idx + len(question_final_ids)) if answer_raw is not None and len(
+            example[ANSWER]) > 0 else 0,
         WORDS_LENGTH: words_length,
-        'is_valid': is_valid
+        'is_valid': is_valid,
+        'is_negative_sample': 1 if answer_raw is None else 0
     }
 
 

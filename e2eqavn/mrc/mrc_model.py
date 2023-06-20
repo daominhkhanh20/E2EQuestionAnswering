@@ -22,10 +22,11 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
     # _keys_to_ignore_on_load_unexpected = [r"pooler"]
     # _keys_to_ignore_on_load_missing = [r"position_ids"]
 
-    def __init__(self, config):
+    def __init__(self, config, lambda_weight: float = 0.6):
         super().__init__(config)
         self.roberta = RobertaModel(config, add_pooling_layer=False)
         self.qa_outputs = nn.Linear(config.hidden_size, config.num_labels)
+        self.lambda_weight = lambda_weight
 
     def forward(self,
                 input_ids: Tensor = None,
@@ -40,6 +41,7 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
                 start_positions: Tensor = None,
                 end_positions: Tensor = None,
                 span_answer_ids=None,
+                is_negative_sample=None,
                 output_attentions=None,
                 output_hidden_states=None,
                 return_dict=None, ):
@@ -87,14 +89,22 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
                 start_positions = start_positions.squeeze(-1)
             if len(end_positions.size()) > 1:
                 end_positions = end_positions.squeeze(-1)
-            # sometimes the start/end positions are outside our model inputs, we ignore these terms
+
             ignored_index = start_logits.size(1)
             start_positions = start_positions.clamp(0, ignored_index)
             end_positions = end_positions.clamp(0, ignored_index)
+            list_negative = torch.where(is_negative_sample == 0)[0]
+            list_positive = torch.where(is_negative_sample == 1)[0]
+
             loss_fct = nn.CrossEntropyLoss(ignore_index=ignored_index)
-            start_loss = loss_fct(start_logits, start_positions)
-            end_loss = loss_fct(end_logits, end_positions)
+            start_loss = loss_fct(start_logits[list_positive, :], start_positions[list_positive])
+            end_loss = loss_fct(end_logits[list_positive, :], end_positions[list_positive])
             total_loss = (start_loss + end_loss) / 2
+            if list_negative.size(0) == 0:
+                total_loss += 1 / 2 * self.lambda_weight * (
+                        loss_fct(start_logits[list_negative, :], start_positions[list_negative]) +
+                        loss_fct(end_logits[list_negative, :], end_positions[list_negative])
+                )
 
         if not return_dict:
             output = (start_logits, end_logits) + outputs[2:]
@@ -125,7 +135,7 @@ class MRCReader(BaseReader, ABC):
     @classmethod
     def from_pretrained(cls, model_name_or_path: str, **kwargs):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        model = MRCQuestionAnsweringModel.from_pretrained(model_name_or_path).to(device)
+        model = MRCQuestionAnsweringModel.from_pretrained(model_name_or_path, lambda_weight=kwargs.get(LAMBDA_WEIGHT, 0.6)).to(device)
         try:
             tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
         except:
@@ -194,29 +204,32 @@ class MRCReader(BaseReader, ABC):
             results.append({
                 "answer": answer,
                 "score_start": score_start,
-                "score_end": score_end
+                "score_end": score_end,
+                "score": score_end * score_start,
+                'answer_start_idx': answer_start_idx,
+                'answer_end_idx': answer_end_idx
             })
-        return results
+        return sorted(results, key=lambda x: x['score'], reverse=True)
 
     def predict(self, queries: List[str], documents: List[List[Document]], **kwargs):
         logger.info(f'Number documents: {len(documents)}')
         assert len(queries) == len(documents), "Number question must equal number document"
-        results = []
-        for question, list_document in zip(queries, documents):
-            results.append(
-                self.qa_inference(
-                    question=question,
-                    documents=[
-                        doc.document_context for doc in list_document
-                    ]
-                )
+        results, results_raw = [], []
+        for question, list_document in tqdm(zip(queries, documents), total=len(documents)):
+            tmp_pred, tmp_pred_raw = self.qa_inference(
+                question=question,
+                documents=[
+                    doc.document_context for doc in list_document
+                ],
+                **kwargs
             )
-            logger.info(results)
-        return results
+            results.append(tmp_pred)
+            results_raw.append(tmp_pred_raw)
+        return results, results_raw
 
-    def qa_inference(self, question: str, documents: List[str]):
+    def qa_inference(self, question: str, documents: List[str], **kwargs):
         questions = [question] * len(documents)
-
+        top_k_qa = kwargs.get(TOP_K_QA, 1)
         input_features_raw = make_input_feature_qa(
             questions=questions,
             documents=documents,
@@ -229,7 +242,7 @@ class MRCReader(BaseReader, ABC):
                 input_features[key] = value.to(self.device)
         outs = self.model(**input_features)
         results = self.extract_answer(input_features_raw, outs)
-        return results
+        return results[:top_k_qa], results
 
     def train(self):
         wandb_api_key = os.getenv("WANDB_API")

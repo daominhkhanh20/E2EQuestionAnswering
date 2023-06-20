@@ -8,16 +8,22 @@ apt install tmux -y
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
 
-export PATH=/workspace/miniconda3/bin:$PATH
+export PATH=/root/miniconda3/bin:$PATH
 
+export PATH=/workspace/miniconda3/bin:$PATH
 export KAGGLE_USERNAME='daominhkhanh'
 export KAGGLE_KEY="53d2021e6812290870fc3520cbeee5ea"
+export PATH=/root/miniconda3/bin:$PATH
 
-cd E2EQuestionAnswering
-git checkout -b develop3
+cd /workspace/E2EQuestionAnswering
+git checkout develop
 pip install -r requirements.txt
 
-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
+tmux new -s train_rcm
+export PYTHONPATH=./
+python3 test/mrc/training_mrc.py
+
+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
 git config --global user.email "khanhc1k36@gmail.com"
 git config --global user.name "daominhkhanh20"
 

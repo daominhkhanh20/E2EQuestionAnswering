@@ -8,7 +8,7 @@ config_data:
   overlapping_size: 80
 
 retrieval:
-  is_train: true
+  is_train: false
   parameters:
     method_generation: bm25
     method_train: triplet
@@ -23,15 +23,21 @@ retrieval:
 
 reader:
   is_train: true
+  data_argument:
+    make_negative_mrc: true
+    n_negative_mrc: 2
+    lambda_weight: 0.5
+
   model:
-    model_name_or_path: 'nguyenvulebinh/vi-mrc-large'
-    num_train_epochs: 1
+    model_name_or_path: 'khanhbk20/mrc_dev'
+    num_train_epochs: 2
     learning_rate: 5e-5
-    batch_size_training: 16
-    batch_size_eval: 16
+    batch_size_training: 32
+    batch_size_eval: 32
     gradient_accumulation_steps: 1
     save_strategy: epoch
     logging_strategy: steps
     metric_for_best_model: f1
     logging_step: 1
     max_length: 368
+    output_dir: model/qa

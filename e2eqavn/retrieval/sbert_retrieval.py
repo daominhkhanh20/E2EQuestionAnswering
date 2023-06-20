@@ -170,12 +170,17 @@ class SBertRetrieval(BaseRetrieval, ABC):
         :param batch_size: number document in 1 batch
         :return:
         """
-        path_corpus_embedding = kwargs.get('path_corpus_embedding', 'embedding/corpus_embedding.pth')
+        path_corpus_embedding = kwargs.get('path_corpus_embedding', 'model/retrieval/corpus_embedding.pth')
         self.list_documents = deepcopy(corpus.list_document)
+        flag = True
         if os.path.isfile(path_corpus_embedding):
             logger.info(f"Loading corpus embedding at {path_corpus_embedding}")
-            self.corpus_embedding = torch.load(path_corpus_embedding, map_location=self.device)
-        else:
+            tmp_corpus_embedding = torch.load(path_corpus_embedding, map_location=self.device)
+            if len(tmp_corpus_embedding) != len(self.list_documents):
+                flag = False
+            self.corpus_embedding = tmp_corpus_embedding
+
+        if not os.path.isfile(path_corpus_embedding) or not flag:
             logger.info(f"Start encoding corpus with {len(corpus.list_document)} document")
             document_context = corpus.list_document_context
             self.corpus_embedding = self.model.encode_context(

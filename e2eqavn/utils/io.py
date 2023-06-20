@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 
 def load_json_data(path_file: str):
-    with open(path_file, 'r') as file:
+    with open(path_file, 'r', encoding='utf-8') as file:
         data = json.load(file)
     return data
 

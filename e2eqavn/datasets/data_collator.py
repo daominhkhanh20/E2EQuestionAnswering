@@ -9,8 +9,9 @@ from e2eqavn.keywords import *
 
 
 class DataCollatorCustom:
-    def __init__(self, tokenizer):
+    def __init__(self, tokenizer, mode_triton: bool = False):
         self.tokenizer = tokenizer
+        self.mode_triton = mode_triton
 
     def __call__(self, batch):
 
@@ -47,20 +48,37 @@ class DataCollatorCustom:
             )
             start_idxs = torch.tensor([sample[START_IDX] for sample in batch])
             end_idxs = torch.tensor([sample[END_IDX] for sample in batch])
+            is_negative_sample = torch.Tensor([sample[IS_NEGATIVE_SAMPLE] for sample in batch])
             return {
                 'input_ids': input_ids,
                 'attention_mask': attention_masks,
                 'start_positions': start_idxs,
                 'end_positions': end_idxs,
                 'words_length': words_length,
-                'span_answer_ids': span_answer_ids
+                'span_answer_ids': span_answer_ids,
+                'is_negative_sample': is_negative_sample
             }
 
-        return {
+        data = {
             'input_ids': input_ids,
             'attention_mask': attention_masks,
             'words_length': words_length,
         }
+        if self.mode_triton:
+            batch_size = len(batch)
+            max_sub_word = input_ids.shape[1]
+            max_word = words_length.shape[1]
+            align_matrix = torch.zeros((batch_size, max_word, max_sub_word))
+
+            for i, sample_length in enumerate(words_length):
+                for j in range(len(sample_length)):
+                    start_idx = torch.sum(sample_length[:j])
+                    align_matrix[i][j][start_idx: start_idx + sample_length[j]] = 1 if sample_length[j] > 0 else 0
+
+            data['align_matrix'] = align_matrix
+
+        return data
+
 
 # def data_collator_fn(samples):
 #     def collate_fn(list_tensor: List[Tensor], padding_value: int):

@@ -1,0 +1,507 @@
+{
+  "version": "1.1",
+  "data": [
+    {
+      "title": "Paris",
+      "paragraphs": [
+        {
+          "qas": [
+            {
+              "question": "Vị trí địa lý của Paris có gì đặc biệt?",
+              "answers": [
+                {
+                  "answer_start": 6,
+                  "text": "nằm ở điểm gặp nhau của các hành trình thương mại đường bộ và đường sông"
+                },
+                {
+                  "answer_start": 12,
+                  "text": "điểm gặp nhau của các hành trình thương mại đường bộ và đường sông, và là trung tâm của một vùng nông nghiệp giàu có"
+                },
+                {
+                  "answer_start": 12,
+                  "text": "điểm gặp nhau của các hành trình thương mại đường bộ và đường sông, và là trung tâm của một vùng nông nghiệp giàu có"
+                },
+                {
+                  "answer_start": 12,
+                  "text": "điểm gặp nhau của các hành trình thương mại đường bộ và đường sông, và là trung tâm của một vùng nông nghiệp giàu có"
+                }
+              ],
+              "id": "uit_01__00256_0_1"
+            },
+            {
+              "question": "Kinh tế xung quanh kinh đô ánh sáng mạnh về gì?",
+              "answers": [
+                {
+                  "answer_start": 109,
+                  "text": "nông nghiệp"
+                },
+                {
+                  "answer_start": 323,
+                  "text": "giáo dục và nghệ thuật"
+                },
+                {
+                  "answer_start": 323,
+                  "text": "giáo dục và nghệ thuật"
+                },
+                {
+                  "answer_start": 323,
+                  "text": "giáo dục và nghệ thuật"
+                }
+              ],
+              "id": "uit_01__00256_0_2"
+            },
+            {
+              "question": "Cuộc cách mạng Pháp diễn ra ở đâu?",
+              "answers": [
+                {
+                  "answer_start": 358,
+                  "text": "Paris"
+                },
+                {
+                  "answer_start": 358,
+                  "text": "Paris"
+                },
+                {
+                  "answer_start": 358,
+                  "text": "Paris"
+                },
+                {
+                  "answer_start": 358,
+                  "text": "Paris"
+                }
+              ],
+              "id": "uit_01__00256_0_3"
+            },
+            {
+              "question": "Kinh đô ánh sáng nổi tiếng về lĩnh vực gì?",
+              "answers": [
+                {
+                  "answer_start": 634,
+                  "text": "nghệ thuật và giải trí"
+                },
+                {
+                  "answer_start": 591,
+                  "text": "trung tâm văn hóa của thế giới, thủ đô của nghệ thuật và giải trí"
+                },
+                {
+                  "answer_start": 591,
+                  "text": "trung tâm văn hóa của thế giới, thủ đô của nghệ thuật và giải trí"
+                },
+                {
+                  "answer_start": 591,
+                  "text": "trung tâm văn hóa của thế giới, thủ đô của nghệ thuật và giải trí"
+                }
+              ],
+              "id": "uit_01__00256_0_4"
+            },
+            {
+              "question": "Paris là một thành phố quan trọng của nước Pháp bắt đầu từ thời gian nào?",
+              "answers": [
+                {
+                  "answer_start": 134,
+                  "text": "thế kỷ 10"
+                },
+                {
+                  "answer_start": 134,
+                  "text": "thế kỷ 10"
+                },
+                {
+                  "answer_start": 134,
+                  "text": "thế kỷ 10"
+                },
+                {
+                  "answer_start": 134,
+                  "text": "thế kỷ 10"
+                }
+              ],
+              "id": "uit_01__00256_0_5"
+            }
+          ],
+          "context": "Paris nằm ở điểm gặp nhau của các hành trình thương mại đường bộ và đường sông, và là trung tâm của một vùng nông nghiệp giàu có. Vào thế kỷ 10, Paris đã là một trong những thành phố chính của Pháp cùng các cung điện hoàng gia, các tu viện và nhà thờ. Từ thế kỷ 12, Paris trở thành một trong những trung tâm của châu Âu về giáo dục và nghệ thuật. Thế kỷ 14, Paris là thành phố quan trọng bậc nhất của Cơ Đốc giáo và trong các thế kỷ 16, 17, đây là nơi diễn ra Cách mạng Pháp cùng nhiều sự kiện lịch sử quan trọng của Pháp và châu Âu. Đến thế kỷ 19 và 20, thành phố trở thành một trong những trung tâm văn hóa của thế giới, thủ đô của nghệ thuật và giải trí."
+        },
+        {
+          "qas": [
+            {
+              "question": "Điều gì đã nói lên Paris là thành phố lý tưởng để khách du lịch?",
+              "answers": [
+                {
+                  "answer_start": 221,
+                  "text": "mỗi năm có đến 30 triệu khách nước ngoài"
+                },
+                {
+                  "answer_start": 22,
+                  "text": "Kinh đô ánh sáng"
+                },
+                {
+                  "answer_start": 22,
+                  "text": "Kinh đô ánh sáng"
+                },
+                {
+                  "answer_start": 22,
+                  "text": "Kinh đô ánh sáng"
+                }
+              ],
+              "id": "uit_01__00256_1_1"
+            },
+            {
+              "question": "Người ta đến với Paris vì điều gì?",
+              "answers": [
+                {
+                  "answer_start": 147,
+                  "text": "Sự nhộn nhịp, các công trình kiến trúc và không khí nghệ sĩ"
+                },
+                {
+                  "answer_start": 147,
+                  "text": "Sự nhộn nhịp, các công trình kiến trúc và không khí nghệ sĩ"
+                },
+                {
+                  "answer_start": 147,
+                  "text": "Sự nhộn nhịp, các công trình kiến trúc và không khí nghệ sĩ"
+                },
+                {
+                  "answer_start": 147,
+                  "text": "Sự nhộn nhịp, các công trình kiến trúc và không khí nghệ sĩ"
+                }
+              ],
+              "id": "uit_01__00256_1_2"
+            },
+            {
+              "question": "Kinh đô ánh sáng nổi tiếng như thế nào trong lĩnh vực thời trang mua sắm?",
+              "answers": [
+                {
+                  "answer_start": 263,
+                  "text": "Thành phố còn được xem như kinh đô của thời trang cao cấp với nhiều khu phố xa xỉ cùng các trung tâm thương mại lớn"
+                },
+                {
+                  "answer_start": 290,
+                  "text": "kinh đô của thời trang cao cấp với nhiều khu phố xa xỉ cùng các trung tâm thương mại lớn"
+                },
+                {
+                  "answer_start": 290,
+                  "text": "kinh đô của thời trang cao cấp với nhiều khu phố xa xỉ cùng các trung tâm thương mại lớn"
+                },
+                {
+                  "answer_start": 290,
+                  "text": "kinh đô của thời trang cao cấp với nhiều khu phố xa xỉ cùng các trung tâm thương mại lớn"
+                }
+              ],
+              "id": "uit_01__00256_1_3"
+            },
+            {
+              "question": "Ngoài Paris, còn có thành phố nào được đánh giá là thành phố toàn cầu?",
+              "answers": [
+                {
+                  "answer_start": 675,
+                  "text": "New York, Luân Đôn và Tokyo"
+                },
+                {
+                  "answer_start": 675,
+                  "text": "New York, Luân Đôn và Tokyo"
+                },
+                {
+                  "answer_start": 675,
+                  "text": "New York, Luân Đôn và Tokyo"
+                },
+                {
+                  "answer_start": 675,
+                  "text": "New York, Luân Đôn và Tokyo"
+                }
+              ],
+              "id": "uit_01__00256_1_4"
+            },
+            {
+              "question": "Điều gì đã khiến Paris trở thành nơi trung chuyển trên toàn cầu?",
+              "answers": [
+                {
+                  "answer_start": 380,
+                  "text": "Là nơi đặt trụ sở chính của các tổ chức quốc tế như OECD, UNESCO... cộng với những hoạt động đa dạng về tài chính, kinh doanh, chính trị và du lịch"
+                },
+                {
+                  "answer_start": 383,
+                  "text": "nơi đặt trụ sở chính của các tổ chức quốc tế như OECD, UNESCO... cộng với những hoạt động đa dạng về tài chính, kinh doanh, chính trị và du lịch"
+                },
+                {
+                  "answer_start": 383,
+                  "text": "nơi đặt trụ sở chính của các tổ chức quốc tế như OECD, UNESCO... cộng với những hoạt động đa dạng về tài chính, kinh doanh, chính trị và du lịch"
+                },
+                {
+                  "answer_start": 383,
+                  "text": "nơi đặt trụ sở chính của các tổ chức quốc tế như OECD, UNESCO... cộng với những hoạt động đa dạng về tài chính, kinh doanh, chính trị và du lịch"
+                }
+              ],
+              "id": "uit_01__00256_1_5"
+            }
+          ],
+          "context": "Nổi tiếng với tên gọi Kinh đô ánh sáng, Paris là một trung tâm văn hóa lớn của thế giới và cũng là một trong những thành phố du lịch thu hút nhất. Sự nhộn nhịp, các công trình kiến trúc và không khí nghệ sĩ đã giúp Paris mỗi năm có đến 30 triệu khách nước ngoài. Thành phố còn được xem như kinh đô của thời trang cao cấp với nhiều khu phố xa xỉ cùng các trung tâm thương mại lớn. Là nơi đặt trụ sở chính của các tổ chức quốc tế như OECD, UNESCO... cộng với những hoạt động đa dạng về tài chính, kinh doanh, chính trị và du lịch đã khiến Paris trở thành một trong những trung tâm trung chuyển lớn nhất trên thế giới và được coi như một trong bốn \"thành phố toàn cầu\" cùng với New York, Luân Đôn và Tokyo."
+        },
+        {
+          "qas": [
+            {
+              "question": "Người dân trên thế giới thường gọi Paris với tên khác là gì?",
+              "answers": [
+                {
+                  "answer_start": 29,
+                  "text": "Kinh đô ánh sáng"
+                },
+                {
+                  "answer_start": 29,
+                  "text": "Kinh đô ánh sáng"
+                },
+                {
+                  "answer_start": 29,
+                  "text": "Kinh đô ánh sáng"
+                },
+                {
+                  "answer_start": 29,
+                  "text": "Kinh đô ánh sáng"
+                }
+              ],
+              "id": "uit_01__00256_2_1"
+            },
+            {
+              "question": "Kinh đô ánh sáng dịch từ tiếng Pháp sang tiếng Anh chính xác là gì?",
+              "answers": [
+                {
+                  "answer_start": 158,
+                  "text": "The City of Lights"
+                },
+                {
+                  "answer_start": 110,
+                  "text": "Thành phố ánh sáng"
+                },
+                {
+                  "answer_start": 110,
+                  "text": "Thành phố ánh sáng"
+                },
+                {
+                  "answer_start": 110,
+                  "text": "Thành phố ánh sáng"
+                }
+              ],
+              "id": "uit_01__00256_2_2"
+            },
+            {
+              "question": "Tên gọi The City of Lights bắt nguồn từ sự việc gì?",
+              "answers": [
+                {
+                  "answer_start": 224,
+                  "text": "cuối thế kỷ 17, trung tướng cảnh sát đầu tiên của Paris Gabriel Nicolas de La Reynie ra lệnh thắp sáng những khu vực công cộng nhiều tệ nạn của thành phố"
+                },
+                {
+                  "answer_start": 224,
+                  "text": "cuối thế kỷ 17, trung tướng cảnh sát đầu tiên của Paris Gabriel Nicolas de La Reynie ra lệnh thắp sáng những khu vực công cộng nhiều tệ nạn của thành phố"
+                },
+                {
+                  "answer_start": 224,
+                  "text": "cuối thế kỷ 17, trung tướng cảnh sát đầu tiên của Paris Gabriel Nicolas de La Reynie ra lệnh thắp sáng những khu vực công cộng nhiều tệ nạn của thành phố"
+                },
+                {
+                  "answer_start": 224,
+                  "text": "cuối thế kỷ 17, trung tướng cảnh sát đầu tiên của Paris Gabriel Nicolas de La Reynie ra lệnh thắp sáng những khu vực công cộng nhiều tệ nạn của thành phố"
+                }
+              ],
+              "id": "uit_01__00256_2_3"
+            }
+          ],
+          "context": "Paris nổi tiếng với tên gọi \"Kinh đô ánh sáng\", vốn từ trong tiếng Pháp là \"Ville lumière\", dịch chính xác là Thành phố ánh sáng, cũng giống trong tiếng Anh: The City of Lights. Tên gọi này được bắt đầu từ nghĩa đen của nó: cuối thế kỷ 17, trung tướng cảnh sát đầu tiên của Paris Gabriel Nicolas de La Reynie ra lệnh thắp sáng những khu vực công cộng nhiều tệ nạn của thành phố. Nhưng bởi Paris nổi tiếng với vị trí trung tâm văn hóa, tri thức của cả thế giới, nên tên gọi này thường được hiểu theo nghĩa bóng."
+        },
+        {
+          "qas": [
+            {
+              "question": "Hai thành phố nào được gọi là thành phố của tình yêu?",
+              "answers": [
+                {
+                  "answer_start": 9,
+                  "text": "Venezia, Paris"
+                },
+                {
+                  "answer_start": 9,
+                  "text": "Venezia, Paris"
+                },
+                {
+                  "answer_start": 9,
+                  "text": "Venezia, Paris"
+                },
+                {
+                  "answer_start": 9,
+                  "text": "Venezia, Paris"
+                }
+              ],
+              "id": "uit_01__00256_3_1"
+            }
+          ],
+          "context": "Cùng với Venezia, Paris còn được ví là \"Thành phố của tình yêu\". Những người yêu thích Paris cũng nói: Chỉ cần thêm hai chữ cái, Paris trở thành thiên đường. Trong tiếng Pháp, thêm hai chữ a và d, Paris thành Paradis, có nghĩa là thiên đường. Từ \"parisien\" trong tiếng Pháp là tính từ của Paris, cũng là danh từ để chỉ những người dân của thành phố này. Ngoài ra, \"parisien\" còn là một từ lóng được các nhà văn của thế kỷ 19 như Victor Hugo, Eugène Sue hay Balzac sử dụng rộng rãi và còn phổ biến cho tới thập niên 1950."
+        },
+        {
+          "qas": [
+            {
+              "question": "Nguồn gốc tên gọi Paname bắt nguồn từ đâu?",
+              "answers": [
+                {
+                  "answer_start": 48,
+                  "text": "từ đầu thế kỷ 20 khi những chiếc mũ panama phổ biến"
+                },
+                {
+                  "answer_start": 69,
+                  "text": "những chiếc mũ panama"
+                },
+                {
+                  "answer_start": 69,
+                  "text": "những chiếc mũ panama"
+                },
+                {
+                  "answer_start": 69,
+                  "text": "những chiếc mũ panama"
+                }
+              ],
+              "id": "uit_01__00256_4_1"
+            }
+          ],
+          "context": "Một tên gọi thân mật khác của Paris là \"Paname\" từ đầu thế kỷ 20 khi những chiếc mũ panama phổ biến. Bắt đầu bởi các công nhân đào con kênh Panama, loại mũ này rất thịnh hành ở Mỹ và châu Âu. Rồi đến Paris, tất cả đàn ông đều đội một chiếc panama và nó thành một tên gọi cho thành phố. Cũ hơn nữa, Paris và một trong các ngoại ô là Pantin được gọi lóng là \"Pantruche\" theo tên công ty tổ chức lễ hội Carnaval của Paris: Compagnie Carnavalesque Parisienne \"les Fumantes de Pantruche\". \"Parigot\" cũng là một từ lóng để chỉ những người Paris, nhưng từ này ít nhiều mang tính châm chọc, chế giễu."
+        },
+        {
+          "qas": [
+            {
+              "question": "Con sông nào nằm trong lòng Paris?",
+              "answers": [
+                {
+                  "answer_start": 95,
+                  "text": "sông Seine"
+                },
+                {
+                  "answer_start": 100,
+                  "text": "Seine"
+                },
+                {
+                  "answer_start": 100,
+                  "text": "Seine"
+                },
+                {
+                  "answer_start": 100,
+                  "text": "Seine"
+                }
+              ],
+              "id": "uit_01__00256_5_1"
+            },
+            {
+              "question": "Hai nằm giữa Paris trên dòng sông Sen có tên là gì?",
+              "answers": [
+                {
+                  "answer_start": 165,
+                  "text": "Île de la Cité ở phía tây và Île Saint-Louis ở phía đông"
+                },
+                {
+                  "answer_start": 165,
+                  "text": "Île de la Cité ở phía tây và Île Saint-Louis ở phía đông"
+                },
+                {
+                  "answer_start": 165,
+                  "text": "Île de la Cité ở phía tây và Île Saint-Louis ở phía đông"
+                },
+                {
+                  "answer_start": 165,
+                  "text": "Île de la Cité ở phía tây và Île Saint-Louis ở phía đông"
+                }
+              ],
+              "id": "uit_01__00256_5_2"
+            },
+            {
+              "question": "Công trình nào nằm trên đỉnh Montmartre?",
+              "answers": [
+                {
+                  "answer_start": 531,
+                  "text": "nhà thờ Saint-Pierre"
+                },
+                {
+                  "answer_start": 531,
+                  "text": "nhà thờ Saint-Pierre"
+                },
+                {
+                  "answer_start": 531,
+                  "text": "nhà thờ Saint-Pierre"
+                },
+                {
+                  "answer_start": 531,
+                  "text": "nhà thờ Saint-Pierre"
+                }
+              ],
+              "id": "uit_01__00256_5_3"
+            }
+          ],
+          "context": "Tại trung tâm của bồn Paris, trên một vùng trầm tích bằng phẳng rộng lớn, Paris nằm hai bên bờ sông Seine. Hai đảo của sông tạo nên trung tâm lịch sử của thành phố: Île de la Cité ở phía tây và Île Saint-Louis ở phía đông. Từ tâm này, thành phố trải rộng ra xung quanh, nhưng phần diện tích Paris ở phía bắc - tức hữu ngạn sông Seine - rộng hơn bên tả ngạn phía nam rõ rệt. Cả hai bên sông Seine, một số vùng đất tạo bởi đá thạch cao nhô lên thành những quả đồi nhỏ. Ở hữu ngạn: đồi Montmartre có độ cao là 131 mét, đỉnh là vị trí nhà thờ Saint-Pierre; Belleville cao 128,5 m tại phố Télégraphe; Ménilmontant 108 m; công viên Buttes-Chaumont 103 m; Passy 71 m. Bên tả ngạn: Montparnasse cao 66 m; Butte aux Cailles 63 m; đồi Sainte-Geneviève 61 m."
+        },
+        {
+          "qas": [
+            {
+              "question": "Năm 1844, ngoại ô và nội ô Paris được ngăn cách bằng gì?",
+              "answers": [
+                {
+                  "answer_start": 64,
+                  "text": "bức tường thành Thiers"
+                },
+                {
+                  "answer_start": 64,
+                  "text": "bức tường thành Thiers"
+                },
+                {
+                  "answer_start": 64,
+                  "text": "bức tường thành Thiers"
+                },
+                {
+                  "answer_start": 64,
+                  "text": "bức tường thành Thiers"
+                }
+              ],
+              "id": "uit_01__00256_6_1"
+            },
+            {
+              "question": "Ngày nay, muốn từ nội ô sang ngoại ô Paris, ta thường phải băng qua đâu?",
+              "answers": [
+                {
+                  "answer_start": 213,
+                  "text": "các đại lộ vành đai dài 35 km"
+                },
+                {
+                  "answer_start": 213,
+                  "text": "các đại lộ vành đai"
+                },
+                {
+                  "answer_start": 213,
+                  "text": "các đại lộ vành đai"
+                },
+                {
+                  "answer_start": 213,
+                  "text": "các đại lộ vành đai"
+                }
+              ],
+              "id": "uit_01__00256_6_2"
+            },
+            {
+              "question": "Rừng Vincennes nằm ở đâu của Paris?",
+              "answers": [
+                {
+                  "answer_start": 449,
+                  "text": "Quận 12 ở phía Đông"
+                },
+                {
+                  "answer_start": 450,
+                  "text": "Quận 12 ở phía Đông"
+                },
+                {
+                  "answer_start": 450,
+                  "text": "Quận 12 ở phía Đông"
+                },
+                {
+                  "answer_start": 449,
+                  "text": "Quận 12 ở phía Đông"
+                }
+              ],
+              "id": "uit_01__00256_6_3"
+            }
+          ],
+          "context": "Vào năm 1844, nội ô Paris (Paris intra-muros) được giới hạn bởi bức tường thành Thiers. Tới năm 1860, một số hạt và quận xung quanh được sát nhập vào thành phố. Còn ngày nay, Paris được phân định với ngoại ô bằng các đại lộ vành đai dài 35 km. Tuy nhiên có một vài ngoại lệ. Quận 15 vượt qua ranh giới này tới sân bay trực thăng Issy-les-Moulineaux. Quận 16 bao gồm cả rừng Boulogne rộng 846 hecta ở phía tây. Còn rừng Vincennes rộng 995 hecta thuộc Quận 12 ở phía Đông. Tổng cộng chu vi của Paris dài tới 54,74 km."
+        }
+      ]
+    }
+  ]
+}

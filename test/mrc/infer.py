@@ -1,18 +1,11 @@
 from e2eqavn.mrc import *
 from e2eqavn.processor import QATextProcessor
 qa_process = QATextProcessor()
-question = "Tên gọi nào được Phạm Văn Đồng sử dụng khi làm Phó chủ nhiệm cơ quan Biện sự xứ tại Quế Lâm?"
-context1 = "Phạm Văn Đồng (1 tháng 3 năm 1906 – 29 tháng 4 năm 2000) là Thủ tướng đầu tiên của nước Cộng hòa Xã hội " \
-          "chủ nghĩa Việt Nam từ năm 1976 (từ năm 1981 gọi là Chủ tịch Hội đồng Bộ trưởng) cho đến khi nghỉ hưu năm " \
-          "1987. Trước đó ông từng giữ chức vụ Thủ tướng Chính phủ Việt Nam Dân chủ Cộng hòa từ năm 1955 đến năm " \
-          "1976. Ông là vị Thủ tướng Việt Nam tại vị lâu nhất (1955–1987). Ông là học trò, cộng sự của Chủ tịch Hồ " \
-          "Chí Minh. Ông có tên gọi thân mật là Tô, đây từng là bí danh của ông. Ông còn có tên gọi là Lâm Bá Kiệt " \
-          "khi làm Phó chủ nhiệm cơ quan Biện sự xứ tại Quế Lâm (Chủ nhiệm là Hồ Học Lãm)."
-context2 = "Năm 1954, ông được giao nhiệm vụ Trưởng phái đoàn Chính phủ dự Hội nghị Genève về Đông Dương. Những đóng góp của đoàn Việt Nam do ông đứng đầu là vô cùng quan trọng, tạo ra những đột phá đưa Hội nghị tới thành công. Trải qua 8 phiên họp toàn thể và 23 phiên họp rất căng thẳng và phức tạp, với tinh thần chủ động và cố gắng của phái đoàn Việt Nam, ngày 20/7/1954, bản Hiệp định đình chỉ chiến sự ở Việt Nam, Campuchia và Lào đã được ký kết thừa nhận tôn trọng độc lập, chủ quyền, của nước Việt Nam, Lào và Campuchia."
+question = "Cơ sở giáo dục phương Tây đầu tiên có thể được gọi là gì"
+context1 = ". Cơ sở giáo dục phương Tây đầu tiên có thể được gọi là viện đại học là một trường y khoa nổi tiếng thành lập ở Salerno, Ý, vào thế kỷ thứ 9.  Trường này thu hút sinh viên từ khắp châu Âu.  Tuy nhiên, nó vẫn chỉ là một trường y khoa.  Viện đại học thực sự đầu tiên là Viện Đại học Bologna thành lập ở Bologna, Ý, cuối thế kỷ 11.  Nó trở thành một cơ sở giáo dục được nhiều người kính trọng, nhất là trong lĩnh vực luật tôn giáo và luật dân sự.  Viện đại học đầu tiên ra đời ở Bắc Âu là Viện Đại học Paris, thành lập trong khoảng 1150 đến 1170.  Viện đại học này nổi tiếng về giảng dạy thần học, và nó trở thành hình mẫu cho các viện đại học khác ở Bắc Âu, chẳng hạn như Viện Đại học Oxford ở Anh thành lập vào cuối thế kỷ 12.  Các viện đại học Paris và Oxford bao gồm các trường đại học vốn là nơi ở dành cho các học giả. . Những viện đại học ban đầu này là những đoàn thể sinh viên và giảng viên, được các giáo hoàng, hoàng đế, và nhà vua ban quyền.  Viện Đại học Napoli, do Hoàng đế Frederick II thành lập vào năm 1224 ở Ý, là cơ sở đầu tiên được thành lập dưới thẩm quyền của một hoàng đế, trong khi Viện Đại học Toulouse, do Giáo hoàng Grêgôriô IX lập ra vào năm 1229 ở Pháp, là cơ sở đầu tiên được thành lập qua một sắc lệnh của giáo hoàng.  Những viện đại học này được quyền tự trị, miễn là họ không dạy vô thần và dị giáo.  Sinh viên và giảng viên cùng nhau tự bầu ra viện trưởng.  Tuy nhiên, như cái giá phải trả cho sự độc lập, họ phải tự lo kinh phí.  Do đó mà các giảng viên phải thu học phí, và để đảm bảo cuộc sống, họ phải làm hài lòng sinh viên"
 
 context1 = " ".join(qa_process.string_tokenize(qa_process.strip_context(context1))).strip()
-context2 = " ".join(qa_process.string_tokenize(qa_process.strip_context(context2))).strip()
 
 question = " ".join(qa_process.string_tokenize(question)).strip()
-mrc_reader = MRCReader.from_pretrained('nguyenvulebinh/vi-mrc-large')
-print(mrc_reader.qa_inference(question=question, documents=[context1, context2]))
+mrc_reader = MRCReader.from_pretrained('khanhbk20/mrc_testing')
+print(mrc_reader.qa_inference(question=question, documents=[context1]))

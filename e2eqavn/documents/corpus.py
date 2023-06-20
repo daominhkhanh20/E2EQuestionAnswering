@@ -8,6 +8,7 @@ from torch import Tensor
 from collections import defaultdict
 from e2eqavn.utils.io import load_json_data, write_json_file
 from e2eqavn.keywords import *
+from unicodedata import normalize
 from e2eqavn.utils.preprocess import process_text
 
 logger = logging.getLogger(__name__)
@@ -119,6 +120,7 @@ class Corpus:
             self.n_pair_question_answer += len(document.list_pair_question_answers)
         self.__dict__.update(kwargs)
 
+
     @classmethod
     def get_documents(cls, context: Dict, doc_th: int = 0, **kwargs):
         context_key = kwargs.get(CONTEXT_KEY, cls.context_key)
@@ -131,11 +133,11 @@ class Corpus:
         answer_start = kwargs.get(ANSWER_START, cls.answer_start)
 
         list_document = []
-        document_context = context[context_key]
+        document_context = normalize('NFC', context[context_key])
         if not kwargs.get(MODE_CHUNKING, False):
             document_id = hashlib.sha1(str(document_context).encode('utf-8')).hexdigest()
             dict_question_answers = defaultdict(list)
-            if (not infer_mode) or is_vnsquad_eval:
+            if len(context[qas_key]) > 0:
                 for question in context[qas_key]:
                     if not is_vnsquad_eval:
                         for answer in question[answers_key]:
@@ -212,12 +214,12 @@ class Corpus:
         return list_document, doc_th
 
     @classmethod
-    def init_corpus(cls, corpus: List[Dict], **kwargs):
+    def init_corpus(cls, path_data, **kwargs):
         """
         :param max_length: maximum number word for 1 document
         :param overlapping: overlapping size for 2  document adjacency pair
         :param mode_chunking: on or off mode chunking long document
-        :param corpus: dictionary context, question and answer
+        :param path_data: path to file data and  must have the below form
             Exammple:
             [
                 {
@@ -237,6 +239,7 @@ class Corpus:
 
         :return:
         """
+        corpus = load_json_data(path_data)
         list_documents = []
         doc_th = 0
         for context in corpus:
@@ -275,23 +278,25 @@ class Corpus:
                     tmp_list_documents
                 )
 
-            if len(list_document) > 20:
-                break
-
         return cls(list_document=list_document, **kwargs)
 
+    @classmethod
+    def parser_normal(cls, path_data: str, **kwargs):
+        data = load_json_data(path_data)
+
     def save_corpus(self, path_file: str):
-        infor = {}
+        infor = []
         for document in self.list_document:
-            infor[document.document_id] = {
+            temp = {
                 "context": document.document_context,
                 "qas": []
             }
             for question_answer in document.list_pair_question_answers:
-                infor[document.document_id]['qas'].append(
+                temp['qas'].append(
                     {
                         "question": question_answer.question,
-                        "answers": question_answer.list_answers
+                        "answers": question_answer.list_dict_answer
                     }
                 )
+            infor.append(temp)
         write_json_file(infor, path_file)

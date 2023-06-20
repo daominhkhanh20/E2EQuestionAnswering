@@ -119,3 +119,4 @@ class BM25Scoring(BM25Base, ABC):
         scores = self.get_scores(query)
         top_k_idxs = np.argsort(scores)[-top_k:]
         return {idx: scores[idx] for idx in top_k_idxs}
+

@@ -12,6 +12,8 @@ LOSS_FN = 'loss_fn'
 MODEL = 'model'
 SAVE_LOG = 'save_log'
 PATH_SAVE_LOG = 'path_save_log'
+TOP_K_QA = 'top_k_qa'
+IS_TRAIN = 'is_train'
 
 RANDOM = 'random'
 BM25 = 'bm25'
@@ -85,6 +87,11 @@ BATCH_SIZE_TRAINING = 'batch_size_training'
 BATCH_SIZE_EVAL = 'batch_size_eval'
 BATCH_SIZE = 'batch_size'
 EPOCHS = 'epochs'
+MAKE_NEGATIVE_MRC = 'make_negative_mrc'
+N_NEGATIVE_MRC = 'n_negative_mrc'
+IS_NEGATIVE_SAMPLE = 'is_negative_sample'
+DATA_ARGUMENT = 'data_argument'
+LAMBDA_WEIGHT = 'lambda_weight'
 
 
 
