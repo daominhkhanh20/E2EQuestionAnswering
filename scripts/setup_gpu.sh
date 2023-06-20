@@ -16,7 +16,7 @@ export KAGGLE_KEY="53d2021e6812290870fc3520cbeee5ea"
 export PATH=/root/miniconda3/bin:$PATH
 
 cd /workspace/E2EQuestionAnswering
-git checkout -b develop
+git checkout develop
 pip install -r requirements.txt
 
 tmux new -s train_rcm

@@ -30,18 +30,21 @@ reader_model = MRCReader.from_pretrained(
     lambda_weight=reader_config.get(DATA_ARGUMENT, {}).get(LAMBDA_WEIGHT, 0.6)
 )
 reader_model.init_trainer(mrc_dataset=mrc_dataset, **reader_config[MODEL])
-reader_model.train()
+# reader_model.train()
+loader = reader_model.trainer.get_train_dataloader()
+sample = next(iter(loader))
+outs = reader_model.model(**sample)
+print(outs.keys())
 
 
-
-# # train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'])
-# # eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'])
+# train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'])
+# eval_corpus = Corpus.parser_uit_squad(config_qa['data']['path_evaluator'])
 # if not os.path.exists(config_qa['model'].get(OUTPUT_DIR, 'model/qa')):
 #     os.makedirs(config_qa['model'].get(OUTPUT_DIR, 'model/qa'))
 # write_json_file(config_qa, os.path.join(config_qa['model'].get(OUTPUT_DIR, 'model/qa'), 'parameter.json'))
 
-# # config = {**config_qa['parameters'], **config_qa['model']}
-# # wandb.init(project='E2E_QA_THESISV2', config=config)
+# config = {**config_qa['parameters'], **config_qa['model']}
+# wandb.init(project='E2E_QA_THESISV2', config=config)
 # train_corpus = Corpus.parser_uit_squad(config['data']['path_train'], **config.get('config_qa', {}))
 # eval_corpus = Corpus.parser_uit_squad(config['data']['path_evaluator'], **config.get('config_qa', {}))
 # dataset = MRCDataset.init_mrc_dataset(
@@ -53,10 +56,6 @@ reader_model.train()
 # )
 # print(len(dataset.train_dataset))
 # print(len(dataset.evaluator_dataset))
-# # reader = MRCReader.from_pretrained(config_qa['model'][MODEL_NAME_OR_PATH])
-# # reader.init_trainer(dataset, **config_qa['model'])
-# # # reader.train()
-# # loader = reader.trainer.get_train_dataloader()
-# # sample = next(iter(loader))
-# # outs = reader.model(**sample)
-# # print(outs.keys())
+# reader = MRCReader.from_pretrained(config_qa['model'][MODEL_NAME_OR_PATH])
+# reader.init_trainer(dataset, **config_qa['model'])
+# # reader.train()

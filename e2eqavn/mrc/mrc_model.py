@@ -97,13 +97,13 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
             list_positive = (is_negative_sample == 1).nonzero(as_tuple=False).squeeze()
 
             loss_fct = nn.CrossEntropyLoss(ignore_index=ignored_index)
-            start_loss = loss_fct(start_logits[list_positive, :], start_positions[list_positive, :])
-            end_loss = loss_fct(end_logits[list_positive, :], end_positions[list_positive, :])
+            start_loss = loss_fct(start_logits[list_positive, :], start_positions[list_positive])
+            end_loss = loss_fct(end_logits[list_positive, :], end_positions[list_positive])
             total_loss = (start_loss + end_loss) / 2
             if len(list_negative) > 0:
                 total_loss += 1 / 2 * self.lambda_weight * (
-                        loss_fct(start_logits[list_negative, :], start_positions[list_negative, :]) +
-                        loss_fct(end_logits[list_negative, :], end_positions[list_negative, :])
+                        loss_fct(start_logits[list_negative, :], start_positions[list_negative]) +
+                        loss_fct(end_logits[list_negative, :], end_positions[list_negative])
                 )
 
         if not return_dict:

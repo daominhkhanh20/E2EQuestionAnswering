@@ -11,6 +11,12 @@ pip install e2eqavn
 
 # 3. Command line interface
 
+Command | Function                                 |
+--- |------------------------------------------|
+e2eqavn train | - Training a model                       |
+e2eqavn evaluate | - Evaluate the performance of a model    |
+e2eqavn test | - Performs the inference of a text input |
+
 ## 3.1 Training model
 
 ```commandline

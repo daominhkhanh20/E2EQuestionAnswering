@@ -1,5 +1,5 @@
 data:
-  path_train: data/UITSquad/train.json
+  path_train: data/UITSquad/dev.json
   path_evaluator: data/UITSquad/dev.json
 
 config_data:
@@ -32,8 +32,8 @@ reader:
     model_name_or_path: 'khanhbk20/mrc_dev'
     num_train_epochs: 5
     learning_rate: 5e-5
-    batch_size_training: 32
-    batch_size_eval: 32
+    batch_size_training: 4
+    batch_size_eval: 4
     gradient_accumulation_steps: 1
     save_strategy: epoch
     logging_strategy: steps
