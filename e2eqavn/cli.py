@@ -205,6 +205,8 @@ def evaluate(config: Union[str, Text], mode,
                 )
         if logging_result_pipeline:
             write_json_file(results_logging, 'logging.json')
+        logger.info(predictions)
+        logger.info(ground_truth)
         logger.info(f"Evaluate E2E pipeline: {metric_fn.compute(predictions=predictions, reference=ground_truth)}")
 
 
