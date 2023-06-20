@@ -1,6 +1,6 @@
 data:
   path_train: data/UITSquad/train.json
-  path_evaluator: data/UITSquad/dev1.json
+  path_evaluator: data/UITSquad/dev.json
 
 config_data:
   max_length_document: 300
