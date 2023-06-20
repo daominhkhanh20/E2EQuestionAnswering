@@ -96,7 +96,6 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
             list_negative = torch.where(is_negative_sample == 0)[0]
             list_positive = torch.where(is_negative_sample == 1)[0]
             loss_fct = nn.CrossEntropyLoss(ignore_index=ignored_index)
-            print(list_positive.size(), list_negative.size())
             if list_positive.size(0) > 0:
                 start_loss = loss_fct(start_logits[list_positive, :], start_positions[list_positive])
                 end_loss = loss_fct(end_logits[list_positive, :], end_positions[list_positive])

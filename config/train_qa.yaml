@@ -25,7 +25,7 @@ reader:
   is_train: true
   data_argument:
     make_negative_mrc: true
-    n_negative_mrc: 1
+    threshold_smapling: 0.1
     lambda_weight: 0.5
 
   model:
