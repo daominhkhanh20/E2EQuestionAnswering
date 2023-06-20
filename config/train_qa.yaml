@@ -1,5 +1,5 @@
 data:
-  path_train: data/UITSquad/dev.json
+  path_train: data/UITSquad/train.json
   path_evaluator: data/UITSquad/dev.json
 
 config_data:
