@@ -204,18 +204,18 @@ class MRCReader(BaseReader, ABC):
     def predict(self, queries: List[str], documents: List[List[Document]], **kwargs):
         logger.info(f'Number documents: {len(documents)}')
         assert len(queries) == len(documents), "Number question must equal number document"
-        results = []
+        results, results_raw = [], []
         for question, list_document in tqdm(zip(queries, documents), total=len(documents)):
-            results.append(
-                self.qa_inference(
+            tmp_pred, tmp_pred_raw = self.qa_inference(
                     question=question,
                     documents=[
                         doc.document_context for doc in list_document
                     ],
                     **kwargs
                 )
-            )
-        return results
+            results.append(tmp_pred)
+            results_raw.append(tmp_pred_raw)
+        return results, results_raw
 
     def qa_inference(self, question: str, documents: List[str], **kwargs):
         questions = [question] * len(documents)
