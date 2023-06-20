@@ -59,10 +59,10 @@ e2eqavn evaluate [MODE] --config [path_config_file]
                         --top_k_sbert [INT_VALUE] # Optional, default value 3
  
  
-            MODE must in:
-                - retrieval: Evaluate retrieval
-                - reader: Evaluate reader
-                - pipeline: Evalaute pipeline(retrieval + reader)           
+    MODE must in:
+        - retrieval: Evaluate retrieval
+        - reader: Evaluate reader
+        - pipeline: Evalaute pipeline(retrieval + reader)           
 ```
 
 This command enable user to evaluate model in 3 ways:
@@ -84,3 +84,37 @@ Optional arguments:
   
   --help, -h                                  Show this help message and exit.
 ```
+
+
+## 3.2 Testing 
+This command enable user for testing example with pipeline exist in local 
+
+```commandline
+e2eqavn evaluate [MODE] --config [path_config_file] 
+                        --question [STRING_QUESTION]  
+                        --top_k_bm25 [INT_VALUE] # Optional, default value 10
+                        --top_k_sbert [INT_VALUE] # Optional, default value 3
+                        --top_k_qa [INT_VALUE] # Optional, default value 1
+ 
+ 
+    MODE must in:
+        - retrieval: Evaluate retrieval
+        - reader: Evaluate reader
+        - pipeline: Evalaute pipeline(retrieval + reader)           
+```
+
+<b>Arguments:</b>
+```js
+Required arguments:
+   MODE                                               Selection mode for evalaute(retrieval, reader, pipeline)
+  --config CONFIG_FILE                                Path to the config file.
+  --question QUESTION                                 Which question do you want to ask?
+  --top_k_bm25 TOP_K_BM25                             Top k document when retreival by BM25 algorithm
+  --top_k_sbert TOP_K_SBERT                           Top k document when retrieval by SentenceTransformer Algorithm
+  --top_k_qa TOP_K_QA                                 Top k mrc result
+    
+Optional arguments:
+  
+  --help, -h                                  Show this help message and exit.
+```
+
