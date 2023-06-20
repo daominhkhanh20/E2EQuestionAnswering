@@ -199,15 +199,21 @@ def evaluate(config: Union[str, Text], mode,
                     'question': list_questions[idx],
                     'answer_pred': ans_pred[0].get('answer', ""),
                     'answer_truth': ground_truth[idx],
-                    'retrieval_result': [
-                        {'doc': doc.document_context, 'bm25_score': doc.bm25_score} for doc in pred_answers['documents'][idx]
+                    'logging': [
+                        {
+                            'doc': doc_retrieval.document_context,
+                            'bm25_score': doc_retrieval.bm25_score,
+                            'score_start': doc_reader.get('score_start', 0),
+                            'score_end': doc_reader.get('score_end', 0),
+                            'reader_score': doc_reader.get('score', 0),
+                            'answer_start_idx': doc_reader.get('answer_start_idx', 0),
+                            'answer_end_idx': doc_reader.get('answer_end_idx', 0)
+                        } for doc_retrieval, doc_reader in zip(pred_answers['documents'][idx], pred_answers['answer'][idx])
                     ]
                     }
                 )
         if logging_result_pipeline:
             write_json_file(results_logging, 'logging.json')
-        logger.info(predictions)
-        logger.info(ground_truth)
         logger.info(f"Evaluate E2E pipeline: {metric_fn.compute(predictions=predictions, references=ground_truth)}")
 
 
