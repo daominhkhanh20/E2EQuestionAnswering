@@ -195,7 +195,9 @@ class MRCReader(BaseReader, ABC):
                 "answer": answer,
                 "score_start": score_start,
                 "score_end": score_end,
-                "score": score_end * score_start
+                "score": score_end * score_start,
+                'answer_start_idx': answer_start_idx,
+                'answer_end_idx': answer_end_idx
             })
         return sorted(results, key=lambda x: x['score'], reverse=True)
 

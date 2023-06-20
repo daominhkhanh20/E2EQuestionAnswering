@@ -193,6 +193,7 @@ def evaluate(config: Union[str, Text], mode,
             predictions.append(
                 {'prediction_text': ans_pred[0].get('answer', ""), 'id': str(idx)}
             )
+            ground_truth[idx]['answers']['answer_start'] = [ans_pred[0]['answer_start_idx']] * len(ground_truth[idx]['answers']['text'])
             if logging_result_pipeline:
                 results_logging.append({
                     'question': list_questions[idx],
@@ -207,7 +208,7 @@ def evaluate(config: Union[str, Text], mode,
             write_json_file(results_logging, 'logging.json')
         logger.info(predictions)
         logger.info(ground_truth)
-        logger.info(f"Evaluate E2E pipeline: {metric_fn.compute(predictions=predictions, reference=ground_truth)}")
+        logger.info(f"Evaluate E2E pipeline: {metric_fn.compute(predictions=predictions, references=ground_truth)}")
 
 
 @click.command()
