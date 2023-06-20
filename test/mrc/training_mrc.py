@@ -29,9 +29,8 @@ reader_model = MRCReader.from_pretrained(
     model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing'),
     lambda_weight=reader_config.get(DATA_ARGUMENT, {}).get(LAMBDA_WEIGHT, 0.6)
 )
-print(reader_model.model.lambda_weight)
 reader_model.init_trainer(mrc_dataset=mrc_dataset, **reader_config[MODEL])
-# reader_model.train()
+reader_model.train()
 
 
 
