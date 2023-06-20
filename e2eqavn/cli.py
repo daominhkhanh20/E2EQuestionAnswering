@@ -187,10 +187,21 @@ def evaluate(config: Union[str, Text], mode,
             top_k_sbert=top_k_sbert,
             top_k_qa=1
         )
+        if logging_result_pipeline:
+            results_logging = []
         for idx, ans_pred in enumerate(pred_answers['answer']):
             predictions.append(
                 {'prediction_text': ans_pred[0].get('answer', ""), 'id': str(idx)}
             )
+            if logging_result_pipeline:
+                results_logging.append({
+                    'question': list_questions[idx],
+                    'answer_pred': ans_pred[0].get('answer', ""),
+                    'answer_truth': ground_truth[idx],
+                    'retrieval_result': [doc.__dict__ for doc in pred_answers[idx]['documents']]
+                })
+        if logging_result_pipeline:
+            write_json_file(results_logging, 'logging.json')
         logger.info(f"Evaluate E2E pipeline: {metric_fn.compute(predictions=predictions, reference=ground_truth)}")
 
 
