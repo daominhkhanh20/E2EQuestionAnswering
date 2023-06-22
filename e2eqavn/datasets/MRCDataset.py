@@ -31,6 +31,7 @@ class MRCDataset:
         except:
             path_config = os.path.join(kwargs.get(MODEL_NAME_OR_PATH, 'config.json'))
             if os.path.isfile(path_config):
+                logger.info(f"Start load config path at {path_config}")
                 config_checkpoint = load_json_data(os.path.join(path_config))
                 name_pretrained = config_checkpoint['_name_or_path']
                 tokenizer = AutoTokenizer.from_pretrained(name_pretrained)
