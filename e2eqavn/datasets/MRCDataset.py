@@ -26,10 +26,11 @@ class MRCDataset:
         logger.info(f"Max length sentence = {kwargs.get(MAX_LENGTH, 512)}")
         if MODEL_NAME_OR_PATH not in kwargs:
             raise Exception("You must provide pretrained name for QA")
+
         try:
             tokenizer = AutoTokenizer.from_pretrained(kwargs.get(MODEL_NAME_OR_PATH))
         except:
-            path_config = os.path.join(kwargs.get(MODEL_NAME_OR_PATH, 'config.json'))
+            path_config = os.path.join(kwargs.get(MODEL_NAME_OR_PATH), 'config.json')
             if os.path.isfile(path_config):
                 logger.info(f"Start load config path at {path_config}")
                 config_checkpoint = load_json_data(os.path.join(path_config))
