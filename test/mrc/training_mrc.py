@@ -31,10 +31,10 @@ reader_model = MRCReader.from_pretrained(
 )
 reader_model.init_trainer(mrc_dataset=mrc_dataset, **reader_config[MODEL])
 # reader_model.train()
-loader = reader_model.trainer.get_train_dataloader()
-sample = next(iter(loader))
-outs = reader_model.model(**sample)
-print(outs.keys())
+# loader = reader_model.trainer.get_train_dataloader()
+# sample = next(iter(loader))
+# outs = reader_model.model(**sample)
+# print(outs.keys())
 
 
 # train_corpus = Corpus.parser_uit_squad(config_qa['data']['path_train'])
