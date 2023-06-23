@@ -38,7 +38,7 @@ def version():
     default='config/config.yaml',
     help='Path config model'
 )
-def train(config: Union[str, Text], mode: str):
+def train(config: Union[str, Text]):
     config_pipeline = load_yaml_file(config)
     train_corpus = Corpus.parser_uit_squad(
         config_pipeline[DATA][PATH_TRAIN],
