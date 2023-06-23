@@ -123,7 +123,7 @@ class QATextProcessor:
     def make_example(self, corpus: Corpus, **kwargs):
         if kwargs.get(MAKE_NEGATIVE_MRC, False):
             logger.info("Turn on mode make negative sample for mrc")
-            logger.info("Start sampling negative by BM25")
+            logger.info(f"Start sampling negative by BM25 with {kwargs.get(THRESHOLD_SAMPLING, 0.2) *100} % corpus")
             bm25_scoring = BM25Scoring(corpus=[doc.document_context for doc in corpus.list_document])
         list_documents = corpus.list_document
         examples = []
