@@ -106,6 +106,15 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
                         loss_fct(start_logits[list_negative, :], start_positions[list_negative]) +
                         loss_fct(end_logits[list_negative, :], end_positions[list_negative])
                 )
+                total_loss += self.lambda_weight * (
+                    torch.sum(torch.clamp(
+                        torch.argmax(start_logits, dim=-1) - 0.9, min=0
+                    ))
+                    +
+                    torch.sum(torch.clamp(
+                        torch.argmax(end_logits, dim=-1) - 0.9, min=0
+                    ))
+                )
 
         if not return_dict:
             output = (start_logits, end_logits) + outputs[2:]
