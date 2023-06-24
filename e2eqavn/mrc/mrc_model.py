@@ -108,11 +108,11 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
                 )
                 total_loss += self.lambda_weight * (
                     torch.sum(torch.clamp(
-                        torch.argmax(start_logits, dim=-1) - 0.9, min=0
+                        torch.max(start_logits, dim=-1)[0] - 0.9, min=0
                     ))
                     +
                     torch.sum(torch.clamp(
-                        torch.argmax(end_logits, dim=-1) - 0.9, min=0
+                        torch.max(end_logits, dim=-1)[0] - 0.9, min=0
                     ))
                 )
 
