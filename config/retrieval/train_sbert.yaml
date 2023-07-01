@@ -1,0 +1,43 @@
+data:
+  path_train: data/UITSquad/train.json
+  path_evaluator: data/UITSquad/dev.json
+
+config_data:
+  max_length_document: 300
+  mode_chunking: false
+  overlapping_size: 80
+
+retrieval:
+  is_train: false
+  parameters:
+    method_generation: sbert
+    method_train: triplet
+    n_negative: 2
+  model:
+    model_name_or_path: khanhbk20/vn-sentence-embedding
+    model_save_path: model/sbert
+    batch_size: 32
+    epochs: 10
+    loss_fn_config:
+      name: MultipleNegativesRankingLoss
+
+reader:
+  is_train: false
+  data_argument:
+    make_negative_mrc: true
+    threshold_sampling: 0.1
+    lambda_weight: 0.2
+
+  model:
+    model_name_or_path: 'khanhbk20/mrc_dev'
+    num_train_epochs: 2
+    learning_rate: 5e-5
+    batch_size_training: 16
+    batch_size_eval: 16
+    gradient_accumulation_steps: 1
+    save_strategy: epoch
+    logging_strategy: steps
+    metric_for_best_model: f1
+    logging_step: 1
+    max_length: 368
+    output_dir: model/qa
