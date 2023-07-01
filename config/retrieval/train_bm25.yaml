@@ -8,7 +8,7 @@ config_data:
   overlapping_size: 80
 
 retrieval:
-  is_train: false
+  is_train: true
   parameters:
     method_generation: bm25
     method_train: triplet
