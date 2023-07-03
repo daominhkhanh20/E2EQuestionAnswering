@@ -82,7 +82,7 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
         start_logits = start_logits.squeeze(-1).contiguous()
         end_logits = end_logits.squeeze(-1).contiguous()
 
-        total_loss = None
+        total_loss = 0
         if start_positions is not None and end_positions is not None:
             # If we are on multi-GPU, split add a dimension
             if len(start_positions.size()) > 1:
@@ -95,15 +95,25 @@ class MRCQuestionAnsweringModel(RobertaPreTrainedModel, ABC):
             end_positions = end_positions.clamp(0, ignored_index)
             list_negative = torch.where(is_negative_sample == 0)[0]
             list_positive = torch.where(is_negative_sample == 1)[0]
-
             loss_fct = nn.CrossEntropyLoss(ignore_index=ignored_index)
-            start_loss = loss_fct(start_logits[list_positive, :], start_positions[list_positive])
-            end_loss = loss_fct(end_logits[list_positive, :], end_positions[list_positive])
-            total_loss = (start_loss + end_loss) / 2
-            if list_negative.size(0) == 0:
+            if list_positive.size(0) > 0:
+                start_loss = loss_fct(start_logits[list_positive, :], start_positions[list_positive])
+                end_loss = loss_fct(end_logits[list_positive, :], end_positions[list_positive])
+                total_loss += (start_loss + end_loss) / 2
+
+            if list_negative.size(0) > 0:
                 total_loss += 1 / 2 * self.lambda_weight * (
                         loss_fct(start_logits[list_negative, :], start_positions[list_negative]) +
                         loss_fct(end_logits[list_negative, :], end_positions[list_negative])
+                )
+                total_loss += self.lambda_weight * (
+                    torch.sum(torch.clamp(
+                        torch.max(start_logits, dim=-1)[0] - 0.9, min=0
+                    ))
+                    +
+                    torch.sum(torch.clamp(
+                        torch.max(end_logits, dim=-1)[0] - 0.9, min=0
+                    ))
                 )
 
         if not return_dict:
