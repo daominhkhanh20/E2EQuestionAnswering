@@ -1,6 +1,10 @@
 from setuptools import setup, find_packages
 from setuptools.command.install import install as _install
 from e2eqavn import __version__
+from pathlib import Path
+import os
+current_directory = Path(os.getcwd())
+long_description = (current_directory / "README.md").read_text()
 
 
 class Install(_install):
@@ -24,6 +28,9 @@ setup(
     install_requires=required_packages,
     python_requires='>3.6.0',
     author='khanhdm',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
+    github='https://github.com/daominhkhanh20/E2EQuestionAnswering',
     author_email='khanhc1k36@gmail.com',
     entry_points={
         'console_scripts': [
