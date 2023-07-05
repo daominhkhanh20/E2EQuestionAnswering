@@ -14,7 +14,7 @@ retrieval:
     method_train: triplet
     n_negative: 4
   model:
-    model_name_or_pa:th: khanhbk20/vn-sentence-embedding
+    model_name_or_pa:th: sentence-transformers/quora-distilbert-multilingual
     model_save_path: model/sbert
     batch_size: 32
     epochs: 6

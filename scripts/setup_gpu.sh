@@ -17,7 +17,7 @@ export PATH=/root/miniconda3/bin:$PATH
 
 cd /workspace/E2EQuestionAnswering
 git checkout develop
-pip install -r requirements.txt
+pip install .
 
 tmux new -s train_rcm
 export PYTHONPATH=./
