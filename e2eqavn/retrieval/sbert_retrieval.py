@@ -120,11 +120,13 @@ class SBertRetrieval(BaseRetrieval, ABC):
                  corpus: Corpus = None,
                  corpus_embedding: Union[np.array, torch.Tensor] = None,
                  convert_to_numpy: bool = False,
+                 pretrained_model_name: str = None,
                  convert_to_tensor: bool = False):
         self.list_documents: List[Document] = None
         self.model = model
         self.device = device
         self.corpus = corpus
+        self.pretrained_model_name = pretrained_model_name
         self.corpus_embedding = corpus_embedding
         self.convert_to_tensor = convert_to_tensor
         self.convert_to_numpy = convert_to_numpy
@@ -171,14 +173,18 @@ class SBertRetrieval(BaseRetrieval, ABC):
         :return:
         """
         path_corpus_embedding = kwargs.get('path_corpus_embedding', 'model/retrieval/corpus_embedding.pth')
+        folder = path_corpus_embedding.rsplit('/', 1)[0]
         self.list_documents = deepcopy(corpus.list_document)
         flag = True
         if os.path.isfile(path_corpus_embedding):
             logger.info(f"Loading corpus embedding at {path_corpus_embedding}")
             tmp_corpus_embedding = torch.load(path_corpus_embedding, map_location=self.device)
-            if len(tmp_corpus_embedding) != len(self.list_documents):
+            config = load_json_data(os.path.join(folder, 'config.json'))
+            if len(tmp_corpus_embedding) != len(self.list_documents) or \
+                    self.pretrained_model_name != config['pretrained_model_name']:
                 flag = False
-            self.corpus_embedding = tmp_corpus_embedding
+            else:
+                self.corpus_embedding = tmp_corpus_embedding
 
         if not os.path.isfile(path_corpus_embedding) or not flag:
             logger.info(f"Start encoding corpus with {len(corpus.list_document)} document")
@@ -192,11 +198,12 @@ class SBertRetrieval(BaseRetrieval, ABC):
                 device=self.device,
                 **kwargs
             )
-            folder = path_corpus_embedding.rsplit('/', 1)[0]
             if not os.path.exists(folder):
                 os.makedirs(folder, exist_ok=True)
             torch.save(self.corpus_embedding, path_corpus_embedding)
             logger.info(f"Save corpus embedding at {path_corpus_embedding}")
+            config = {'pretrained_model_name': self.pretrained_model_name}
+            write_json_file(data=config, path_file=os.path.join(folder, 'config.json'))
 
     def query_by_embedding(self, query: List[str], top_k: int, **kwargs):
         """
@@ -230,4 +237,4 @@ class SBertRetrieval(BaseRetrieval, ABC):
     def from_pretrained(cls, model_name_or_path: str, **kwargs):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model = SentenceBertLearner.from_pretrained(model_name_or_path)
-        return cls(model=model, device=device)
+        return cls(model=model, device=device, pretrained_model_name=model_name_or_path)
