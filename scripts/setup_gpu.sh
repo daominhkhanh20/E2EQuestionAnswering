@@ -23,6 +23,9 @@ tmux new -s train_rcm
 export PYTHONPATH=./
 python3 test/mrc/training_mrc.py
 
+kaggle datasets init -p model
+kaggle datasets create -p model -r zip 
+
 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
 git config --global user.email "khanhc1k36@gmail.com"
 git config --global user.name "daominhkhanh20"

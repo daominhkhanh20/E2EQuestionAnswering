@@ -16,8 +16,8 @@ retrieval:
   model:
     model_name_or_path: sentence-transformers/paraphrase-multilingual-mpnet-base-v2
     model_save_path: model/bm25
-    batch_size: 32
-    epochs: 20
+    batch_size: 16
+    epochs: 10
     loss_fn_config:
       name: MultipleNegativesRankingLoss
 
