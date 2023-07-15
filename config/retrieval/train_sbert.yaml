@@ -14,7 +14,7 @@ retrieval:
     method_train: triplet
     n_negative: 4
   model:
-    model_name_or_pa:th: sentence-transformers/quora-distilbert-multilingual
+    model_name_or_pa:th: sentence-transformers/paraphrase-multilingual-mpnet-base-v2
     model_save_path: model/sbert
     batch_size: 32
     epochs: 15
@@ -31,7 +31,7 @@ reader:
   model:
     model_name_or_path: 'khanhbk20/mrc_dev'
     num_train_epochs: 2
-    learning_rate: 5e-5
+    learning_rate: 1e-5
     batch_size_training: 16
     batch_size_eval: 16
     gradient_accumulation_steps: 1
