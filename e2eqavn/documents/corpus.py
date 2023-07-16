@@ -141,10 +141,12 @@ class Corpus:
                 for question in context[qas_key]:
                     if not is_vnsquad_eval:
                         for answer in question[answers_key]:
+                            if answer_key not in answer:
+                                continue
                             dict_question_answers[question[question_key]].append(
                                 {
                                     answer_key: answer[answer_key],
-                                    answer_start: answer[answer_start]
+                                    answer_start: answer.get(answer_start, None)
                                 }
                             )
                     else:

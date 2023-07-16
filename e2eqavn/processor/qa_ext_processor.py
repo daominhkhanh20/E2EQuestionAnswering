@@ -60,11 +60,17 @@ class QATextProcessor:
         text = text.strip()
         return text
 
+    def find_answer_start_raw(self, context: str, answer: str):
+        return context.find(answer)
+
     def process_example(self, example: dict):
         question = example[self.question_key]
         context = example[self.context_key]
         answer = example[self.answer_key]
         answer_start_raw = example[self.answer_start_key]
+        if answer_start_raw is None:
+            answer_start_raw = self.find_answer_start_raw(context=context, answer=answer)
+
         flag = False
         for step in [-1, 0, 1]:
             if context[answer_start_raw + step: answer_start_raw + step + len(answer)] == answer:
@@ -123,7 +129,7 @@ class QATextProcessor:
     def make_example(self, corpus: Corpus, **kwargs):
         if kwargs.get(MAKE_NEGATIVE_MRC, False):
             logger.info("Turn on mode make negative sample for mrc")
-            logger.info(f"Start sampling negative by BM25 with {kwargs.get(THRESHOLD_SAMPLING, 0.2) *100} % corpus")
+            logger.info(f"Start sampling negative by BM25 with {kwargs.get(THRESHOLD_SAMPLING, 0.2) * 100} % corpus")
             bm25_scoring = BM25Scoring(corpus=[doc.document_context for doc in corpus.list_document])
         list_documents = corpus.list_document
         examples = []

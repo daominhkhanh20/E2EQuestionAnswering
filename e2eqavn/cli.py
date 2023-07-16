@@ -40,10 +40,16 @@ def version():
 )
 def train(config: Union[str, Text]):
     config_pipeline = load_yaml_file(config)
-    train_corpus = Corpus.parser_uit_squad(
-        config_pipeline[DATA][PATH_TRAIN],
-        **config_pipeline.get(CONFIG_DATA, {})
-    )
+    try:
+        train_corpus = Corpus.parser_uit_squad(
+            config_pipeline[DATA][PATH_TRAIN],
+            **config_pipeline.get(CONFIG_DATA, {})
+        )
+    except:
+        train_corpus = Corpus.init_corpus(
+            config_pipeline[DATA][PATH_TRAIN],
+            **config_pipeline.get(CONFIG_DATA, {})
+        )
     retrieval_config = config_pipeline.get(RETRIEVAL, None)
     reader_config = config_pipeline.get(READER, None)
     if retrieval_config.get(IS_TRAIN, False):

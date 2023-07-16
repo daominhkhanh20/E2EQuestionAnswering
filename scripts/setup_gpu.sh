@@ -26,7 +26,7 @@ python3 test/mrc/training_mrc.py
 kaggle datasets init -p model
 kaggle datasets create -p model -r zip 
 
-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
+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
 git config --global user.email "khanhc1k36@gmail.com"
 git config --global user.name "daominhkhanh20"
 

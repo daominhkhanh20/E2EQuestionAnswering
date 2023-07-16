@@ -7,29 +7,29 @@ import wandb
 import os
 
 
-config_pipeline = load_yaml_file('config/train_qa.yaml')
-train_corpus = Corpus.parser_uit_squad(
+config_pipeline = load_yaml_file('config/train_qa1.yaml')
+train_corpus = Corpus.init_corpus(
         config_pipeline[DATA][PATH_TRAIN],
         **config_pipeline.get(CONFIG_DATA, {})
     )
 # retrieval_config = config_pipeline.get(RETRIEVAL, None)
-reader_config = config_pipeline.get(READER, None)
-eval_corpus = Corpus.parser_uit_squad(
-            config_pipeline[DATA][PATH_EVALUATOR],
-            **config_pipeline.get(CONFIG_DATA, {})
-        )
-mrc_dataset = MRCDataset.init_mrc_dataset(
-    corpus_train=train_corpus,
-    corpus_eval=eval_corpus,
-    model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing'),
-    max_length=reader_config[MODEL].get(MAX_LENGTH, 368),
-    **reader_config.get(DATA_ARGUMENT, {})
-)
-reader_model = MRCReader.from_pretrained(
-    model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing'),
-    lambda_weight=reader_config.get(DATA_ARGUMENT, {}).get(LAMBDA_WEIGHT, 0.6)
-)
-reader_model.init_trainer(mrc_dataset=mrc_dataset, **reader_config[MODEL])
+# reader_config = config_pipeline.get(READER, None)
+# eval_corpus = Corpus.parser_uit_squad(
+#             config_pipeline[DATA][PATH_EVALUATOR],
+#             **config_pipeline.get(CONFIG_DATA, {})
+#         )
+# mrc_dataset = MRCDataset.init_mrc_dataset(
+#     corpus_train=train_corpus,
+#     corpus_eval=eval_corpus,
+#     model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing'),
+#     max_length=reader_config[MODEL].get(MAX_LENGTH, 368),
+#     **reader_config.get(DATA_ARGUMENT, {})
+# )
+# reader_model = MRCReader.from_pretrained(
+#     model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing'),
+#     lambda_weight=reader_config.get(DATA_ARGUMENT, {}).get(LAMBDA_WEIGHT, 0.6)
+# )
+# reader_model.init_trainer(mrc_dataset=mrc_dataset, **reader_config[MODEL])
 # reader_model.train()
 # loader = reader_model.trainer.get_train_dataloader()
 # sample = next(iter(loader))
