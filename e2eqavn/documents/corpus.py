@@ -145,7 +145,7 @@ class Corpus:
                                 continue
                             dict_question_answers[question[question_key]].append(
                                 {
-                                    answer_key: answer[answer_key],
+                                    answer_key: normalize('NFC', answer[answer_key]),
                                     answer_start: answer.get(answer_start, None)
                                 }
                             )

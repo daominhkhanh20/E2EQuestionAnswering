@@ -14,13 +14,13 @@ train_corpus = Corpus.init_corpus(
     )
 # retrieval_config = config_pipeline.get(RETRIEVAL, None)
 reader_config = config_pipeline.get(READER, None)
-eval_corpus = Corpus.init_corpus(
+eval_corpus = Corpus.parser_uit_squad(
             config_pipeline[DATA][PATH_EVALUATOR],
             **config_pipeline.get(CONFIG_DATA, {})
         )
 mrc_dataset = MRCDataset.init_mrc_dataset(
     corpus_train=train_corpus,
-    corpus_eval=eval_corpus,
+    corpus_eval=None,
     model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_testing'),
     max_length=reader_config[MODEL].get(MAX_LENGTH, 368),
     **reader_config.get(DATA_ARGUMENT, {})

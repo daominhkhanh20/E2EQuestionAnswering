@@ -1,0 +1,17 @@
+[
+  {
+        "context": "Lý thuyết Ứng đáp Câu hỏi (Item Response Theory - IRT) là một lý thuyết của khoa học về đo lường trong giáo dục, ra đời từ nửa sau của thế kỷ 20 và phát triển mạnh mẽ cho đến nay.  Trước đó, Lý thuyết Trắc nghiệm cổ điển (Clasical Test Theory – CTT), ra đời từ khoảng cuối thế kỷ 19 và hoàn thiện vào khoảng thập niên 1970, đã có nhiều đóng góp quan trọng cho hoạt động đánh giá trong giáo dục, nhưng cũng thể hiện một số hạn chế.  Các nhà tâm trắc học (psychometricians) cố gắng xây dựng một lý thuyết hiện đại sao cho khắc phục được các hạn chế đó.  Lý thuyết trắc nghiệm hiện đại được xây dựng dựa trên mô hình toán học, đòi hỏi nhiều tính toán, nhưng nhờ sự tiến bộ vượt bậc của công nghệ tính toán bằng máy tính điện tử vào cuối thế kỷ 20 – đầu thế kỷ 21 nên nó đã phát triển nhanh chóng và đạt được những thành tựu quan trọng. . Để đánh giá đối tượng nào đó CTT tiếp cận ở cấp độ một đề kiểm tra, còn lý thuyết trắc nghiệm hiện đại tiếp cận ở cấp độ từng câu hỏi, do đó lý thuyết này thường được gọi là Lý thuyết Ứng đáp Câu hỏi.  Trong số các nhà nghiên cứu có nhiều đóng góp ban đầu cho IRT có thể kể các tên Lord, F. M.  . v. v. . . Chúng ta sẽ quy ước gọi một con người có thuộc tính cần đo lường là thí sinh (person -TS) và một đơn vị của công cụ để đo lường (test) là câu hỏi (item –CH).  Để đơn giản hóa cho mô hình nghiên cứu xuất phát có thể đưa ra các giả thiết sau đây:. - Năng lực tiềm ẩn (latent trait) cần đo chỉ có một chiều (unidimensionality), hoặc ta chỉ đo một chiều của năng lực đó. ",
+        "id": "64b2ae376ffa229514911ace",
+        "qas": [
+            {
+                "question": "Lý thuyết Ứng đáp Câu hỏi (IRT) được xây dựng dựa trên gì?",
+                "answers": [
+                    {
+                        "text": "Lý thuyết trắc nghiệm hiện đại được xây dựng dựa trên mô hình toán học",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    }
+]

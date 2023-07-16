@@ -70,7 +70,6 @@ class QATextProcessor:
         answer_start_raw = example[self.answer_start_key]
         if answer_start_raw is None:
             answer_start_raw = self.find_answer_start_raw(context=context, answer=answer)
-
         flag = False
         for step in [-1, 0, 1]:
             if context[answer_start_raw + step: answer_start_raw + step + len(answer)] == answer:
