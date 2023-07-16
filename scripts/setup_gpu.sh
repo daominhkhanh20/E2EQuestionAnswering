@@ -18,6 +18,7 @@ export PATH=/root/miniconda3/bin:$PATH
 cd /workspace/E2EQuestionAnswering
 git checkout develop
 pip install .
+python3 -c "import nltk;nltk.download('punkt')"
 
 tmux new -s train_rcm
 export PYTHONPATH=./
