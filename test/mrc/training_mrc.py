@@ -14,7 +14,7 @@ train_corpus = Corpus.init_corpus(
     )
 # retrieval_config = config_pipeline.get(RETRIEVAL, None)
 reader_config = config_pipeline.get(READER, None)
-eval_corpus = Corpus.parser_uit_squad(
+eval_corpus = Corpus.init_corpus(
             config_pipeline[DATA][PATH_EVALUATOR],
             **config_pipeline.get(CONFIG_DATA, {})
         )

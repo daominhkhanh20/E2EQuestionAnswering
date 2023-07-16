@@ -69,10 +69,17 @@ def train(config: Union[str, Text]):
         )
 
     if reader_config.get(IS_TRAIN, False):
-        eval_corpus = Corpus.parser_uit_squad(
-            config_pipeline[DATA][PATH_EVALUATOR],
-            **config_pipeline.get(CONFIG_DATA, {})
-        )
+        try:
+            eval_corpus = Corpus.parser_uit_squad(
+                config_pipeline[DATA][PATH_EVALUATOR],
+                **config_pipeline.get(CONFIG_DATA, {})
+            )
+        except:
+            eval_corpus = Corpus.init_corpus(
+                config_pipeline[DATA][PATH_EVALUATOR],
+                **config_pipeline.get(CONFIG_DATA, {})
+            )
+
         mrc_dataset = MRCDataset.init_mrc_dataset(
             corpus_train=train_corpus,
             corpus_eval=eval_corpus,
