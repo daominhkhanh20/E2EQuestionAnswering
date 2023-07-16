@@ -24,8 +24,8 @@ retrieval:
 reader:
   is_train: true
   model:
-    model_name_or_path: 'nguyenvulebinh/vi-mrc-large'
-    num_train_epochs: 5
+    model_name_or_path: 'khanhbk20/mrc_dev'
+    num_train_epochs: 10
     learning_rate: 5e-5
     batch_size_training: 8
     batch_size_eval: 8
