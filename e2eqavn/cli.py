@@ -131,7 +131,8 @@ def evaluate(config: Union[str, Text], mode,
         config_pipeline[DATA][PATH_EVALUATOR],
         **config_pipeline.get(CONFIG_DATA, {})
     )
-    if mode == 'pipeline':
+    if mode in ['retrieval', 'pipeline', 'bm25']:
+        logger.info("Start loading BM25")
         bm25_retrieval = BM25Retrieval(corpus=eval_corpus)
         pipeline.add_component(
             component=bm25_retrieval,
@@ -139,6 +140,7 @@ def evaluate(config: Union[str, Text], mode,
         )
 
     if mode in ['retrieval', 'pipeline'] and retrieval_config:
+        logger.info("Start loading Sbert")
         corpus, queries, relevant_docs = make_input_for_retrieval_evaluator(
             path_data_json=config_pipeline[DATA][PATH_EVALUATOR]
         )
@@ -148,18 +150,20 @@ def evaluate(config: Union[str, Text], mode,
             component=retrieval_model,
             name_component='sbert_retrieval'
         )
-        if mode == 'retrieval':
-            logger.info("Start evaluate retrieval")
-            information_evaluator = InformationRetrievalEvaluatorCustom(
-                queries=queries,
-                corpus=corpus,
-                relevant_docs=relevant_docs
-            )
-            information_evaluator.compute_metrices_retrieval(
-                pipeline=pipeline
-            )
+
+    if mode in ['retrieval', 'bm25']:
+        logger.info("Start evaluate retrieval")
+        information_evaluator = InformationRetrievalEvaluatorCustom(
+            queries=queries,
+            corpus=corpus,
+            relevant_docs=relevant_docs
+        )
+        information_evaluator.compute_metrices_retrieval(
+            pipeline=pipeline
+        )
 
     if mode in ['reader', 'pipeline'] and reader_config:
+        logger.info("Start loading Reader")
         mrc_dataset = MRCDataset.init_mrc_dataset(
             corpus_eval=eval_corpus,
             model_name_or_path=reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_dev'),
