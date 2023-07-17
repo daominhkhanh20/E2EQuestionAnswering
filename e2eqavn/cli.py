@@ -138,12 +138,11 @@ def evaluate(config: Union[str, Text], mode,
             component=bm25_retrieval,
             name_component='bm25_retrieval'
         )
-
+    corpus, queries, relevant_docs = make_input_for_retrieval_evaluator(
+        path_data_json=config_pipeline[DATA][PATH_EVALUATOR]
+    )
     if mode in ['retrieval', 'pipeline'] and retrieval_config:
         logger.info("Start loading Sbert")
-        corpus, queries, relevant_docs = make_input_for_retrieval_evaluator(
-            path_data_json=config_pipeline[DATA][PATH_EVALUATOR]
-        )
         retrieval_model = SBertRetrieval.from_pretrained(retrieval_config[MODEL][MODEL_NAME_OR_PATH])
         retrieval_model.update_embedding(eval_corpus)
         pipeline.add_component(
