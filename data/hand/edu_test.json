@@ -1,0 +1,1262 @@
+[
+    {
+        "context": "Trong khoa học tự nhiên và khoa học xã hội, nghiên cứu định lượng (quantitative research) là điều tra thực nghiệm có hệ thống về các hiện tượng quan sát được qua số liệu thống kê, toán học hoặc số hoặc kỹ thuật vi tính.  Trong điều kiện thường, điều này có nghĩa là các nhà nghiên cứu định lượng yêu cầu một câu hỏi cụ thể và thu thập một mẫu dữ liệu số từ hiện tượng quan sát hay từ nghiên cứu người tham gia trả lời các câu hỏi.  Các nhà nghiên cứu phân tích các dữ liệu với sự giúp đỡ của các số liệu thống kê.  Các nhà nghiên cứu hy vọng con số sẽ mang lại một kết quả không thiên vị mà có thể được khái quát hóa cho một số lượng dân số lớn hơn.  Ngược lại, nghiên cứu định tính là đặt câu hỏi rộng và thu thập dữ liệu từ hiện tượng hoặc người tham gia.  Các nhà nghiên cứu tìm kiếm các chủ đề và mô tả các thông tin trong các chủ đề và các xu hướng đặc thù của tập hợp các thành viên tham gia. . Trong khoa học xã hội, nghiên cứu định lượng được sử dụng rộng rãi trong tâm lý học, kinh tế học, xã hội học, tiếp thị, y tế cộng đồng, y tế và phát triển con người, giới tính và khoa học chính trị, và ít thường xuyên trong nhân chủng học và lịch sử.  Nghiên cứu trong khoa học toán học như vật lý cũng là \"định lượng\" theo định nghĩa, mặc dù điều này sử dụng các thuật ngữ khác tùy theo ngữ cảnh.  Trong các ngành khoa học xã hội, thuật ngữ liên quan đến phương pháp thực nghiệm, có nguồn gốc ở cả chủ nghĩa thực chứng triết học và lịch sử của thống kê, điều này tương phản với các phương pháp nghiên cứu định tính. ",
+        "id": "64b2ae306ffa229514911ab5",
+        "qas": [
+            {
+                "question": "Nghiên cứu định lượng được sử dụng rộng rãi trong lĩnh vực nào?",
+                "answers": [
+                    {
+                        "text": "nghiên cứu định lượng được sử dụng rộng rãi trong tâm lý học, kinh tế học, xã hội học, tiếp thị, y tế cộng đồng, y tế và phát triển con người, giới tính và khoa học chính trị, và ít thường xuyên trong nhân chủng học và lịch sử.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Đề tài nghiên cứu khoa học là một hoặc nhiều vấn đề khoa học chứa đựng những điều chưa biết hoặc chưa rõ nhưng đã xuất hiện tiền đề và có khả năng biết được nhằm giải đáp các vấn đề đặt ra trong khoa học hoặc trong thực tiễn.  Hay nói cách khác, đề tài nghiên cứu khoa học được đặt ra do yêu cầu của lý luận hoặc thực tiễn và thoả mãn các điều kiện: vấn đề khoa học đang chứa mâu thuẫn giữa cái đã biết với cái chưa biết; và có khả năng giải quyết mâu thuẫn đó. . Một đề tài nghiên cứu khoa học phải có ý nghĩa khoa học nhằm bổ sung nội dung lý thuyết của khoa học; làm rõ một số vấn đề lý thuyết vốn tồn tại; xây dựng cơ sở lý thuyết mới hoặc xây dựng nguyên lý các giải pháp khác nhau trong kỹ thuật, công nghệ, tổ chức, quản lý. . . . Bên cạnh đó, đề tài phải có tính thực tiễn hỗ trợ xây dựng luận cứ cho các chương trình phát triển kinh tế xã hội; nhu cầu kỹ thuật của sản xuất; nhu cầu về tổ chức, quản lý, thị trường. . .  Đồng thời, phải có tính cấp thiết đối với thời điểm tiến hành nghiên cứu, giải quyết những vấn đề nóng bỏng, mang tính thời sự và đem lại giá trị thiết thực cho lý luận và thực tiễn, đóng góp cho sự phát triển của khoa học và đời sống. . Một đề tài nghiên cứu khoa học luôn mang tính mới mẻ, thời sự, hướng vào những lĩnh vực hoạt động phức tạp, đa dạng của khoa học và đời sống, hướng tới những vấn đề chưa được giải quyết triệt để trong lĩnh vực nghiên cứu khoa học nào đó. . ",
+        "id": "64b2ae316ffa229514911ab8",
+        "qas": [
+            {
+                "question": "Đề tài nghiên cứu khoa học là gì?",
+                "answers": [
+                    {
+                        "text": "Đề tài nghiên cứu khoa học là một hoặc nhiều vấn đề khoa học chứa đựng những điều chưa biết hoặc chưa rõ nhưng đã xuất hiện tiền đề và có khả năng biết được nhằm giải đáp các vấn đề đặt ra trong khoa học hoặc trong thực tiễn.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Đề tài nghiên cứu khoa học cần đáp ứng những tiêu chí gì?",
+                "answers": [
+                    {
+                        "text": "thoả mãn các điều kiện: vấn đề khoa học đang chứa mâu thuẫn giữa cái đã biết với cái chưa biết; và có khả năng giải quyết mâu thuẫn đó.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Đề tài nghiên cứu khoa học cần hướng tới những lĩnh vực nào?",
+                "answers": [
+                    {
+                        "text": "hướng vào những lĩnh vực hoạt động phức tạp, đa dạng của khoa học và đời sống, hướng tới những vấn đề chưa được giải quyết triệt để trong lĩnh vực nghiên cứu khoa học nào đó.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Nghiên cứu thuần tập (hay còn gọi là nghiên cứu đoàn hệ, nghiên cứu theo dõi, nghiên cứu mới mắc) là một dạng nghiên cứu dọc, lấy mẫu là nhóm thuần tập (một nhóm người có chung một đặc điểm xác định, thường là những người đã trải qua một sự kiện chung trong một thời gian xác định)..Nghiên cứu thuần tập đại diện cho một trong những thiết kế cơ bản của dịch tễ học được sử dụng trong nghiên cứu trong các lĩnh vực y, dược, điều dưỡng, tâm lý học, khoa học xã hội và trong bất kỳ lĩnh vực nào dựa vào các câu trả lời 'khó tiếp cận' dựa trên bằng chứng (thống kê). Ví dụ, trong y học, để đánh giá độ an toàn của dược phẩm mới được phát triển trước khi được chấp thuận bán thì cần trải qua nhiều cuộc thử nghiệm lâm sàng. Phân tích dịch tễ học về cách các yếu tố nguy cơ ảnh hưởng đến tỷ lệ mắc bệnh thường được sử dụng để xác định nguyên nhân gây bệnh ngay từ đầu, và để giúp đưa ra lời diễn giải tiền lâm sàng về tính hợp lý của các yếu tố bảo vệ (phương pháp điều trị).",
+        "id": "64b2ae316ffa229514911ab9",
+        "qas": [
+            {
+                "question": "Nghiên cứu thuần tập là gì?",
+                "answers": [
+                    {
+                        "text": "là một dạng nghiên cứu dọc, lấy mẫu là nhóm thuần tập (một nhóm người có chung một đặc điểm xác định, thường là những người đã trải qua một sự kiện chung trong một thời gian xác định)",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Nghiên cứu thuần tập được sử dụng trong những lĩnh vực nào?",
+                "answers": [
+                    {
+                        "text": "Nghiên cứu thuần tập đại diện cho một trong những thiết kế cơ bản của dịch tễ học được sử dụng trong nghiên cứu trong các lĩnh vực y, dược, điều dưỡng, tâm lý học, khoa học xã hội và trong bất kỳ lĩnh vực nào dựa vào các câu trả lời 'khó tiếp cận' dựa trên bằng chứng",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Nghiên cứu thuần tập được áp dụng trong trường hợp nào?",
+                "answers": [
+                    {
+                        "text": "Ví dụ, trong y học, để đánh giá độ an toàn của dược phẩm mới được phát triển trước khi được chấp thuận bán thì cần trải qua nhiều cuộc thử nghiệm lâm sàng. ",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Trung tâm Nghiên cứu Khoa học Quốc gia Pháp (tiếng Pháp: Centre National de la Recherche Scientifique), gọi tắt là CNRS là cơ quan nghiên cứu thuộc chính phủ lớn nhất tại Pháp và là cơ sở nghiên cứu khoa học cơ bản lớn nhất ở châu Âu . . CNRS đứng hạng 4 trên thế giới, sau Viện Y tế Quốc gia (National Institutes of Health, NIH), NASA và W3C của Hoa Kỳ, và được xếp hạng nhất ở châu Âu, trước Max Planck-Gesellschaft của Đức và CERN về số lượt truy cập vào trang web theo Bảng xếp hạng Webometrics vào năm 2010 . . CNRS hoạt động trong mọi lĩnh vực của khoa học thông qua 1 100 tế bào là các đơn vị nghiên cứu, hoặc được quản lý chỉ bởi CNRS với tên gọi là UPR (Unité propre de recherche, tạm dịch là: đơn vị thuần nghiên cứu) hoặc phần lớn được quản lý cùng với các cơ quan khác (các trường đại học, cao đẳng, các cơ sở công nghiệp,. . . ) với tên gọi là UMR (Unité mixte de recherche, tạm dịch là: đơn vị phối hợp nghiên cứu).  Mỗi đơn vị nghiên cứu có một mã CNRS duy nhất, thí dụ UMR 8182, được lãnh đạo bởi một giám đốc thường là một giáo sư đại học hoặc một nghiên cứu viên cao cấp của CNRS (Directeur de recherche).  Một đơn vị nghiên cứu có thể được chia thành các nhóm nghiên cứu.  Để hỗ trợ cho lực lượng nghiên cứu, CNRS cũng tổ chức ra các UPS (Unité propre de service, tạm dịch là: cơ quan dịch vụ thuần) hoặc UMS (Unité mixte de service, tạm dịch là: cơ quan dịch vụ phối hợp) và cũng có mã CNRS xác định.  Công việc của một UPS hay UMS là cung cấp các dịch vụ về hành chính, tin học, thư viện, kỹ thuật,. . .  Các đơn vị tế bào này được tổ chức phụ thuộc vào các viện. ",
+        "id": "64b2ae326ffa229514911aba",
+        "qas": [
+            {
+                "question": "Trung tâm Nghiên cứu Khoa học Quốc gia Pháp (CNRS) là gì?",
+                "answers": [
+                    {
+                        "text": "là cơ quan nghiên cứu thuộc chính phủ lớn nhất tại Pháp và là cơ sở nghiên cứu khoa học cơ bản lớn nhất ở châu Âu",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "CNRS có được xếp hạng như thế nào trong quốc tế?",
+                "answers": [
+                    {
+                        "text": "CNRS đứng hạng 4 trên thế giới, sau Viện Y tế Quốc gia (National Institutes of Health, NIH), NASA và W3C của Hoa Kỳ",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "CNRS hoạt động trong lĩnh vực nào?",
+                "answers": [
+                    {
+                        "text": "CNRS hoạt động trong mọi lĩnh vực của khoa học",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Một chương trình nghiên cứu là một mạng lưới chuyên nghiệp của các nhà khoa học thực hiện nghiên cứu cơ bản. Thuật ngữ được sử dụng bởi nhà triết học về khoa học Imre Lakatos để kết hợp và chỉnh sửa mô hình khoa học chuẩn tắc là thuyết kiểm sai của Karl Popper và mô hình mang tính mô tả của Thomas Kuhn về khoa học bình thường. Lakatos nhận thấy thuyết kiểm sai là không thực tế và thường không được áp dụng, còn khoa học thông thường – nơi một hệ hình khoa học, đóng vai trò là một mẫu hình (exemplar), loại trừ các quan điểm khác biệt – thường độc tài hơn thực tế diễn ra..Lakatos nhận thấy rằng nhiều chương trình nghiên cứu có thể cùng tồn tại, mỗi loại chương trình có một lõi cứng gồm tập hợp các lý thuyết được miễn nhiễm với sự xét lại, xung quanh là một vành đai bảo vệ của những lý thuyết mềm hơn.",
+        "id": "64b2ae326ffa229514911abb",
+        "qas": [
+            {
+                "question": "Chương trình nghiên cứu là gì?",
+                "answers": [
+                    {
+                        "text": "Một chương trình nghiên cứu là một mạng lưới chuyên nghiệp của các nhà khoa học thực hiện nghiên cứu cơ bản.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Ai đã đề xuất thuật ngữ \"chương trình nghiên cứu\"?",
+                "answers": [
+                    {
+                        "text": "Thuật ngữ được sử dụng bởi nhà triết học về khoa học Imre Lakatos để kết hợp và chỉnh sửa mô hình khoa học chuẩn tắc là thuyết kiểm sai của Karl Popper và mô hình mang tính mô tả của Thomas Kuhn về khoa học bình thường.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Thẩm định của đồng nghiệp hay đồng nghiệp thẩm định (tiếng Anh: peer review, có khi được dịch là bình duyệt) là một quá trình tự giám sát và đánh giá bởi một hội đồng chuyên gia hoặc là quá trình đánh giá có sự tham gia của các cá nhân uy tín trong lĩnh vực đó.  Các phương pháp bình duyệt được sử dụng để đảm bảo chất lượng, nâng cao kết quả và tạo ra sự uy tín.  Trong học thuật, peer review thường được sử dụng để xác định một bài viết nghiên cứu (paper) có đủ khả năng để đăng lên tạp chí hay không. . Trong trường hợp xét duyệt một bài báo có thích hợp để đăng hay không, thư ký tòa soạn (editor) sẽ gửi bản thảo của bài báo đó tới một số nhà nghiên cứu hoặc học giả, những người chuyên gia trong lĩnh vực của bài báo (được gọi là thành viên hội đồng bình duyệt hay người phản biện).  Thông thường một bài báo có hai người phản biện. . Hai chuyên gia đó độc lập gửi lại một bản đánh giá về bài báo cho thư ký tòa soạn, đưa ra các nhận xét về ưu điểm; nhược điểm, vấn đề của bài báo, cái gì có thể cần khắc phục.  Thông thường, tác giả bài báo sẽ được đọc các nhận xét này (tác giả sẽ không được biết ai phản biện).  Thư ký tòa soạn, cũng phải là người hiểu biết về lĩnh vực của bài viết, mặc dù không sâu bằng các chuyên gia, sẽ đánh giá các nhận xét, nhận xét bổ sung và đưa ra kết luận gửi tới tác giả. . Thông thường, những người phản biện sẽ đưa ra nhận xét là: bài viết có thể được đăng, có thể được đăng sau khi sửa, từ chối nhưng khuyến khích hướng nghiên cứu nên tạo điều kiện nộp lại bài, hoàn toàn từ chối. . Tất cả các tạp chí uy tín trên thế giới đều là có bình duyệt",
+        "id": "64b2ae326ffa229514911abc",
+        "qas": [
+            {
+                "question": "Bình duyệt là gì?",
+                "answers": [
+                    {
+                        "text": "là một quá trình tự giám sát và đánh giá bởi một hội đồng chuyên gia hoặc là quá trình đánh giá có sự tham gia của các cá nhân uy tín trong lĩnh vực đó.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Ai tham gia vào quá trình bình duyệt bài báo?",
+                "answers": [
+                    {
+                        "text": "Trong trường hợp xét duyệt một bài báo có thích hợp để đăng hay không, thư ký tòa soạn (editor) sẽ gửi bản thảo của bài báo đó tới một số nhà nghiên cứu hoặc học giả, những người chuyên gia trong lĩnh vực của bài báo",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Thông thường, những nhận xét của người phản biện sẽ có nội dung gì??",
+                "answers": [
+                    {
+                        "text": "Thông thường, những người phản biện sẽ đưa ra nhận xét là: bài viết có thể được đăng, có thể được đăng sau khi sửa, từ chối nhưng khuyến khích hướng nghiên cứu nên tạo điều kiện nộp lại bài, hoàn toàn từ chối.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Thí nghiệm, hay thực nghiệm, là một bước trong phương pháp khoa học dùng để phân minh giữa mô hình khoa học hay giả thuyết.  Thí nghiệm hoặc kiểm nghiệm có thể được thực hiện bằng phương pháp khoa học để trả lời một câu hỏi hoặc khảo sát vấn đề.  Trước tiên đó là thực hiện quan sát.  Sau đó đặt ra câu hỏi, hoặc nảy sinh vấn đề.  Sau đó, giả thuyết được hình thành.  Tiếp đến thí nghiệm được đưa ra để kiểm tra giả thuyết.  Kết quả thí nghiệm được phân tích, rồi vạch ra kết luận, đôi khi một lý thuyết được hình thành từ kết quả thí nghiệm, và các kết quả được công bố trên các tạp chí nghiên cứu. . Một thí nghiệm thường có mục đích chính là kiểm tra giả thuyết.  Tuy nhiên, thí nghiệm cũng được dùng để kiểm chứng câu hỏi hoặc kiểm tra kết quả trước đó. . Điều quan trọng là chúng ta phải biết mọi yếu tố trong một thí nghiệm.  Và cũng rất quan trọng khi các kết quả thí nghiệm càng chính xác càng tốt.  Nếu thí nghiệm được thực hiện cẩn thận, thì các kết quả thường là ủng hộ hoặc bác bỏ giả thuyết.  Và thí nghiệm không bao giờ có thể \"chứng minh\" một giả thuyết, nó chỉ có thể ủng hộ thêm mà thôi.  Tuy nhiên, nếu một ai đó lặp lại thí nghiệm mà thu được kết quả mâu thuẫn với các thí nghiệm trước thì nó có thể bác bỏ được lý thuyết hay giả thuyết.  Thí nghiệm cũng phải kiểm soát được các yếu tố gây nhiễu—bất kỳ yếu tố nào làm ảnh hưởng đến độ chính xác hoặc tính lặp lại của thí nghiệm hoặc khả năng giải thích kết quả thí nghiệm. . Thí nghiệm không phải là phương pháp duy nhất mà các nhà khoa học sử dụng để kiểm tra giả thuyết",
+        "id": "64b2ae326ffa229514911abd",
+        "qas": [
+            {
+                "question": " Thí nghiệm được sử dụng để làm gì trong phương pháp khoa học?",
+                "answers": [
+                    {
+                        "text": "Thí nghiệm, hay thực nghiệm, là một bước trong phương pháp khoa học dùng để phân minh giữa mô hình khoa học hay giả thuyết.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": " Thí nghiệm được thực hiện như thế nào?",
+                "answers": [
+                    {
+                        "text": "được thực hiện bằng phương pháp khoa học để trả lời một câu hỏi hoặc khảo sát vấn đề. Trước tiên đó là thực hiện quan sát. Sau đó đặt ra câu hỏi, hoặc nảy sinh vấn đề. Sau đó, giả thuyết được hình thành. Tiếp đến thí nghiệm được đưa ra để kiểm tra giả thuyết. Kết quả thí nghiệm được phân tích, rồi vạch ra kết luận, đôi khi một lý thuyết được hình thành từ kết quả thí nghiệm, và các kết quả được công bố trên các tạp chí nghiên cứu.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Thí nghiệm có thể chứng minh được giả thuyết không?",
+                "answers": [
+                    {
+                        "text": "thí nghiệm không bao giờ có thể \"chứng minh\" một giả thuyết, nó chỉ có thể ủng hộ thêm mà thôi.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Viện nghiên cứu (tiếng Anh: research institute) là một cơ sở dành riêng cho hoạt động nghiên cứu. Các viện nghiên cứu có thể tập trung vào nghiên cứu cơ bản hoặc có thể có định hường nghiên cứu ứng dụng. Mặc dù thuật ngữ thường chỉ những cơ sở nghiên cứu khoa học tự nhiên, hiện cũng có nhiều viện nghiên cứu khoa học xã hội..Vào thời tiền trung cổ, một số đài quan trắc thiên văn đã được xây dựng ở thế giới Hồi giáo. Cơ sở đầu tiên là đài quan trắc Baghdad ở thế kỷ thứ 9, được xây dựng vào thời al-Ma'mun của Nhà Abbas, mặc dù cơ sở nổi tiếng nhất là đài quan trắc Maragheh (thế kỷ 13) và đài quan trắc Ulugh Beg (thế kỷ 15)..Viện nghiên cứu ra đời sớm nhất ở châu Âu là tổ hợp Uraniborg của Tycho Brahe trên đảo Hven, một phòng thí nghiệm thiên văn ở thế kỷ 16 đã thực hiện những đo đạc với độ chính xác cao về các ngôi sao. Ở Hoa Kỳ, nhiều rất nhiều viện nghiên cứu nổi tiếng bao gồm Bell Labs, Viện Nghiên cứu Scripps (The Scripps Research Institute), và SRI International.",
+        "id": "64b2ae336ffa229514911abe",
+        "qas": [
+            {
+                "question": "Viện nghiên cứu tập trung vào hoạt động nghiên cứu gì?",
+                "answers": [
+                    {
+                        "text": "Các viện nghiên cứu có thể tập trung vào nghiên cứu cơ bản hoặc có thể có định hường nghiên cứu ứng dụng.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Viện nghiên cứu có xuất hiện từ thời điểm nào ở châu Âu?",
+                "answers": [
+                    {
+                        "text": "Viện nghiên cứu ra đời sớm nhất ở châu Âu là tổ hợp Uraniborg của Tycho Brahe trên đảo Hven, một phòng thí nghiệm thiên văn ở thế kỷ 16 đã thực hiện những đo đạc với độ chính xác cao về các ngôi sao.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Các viện nghiên cứu nổi tiếng ở Hoa Kỳ bao gồm những viện nào?",
+                "answers": [
+                    {
+                        "text": "Ở Hoa Kỳ, nhiều rất nhiều viện nghiên cứu nổi tiếng bao gồm Bell Labs, Viện Nghiên cứu Scripps (The Scripps Research Institute), và SRI International.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Tẩu pháp (fugue) là tiến trình nhạc Phức điệu trong đó một chủ đề được trình bày lúc ban đầu bằng mối tương quan chủ âm/át âm, sau đó được khai triển bằng kỹ thuật Đối âm. Thuật ngữ Tẩu pháp còn ám chỉ một tác phẩm âm nhạc nhiều chương (tương tự như thuật ngữ Sonata) có cấu trúc chặt chẽ, với quá trình sáng tác có tính cách luận lý (logic) và quá trình sáng tác này được mệnh danh là Luận Nhạc (composition)..Một bản tẩu pháp tổng quát có chứa một chuỗi những đoạn trình bày và những đoạn phát triển không giới hạn số lượng. Đơn giản nhất, một khúc tẩu pháp chỉ có một đoạn trình bày và một đoạn phát triển tự do. Một bản tẩu pháp phức tạp hơn gồm một đoạn trình bày và nhiều đoạn phát triển, hoặc có thêm một đoạn trình bày khác với một hoặc nhiều đoạn phát triển. Loại tẩu pháp cung thể trung tâm sẽ trình bày chủ đề không có chuyển cung ra ngoài mối tương quan chủ âm/át âm ban đầu.",
+        "id": "64b2ae336ffa229514911abf",
+        "qas": [
+            {
+                "question": "Tẩu pháp là gì?",
+                "answers": [
+                    {
+                        "text": "là tiến trình nhạc Phức điệu trong đó một chủ đề được trình bày lúc ban đầu bằng mối tương quan chủ âm/át âm, sau đó được khai triển bằng kỹ thuật Đối âm.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Tác phẩm tẩu pháp có cấu trúc như thế nào?",
+                "answers": [
+                    {
+                        "text": "có cấu trúc chặt chẽ, với quá trình sáng tác có tính cách luận lý (logic) và quá trình sáng tác này được mệnh danh là Luận Nhạc",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Một nhóm làm việc là một nhóm các chuyên gia làm việc cùng nhau để đạt được các mục tiêu được chỉ định trước. Các nhóm là miền cụ thể và tập trung vào thảo luận hoặc hoạt động xung quanh một lĩnh vực chủ đề cụ thể. Thuật ngữ này đôi khi có thể đề cập đến sự hợp tác liên ngành của các nhà nghiên cứu làm việc về các hoạt động mới sẽ khó duy trì theo các cơ chế tài trợ truyền thống (ví dụ, các cơ quan liên bang)..Tuổi thọ của một nhóm làm việc có thể kéo dài bất cứ nơi nào trong khoảng vài tháng đến vài năm. Các nhóm như vậy có xu hướng phát triển một sự tồn tại gần như vĩnh viễn khi hoàn thành nhiệm vụ được giao; do đó cần phải giải tán (hoặc loại bỏ) nhóm làm việc khi đã đạt được (các) mục tiêu đã định..Hiệu suất của một nhóm làm việc được tạo thành từ các kết quả cá nhân của tất cả các thành viên riêng lẻ. Thành tích của một đội được tạo thành từ cả kết quả cá nhân và kết quả tập thể. Trong các tổ chức lớn, các nhóm làm việc là phổ biến, và trọng tâm luôn luôn là các mục tiêu, hiệu suất và trách nhiệm cá nhân. Các thành viên trong nhóm làm việc không chịu trách nhiệm về kết quả khác ngoài chính họ. Mặt khác, các đội đòi hỏi cả trách nhiệm cá nhân và trách nhiệm lẫn nhau. Có nhiều chia sẻ thông tin, thảo luận nhóm và tranh luận nhiều hơn để đi đến quyết định nhóm..Ví dụ về các mục tiêu chung cho các nhóm làm việc bao gồm:.Các nhóm làm việc cũng được gọi là nhóm nhiệm vụ, nhóm làm việc hoặc nhóm tư vấn kỹ thuật.",
+        "id": "64b2ae336ffa229514911ac0",
+        "qas": [
+            {
+                "question": "Các nhóm làm việc có chiều dài tuổi thọ như thế nào?",
+                "answers": [
+                    {
+                        "text": "Tuổi thọ của một nhóm làm việc có thể kéo dài bất cứ nơi nào trong khoảng vài tháng đến vài năm.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Hiệu suất của một nhóm làm việc phụ thuộc vào những yếu tố nào?",
+                "answers": [
+                    {
+                        "text": "Hiệu suất của một nhóm làm việc được tạo thành từ các kết quả cá nhân của tất cả các thành viên riêng lẻ.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Trách nhiệm cá nhân và trách nhiệm lẫn nhau có điểm khác biệt gì trong môi trường làm việc nhóm?",
+                "answers": [
+                    {
+                        "text": "Các thành viên trong nhóm làm việc không chịu trách nhiệm về kết quả khác ngoài chính họ. Mặt khác, các đội đòi hỏi cả trách nhiệm cá nhân và trách nhiệm lẫn nhau.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Đánh giá tư duy (tiếng Anh: Thinking Skills Assessment; TSA) hay Kiểm tra tư duy là một kỳ thi tuyển sinh đại học tại Việt Nam, do Đại học Bách khoa Hà Nội bắt đầu tổ chức từ năm 2020.  Bài thi có mục đích nhằm đánh giá khả năng của học sinh về tư duy toán học, tư duy đọc hiểu, tư duy giải quyết vấn đề để có thể học tập tốt nhất tại môi trường giáo dục đại học, đặc biệt cho các ngành nghề về khoa học công nghệ, kinh tế, kỹ thuật, công nghiệp, nông nghiệp, tài chính, ngân hàng, y dược. . Tại Vương quốc Liên hiệp Anh và Bắc Ireland, TSA là bài kiểm tra đầu vào chung, được sử dụng như một phần trong quy trình tuyển sinh cho một số khóa học tại Đại học Cambridge và Đại học Oxford. . TSA tại Vương quốc Liên hiệp Anh và Bắc Ireland ban đầu được phát triển và điều hành bởi Cambridge Assessment Admissions Testing.  Bài thi được tạo ra nhằm giúp các trường đại học đánh giá và lựa chọn các ứng viên có đủ kỹ năng và yêu cầu cần thiết cho việc học tập ở bậc đại học.  Cambridge Assessment Admissions Testing hiện sản xuất và phân phối các tài liệu thực hành, bao gồm các câu hỏi mẫu và các bài thi cũ trên trang web của họ. . Tại Việt Nam, TSA lần đầu tiên được Đại học Bách khoa Hà Nội tổ chức vào năm 2020, sau khi Kỳ thi trung học phổ thông quốc gia được chuyển đổi trở lại thành Kỳ thi tốt nghiệp trung học phổ thông do những tác động của đại dịch COVID-19 tại Việt Nam.  Kỳ thi bị hủy bỏ vào năm 2021 vì đại dịch và tiếp tục được tổ chức từ năm 2022 đến nay. . Bài thi Kiểm tra tư duy (2020) và kỳ thi Đánh giá tư duy (2022) bao gồm 3 tổ hợp cho thí sinh tự chọn (K01, K02 và K03)",
+        "id": "64b2ae346ffa229514911ac2",
+        "qas": [
+            {
+                "question": "TSA là gì và mục đích của nó là gì?",
+                "answers": [
+                    {
+                        "text": "Kiểm tra tư duy là một kỳ thi tuyển sinh đại học tại Việt Nam, do Đại học Bách khoa Hà Nội bắt đầu tổ chức từ năm 2020. Bài thi có mục đích nhằm đánh giá khả năng của học sinh về tư duy toán học, tư duy đọc hiểu, tư duy giải quyết vấn đề để có thể học tập tốt nhất tại môi trường giáo dục đại học, đặc biệt cho các ngành nghề về khoa học công nghệ, kinh tế, kỹ thuật, công nghiệp, nông nghiệp, tài chính, ngân hàng, y dược.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "TSA được tổ chức tại đâu?",
+                "answers": [
+                    {
+                        "text": "do Đại học Bách khoa Hà Nội bắt đầu tổ chức từ năm 2020.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Kỳ thi TSA bao gồm những tổ hợp nào?",
+                "answers": [
+                    {
+                        "text": "bao gồm 3 tổ hợp cho thí sinh tự chọn (K01, K02 và K03)",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Đánh giá năng lực (ĐGNL) là tên gọi chung cho một vài kỳ thi tuyển sinh sớm tại Việt Nam do các đại học và trường đại học tự tổ chức. . Kỳ thi này được coi là một bài kiểm tra cơ bản để đánh giá năng lực của thí sinh một cách toàn diện hơn Kỳ thi tốt nghiệp trung học phổ thông.  Nội dung bài thi đánh giá năng lực thường tích hợp những kiến thức và tư duy, dưới hình thức cung cấp số liệu và dữ liệu cũng như các công thức cơ bản.  Qua đó, đánh giá được những khả năng suy luận và giải quyết vấn đề của thi sinh. . Bài thi ĐGNL học sinh trung học phổ thông (HSA; tiếng Anh: High School Student Assessment) bắt đầu được Đại học Quốc gia Hà Nội tổ chức vào năm 2015, Bài thi ĐGNL mỗi năm tổ chức 10 đợt thi, mỗi thí sinh chỉ được đăng ký dự thi tối đa 2 đợt, trừ năm 2021 vì ảnh hưởng của đại dịch COVID-19 mà kỳ thi chỉ tổ chức được một nửa số đợt. . Thí sinh làm bài thi trên máy tính, câu hỏi dưới dạng trắc nghiệm khách quan (lựa chọn một trong bốn đáp án) và điền đáp án.  Tổng thời gian làm bài là 195 phút, thang điểm 150. . Theo Đại học Quốc gia Hà Nội, đề thi được rà soát từ hơn 12. 000 câu hỏi của ngân hàng đề thi đánh giá năng lực năm 2016 để lựa chọn những câu phù hợp với ba nhóm năng lực nêu trên, kết hợp với hơn 3. 500 câu hỏi được xây dựng trong giai đoạn 2017-2020, đảm bảo tính toàn diện của kỳ thi, cân bằng độ khó của từng đề. ",
+        "id": "64b2ae346ffa229514911ac3",
+        "qas": [
+            {
+                "question": "Đại học Quốc gia Hà Nội tổ chức bài thi ĐGNL từ năm nào?",
+                "answers": [
+                    {
+                        "text": "bắt đầu được Đại học Quốc gia Hà Nội tổ chức vào năm 2015",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Thời gian làm bài và thang điểm của bài thi ĐGNL là bao nhiêu?",
+                "answers": [
+                    {
+                        "text": "Tổng thời gian làm bài là 195 phút, thang điểm 150.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Để đảm bảo tính toàn diện và cân bằng độ khó của kỳ thi, Đại học Quốc gia Hà Nội sử dụng nguồn câu hỏi từ đâu?",
+                "answers": [
+                    {
+                        "text": "Theo Đại học Quốc gia Hà Nội, đề thi được rà soát từ hơn 12. 000 câu hỏi của ngân hàng đề thi đánh giá năng lực năm 2016 để lựa chọn những câu phù hợp với ba nhóm năng lực nêu trên, kết hợp với hơn 3. 500 câu hỏi được xây dựng trong giai đoạn 2017-2020, đảm bảo tính toàn diện của kỳ thi, cân bằng độ khó của từng đề.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Kỳ thi năng lực tiếng Nhật (Nhật: . mw-parser-output ruby>rt,. mw-parser-output ruby>rtc{font-feature-settings:\"ruby\"1}. mw-parser-output ruby. large{font-size:250%}. mw-parser-output ruby. large>rt,. mw-parser-output ruby. large>rtc{font-size:. 3em}日本語能力試験 (にほんごのうりょくしけん) (Nhật Bản ngữ năng lực thí nghiệm), Hepburn: Nihongo nōryoku shiken?, tiếng Anh: Japanese Language Proficiency Test - JLPT) là kì thi lâu đời nhất, có uy tín nhất, được phổ biến rộng rãi tại hơn 50 quốc gia trên toàn thế giới, thích hợp với tất cả những người học tiếng Nhật muốn kiểm tra và đánh giá trình độ năng lực Nhật ngữ của mình. [cần dẫn nguồn]. Công tác tổ chức thi mang tính chuyên nghiệp và có nhiều ứng dụng trong giao tiếp và cuộc sống hàng ngày. . Kiểm tra, đánh giá trình độ và năng lực sử dụng tiếng Nhật của người học. . 1 năm tổ chức 2 lần: vào chủ nhật tuần đầu tiên của tháng 7 và tháng 12 hàng năm. . Hiệp hội hỗ trợ quốc tế Nhật Bản và Quỹ giao lưu quốc tế Nhật Bản. . Chia làm 5 cấp độ: N1, N2, N3, N4, N5; trong đó N1 là cấp cao nhất, N5 là cấp độ thấp nhất.  Điểm tối đa: 180 điểm cho 03 nhóm môn thi. . Các phần thi đều có tổng điểm trong phạm vi 0 ~ 180, trong đó:. Cấp N1, N2, N3:. Kiến thức ngôn ngữ (Chữ, từ vựng, ngữ pháp): 0 ~ 60. Đọc hiểu: 0 ~ 60. Nghe hiểu: 0 ~ 60. Cấp N4, N5:. Kiến thức ngôn ngữ (Chữ, từ vựng, ngữ pháp) - Đọc hiểu: 0 ~ 120. Nghe hiểu: 0 ~ 60. N1:. Điểm tổng: Trên 100 điểm (Tối đa: 180). Điểm kiến thức ngôn ngữ (Chữ, từ vựng, ngữ pháp): Trên 19 điểm (Tối đa: 60). Điểm đọc hiểu: Trên 19 điểm (Tối đa: 60). Điểm nghe hiểu: Trên 19 điểm (Tối đa: 60). N2:. Điểm tổng: Trên 90 điểm (Tối đa: 180). Điểm kiến thức ngôn ngữ (Chữ, từ vựng, ngữ pháp): Trên 19 điểm (Tối đa: 60). Điểm đọc hiểu: Trên 19 điểm (Tối đa: 60)",
+        "id": "64b2ae356ffa229514911ac6",
+        "qas": [
+            {
+                "question": "Kỳ thi năng lực tiếng Nhật tổ chức vào thời điểm nào trong năm?",
+                "answers": [
+                    {
+                        "text": "Kỳ thi được tổ chức vào chủ nhật tuần đầu tiên của tháng 7 và tháng 12 hàng năm.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Kỳ thi năng lực tiếng Nhật được chia thành bao nhiêu cấp độ?",
+                "answers": [
+                    {
+                        "text": "Kỳ thi được chia thành 5 cấp độ: N1, N2, N3, N4, N5.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Điểm tối đa mà thí sinh có thể đạt được trong kỳ thi là bao nhiêu?",
+                "answers": [
+                    {
+                        "text": "Điểm tối đa mà thí sinh có thể đạt được là 180 điểm cho 03 nhóm môn thi, tùy thuộc vào cấp độ thi.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Chương trình Đánh giá học sinh quốc tế (Programme for International Student Assessment - PISA) là một khảo sát quốc tế do tổ chức OECD (Organisation for Economic Co-operation and Development) đề xuất, để đánh giá khả năng của học sinh 15 tuổi của các nước và vùng lãnh thổ trong và ngoài OECD, về toán, khoa học và đọc hiểu.  Chương trình được thực hiện từ năm 2000 và cứ 3 năm lặp lại một lần.  Mục đích của chương trình là cung cấp các dữ liệu so sánh nhằm giúp các nước cải thiện các chính sách và kết quả giáo dục.  Chương trình hướng vào việc đo lường sự hiểu biết và khả năng giải quyết vấn đề trong cuộc sống hàng ngày của học sinh.  Vào năm 2015 có 72 nước và vùng lãnh thổ, với tổng số khoảng 540. 000 học sinh tham gia chương trình.  PISA cũng khảo sát các mối quan hệ giữa việc học của học sinh và các yếu tố khác để hiểu rõ sự khác biệt về kết quả trong mỗi nước và giữa các nước. . PISA kiểm tra mức hiểu biết và vận dụng trong ba lĩnh vực: đọc hiểu, toán và khoa học.  PISA không kiểm tra kiến thức thu được tại trường học mà xem xét năng lực phổ thông thực tế của học sinh.  Bài thi chú trọng đánh giá khả năng học sinh vận dụng kiến thức và kỹ năng của mình khi đối mặt với những tình huống và thử thách liên quan đến kiến thức và kỹ năng đó.  Về toán học, đánh giá khả năng học sinh vận dụng hiểu biết toán học của họ để giải quyết các vấn đề được đặt ra trong bối cảnh thực tế.  Về khoa học, kiểm tra khả năng vận dụng những kiến thức khoa học để hiểu và giải thích các tình huống toán học",
+        "id": "64b2ae356ffa229514911ac7",
+        "qas": [
+            {
+                "question": " Chương trình Đánh giá học sinh quốc tế PISA được thực hiện bởi ai?",
+                "answers": [
+                    {
+                        "text": "là một khảo sát quốc tế do tổ chức OECD (Organisation for Economic Co-operation and Development) đề xuất",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": " Mục đích chính của Chương trình Đánh giá học sinh quốc tế PISA là gì?",
+                "answers": [
+                    {
+                        "text": "đánh giá khả năng của học sinh 15 tuổi của các nước và vùng lãnh thổ trong và ngoài OECD, về toán, khoa học và đọc hiểu.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "PISA kiểm tra những khía cạnh nào của năng lực của học sinh?",
+                "answers": [
+                    {
+                        "text": "về toán, khoa học và đọc hiểu.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "GRE là từ viết tắt từ tiếng Anh của cụm từ Graduate Record Examinations (tạm dịch là Kỳ thi chứng nhận tốt nghiệp) là một bài thi khảo thí theo tiêu chuẩn và là điều kiện xét tuyển của các trường đại học ở Hoa Kỳ..Theo ETS, bài thi GRE nhắm đến việc đo khả năng suy luận ngữ nghĩa (verbal reasoning), suy luận định lượng (quantitative reasoning), viết phân tích (analytical writing), và các kỹ năng tư duy phản biện đạt được của thí sinh trong quá trình học tập. Nội dung bài thi GRE gồm đại số, hình học, số học và từ vựng. Thí sinh phải làm bài thi chung GRE (GRE General Test) trên máy tính ở các trung tâm thi cử.",
+        "id": "64b2ae356ffa229514911ac9",
+        "qas": [
+            {
+                "question": " GRE là viết tắt của từ gì?",
+                "answers": [
+                    {
+                        "text": "viết tắt từ tiếng Anh của cụm từ Graduate Record Examinations",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": " Bài thi GRE nhắm đến việc đo khả năng của thí sinh trong những khía cạnh nào?",
+                "answers": [
+                    {
+                        "text": "nhắm đến việc đo khả năng suy luận ngữ nghĩa (verbal reasoning), suy luận định lượng (quantitative reasoning), viết phân tích (analytical writing), và các kỹ năng tư duy phản biện đạt được của thí sinh trong quá trình học tập.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Nội dung bài thi GRE bao gồm những môn học nào?",
+                "answers": [
+                    {
+                        "text": "Nội dung bài thi GRE gồm đại số, hình học, số học và từ vựng.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "ETS là viết tắt cụm từ Educational Testing Service (tạm dịch Dịch vụ Kiểm tra Giáo dục), thành lập năm 1947, là một tổ chức đánh giá và kiểm tra giáo dục tư nhân và phi lợi nhuận. Trụ sở của ETS ở Lawrence Township, Mercer County, New Jersey, New Jersey, nhưng lại có địa chỉ ở Princeton, New Jersey.",
+        "id": "64b2ae366ffa229514911aca",
+        "qas": [
+            {
+                "question": "ETS là gì?",
+                "answers": [
+                    {
+                        "text": "ETS là viết tắt cụm từ Educational Testing Service ",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "ETS được thành lập vào năm nào?",
+                "answers": [
+                    {
+                        "text": "thành lập năm 1947",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Trụ sở chính của ETS đặt ở đâu?",
+                "answers": [
+                    {
+                        "text": "Trụ sở của ETS ở Lawrence Township, Mercer County, New Jersey, New Jersey, nhưng lại có địa chỉ ở Princeton, New Jersey.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Kỳ thi tuyển sinh đại học và cao đẳng là một kì thi từng được tổ chức tại Việt Nam nhằm mục đích lấy sinh viên đầu vào cho các trường đại học và cao đẳng.  Kì thi này còn được gọi nôm na là kỳ thi \"3 chung\" (chung đợt, chung đề và dùng chung kết quả), do Bộ Giáo dục và Đào tạo tổ chức hằng năm, ngay sau kì thi tốt nghiệp trung học phổ thông khoảng một tháng.  Trong những năm tổ chức, kì thi này được diễn ra vào thượng tuần và trung tuần tháng 7 theo lịch sau:. Từ năm 2015, cùng với kỳ thi tốt nghiệp trung học phổ thông, kỳ thi tuyển sinh đại học và cao đẳng bị bãi bỏ để thay thế bằng một kỳ thi hợp nhất là kỳ thi trung học phổ thông quốc gia.  Kỳ thi trung học phổ thông quốc gia dừng tổ chức sau năm 2019, sau đó Kỳ thi tốt nghiệp trung học phổ thông được tổ chức trở lại, các trường đại học có thể sử dụng kết quả thi tốt nghiệp để xét tuyển đại học, hoặc xét tuyển theo kết quả những kì thi tuyển sinh mới tự tổ chức, như Đánh giá năng lực (Đại học Quốc gia Hà Nội, Đại học Quốc gia Thành phố Hồ Chí Minh, Bộ Công an), hay Đánh giá tư duy (Đại học Bách khoa Hà Nội). . Thí sinh tham dự kỳ thi cần phải có bằng tốt nghiệp trung học phổ thông, giấy chứng nhận tốt nghiệp trung học phổ thông tạm thời hoặc bậc học tương đương. . Từ năm 2001 trở về trước, mỗi trường tự tổ chức kì thi, dưới sự giám sát của Bộ Giáo dục và Đào tạo.  Theo đó, thí sinh đăng kí dự thi bao nhiêu trường, thì phải trải qua bấy nhiêu kì thi.  Điều nay gây nên sự tốn kém rất lớn, và mất công mất việc của rất nhiều các bậc phụ huynh, cũng như không thực sự cần thiết",
+        "id": "64b2ae376ffa229514911acf",
+        "qas": [
+            {
+                "question": "Kỳ thi tuyển sinh đại học và cao đẳng được tổ chức khi nào?",
+                "answers": [
+                    {
+                        "text": "Trong những năm tổ chức, kì thi này được diễn ra vào thượng tuần và trung tuần tháng 7",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Từ năm 2015, kỳ thi tuyển sinh đại học và cao đẳng bị bãi bỏ và thay thế bằng kỳ thi nào?",
+                "answers": [
+                    {
+                        "text": "kỳ thi tuyển sinh đại học và cao đẳng bị bãi bỏ để thay thế bằng một kỳ thi hợp nhất là kỳ thi trung học phổ thông quốc gia.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Để tham dự kỳ thi tuyển sinh, thí sinh cần phải có điều kiện và giấy tờ gì?",
+                "answers": [
+                    {
+                        "text": "Thí sinh tham dự kỳ thi cần phải có bằng tốt nghiệp trung học phổ thông, giấy chứng nhận tốt nghiệp trung học phổ thông tạm thời hoặc bậc học tương đương.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Kì thi trung học phổ thông quốc gia (viết tắt: kì thi THPT quốc gia hoặc THPTQG) là một sự kiện cũ của ngành giáo dục Việt Nam, được bắt đầu tổ chức vào năm 2015 và tổ chức lần cuối cùng vào năm 2019. . Để tham dự kì thi này, thí sinh phải thi ít nhất 4 bài thi gồm 3 bài thi độc lập bắt buộc là Toán, Ngữ văn, Ngoại ngữ đối với học sinh THPT, 2 bài thi độc lập bắt buộc là Toán, Ngữ văn đối với học sinh GDTX và một bài thi tổ hợp: Khoa học tự nhiên (Vật lí, Hóa học, Sinh học) và Khoa học xã hội (Lịch sử, Địa lí, Giáo dục công dân).  Hình thức thi và lịch thi theo hướng dẫn hằng năm của Bộ Giáo dục Việt Nam.  Quy chế thi đã được sửa đổi cho phù hợp với thực tiễn từng năm. . Kể từ năm 2020, do những tác động từ đại dịch COVID-19 đến việc dạy và học ở các nhà trường, đồng thời xuất hiện những kì thi tuyển sinh mới do các đại học, trường đại học tổ chức riêng như Đánh giá năng lực hay Đánh giá tư duy, kì thi THPT quốc gia ngừng tổ chức, thay thế là kì thi tốt nghiệp THPT được tổ chức trở lại với cách thức tổ chức gần giống với kì thi THPT quốc gia và mang mục đích chính là xét tốt nghiệp THPT.  Các trường đại học vẫn có thể sử dụng kết quả thi tốt nghiệp làm căn cứ tuyển sinh đại học. . Ở Việt Nam, năm 2014 về trước (trước khi hai kì thi tốt nghiệp phổ thông và tuyển sinh đại học gộp làm một), thì tình trạng luyện thi đại học, học tủ, học lệch vẫn là một vấn đề nhức nhối và rất được sự quan tâm của dư luận",
+        "id": "64b2ae376ffa229514911ad0",
+        "qas": [
+            {
+                "question": " Kì thi THPT quốc gia được tổ chức khi nào và trong bao lâu?",
+                "answers": [
+                    {
+                        "text": "được bắt đầu tổ chức vào năm 2015 và tổ chức lần cuối cùng vào năm 2019.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": " Kì thi THPT quốc gia yêu cầu thí sinh phải thi những bài thi nào?",
+                "answers": [
+                    {
+                        "text": " Để tham dự kì thi này, thí sinh phải thi ít nhất 4 bài thi gồm 3 bài thi độc lập bắt buộc là Toán, Ngữ văn, Ngoại ngữ đối với học sinh THPT, 2 bài thi độc lập bắt buộc là Toán, Ngữ văn đối với học sinh GDTX và một bài thi tổ hợp: Khoa học tự nhiên (Vật lí, Hóa học, Sinh học) và Khoa học xã hội (Lịch sử, Địa lí, Giáo dục công dân).",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Tại sao kì thi THPT quốc gia đã ngừng tổ chức từ năm 2020?",
+                "answers": [
+                    {
+                        "text": "Kể từ năm 2020, do những tác động từ đại dịch COVID-19 đến việc dạy và học ở các nhà trường, đồng thời xuất hiện những kì thi tuyển sinh mới do các đại học, trường đại học tổ chức riêng như Đánh giá năng lực hay Đánh giá tư duy, kì thi THPT quốc gia ngừng tổ chức, thay thế là kì thi tốt nghiệp THPT được tổ chức trở lại với cách thức tổ chức gần giống với kì thi THPT quốc gia và mang mục đích chính là xét tốt nghiệp THPT.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Sách giáo khoa (viết tắt là trong tiếng Việt SGK) là loại sách cung cấp kiến thức, được biên soạn với mục đích dạy và học tại trường học . Thuật ngữ sách giáo khoa còn có nghĩa mở rộng là một loại sách chuẩn cho một ngành học. Sách giáo khoa được phân loại dựa theo đối tượng sử dụng và chủ đề của sách. Việc xuất bản sách giáo khoa thường dành cho các nhà xuất bản chuyên ngành. Sách giáo khoa giúp học sinh tổng hợp, nắm rõ kiến thức cơ bản. Từ đó, phát triển tư duy, cảm nhận qua các dạng bài tập nâng cao khác..Ngày nay, bên cạnh dạng sách in, nhiều sách giáo khoa có phiên bản sách điện tử..Ở cấp phổ thông, sách giáo khoa là sự thể hiện những nội dung cụ thể của chương trình phổ thông. Trên thế giới, có những nước có nhiều bộ sách giáo khoa khác nhau được biên soạn cho cùng một môn học. Tại Việt Nam, từ năm 2002-2020 chỉ tồn tại một bộ sách giáo khoa duy nhất cho một môn học..Kiến thức trong sách giáo khoa là một hệ thống kiến thức khoa học, chính xác, theo các cấp độ logic chặt chẽ khác nhau. Ngoài phần kiến thức, sách giáo khoa còn có phần nội dung về rèn luyện các kỹ năng. Nội dung kiến thức cũng như nội dung về rèn luyện các kỹ năng được gia công về mặt sư phạm cho phù hợp với trình độ học sinh và thời gian học tập. Logic của nội dung kiến thức và phần nội dung về rèn luyện các kỹ năng là những yếu tố chủ yếu trong việc định hướng lựa chọn phương pháp giảng dạy môn học.",
+        "id": "64b2ae376ffa229514911ad1",
+        "qas": [
+            {
+                "question": "Sách giáo khoa là gì?",
+                "answers": [
+                    {
+                        "text": "là loại sách cung cấp kiến thức, được biên soạn với mục đích dạy và học tại trường học .",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Nước Việt Nam có bao nhiêu bộ sách giáo khoa cho một môn học?",
+                "answers": [
+                    {
+                        "text": "Tại Việt Nam, từ năm 2002-2020 chỉ tồn tại một bộ sách giáo khoa duy nhất cho một môn học",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Trong ngành tâm lý học và các khoa học nhận thức, tri giác là quá trình thu thập, giải nghĩa, lựa chọn và tổ chức các thông tin từ giác quan. Các phương pháp nghiên cứu tri giác trải dài từ các cách tiếp cận theo hướng sinh học hay sinh lý học, qua các cách tiếp cận tâm lý học tới triết học tinh thần và trong nhận thức luận kinh nghiệm chủ nghĩa, chẳng hạn của David Hume, John Locke, George Berkeley, hay như trong khẳng định của Merleau Ponty rằng tri giác là cơ sở của khoa học và tri thức.",
+        "id": "64b2ae386ffa229514911ad2",
+        "qas": [
+            {
+                "question": "Tri giác là gì?",
+                "answers": [
+                    {
+                        "text": "tri giác là quá trình thu thập, giải nghĩa, lựa chọn và tổ chức các thông tin từ giác quan.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Ngụy biện là việc sử dụng lập luận sai, không hợp lý, cố ý vi phạm các quy tắc logic trong suy luận.  Một lý luận ngụy biện có thể có ý lừa đảo bằng cách làm cho sự việc có vẻ tốt hơn so với thực tế.  Một số ngụy biện cố ý để nhằm mục đích thao tác, đánh lạc hướng người nghe, người đọc, làm cho họ nhầm tưởng cái sai là đúng và cái đúng là sai.  Những sai lầm không cố ý trong suy luận do cẩu thả, thiếu hiểu biết được gọi là ngụy biện. . Ngụy biện khi bị lạm dụng có thể trở thành thói quen, khiến cho tư duy trở nên sai trái, lệch lạc.  Người có lối tư duy nguỵ biện có thể không phân biệt được đúng sai, nhiều trường hợp cho rằng mình luôn đúng. . Ngụy biện là những kiểu lập luận sai lầm khiến cho các lập luận không hợp lý về mặt logic. . Khó để có thể đánh giá liệu một lập luận có phải là ngụy biện hay không vì các lập luận tồn tại theo một chuỗi tính hợp lý và một lập luận có nhiều giai đoạn hoặc nhiều phần có thể có một số phần hợp lý và một số phần sai.  Do đó, việc đánh giá một trường hợp nào đó của một dạng lập luận có phải là ngụy biện hay không hầu như luôn luôn phải đánh giá dựa trên bối cảnh của lập luận. . Nhà triết học người Hy Lạp Aristotle là người đầu tiên hệ thống hóa các dạng ngụy biện thành danh mục.  Văn bản \"Sophistical Refutations\" (De Sophisticis Elenchis) của Aristotle xác định ra mười ba loại ngụy biện.  Các nhà logic học sau này xác định thêm hàng chục loại ngụy biện khác nữa. . Ngụy biện thường được phân ra làm ngụy biện hình thức (formal fallacy) và ngụy biện phi hình thức (informal fallacy).  Ngụy biện hình thức là ngụy biện chỉ bởi hình thức logic của nó",
+        "id": "64b2ae386ffa229514911ad3",
+        "qas": [
+            {
+                "question": "Ngụy biện là gì?",
+                "answers": [
+                    {
+                        "text": "Ngụy biện là việc sử dụng lập luận sai, không hợp lý, cố ý vi phạm các quy tắc logic trong suy luận.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Ai là người đầu tiên hệ thống hóa các dạng ngụy biện?",
+                "answers": [
+                    {
+                        "text": "Nhà triết học người Hy Lạp Aristotle là người đầu tiên hệ thống hóa các dạng ngụy biện thành danh mục.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Ngụy biện thường phân ra thành mấy loại?",
+                "answers": [
+                    {
+                        "text": "Ngụy biện thường được phân ra làm ngụy biện hình thức (formal fallacy) và ngụy biện phi hình thức (informal fallacy).",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Tư duy phản biện hay tư duy phân tích là một quá trình tư duy biện chứng gồm phân tích và đánh giá một thông tin đã có theo các cách nhìn khác cho vấn đề đã đặt ra nhằm làm sáng tỏ và khẳng định lại tính chính xác của vấn đề.  Lập luận phản biện phải rõ ràng, logic, đầy đủ bằng chứng, tỉ mỉ, khách quan và công tâm. . Dựa vào những nghiên cứu gần đây, các nhà giáo dục đã hoàn toàn tin tưởng rằng trường học nên tập trung hơn vào việc dạy học sinh tư duy phản biện.  Tư duy phản biện không chỉ đơn thuần là sự tiếp nhận và duy trì thông tin thụ động.  Đó có thể tóm tắt là quá trình tư duy tìm lập luận phản bác lại kết quả của một quá trình tư duy khác để xác định lại tính chính xác của thông tin. . Những ý kiến giống như những nhận định, xuất phát từ những tiên đề (tiên đề A → lập luận B → lập luận C → nhận định D).  Việc phân tích là việc bắt nguồn từ D để đi tìm A, B và C. . Sơ đồ tư duy (mind-map) là một dụng cụ hữu hiệu trong việc tổ chức và đánh giá thông tin bởi nó giúp định vị luận điểm/luận cứ một cách rõ ràng. . Khi thu nhận được một thông tin, điều cần trước tiên là hiểu rõ nội dung thông tin đó, về ai, về điều gì, liên quan đến những vấn đề gì, lĩnh vực nào.  Tiếp theo, dựa trên những cơ sở khoa học và lôgic, đặt ra các câu hỏi như: tại sao lại khẳng định là A mà không phải là B, trong khi B cũng có các khả năng như A.  Nếu là B thì khi đó sẽ có kết quả là B1, kết quả này có giống kết quả A1 của khả năng A không",
+        "id": "64b2ae386ffa229514911ad4",
+        "qas": [
+            {
+                "question": "Tư duy phản biện là gì?",
+                "answers": [
+                    {
+                        "text": "Tư duy phản biện hay tư duy phân tích là một quá trình tư duy biện chứng gồm phân tích và đánh giá một thông tin đã có theo các cách nhìn khác cho vấn đề đã đặt ra nhằm làm sáng tỏ và khẳng định lại tính chính xác của vấn đề. ",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Tại sao trường học cần tập trung vào dạy học sinh tư duy phản biện?",
+                "answers": [
+                    {
+                        "text": "Dựa vào những nghiên cứu gần đây, các nhà giáo dục đã hoàn toàn tin tưởng rằng trường học nên tập trung hơn vào việc dạy học sinh tư duy phản biện.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Sơ đồ tư duy được sử dụng như thế nào trong việc tổ chức và đánh giá thông tin?",
+                "answers": [
+                    {
+                        "text": "Sơ đồ tư duy (mind-map) là một dụng cụ hữu hiệu trong việc tổ chức và đánh giá thông tin bởi nó giúp định vị luận điểm/luận cứ một cách rõ ràng.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Các câu hỏi cần đặt khi thu nhận một thông tin là gì?",
+                "answers": [
+                    {
+                        "text": "Khi thu nhận được một thông tin, điều cần trước tiên là hiểu rõ nội dung thông tin đó, về ai, về điều gì, liên quan đến những vấn đề gì, lĩnh vực nào.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Lập luận theo tình huống (tiếng Anh: case-based reasoning - CBR) là quy trình giải các bài toán mới dựa trên lời giải của các bài toán tương tự đã gặp.  Ví dụ, một thợ sửa chữa ô tô đang chữa một cái động cơ bằng cách nhớ lại một cái xe khác cũng có các triệu chứng tương tự, người đó đang sử dụng lập luận theo tình huống.  Một luật sư đang bảo vệ một kết quả nào đó trong một phiên tòa dựa trên các tiền lệ pháp lý hay một quan tòa đang sử dụng một phán lệ (case law), hai người này cũng đang thực hiện lập luận theo tình huống.  Cũng như vậy, một kỹ sư đang sao chép các đặc tính hoạt động của thiên nhiên vào trong công trình phỏng sinh học (biomimicry) của mình, anh ta đang coi thiên nhiên như một cơ sở dữ liệu của các giải pháp cho các vấn đề.  Lập luận theo tình huống là một dạng nổi bật của việc tạo ra các sự tương tự. Người ta đã cho rằng lập luận theo tình huống không chỉ là một phương pháp mạnh cho lập luận máy tính mà còn là một hành vi phổ biến của con người trong cuộc sống hằng ngày khi giải quyết các vấn đề.  Hay nói cách khác, mọi lập luận đều dựa trên các tình huống trong quá khứ (mà đã được trải nghiệm hoặc chấp nhận bằng cách chủ động thực hiện chọn lựa) -- lý thuyết nguyên mẫu (prototype theory) -- lý thuyết được nghiên cứu sâu nhất trong ngành khoa học nhận thức về con người (human cognitive science). . Lập luận theo tình huống đã được chính thức hóa cho các mục tiêu của lập luận máy thành một quy trình bốn bước :. Roger Schank và các sinh viên của ông tại Đại học Yale là những người đầu tiên đưa ra những cơ sở đầu tiên về lập luận theo tình huống vào thập niên 1980. ",
+        "id": "64b2ae386ffa229514911ad5",
+        "qas": [
+            {
+                "question": "Lập luận theo tình huống là gì?",
+                "answers": [
+                    {
+                        "text": "là quy trình giải các bài toán mới dựa trên lời giải của các bài toán tương tự đã gặp.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Ví dụ về việc áp dụng lập luận theo tình huống trong cuộc sống thường ngày là gì?",
+                "answers": [
+                    {
+                        "text": "Ví dụ, một thợ sửa chữa ô tô đang chữa một cái động cơ bằng cách nhớ lại một cái xe khác cũng có các triệu chứng tương tự, người đó đang sử dụng lập luận theo tình huống.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Lập luận theo tình huống đã được những nhà nghiên cứu nào đưa ra và khi nào?",
+                "answers": [
+                    {
+                        "text": "Roger Schank và các sinh viên của ông tại Đại học Yale là những người đầu tiên đưa ra những cơ sở đầu tiên về lập luận theo tình huống vào thập niên 1980.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Thí nghiệm tưởng tượng là vận dụng trí tưởng tượng để thực hiện các thí nghiệm, trong đó sẽ xem xét một giả thiết, lý thuyết hay nguyên lý. Một thí nghiệm tưởng tượng không cần phải hiện thực hóa dù cho có thể hay không, mục tiêu của nó là đào móc các kết quả tiềm tàng trong nguyên lý của câu hỏi đưa ra..Các thí nghiệm tưởng tượng nổi tiếng: Con mèo của Schrödinger trong một cái hộp kín và một mẩu phóng xạ minh họa cho bất định lượng tử, và con quỷ Maxwell, trong đó một tồn tại siêu nhiên tìm cách vi phạm định luật hai nhiệt động lực học.",
+        "id": "64b2ae396ffa229514911ad6",
+        "qas": [
+            {
+                "question": "Cơ sở lý thuyết của thí nghiệm tưởng tượng là gì?",
+                "answers": [
+                    {
+                        "text": "vận dụng trí tưởng tượng để thực hiện các thí nghiệm, trong đó sẽ xem xét một giả thiết, lý thuyết hay nguyên lý.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Mục tiêu chính của thí nghiệm tưởng tượng là gì?",
+                "answers": [
+                    {
+                        "text": "Một thí nghiệm tưởng tượng không cần phải hiện thực hóa dù cho có thể hay không, mục tiêu của nó là đào móc các kết quả tiềm tàng trong nguyên lý của câu hỏi đưa ra",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Chủ nghĩa tiến bộ hay chủ nghĩa cấp tiến (tiếng Đức: Progressivismus từ tiếng Latinh: Progressio, Tiến bộ) biểu thị một triết lý chính trị được xây dựng trên ý tưởng về sự tiến bộ, khẳng định sự tiến bộ trong khoa học, công nghệ, phát triển kinh tế, tổ chức xã hội là rất quan trọng để cải thiện tình trạng của con người.  Vì vậy, nó là phong trào chống lại chủ nghĩa bảo thủ.  Nguồn gốc của chủ nghĩa tiến bộ bắt đầu từ thời đại Khai sáng, từ lòng tin tưởng là châu Âu đang chứng minh các xã hội có thể tiến bộ trong khuôn khổ từ những điều kiện dã man lên nền văn minh qua sự tăng cường cơ sở kiến ​​thức thực nghiệm là nền tảng của xã hội.  Ngoài ra, ý nghĩa của chủ nghĩa tiến bộ thay đổi theo thời gian và từ những phối cảnh khác nhau. . Chủ nghĩa tiến bộ nổi lên như một dòng chính trị, là một phản ứng với những thay đổi xã hội trong thời kỳ công nghiệp hóa.  Những bất bình đẳng xã hội quá mức của quá trình phát triển công nghiệp tạo ra sự sợ hãi có thể cản trở tiến bộ hơn nữa, bởi vì các tập đoàn độc quyền khổng lồ và tình trạng bất ổn bạo động giữa người lao động và những nhà tư bản. . Chủ nghĩa tiến bộ khởi đầu trong thế kỷ 19 và 20 sự phát triển của nhà nước xã hội và quốc gia Đức. . Sau sự thất bại của cuộc cách mạng tự do năm 1848 phát triển từ chủ nghĩa tự do cũ nhiều đảng phái.  Một số lớn các thành viên tham dự vào đảng Cấp tiến Đức (DFP).  Đảng này không chấp nhận gia tăng chi tiêu quân sự của quân đội Phổ, từ đó dẫn tới cuộc xung đột với hiến pháp Phổ",
+        "id": "64b2ae396ffa229514911ad7",
+        "qas": [
+            {
+                "question": "Chủ nghĩa tiến bộ là khái niệm nghĩa là gì? ",
+                "answers": [
+                    {
+                        "text": "biểu thị một triết lý chính trị được xây dựng trên ý tưởng về sự tiến bộ, khẳng định sự tiến bộ trong khoa học, công nghệ, phát triển kinh tế, tổ chức xã hội là rất quan trọng để cải thiện tình trạng của con người.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Chủ nghĩa tiến bộ bắt đầu từ thời đại nào và với niềm tin gì? ",
+                "answers": [
+                    {
+                        "text": "Nguồn gốc của chủ nghĩa tiến bộ bắt đầu từ thời đại Khai sáng, từ lòng tin tưởng là châu Âu đang chứng minh các xã hội có thể tiến bộ trong khuôn khổ từ những điều kiện dã man lên nền văn minh qua sự tăng cường cơ sở kiến ​​thức thực nghiệm là nền tảng của xã hội.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Chủ nghĩa tiến bộ khởi đầu từ đất nước nào? ",
+                "answers": [
+                    {
+                        "text": "Chủ nghĩa tiến bộ khởi đầu trong thế kỷ 19 và 20 sự phát triển của nhà nước xã hội và quốc gia Đức.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Trong logic, một luận cứ là một cố gắng để thể hiện tính đúng đắn của một khẳng định được gọi là một kết luận, dựa trên tính đúng đắn của một tập các khẳng định được gọi là tiền đề (premise). Luận cứ được định hình bởi quy trình thể hiện việc lập luận theo lối suy diễn hoặc quy nạp.  Quy trình này sử dụng một kiểu giao tiếp nào đó, có thể là một phần của một văn bản viết, một bài nói, hay một đoạn hội thoại. . Thông thường, trong các tranh luận khoa học và triết học, các luận cứ loại suy (abductive) và các luận cứ bằng phép tương tự (analogy) hay được sử dụng.  Các luận cứ có thể hiệu lực hoặc không hiệu lực, tuy chính bản thân cách xác định xem một luận cứ được xếp vào loại nào thường lại có thể là một đối tượng của nhiều bàn cãi.  Một cách không chính thức, người ta nên kỳ vọng rằng một luận cứ hiệu lực sẽ có sức thuyết phục theo nghĩa nó có khả năng thuyết phục người khác về tính đúng đắn của kết luận.  Tuy nhiên, một tiêu chí như vậy cho tính hiệu lực không đầy đủ hoặc thậm chí còn gây lầm lẫn, do nó phụ thuộc nhiều vào kỹ năng của người xây dựng luận cứ trong việc thao túng người đang bị thuyết phục hơn là phụ thuộc vào chính luận cứ đó. . Các tiêu chí ít chủ quan hơn cho tính hiệu lực của các luận cứ thường được mong muốn hơn, và trong một số trường hợp, ta thậm chí nên kỳ vọng vào sự chặt chẽ của luận cứ.  Một luận cứ chặt chẽ là luận cứ tuân theo các quy tắc chính xác của tính hiệu lực.  Điều này áp dụng cho các luận cứ dùng trong các chứng minh toán học.  Lưu ý rằng một chứng minh chặt chẽ không nhất thiết phải là một chứng minh hình thức. ",
+        "id": "64b2ae396ffa229514911ad8",
+        "qas": [
+            {
+                "question": "Luận cứ được định hình bởi quy trình nào?",
+                "answers": [
+                    {
+                        "text": "Luận cứ được định hình bởi quy trình thể hiện việc lập luận theo lối suy diễn hoặc quy nạp. ",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Một luận cứ hiệu lực phụ thuộc vào yếu tố gì?",
+                "answers": [
+                    {
+                        "text": "nó phụ thuộc nhiều vào kỹ năng của người xây dựng luận cứ trong việc thao túng người đang bị thuyết phục hơn là phụ thuộc vào chính luận cứ đó.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Luận cứ chặt chẽ áp dụng trong lĩnh vực nào?",
+                "answers": [
+                    {
+                        "text": "áp dụng cho các luận cứ dùng trong các chứng minh toán học.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Sư phạm phê phán là một phương pháp giảng dạy nhằm giúp người học đặt câu hỏi đối với và thách thức lại sự thống trị, và những niềm tin và thực hành mang tính thống trị.  Nói một cách khác, đây là một lý thuyết và thực tiễn giúp người học đạt được nhận thức phê phán.  Ira Shor, nhà giáo dục sư phạm phê phán, định nghĩa sư phạm phê phán là. Những nếp nghĩ, đọc, viết và nói tìm xuống dưới ý nghĩa bề mặt, những ấn tượng ban đầu, những thần thoại chủ đạo, những lời tuyên bố chính thức, những khuôn sáo lâu đời, những châm ngôn vững chắc, và những ý kiến đơn thuần, để hiểu được ý nghĩa sâu sắc, nguyên nhân cội rễ, bối cảnh xã hội, ý thức hệ, và những hệ quả cá nhân của hành động, sự kiện, hiện vật, quá trình, tổ chức, trải nghiệm, văn bản, vấn đề, chính sách, truyền thông đại chúng, hoặc diễn ngôn (Trao quyền Giáo dục, 129). . Trong cách giảng dạy này, nhà giáo dẫn dắt học sinh nghi vấn những ý thức hệ và thực hành được coi là áp chế (bao gồm ngay cả chính những gì diễn ra trong nhà trường), và khuyến khích những hành động cá nhân và tập thể giải phóng bản thân ra khỏi những điều kiện thực tế trong đời sống của chính mình. . Người học thường xuất phát như thành viên một nhóm hoặc một quá trình mà họ cần tìm hiểu một cách phê phán (bao gồm tôn giáo, bản sắc quốc gia, các chuẩn mực văn hóa, hoặc những vai trò được trông đợi).  Sau khi đã đạt tới điểm thức nhận, ở đó người học bắt đầu nhận ra xã hội hiện tại của họ có vấn đề sâu sắc, họ sẽ được tiếp tục cổ vũ chia sẻ tri thức này nhằm vào một nỗ lực hướng tới thay đổi bản chất áp bức của xã hội. ",
+        "id": "64b2ae396ffa229514911ad9",
+        "qas": [
+            {
+                "question": "Sư phạm phê phán là gì?",
+                "answers": [
+                    {
+                        "text": "Sư phạm phê phán là một phương pháp giảng dạy nhằm giúp người học đặt câu hỏi đối với và thách thức lại sự thống trị, và những niềm tin và thực hành mang tính thống trị.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Nhưng mục đích chính của sư phạm phê phán là gì?",
+                "answers": [
+                    {
+                        "text": "là một lý thuyết và thực tiễn giúp người học đạt được nhận thức phê phán.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Tâm trí là tập hợp các lĩnh vực bao gồm các khía cạnh nhận thức như ý thức, trí tưởng tượng, nhận thức, suy nghĩ, trí thông minh, khả năng phán quyết, ngôn ngữ và trí nhớ, cũng như các khía cạnh không nhận thức như cảm xúc và bản năng.  Theo giải thích vật lý khoa học, tâm trí được đặt ít nhất một phần trong não.  Các đối thủ cạnh tranh chính đối với các diễn giải vật lý của tâm trí là chủ nghĩa duy tâm, thuyết nhị nguyên thân-tâm, và các loại thuyết nhị nguyên thuộc tính, và một phần chủ nghĩa duy vật loại trừ và chủ nghĩa dị thường.  Có một truyền thống lâu dài trong triết học, tôn giáo, tâm lý học và khoa học nhận thức về những gì cấu thành một tâm trí và những đặc tính khác biệt của nó. . Một câu hỏi mở liên quan đến bản chất của tâm trí là vấn đề tâm-thân của tâm trí, điều tra về mối quan hệ của tâm trí với bộ não vật lý và hệ thần kinh.  Ví dụ, cho dù tâm trí là độc quyền cho con người, có một số hoặc tất cả các loài động vật, hay tất cả các sinh vật sống cũng có một phần tâm trí, cho dù đó là một đặc tính theo một định nghĩa nào đó, hay tâm trí cũng có thể là một thuộc tính của một số các loại máy móc nhân tạo. . Dù bản chất của nó là gì, người ta thường đồng ý rằng tâm trí cho phép con người có nhận thức chủ quan và có chủ ý đối với môi trường của họ, nhận thức và phản ứng với các kích thích với một loại cơ quan nào đó, và có ý thức, bao gồm cả suy nghĩ và cảm giác. [cần dẫn nguồn]. Khái niệm tâm trí được hiểu theo nhiều cách khác nhau bởi nhiều truyền thống văn hóa và tôn giáo khác nhau",
+        "id": "64b2ae3a6ffa229514911ada",
+        "qas": [
+            {
+                "question": " Tâm trí được đặt ở đâu trong cơ thể?",
+                "answers": [
+                    {
+                        "text": "Theo giải thích vật lý khoa học, tâm trí được đặt ít nhất một phần trong não.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Những đối thủ cạnh tranh chính đối với sự giải thích vật lý của tâm trí là gì?",
+                "answers": [
+                    {
+                        "text": "Các đối thủ cạnh tranh chính đối với các diễn giải vật lý của tâm trí là chủ nghĩa duy tâm, thuyết nhị nguyên thân-tâm, và các loại thuyết nhị nguyên thuộc tính, và một phần chủ nghĩa duy vật loại trừ và chủ nghĩa dị thường.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Chuyên gia là thuật ngữ chỉ về những người người được đào tạo theo hướng chuyên sâu có kinh nghiệm thực hành công việc và có kỹ năng thực tiễn, lý luận chuyên sâu về một lĩnh vực cụ thể hoặc có hiểu biết vượt trội so với mặt bằng kiến thức chung..Các chuyên gia có thể tham gia trực tiếp hoặc gián tiếp (thông qua việc cho ý kiến, tham vấn) vào một công việc hay một lĩnh vực cụ thể. Một trong những đặc điểm quan trọng để nhận dạng chuyên gia so với các chuyên viên, đồng nghiệp thông thường là:",
+        "id": "64b2ae3a6ffa229514911adc",
+        "qas": [
+            {
+                "question": "Chuyên gia là thuật nghữ ám chỉ điều gì?",
+                "answers": [
+                    {
+                        "text": "Chuyên gia là thuật ngữ chỉ về những người người được đào tạo theo hướng chuyên sâu có kinh nghiệm thực hành công việc và có kỹ năng thực tiễn, lý luận chuyên sâu về một lĩnh vực cụ thể hoặc có hiểu biết vượt trội so với mặt bằng kiến thức chung",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Giảng viên là công chức chuyên môn đảm nhiệm việc giảng dạy và đào tạo ở bậc đại học, cao đẳng thuộc một chuyên ngành đào tạo của trường đại học hoặc cao đẳng.  Giảng viên chính là công chức chuyên môn đảm nhiệm vai trò chủ chốt trong giảng dạy và đào tạo ở bậc đại học, cao đẳng và sau đại học, thuộc một chuyên ngành đào tạo của trường đại học, cao đẳng. . Ứng viên dự thi vào ngành Giảng viên chính phải có đủ tiêu chuẩn theo quy định như: Có học vị thạc sĩ,là nhà giáo được tuyển dụng, bổ nhiệm vào ngạch giảng viên (mã số 15. 111),hệ số lương 3. 66, trực tiếp giảng dạy ở các cơ sở giáo dục ĐH từ đủ chín năm trở lên - tính từ thời điểm được bổ nhiệm vào ngạch giảng viên đến thời điểm hết hạn nộp hồ sơ dự thi;Có đề án hoặc công trình sáng tạo được cấp khoa hoặc trường công nhận và được áp dụng có kết quả trong chuyên môn được hội đồng sơ tuyển của các cơ sở giáo dục ĐH trực tiếp quản lý xét duyệt theo chỉ tiêu được phân bổ và thủ trưởng cơ sở giáo dục ĐH có văn bản cử đi dự thi gửi về hội đồng thi của cơ quan có thẩm quyền tổ chức thi. Hình thức thi nâng ngạch gồm: thi viết (trắc nghiệm và tự luận), thi vấn đáp; đối với môn tin học, ứng viên phải làm bài thi thực hành trên máy tính,môn Ngoại ngữ thi trình độ C hoặc một trong các thứ tiếng Nga, Pháp, Đức, Trung Quốc, gồm các kỹ năng nghe, nói, đọc, viết.  Ứng viên là giảng viên ngoại ngữ phải thi ngoại ngữ 2 là một trong bốn thứ tiếng trên không thuộc chuyên môn chính đang giảng dạy. ",
+        "id": "64b2ae3b6ffa229514911adf",
+        "qas": [
+            {
+                "question": "Giảng viên là ai?",
+                "answers": [
+                    {
+                        "text": "Giảng viên là công chức chuyên môn đảm nhiệm việc giảng dạy và đào tạo ở bậc đại học, cao đẳng thuộc một chuyên ngành đào tạo của trường đại học hoặc cao đẳng.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Hình thức thi nâng ngạch của giảng viên chính bao gồm những phần nào?",
+                "answers": [
+                    {
+                        "text": "Hình thức thi nâng ngạch gồm: thi viết (trắc nghiệm và tự luận), thi vấn đáp; đối với môn tin học, ứng viên phải làm bài thi thực hành trên máy tính,môn Ngoại ngữ thi trình độ C hoặc một trong các thứ tiếng Nga, Pháp, Đức, Trung Quốc, gồm các kỹ năng nghe, nói, đọc, viết.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Giảng viên ngoại ngữ cần phải thi ngoại ngữ gì?",
+                "answers": [
+                    {
+                        "text": "Ứng viên là giảng viên ngoại ngữ phải thi ngoại ngữ 2 là một trong bốn thứ tiếng trên không thuộc chuyên môn chính đang giảng dạy.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Thời khóa biểu là một cuốn lịch dùng để bố trí người học và người dạy vào các lớp học và buổi học trong ngày. Các yêu tố khác bao gồm môn học của lớp và dạng lớp học có sẵn (ví dụ như phòng thí nghiệm khoa học)..Thời khóa biểu thường xoay vòng mỗi tuần hoặc 2 tuần/lần. Cụm từ \"thời khóa biểu\" theo nghĩa rộng chỉ đến cả trường tiểu học và trường trung học, trong đó các trường cấp 1 thường có cơ cấu đơn giản. Đối với môi trường đại học – cao đẳng người ta gọi đơn giản là lịch học.",
+        "id": "64b2ae3b6ffa229514911ae0",
+        "qas": [
+            {
+                "question": "Thời khóa biểu là gì?",
+                "answers": [
+                    {
+                        "text": "Thời khóa biểu là một cuốn lịch dùng để bố trí người học và người dạy vào các lớp học và buổi học trong ngày.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Thời khóa biểu có bao gồm những yếu tố nào khác ngoài việc bố trí người học và người dạy?",
+                "answers": [
+                    {
+                        "text": "Các yêu tố khác bao gồm môn học của lớp và dạng lớp học có sẵn",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Thời khóa biểu áp dụng cho các loại trường nào?",
+                "answers": [
+                    {
+                        "text": "Cụm từ \"thời khóa biểu\" theo nghĩa rộng chỉ đến cả trường tiểu học và trường trung học, trong đó các trường cấp 1 thường có cơ cấu đơn giản. Đối với môi trường đại học – cao đẳng người ta gọi đơn giản là lịch học",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Giáo dục mở là một phong trào giáo dục khuyến khích mở rộng khả năng tiếp cận các cơ hội học tập và đào tạo vốn chỉ được cung cấp thông qua hệ thống giáo dục chính thức, và thường (nhưng không nhất thiết) được cung cấp thông qua các hình thức giáo dục trực tuyến và giáo dục từ xa.  Trên thế giới, khái niệm giáo dục mở phôi thai từ đầu thế kỷ 20 và phát triển mạnh mẽ vào thập niên 70 của thế kỷ. . Vào nửa cuối thế kỷ 20 nhiều nhà giáo dục cảm thấy sự chật chội của các mô hình giáo dục truyền thống, muốn thoát khỏi nó để làm cho giáo dục dễ tiếp cận hơn đối với nhiều người.  Trường Đại học mở đầu tiên trên thế giới ở Vương quốc Anh (UK OU) theo xu hướng này, đã ra đời vào năm 1969.  Từ \"mở\" được sử dụng ở đây để nói lên ý tưởng gạt bỏ bớt các rào cản hạn chế cơ hội tham dự của người học vào các trường đại học thông thường.  Vì \"dễ dãi\" về điều kiện tiếp nhận người học nên UK OU đã thu hút một số lớn sinh viên, đặc biệt là những người nhiều tuổi vừa học vừa làm.  Hiện nay đó là trường đại học đông sinh viên nhất Vương quốc Anh (250 nghìn sinh viên, bao gồm 50 nghìn sinh viên quốc tế, trong tổng số chỉ có 32 nghìn sinh viên dưới tuổi 25).  Tuy \"dễ dãi\" về điều kiện đầu vào, nhưng việc đánh giá đầu ra được thực hiện rất nghiêm khắc nên chất lượng đào tạo bảo đảm, vì vậy UK OU được tổ chức \"Academic Ranking of World Universities\" xếp hạng trong số 40 trường hàng đầu của Vương quốc Anh và trong số 500 trường hàng đầu của thế giới. Hưởng ứng ý tưởng của UK OU, hàng loạt trường đại học mở ra đời trên khắp thế giới",
+        "id": "64b2ae3b6ffa229514911ae1",
+        "qas": [
+            {
+                "question": " Khái niệm giáo dục mở có từ khi nào?",
+                "answers": [
+                    {
+                        "text": "đầu thế kỷ 20",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": " Trường Đại học mở đầu tiên trên thế giới là ở đâu?",
+                "answers": [
+                    {
+                        "text": "Trường Đại học mở đầu tiên trên thế giới ở Vương quốc Anh (UK OU)",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Vì sao UK OU thu hút nhiều người học, đặc biệt là người nhiều tuổi?",
+                "answers": [
+                    {
+                        "text": "\"dễ dãi\" về điều kiện đầu vào",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Kế hoạch phát triển bản thân là một bản kế hoạch hành động dựa trên sự nhận thức, trải nghiệm, sự đánh giá, mục tiêu và phương hướng cho sự phát triển bản thân xét trong lĩnh vực nghề nghiệp, giáo dục, mối quan hệ hoặc việc tự hoàn thiện..Kế hoạch phát triển bản thân dịch gọi là PDP viết tắt của cụm từ \"personal development plan\", trong tiếng Anh còn được gọi là IDP (individual development plan) hay PEP (personal enterprise plan). PDP của một người thường có thêm hai phần, phần mô tả của ai đó về nguyện vọng, sở trường, khả năng, quá trình giáo dục và thực tập; và phần lộ trình (các bước) thực hiện kế hoạch. Bản kế hoạch phát triển bản thân cũng có thể bao gồm trật tự ưu tiên về nghề nghiệp và sở thích, các vị trí mong muốn, các phân tích về cơ hội và nguy cơ, có thể gồm cả kế hoạch dự phòng (Plan B) và một bản hồ sơ quá trình việc làm..Trong giáo dục tiến bộ, PDP kèm theo một bản hồ sơ năng lực tổng hợp các kết quả chứng minh khả năng qua quá trình làm việc quá khứ. Theo quan điểm trong giáo dục đào tạo, bản hồ sơ năng lực sẽ hỗ trợ cho việc hình thành những người tự định hướng nhu cầu học tập, những người có xu hướng bước lên cấp độ cao hơn. Bản hồ sơ năng lực làm việc cá nhân (portfolio) cũng được sử dụng trong quản lý nguồn nhân lực..Những thực tập viên hay nhân viên mới trong một công ty thường được yêu cầu hoàn thành PDP..Năm năm là khoảng thời gian thường được chọn để một người tổ chức mục đính bản thân và đánh giá thành tựu đạt được.",
+        "id": "64b2ae3c6ffa229514911ae3",
+        "qas": [
+            {
+                "question": " PDP là gì?",
+                "answers": [
+                    {
+                        "text": "là một bản kế hoạch hành động dựa trên sự nhận thức, trải nghiệm, sự đánh giá, mục tiêu và phương hướng cho sự phát triển bản thân xét trong lĩnh vực nghề nghiệp, giáo dục, mối quan hệ hoặc việc tự hoàn thiện",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Ai thường được yêu cầu hoàn thành PDP trong một công ty và trong khoảng thời gian bao lâu?",
+                "answers": [
+                    {
+                        "text": "Những thực tập viên hay nhân viên mới trong một công ty thường được yêu cầu hoàn thành PDP",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Giáo sư (viết tắt: GS) hay Professor (viết tắt: Prof. ) là một học hàm ở các trường đại học, các cơ sở giáo dục, các học viện và trung tâm nghiên cứu ở hầu hết các quốc gia trên thế giới.  Theo nghĩa đen, Từ Professor (giáo sư) bắt nguồn từ tiếng Latinh \"person who professes\" nghĩa là một chuyên gia có kiến thức chuyên sâu về nghệ thuật hoặc khoa học, hoặc một giảng viên có trình độ chuyên môn cao, nhưng đôi khi chức danh giáo sư lại được xem là một danh hiệu đánh giá tố chất của một con người. . Ở phần lớn thế giới, từ \"giáo sư\" không có tiêu chuẩn được sử dụng chính thức để chỉ ra cấp bậc học vấn cao nhất. . Các giáo sư thường tiến hành nghiên cứu ban đầu và giảng dạy các khóa học ở đại học, sau đại học hoặc các lĩnh vực trong chuyên môn của họ.  Ở các trường đại học có chương trình cấp bằng sau đại học, giáo sư có thể cố vấn và giám sát sinh viên tốt nghiệp tiến hành nghiên cứu luận án hoặc luận văn. . Ở các nước Âu Mỹ, các giáo sư thường có bằng tiến sĩ hoặc bằng cấp cao khác.  Một số giáo sư có bằng thạc sĩ hoặc bằng cấp chuyên nghiệp, chẳng hạn như Bằng M. D.  (Doctor of Medicine), là trình độ cao nhất của họ.  Giáo sư không phải là một học hàm hay một chức danh khoa học mà là một chức vụ giảng dạy, có trách nhiệm lớn trong trường đại học, có nhiệm vụ hướng dẫn sinh viên nghiên cứu, và thường do các trường đại học tự chọn lựa và quyết định. . Phó Giáo sư (associate professor) là một chức danh khoa học dành cho người nghiên cứu và giảng dạy bậc đại học, sau đại học nhưng ở cấp thấp hơn giáo sư (professor)",
+        "id": "64b2ae246ffa229514911a84",
+        "qas": [
+            {
+                "question": "Giáo sư là gì?",
+                "answers": [
+                    {
+                        "text": "Giáo sư (viết tắt: GS) hay Professor (viết tắt: Prof. ) là một học hàm ở các trường đại học, các cơ sở giáo dục, các học viện và trung tâm nghiên cứu ở hầu hết các quốc gia trên thế giới.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Từ Professor bắt nguồn từ đâu và có nghĩa là gì?",
+                "answers": [
+                    {
+                        "text": "Từ Professor (giáo sư) bắt nguồn từ tiếng Latinh \"person who professes\" nghĩa là một chuyên gia có kiến thức chuyên sâu về nghệ thuật hoặc khoa học, hoặc một giảng viên có trình độ chuyên môn cao, nhưng đôi khi chức danh giáo sư lại được xem là một danh hiệu đánh giá tố chất của một con người.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Giáo sư có tiêu chuẩn chính thức được sử dụng để chỉ cấp bậc học vấn cao nhất không?",
+                "answers": [
+                    {
+                        "text": "Ở phần lớn thế giới, từ \"giáo sư\" không có tiêu chuẩn được sử dụng chính thức để chỉ ra cấp bậc học vấn cao nhất.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Trung học cơ sở (cũng được gọi là trung cấp hoặc trung học) là một giai đoạn giáo dục có trong một số quốc gia và diễn ra giữa tiểu học và trung học phổ thông.  Các khái niệm, quy định và phân loại của trường trung học, cũng như tuổi bảo hiểm thay đổi khác nhau giữa các cấp giáo dục và thay đổi trong từng quốc gia. . Tại Việt Nam, các trường trung học được gọi đầy đủ là trường trung học cơ sở (THCS).  Trung học cơ sở gồm có bốn lớp là 6, 7, 8 và 9, ở lứa tuổi từ 11 hoặc 12 đến 15.  Trước đây nó thường được gọi là trường phổ thông cơ sở. . Ở Afghanistan, trung học gồm lớp 6, 7 và 8.  Bên cạnh đó là một sự thay đổi từ tiểu học lên trung học phổ thông. . Ở Algérie, trung học bao gồm lớp 6 đến 10, bao gồm các học sinh ở độ tuổi từ 10 hoặc 11 đến 15. . Ở Brazil, trường trung học bắt buộc trẻ em phải đi học, là giai đoạn học gọi là \"Ensino Fundamental II\" bao gồm các lớp 6 đến 9, lứa tuổi 11 đến 14. . Ở Pháp, giai đoạn trung học được gọi là collège, kéo dài 4 năm từ Sixième (tương đương với lớp 6) đến Troisième (tương đương với lớp 9), lứa tuổi từ 11 đến 15. . Ở Cộng hòa Nhân dân Trung Hoa, trường trung học gồm có hai giai đoạn, tiểu học là giai đoạn từ lớp 7 đến 9, một vài nơi cũng có thể là lớp 6-9 và giai đoạn cấp 3 (lớp 10-12).  Giai đoạn giáo dục trẻ em là 3 năm cuối cùng của 9 năm bắt buộc giáo dục cho tất cả các trẻ em, trong khi các trường cấp ba, giáo dục là tùy chọn, nhưng coi như là một phần quan trọng để chuẩn bị cho kì thi đại học. ",
+        "id": "64b2ae2c6ffa229514911aa4",
+        "qas": [
+            {
+                "question": "Trung học cơ sở được gọi là gì tại Việt Nam?",
+                "answers": [
+                    {
+                        "text": "Trung học cơ sở (cũng được gọi là trung cấp hoặc trung học) là một giai đoạn giáo dục có trong một số quốc gia và diễn ra giữa tiểu học và trung học phổ thông.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Trung học ở Afghanistan bao gồm những lớp nào?",
+                "answers": [
+                    {
+                        "text": "Ở Afghanistan, trung học gồm lớp 6, 7 và 8.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Giai đoạn trung học ở Cộng hòa Nhân dân Trung Hoa kéo dài bao lâu?",
+                "answers": [
+                    {
+                        "text": "Ở Cộng hòa Nhân dân Trung Hoa, trường trung học gồm có hai giai đoạn, tiểu học là giai đoạn từ lớp 7 đến 9, một vài nơi cũng có thể là lớp 6-9 và giai đoạn cấp 3 (lớp 10-12).",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Một loạt các cơ sở học tập bậc cao thời cổ đại (tiếng Anh: ancient higher-learning institutions) được thiết lập ở nhiều nền văn hóa, cung cấp môi trường cho các hoạt động học thuật.  Các trung tâm học thuật cổ xưa này nhận được sự bảo trợ và giám sát của triều đình; của những tổ chức hay cơ sở tôn giáo; của những cơ sở khoa học như viện bảo tàng, bệnh viện, và đài quan trắc; và của những cá nhân học giả.  Các trung tâm này khác với mô hình viện đại học có nguồn gốc châu Âu thời trung cổ, vốn là một tổ chức tự trị của những học giả,. Học viện Platon (tiếng Anh: Platonic Academy), đôi khi còn được gọi là Viện Đại học Athens, Mô hình học viện này được Học viện Platon ở Florentine (còn gọi là Học viện Florentine) phỏng theo trong thời Phục hưng.  Những thành viên của Học viện Florentine xem mình như là những người theo truyền thống của Platon. . Vào khoảng năm 335 trước Tây lịch, người tiếp nối Platon là Aristotle thành lập trường Peripatetic.  Các sinh viên của trường tụ họp một nơi gọi là Lyceum ở Athens.  Trường này ngừng hoạt động vào năm 86 trước Tây lịch trong thời gian Athens bị Lucius Cornelius Sulla Felix (thường gọi là Sulla) - một viên tướng La Mã - vây hãm, cướp phá, và gây ra nạn đói. . Trong suốt thời kỳ Hy Lạp cổ đại, Museion ở Alexandria (bao gồm Thư viện Alexandria) trở thành viện nghiên cứu khoa học và công nghệ hàng đầu, nhờ đó mà nhiều phát kiến của Hy Lạp đã ra đời.  Kỹ sư, nhà phát minh Ctesibius (nổi danh trong khoảng năm 285–222 trước Tây lịch) có thể là viện trưởng đầu tiên của cơ sở này.  Museion bị đàn áp và thiêu rụi trong khoảng năm 216 đến 272; Thư viện Alexandria bị phá hủy trong khoảng năm 272 đến 391. ",
+        "id": "64b2ae306ffa229514911ab2",
+        "qas": [
+            {
+                "question": "Các trung tâm học thuật cổ đại được bảo trợ và giám sát bởi ai?",
+                "answers": [
+                    {
+                        "text": "Các trung tâm học thuật cổ xưa này nhận được sự bảo trợ và giám sát của triều đình; của những tổ chức hay cơ sở tôn giáo; của những cơ sở khoa học như viện bảo tàng, bệnh viện, và đài quan trắc; và của những cá nhân học giả.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Học viện Florentine phỏng theo mô hình học viện nào?",
+                "answers": [
+                    {
+                        "text": "Viện Đại học Athens",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Trường Peripatetic do ai thành lập?",
+                "answers": [
+                    {
+                        "text": "Aristotle",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Tự do học thuật là quyền tự do giảng dạy, học tập, và theo đuổi tri thức và nghiên cứu của giảng viên và sinh viên mà không bị can thiệp vô lý hay bị giới hạn bởi luật pháp, các quy định của cơ sở giáo dục, hoặc áp lực của công chúng.  Những yếu tố cơ bản của tự do học thuật bao gồm quyền tự do của giảng viên trong việc tìm hiểu bất cứ chủ đề tri thức nào mà mình quan tâm; quyền trình bày những khám phá của mình cho sinh viên, đồng nghiệp, và những người khác biết; quyền công bố bằng cách xuất bản những số liệu và kết luận của mình mà không bị kiểm soát hay kiểm duyệt; và quyền giảng dạy theo cách mà mình thấy phù hợp về mặt chuyên môn.  Đối với sinh viên, những yếu tố cơ bản bao gồm quyền tự do học tập và nghiên cứu những gì mình quan tâm và quyền đưa ra những kết luận của chính mình, cũng như quyền biểu đạt những ý kiến của mình. . Theo những người ủng hộ tự do học thuật thì quyền tự do này ra đời không phải để giảng viên và sinh viên có được sự tiện lợi hay dễ chịu mà vì lợi ích của xã hội; nghĩa là, những lợi ích lâu dài xã hội được phục vụ tốt nhất khi quá trình giáo dục dẫn đến sự tiến bộ về mặt tri thức, và tri thức có thể đạt được sự tiến bộ cao nhất khi việc tìm hiểu tri thức không bị những ràng buộc từ phía nhà nước, giáo hội, những định chế hay tổ chức khác, hay từ phía các nhóm lợi ích. . Tự do học thuật không nhằm bảo vệ những hành động vi phạm luật pháp hoặc vô đạo đức trong các cơ sở học thuật . ",
+        "id": "64b2ae316ffa229514911ab7",
+        "qas": [
+            {
+                "question": "Tự do học thuật là gì?",
+                "answers": [
+                    {
+                        "text": "Tự do học thuật là quyền tự do giảng dạy, học tập, và theo đuổi tri thức và nghiên cứu của giảng viên và sinh viên mà không bị can thiệp vô lý hay bị giới hạn bởi luật pháp, các quy định của cơ sở giáo dục, hoặc áp lực của công chúng.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Tại sao tự do học thuật quan trọng đối với giảng viên và sinh viên?",
+                "answers": [
+                    {
+                        "text": "Những yếu tố cơ bản của tự do học thuật bao gồm quyền tự do của giảng viên trong việc tìm hiểu bất cứ chủ đề tri thức nào mà mình quan tâm; quyền trình bày những khám phá của mình cho sinh viên, đồng nghiệp, và những người khác biết; quyền công bố bằng cách xuất bản những số liệu và kết luận của mình mà không bị kiểm soát hay kiểm duyệt; và quyền giảng dạy theo cách mà mình thấy phù hợp về mặt chuyên môn.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Mục tiêu của tự do học thuật là gì?",
+                "answers": [
+                    {
+                        "text": "Theo những người ủng hộ tự do học thuật thì quyền tự do này ra đời không phải để giảng viên và sinh viên có được sự tiện lợi hay dễ chịu mà vì lợi ích của xã hội; nghĩa là, những lợi ích lâu dài xã hội được phục vụ tốt nhất khi quá trình giáo dục dẫn đến sự tiến bộ về mặt tri thức, và tri thức có thể đạt được sự tiến bộ cao nhất khi việc tìm hiểu tri thức không bị những ràng buộc từ phía nhà nước, giáo hội, những định chế hay tổ chức khác, hay từ phía các nhóm lợi ích.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Tạp chí The Economist ở Anh đã khảo sát tình trạng dân chủ ở 167 quốc gia và cố gắng định lượng chỉ số dân chủ (DI) do bộ phận Economist Intelligence Unit Index of Democracy tiến hành dựa trên năm phân loại chung là:. Na Uy có tổng điểm số cao nhất là 9,81 trên thang số 10, ngược lại, Afghanistan cuối bảng với số điểm 0,29.  Dân chủ đầy đủ, Dân chủ khiếm khuyết, và Thể chế hỗn hợp được xem là chính quyền đa đảng (Thường là theo tư bản chủ nghĩa. . . ) và Chính thể chuyên chế được xem là chính quyền đơn đảng, nắm quyền độc nhất (Thường là theo Xã hội chủ nghĩa, chủ nghĩa Cộng sản, quốc gia Hồi giáo. . . ) (riêng Thể chế hỗn hợp cũng có thể được xem là gần giống Chính thể chuyên chế nếu dưới 5 điểm và trên 4 điểm). . Như được mô tả trong bản báo cáo, chỉ số dân chủ được tính theo cách tính bình quân trọng lượng dựa trên trả lời của 60 câu hỏi, mỗi câu có từ hai đến ba lựa chọn để trả lời.  Hầu hết các câu hỏi được các chuyên gia đánh giá; tuy nhiên, báo cáo đó không cho biết chuyên gia ngành nào, cũng như số lượng chuyên gia, hay các chuyên gia có phải là nhân viên của Tạp chí đó hay không.  Điều đó tuân thủ truyền thống ẩn danh để né tránh chỉ trích cá nhân của Tạp chí, một truyền thống đã vấp phải nhiều chỉ trích vì sự thiếu tin cậy trên toàn Tạp chí. . Một cách sơ lược, các câu hỏi được phân bổ vào năm loại chính.  Mỗi câu trả lời được cho điểm là 0 hoặc 1, hoặc có thêm 0,5 điểm đối với ba lựa chọn.  Tổng số điểm được cộng dồn vào cho từng loại, nhân với mười, rồi chia cho tổng số câu hỏi của từng loại đó. . Ví dụ:",
+        "id": "64b2ae336ffa229514911ac1",
+        "qas": [
+            {
+                "question": "Có bao nhiêu quốc gia đã được khảo sát trong nghiên cứu của Tạp chí The Economist về tình trạng dân chủ?",
+                "answers": [
+                    {
+                        "text": "ở 167 quốc gia",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Quốc gia nào có số điểm cao nhất trong chỉ số dân chủ?",
+                "answers": [
+                    {
+                        "text": "Na Uy có tổng điểm số cao nhất là 9,81",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Quốc gia nào đứng cuối bảng trong chỉ số dân chủ?",
+                "answers": [
+                    {
+                        "text": "Afghanistan cuối bảng với số điểm 0,29.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Đo lường trong giáo dục (Educational measurement) là một nhánh khoa học sử dụng việc đánh giá và phân tích số liệu đánh giá trong giáo dục để suy ra năng lực, trình độ của người được đánh giá (thí sinh).  Đo lường trong giáo dục có một bộ phận chồng gối với đo lường trong tâm lý (tâm trắc học - Psychometrics). . Đo lường là gán các con số vào các cá thể sự vật theo một hệ thống quy tắc nào đó để biểu diễn đặc tính của sự vật đó.  Còn đánh giá là đưa ra phán quyết về mức độ giá trị hoặc chất lượng của sự vật đó.  Như vậy, đo lường chỉ để thu được các con số chứ chưa phán xét về sự vật gắn với con số đó ở mức độ giá trị hoặc chất lượng nào; còn đánh giá là phán xét về mức độ giá trị hoặc chất lượng của sự vật, tức là nhận định sự vật là lớn hay bé, cao hay thấp, tốt hay xấu . . . ở mức độ nào.  Quan hệ giữa đo lường và đánh giá là: đo lường nhằm cung cấp số liệu để đánh giá, kết quả đo lường là căn cứ để đánh giá . . Thao tác đo lường trong giáo dục thường là tiến hành các bài kiểm tra trên các thí sinh bằng trắc nghiệm khách quan (lựa chọn trả lời) hoặc tự luận (bài viết đủ dài) rồi phân tích kết quả của các bài kiểm tra để ước lượng rút ra các con số bằng đặc trưng cho các câu hỏi và năng lực của thí sinh. . Các lý thuyết quan trọng được dựa vào để triển khai tính toán nhằm đo lường trong giáo dục (cũng như trong tâm trắc học) bao gồm Lý thuyết Trắc nghiệm cổ điển (Classical Test theory - CTT), Lý thuyết Ứng đáp Câu hỏi (Item Response Theory - IRT), trong đó có mô hình Rasch ",
+        "id": "64b2ae356ffa229514911ac8",
+        "qas": [
+            {
+                "question": " Đo lường trong giáo dục là gì?",
+                "answers": [
+                    {
+                        "text": "là một nhánh khoa học sử dụng việc đánh giá và phân tích số liệu đánh giá trong giáo dục để suy ra năng lực, trình độ của người được đánh giá (thí sinh).",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": " Điểm khác biệt giữa đo lường và đánh giá là gì?",
+                "answers": [
+                    {
+                        "text": "Đo lường là gán các con số vào các cá thể sự vật theo một hệ thống quy tắc nào đó để biểu diễn đặc tính của sự vật đó. Còn đánh giá là đưa ra phán quyết về mức độ giá trị hoặc chất lượng của sự vật đó.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Các lý thuyết quan trọng để đo lường trong giáo dục bao gồm những gì?",
+                "answers": [
+                    {
+                        "text": "Các lý thuyết quan trọng được dựa vào để triển khai tính toán nhằm đo lường trong giáo dục (cũng như trong tâm trắc học) bao gồm Lý thuyết Trắc nghiệm cổ điển (Classical Test theory - CTT), Lý thuyết Ứng đáp Câu hỏi (Item Response Theory - IRT), trong đó có mô hình Rasch",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Kiểm định giáo dục hay thẩm định giáo dục là một loại quy trình đảm bảo chất lượng theo đó các dịch vụ và hoạt động của các tổ chức hoặc các chương trình giáo dục được đánh giá bởi một cơ quan bên ngoài để xác định tiêu chuẩn áp dụng được đáp ứng. Nếu tiêu chuẩn được đáp ứng, tình trạng được công nhận được cấp bởi các cơ quan thích hợp..Trong hầu hết các nước hiện chức năng kiểm định chất lượng giáo dục được tiến hành bởi một tổ chức chính phủ, chẳng hạn như Bộ Giáo dục. Tại Hoa Kỳ một quy trình đảm bảo chất lượng tồn tại độc lập với chính phủ và do tổ chức phi lợi nhuận tư nhân thực hiện. Quá trình công nhận của Mỹ đã được phát triển vào cuối thế kỷ 19 và đầu thế kỷ 20 sau khi các tổ chức giáo dục nhận thức một nhu cầu phối hợp cải thiện và khớp nối giữa các tổ chức giáo dục trung học và sau trung học, cùng với tiêu chuẩn hóa các yêu cầu giữa hai cấp.",
+        "id": "64b2ae366ffa229514911acc",
+        "qas": [
+            {
+                "question": "Quy trình kiểm định giáo dục được thực hiện bởi ai?",
+                "answers": [
+                    {
+                        "text": "chức năng kiểm định chất lượng giáo dục được tiến hành bởi một tổ chức chính phủ, chẳng hạn như Bộ Giáo dục.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Ở Hoa Kỳ, quy trình đảm bảo chất lượng giáo dục được thực hiện bởi ai?",
+                "answers": [
+                    {
+                        "text": "ại Hoa Kỳ một quy trình đảm bảo chất lượng tồn tại độc lập với chính phủ và do tổ chức phi lợi nhuận tư nhân thực hiện.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Tại sao Mỹ phát triển quy trình công nhận giáo dục vào cuối thế kỷ 19 và đầu thế kỷ 20?",
+                "answers": [
+                    {
+                        "text": "Quá trình công nhận của Mỹ đã được phát triển vào cuối thế kỷ 19 và đầu thế kỷ 20 sau khi các tổ chức giáo dục nhận thức một nhu cầu phối hợp cải thiện và khớp nối giữa các tổ chức giáo dục trung học và sau trung học, cùng với tiêu chuẩn hóa các yêu cầu giữa hai cấp.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Lý thuyết Ứng đáp Câu hỏi (Item Response Theory - IRT) là một lý thuyết của khoa học về đo lường trong giáo dục, ra đời từ nửa sau của thế kỷ 20 và phát triển mạnh mẽ cho đến nay.  Trước đó, Lý thuyết Trắc nghiệm cổ điển (Clasical Test Theory – CTT), ra đời từ khoảng cuối thế kỷ 19 và hoàn thiện vào khoảng thập niên 1970, đã có nhiều đóng góp quan trọng cho hoạt động đánh giá trong giáo dục, nhưng cũng thể hiện một số hạn chế.  Các nhà tâm trắc học (psychometricians) cố gắng xây dựng một lý thuyết hiện đại sao cho khắc phục được các hạn chế đó.  Lý thuyết trắc nghiệm hiện đại được xây dựng dựa trên mô hình toán học, đòi hỏi nhiều tính toán, nhưng nhờ sự tiến bộ vượt bậc của công nghệ tính toán bằng máy tính điện tử vào cuối thế kỷ 20 – đầu thế kỷ 21 nên nó đã phát triển nhanh chóng và đạt được những thành tựu quan trọng. . Để đánh giá đối tượng nào đó CTT tiếp cận ở cấp độ một đề kiểm tra, còn lý thuyết trắc nghiệm hiện đại tiếp cận ở cấp độ từng câu hỏi, do đó lý thuyết này thường được gọi là Lý thuyết Ứng đáp Câu hỏi.  Trong số các nhà nghiên cứu có nhiều đóng góp ban đầu cho IRT có thể kể các tên Lord, F. M.  . v. v. . . Chúng ta sẽ quy ước gọi một con người có thuộc tính cần đo lường là thí sinh (person -TS) và một đơn vị của công cụ để đo lường (test) là câu hỏi (item –CH).  Để đơn giản hóa cho mô hình nghiên cứu xuất phát có thể đưa ra các giả thiết sau đây:. - Năng lực tiềm ẩn (latent trait) cần đo chỉ có một chiều (unidimensionality), hoặc ta chỉ đo một chiều của năng lực đó. ",
+        "id": "64b2ae376ffa229514911ace",
+        "qas": [
+            {
+                "question": "Lý thuyết Ứng đáp Câu hỏi (Item Response Theory - IRT) ra đời khi nào?",
+                "answers": [
+                    {
+                        "text": "ra đời từ nửa sau của thế kỷ 20 và phát triển mạnh mẽ cho đến nay.",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Lý thuyết Trắc nghiệm cổ điển (Clasical Test Theory – CTT) có hạn chế gì?",
+                "answers": [
+                    {
+                        "text": "",
+                        "exist": false
+                    }
+                ]
+            },
+            {
+                "question": "Lý thuyết Ứng đáp Câu hỏi (IRT) được xây dựng dựa trên gì?",
+                "answers": [
+                    {
+                        "text": "Lý thuyết trắc nghiệm hiện đại được xây dựng dựa trên mô hình toán học",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Mục tiêu giáo dục là một hệ thống các chuẩn mực của một mẫu hình nhân cách cần hình thành ở một đối tượng người được giáo dục nhất định. Đó là một hệ thống cụ thể các yêu cầu xã hội trong mỗi thời đại, trong từng giai đoạn xác định đối với nhân cách một loại đối tượng giáo dục..Do đó, mục tiêu giáo dục phụ thuộc vào mỗi thời kỳ nhất định của quá trình phát triển xã hội và mỗi giai đoạn của quá trình giáo dục con người..Trải qua các giai đoạn phát triển xã hội, cách tiếp cận xác lập mục tiêu giáo dục đang có nhiều thay đổi..Trong một thời gian dài cho đến những năm 1940, dạy học lấy việc trang bị kiến thức làm nhiệm vụ cơ bản. Có thể nói dung lượng và mức độ đồng hóa kiến thức là mục tiêu của việc dạy học thời kỳ này..Việc dạy học hướng tới mục tiêu thực sự bắt đầu vào những năm 1950 ở Hoa Kỳ sau những kết quả nghiên cứu thuyết phục của nhóm Bloom và sau đó nhanh chóng được áp dụng ở nhiều nước trên thế giới trong đó có Việt Nam..Hiện nay có 3 cách tiếp cận mục tiêu giáo dục được áp dụng trên thế giới",
+        "id": "64b2ae3b6ffa229514911ae2",
+        "qas": [
+            {
+                "question": "Mục tiêu giáo dục là gì?",
+                "answers": [
+                    {
+                        "text": "Mục tiêu giáo dục là một hệ thống các chuẩn mực của một mẫu hình nhân cách cần hình thành ở một đối tượng người được giáo dục nhất định.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    }
+]
