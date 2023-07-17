@@ -43,7 +43,7 @@ class E2EQuestionAnsweringPipeline(Pipeline):
         self.input_root = name_component
 
     def run(self, queries: Union[str, List[str]],
-            top_k_bm25: int = 50,
+            top_k_bm25: int = 30,
             top_k_sbert: int = 10,
             top_k_qa: int = 1,
             **kwargs):
