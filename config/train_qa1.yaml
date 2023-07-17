@@ -1,6 +1,6 @@
 data:
-  path_train: data/UITSquad/edu.json
-  path_evaluator: data/UITSquad/edu.json
+  path_train: data/hand/edu_train.json
+  path_evaluator: data/hand/edu_test.json
 
 config_data:
   max_length_document: 300
@@ -24,7 +24,7 @@ retrieval:
 reader:
   is_train: true
   model:
-    model_name_or_path: 'khanhbk20/mrc_dev'
+    model_name_or_path: 'nguyenvulebinh/vi-mrc-large'
     num_train_epochs: 10
     learning_rate: 5e-5
     batch_size_training: 8
