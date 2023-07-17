@@ -30,7 +30,7 @@ class InformationRetrievalEvaluatorCustom(InformationRetrievalEvaluator):
     def compute_metrices_retrieval(self, pipeline,
                                    **kwargs) -> Dict[str, float]:
         top_k_bm25 = kwargs.get(TOP_K_BM25, 30)
-        get_scoring_method = kwargs.get(GET_SCORE, EMBEDDING_SCORE)
+        get_scoring_method = kwargs.get(GET_SCORE, COMBINE_BM25_EMBED_SCORE)
         if kwargs.get(TOP_K_SBERT, None):
             top_k_sbert = kwargs.get(TOP_K_SBERT)
         else:

@@ -14,7 +14,7 @@ retrieval:
     method_train: triplet
     n_negative: 4
   model:
-    model_name_or_pa:th: keepitreal/vietnamese-sbert
+    model_name_or_path: keepitreal/vietnamese-sbert
     model_save_path: model/sbert
     batch_size: 16
     epochs: 10
