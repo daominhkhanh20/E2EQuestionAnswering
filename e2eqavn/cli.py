@@ -127,10 +127,17 @@ def evaluate(config: Union[str, Text], mode,
     retrieval_config = config_pipeline.get(RETRIEVAL, None)
     reader_config = config_pipeline.get(READER, None)
     pipeline = E2EQuestionAnsweringPipeline()
-    eval_corpus = Corpus.parser_uit_squad(
-        config_pipeline[DATA][PATH_EVALUATOR],
-        **config_pipeline.get(CONFIG_DATA, {})
-    )
+
+    try:
+        eval_corpus = Corpus.parser_uit_squad(
+            config_pipeline[DATA][PATH_EVALUATOR],
+            **config_pipeline.get(CONFIG_DATA, {})
+        )
+    except:
+        eval_corpus = Corpus.init_corpus(
+            config_pipeline[DATA][PATH_EVALUATOR],
+            **config_pipeline.get(CONFIG_DATA, {})
+        )
     if mode in ['retrieval', 'pipeline', 'bm25']:
         logger.info("Start loading BM25")
         bm25_retrieval = BM25Retrieval(corpus=eval_corpus)
