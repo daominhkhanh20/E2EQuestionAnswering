@@ -291,8 +291,11 @@ def prepare_input_for_retrieval_evaluator(data: List[Dict], **kwargs):
 def make_input_for_retrieval_evaluator(path_data_json, **kwargs):
     data = load_json_data(path_data_json)
     temp = []
-    for context in data['data']:
-        temp.extend(context['paragraphs'])
+    try:
+        for context in data['data']:
+            temp.extend(context['paragraphs'])
+    except:
+        temp = data
     return prepare_input_for_retrieval_evaluator(temp, **kwargs)
 
 
