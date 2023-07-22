@@ -145,7 +145,7 @@ def evaluate(config: Union[str, Text], mode,
             component=bm25_retrieval,
             name_component='bm25_retrieval'
         )
-        
+
     context_copurs = {doc.document_id: doc.document_context for doc in eval_corpus.list_document}
     queries = {}
     relevant_docs = {}
