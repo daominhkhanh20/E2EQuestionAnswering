@@ -145,9 +145,20 @@ def evaluate(config: Union[str, Text], mode,
             component=bm25_retrieval,
             name_component='bm25_retrieval'
         )
-    corpus, queries, relevant_docs = make_input_for_retrieval_evaluator(
-        path_data_json=config_pipeline[DATA][PATH_EVALUATOR]
-    )
+        
+    context_copurs = {doc.document_id: doc.document_context for doc in eval_corpus.list_document}
+    queries = {}
+    relevant_docs = {}
+    for doc in eval_corpus.list_document:
+        if len(doc.list_pair_question_answers) == 0:
+            continue
+        for question_answer in doc.list_pair_question_answers:
+            ques_id = hashlib.sha1(str(question_answer.question).encode('utf-8')).hexdigest()
+            queries[ques_id] = question_answer.question
+            if ques_id not in relevant_docs:
+                relevant_docs[ques_id] = set()
+            relevant_docs[ques_id].add(doc.document_id)
+
     if mode in ['retrieval', 'pipeline'] and retrieval_config:
         logger.info("Start loading Sbert")
         retrieval_model = SBertRetrieval.from_pretrained(retrieval_config[MODEL][MODEL_NAME_OR_PATH])
@@ -161,7 +172,7 @@ def evaluate(config: Union[str, Text], mode,
         logger.info("Start evaluate retrieval")
         information_evaluator = InformationRetrievalEvaluatorCustom(
             queries=queries,
-            corpus=corpus,
+            corpus=context_copurs,
             relevant_docs=relevant_docs
         )
         information_evaluator.compute_metrices_retrieval(
