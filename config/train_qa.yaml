@@ -29,7 +29,7 @@ reader:
     lambda_weight: 0.2
 
   model:
-    model_name_or_path: 'khanhbk20/mrc_dev'
+    model_name_or_path: khanhbk20/mrc_dev
     num_train_epochs: 2
     learning_rate: 5e-5
     batch_size_training: 16

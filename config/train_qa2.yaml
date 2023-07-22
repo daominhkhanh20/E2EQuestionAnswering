@@ -35,4 +35,4 @@ reader:
     metric_for_best_model: f1
     logging_step: 1
     max_length: 368
-    output_dir: model/qa/large
+    output_dir: model/qa/base
