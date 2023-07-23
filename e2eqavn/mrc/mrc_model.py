@@ -202,6 +202,7 @@ class MRCReader(BaseReader, ABC):
 
     def extract_answer(self, input_features, outputs, retrieval_score: List):
         results = []
+        logger.info(retrieval_score)
         flag = torch.is_nonzero(torch.tensor(retrieval_score))
         for idx, (input_feature, start_logit, end_logit) in enumerate(zip(input_features, outputs.start_logits, outputs.end_logits)):
             input_ids = input_feature[INPUT_IDS]
