@@ -200,9 +200,10 @@ class MRCReader(BaseReader, ABC):
             compute_metrics=self.compute_metrics
         )
 
-    def extract_answer(self, input_features, outputs):
+    def extract_answer(self, input_features, outputs, retrieval_score: List):
         results = []
-        for input_feature, start_logit, end_logit in zip(input_features, outputs.start_logits, outputs.end_logits):
+        flag = torch.is_nonzero(torch.tensor(retrieval_score))
+        for idx, (input_feature, start_logit, end_logit) in enumerate(zip(input_features, outputs.start_logits, outputs.end_logits)):
             input_ids = input_feature[INPUT_IDS]
             words_length = input_feature[WORDS_LENGTH]
             answer_start_idx = sum(words_length[: torch.argmax(start_logit)])
@@ -215,11 +216,15 @@ class MRCReader(BaseReader, ABC):
                 answer = " "
             score_start = torch.max(torch.softmax(start_logit, dim=-1)).cpu().detach().numpy().tolist()
             score_end = torch.max(torch.softmax(end_logit, dim=-1)).cpu().detach().numpy().tolist()
+            if not flag:
+                score_reader = score_start * score_end
+            else:
+                score_reader = score_start * score_end * retrieval_score[idx]
             results.append({
                 "answer": answer,
                 "score_start": score_start,
                 "score_end": score_end,
-                "score": score_end * score_start,
+                "score":  score_reader,
                 'answer_start_idx': answer_start_idx,
                 'answer_end_idx': answer_end_idx
             })
@@ -232,21 +237,19 @@ class MRCReader(BaseReader, ABC):
         for question, list_document in tqdm(zip(queries, documents), total=len(documents)):
             tmp_pred, tmp_pred_raw = self.qa_inference(
                 question=question,
-                documents=[
-                    doc.document_context for doc in list_document
-                ],
+                documents=list_document,
                 **kwargs
             )
             results.append(tmp_pred)
             results_raw.append(tmp_pred_raw)
         return results, results_raw
 
-    def qa_inference(self, question: str, documents: List[str], **kwargs):
+    def qa_inference(self, question: str, documents: List[Document], **kwargs):
         questions = [question] * len(documents)
         top_k_qa = kwargs.get(TOP_K_QA, 1)
         input_features_raw = make_input_feature_qa(
             questions=questions,
-            documents=documents,
+            documents=[doc.document_context for doc in documents],
             tokenizer=self.tokenizer,
             max_length=368
         )
@@ -255,7 +258,7 @@ class MRCReader(BaseReader, ABC):
             if isinstance(value, Tensor):
                 input_features[key] = value.to(self.device)
         outs = self.model(**input_features)
-        results = self.extract_answer(input_features_raw, outs)
+        results = self.extract_answer(input_features_raw, outs, retrieval_score=[doc.score for doc in documents])
         return results[:top_k_qa], results
 
     def train(self):
