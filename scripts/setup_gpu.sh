@@ -28,6 +28,15 @@ python3 test/mrc/training_mrc.py
 kaggle datasets init -p model
 kaggle datasets create -p model -r zip 
 
+e2eqavn train --config config/train_qa1.yaml
+e2eqavn train --config config/train_qa2.yaml
+
+rm model/qa/*/*/sche*
+rm model/qa/*/*/optim*
+rm model/qa/*/*/train*
+
+
+
 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
 git config --global user.email "khanhc1k36@gmail.com"
 git config --global user.name "daominhkhanh20"
