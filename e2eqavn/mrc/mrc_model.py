@@ -202,8 +202,7 @@ class MRCReader(BaseReader, ABC):
 
     def extract_answer(self, input_features, outputs, retrieval_score: List):
         results = []
-        logger.info(retrieval_score)
-        flag = torch.is_nonzero(torch.tensor(retrieval_score))
+        flag = all(value == 0 for value in retrieval_score)
         for idx, (input_feature, start_logit, end_logit) in enumerate(zip(input_features, outputs.start_logits, outputs.end_logits)):
             input_ids = input_feature[INPUT_IDS]
             words_length = input_feature[WORDS_LENGTH]
@@ -217,7 +216,7 @@ class MRCReader(BaseReader, ABC):
                 answer = " "
             score_start = torch.max(torch.softmax(start_logit, dim=-1)).cpu().detach().numpy().tolist()
             score_end = torch.max(torch.softmax(end_logit, dim=-1)).cpu().detach().numpy().tolist()
-            if not flag:
+            if flag:
                 score_reader = score_start * score_end
             else:
                 score_reader = score_start * score_end * retrieval_score[idx]
