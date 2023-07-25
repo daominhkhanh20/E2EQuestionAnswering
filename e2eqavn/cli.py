@@ -251,7 +251,7 @@ def evaluate(config: Union[str, Text], mode,
                 }
                 )
         if logging_result_pipeline:
-            write_json_file(results_logging, 'logging.json')
+            write_json_file(results_logging, os.path.join(reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_dev'), 'logging.json'))
         logger.info(f"Evaluate E2E pipeline: {metric_fn.compute(predictions=predictions, references=ground_truth)}")
 
 

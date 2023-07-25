@@ -24,7 +24,7 @@ retrieval:
 reader:
   is_train: true
   model:
-    model_name_or_path: 'nguyenvulebinh/vi-mrc-large'
+    model_name_or_path: nguyenvulebinh/vi-mrc-large
     num_train_epochs: 10
     learning_rate: 5e-5
     batch_size_training: 8
