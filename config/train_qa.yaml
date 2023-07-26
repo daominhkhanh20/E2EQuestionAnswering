@@ -23,10 +23,10 @@ retrieval:
 
 reader:
   is_train: true
-  data_argument:
-    make_negative_mrc: true
-    threshold_sampling: 0.1
-    lambda_weight: 0.2
+#  data_argument:
+#    make_negative_mrc: true
+#    threshold_sampling: 0.1
+#    lambda_weight: 0.2
 
   model:
     model_name_or_path: khanhbk20/mrc_dev
