@@ -17,6 +17,7 @@ export PATH=/root/miniconda3/bin:$PATH
 
 cd /workspace/E2EQuestionAnswering
 git checkout develop
+git checkout develop_pipeline
 pip install python-dotenv
 pip install .
 python3 -c "import nltk;nltk.download('punkt')"
