@@ -13,7 +13,7 @@ from torch import nn
 class QaModel(nn.Module):
     def __init__(self):
         super().__init__()
-        self.model = MRCQuestionAnsweringModel.from_pretrained('khanhbk20/mrc_testing')
+        self.model = MRCQuestionAnsweringModel.from_pretrained('khanhbk20/mrc_base')
 
     def forward(self, input_ids, attention_mask, align_matrix):
         input_feature = {'input_ids': input_ids, 'attention_mask': attention_mask}
