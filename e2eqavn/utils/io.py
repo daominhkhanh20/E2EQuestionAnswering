@@ -15,8 +15,7 @@ def load_json_data(path_file: str):
 
 
 def write_json_file(data: Union[Dict, List[Dict]], path_file: str):
-    paths = path_file.rsplit('/')
-    logger.info(paths)
+    paths = path_file.rsplit('/', 1)
     if len(paths) == 1:
         path_file = paths[0]
     else:
