@@ -20,7 +20,7 @@ args = parser.parse_args()
 
 if not args.from_mongo:
     config_pipeline = load_yaml_file('config/train_qa1.yaml')
-    corpus = Corpus.parser_uit_squad(
+    corpus = Corpus.init_corpus(
         config_pipeline[DATA][PATH_TRAIN],
         **config_pipeline.get(CONFIG_DATA, {})
     )
