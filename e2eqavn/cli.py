@@ -117,10 +117,16 @@ def train(config: Union[str, Text]):
     default=True,
     help='Logging result predict to file'
 )
+@click.option(
+    '--path_save_log',
+    default='log',
+    help='Path folder for save pipeline result'
+)
 @click.argument('mode', default='retrieval')
 def evaluate(config: Union[str, Text], mode,
              top_k_bm25: int,
              logging_result_pipeline: bool,
+             path_save_log: str,
              top_k_sbert: int
              ):
     config_pipeline = load_yaml_file(config)
@@ -251,7 +257,7 @@ def evaluate(config: Union[str, Text], mode,
                 }
                 )
         if logging_result_pipeline:
-            write_json_file(results_logging, os.path.join(reader_config[MODEL].get(MODEL_NAME_OR_PATH, 'khanhbk20/mrc_dev'), 'logging.json'))
+            write_json_file(results_logging, os.path.join(path_save_log, 'logging.json'))
         logger.info(f"Evaluate E2E pipeline: {metric_fn.compute(predictions=predictions, references=ground_truth)}")
 
 
