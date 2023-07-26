@@ -1,5 +1,5 @@
 data:
-  path_train: data/hand/edu_train.json
+  path_train: data/hand/edu_test.json
   path_evaluator: data/hand/edu_test.json
 
 config_data:
