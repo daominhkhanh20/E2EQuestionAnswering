@@ -15,7 +15,7 @@ from torch import nn
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--from_mongo', default=False, type=lambda x: x.lower() == 'true')
+parser.add_argument('--from_mongo', default=True, type=lambda x: x.lower() == 'true')
 args = parser.parse_args()
 
 if not args.from_mongo:
