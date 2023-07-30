@@ -26,7 +26,7 @@ class QaModel(nn.Module):
         return start_logits, end_logits, input_ids, align_matrix
 
 
-tokenizer = AutoTokenizer.from_pretrained('khanhbk20/mrc_testing')
+tokenizer = AutoTokenizer.from_pretrained('khanhbk20/mrc_base')
 qa_process = QATextProcessor()
 question = "Tên gọi nào được Phạm Văn Đồng sử dụng khi làm Phó chủ nhiệm cơ quan Biện sự xứ tại Quế Lâm?"
 context1 = "Phạm Văn Đồng (1 tháng 3 năm 1906 – 29 tháng 4 năm 2000) là Thủ tướng đầu tiên của nước Cộng hòa Xã hội " \

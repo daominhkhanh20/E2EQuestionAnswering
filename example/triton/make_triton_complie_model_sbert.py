@@ -28,8 +28,8 @@ else:
     print('Load data from mongodb')
     client = MongoClient(os.getenv('MONGO_URI'))
     database = client['wikipedia']
-    MAX_LENGTH = 350
-    wiki_collections_process = database[f'DocumentsProcess_{MAX_LENGTH}']
+    # MAX_LENGTH = 350
+    wiki_collections_process = database[f'Process_Education2']
     corpus = []
     list_docs = []
     for document in wiki_collections_process.find():
@@ -70,7 +70,8 @@ class SbertTritonModel(nn.Module):
             device=self.device
         )
 
-    def forward(self, sbert_input_ids, sbert_attention_mask, sbert_token_type_ids, bm25_index_selection, top_k_sbert):
+    def forward(self, sbert_input_ids, sbert_attention_mask, sbert_token_type_ids,
+                bm25_index_selection, top_k_sbert, bm25_scores):
         input_feature = {'input_ids': sbert_input_ids, 'attention_mask': sbert_attention_mask,
                          'token_type_ids': sbert_token_type_ids}
         embedding = self.model.forward(input_feature)['sentence_embedding']
@@ -78,19 +79,23 @@ class SbertTritonModel(nn.Module):
         sim_score = util.cos_sim(embedding, sub_corpus_embedding)
         scores, indexs = torch.topk(sim_score, top_k_sbert.item(), dim=1, largest=True, sorted=True)
         sbert_index_selection = bm25_index_selection[torch.arange(indexs.size(0)), indexs]
-        return sbert_index_selection, sbert_input_ids
+        # return sbert_index_selection, sbert_input_ids
+        sbert_score = sim_score[torch.arange(indexs.size(0)), indexs]
+        bm25_scores = bm25_scores[torch.arange(indexs.size(0)), indexs]
+        retrieval_scores = (bm25_scores + sbert_score) / 2
+        return sbert_index_selection, retrieval_scores
 
 
 sentence = 'Cơ sở giáo dục phương Tây đầu tiên có'
 sbert_model = SbertTritonModel(corpus=corpus).to(device).eval()
 input_feature = make_input_sbert(sentence)
-torch.tensor([1, 2, 3, 4]).to(device)
 traced_script_module = torch.jit.trace(sbert_model, (
     input_feature['input_ids'].to(device),
     input_feature['attention_mask'].to(device),
     input_feature['token_type_ids'].to(device),
-    torch.tensor([[0, 1, 339, 25, 192, 243, 138, 7, 9, 2537, 1893, 2]]).to(device),
-    torch.tensor([2]).to(device)
+    torch.tensor([[0, 1, 2, 3, 4]]).to(device),
+    torch.tensor([2]).to(device),
+    torch.tensor([0.5, 0.5, 0.6, 0.5, 0.5]).to(device)
 )
                                        )
 traced_script_module.save('model_compile/sbert/model.pt')
