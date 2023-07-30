@@ -14,7 +14,7 @@ class BM25Base:
         self.idf = {}
         self.doc_len = []
         if isinstance(corpus[0], str):
-            corpus = [doc.lower().split(" ") for doc in corpus]
+            corpus = [doc.lower().split() for doc in corpus]
 
         nd = self._initialize(corpus)
         self._calc_idf(nd)
@@ -93,7 +93,7 @@ class BM25Scoring(BM25Base, ABC):
 
     def get_scores(self, query: Union[List, str]):
         if isinstance(query, str):
-            query = query.lower().split(" ")
+            query = query.lower().split()
         score = np.zeros(self.n_docs)
         doc_len = np.array(self.doc_len)
         for q in query:
@@ -115,8 +115,10 @@ class BM25Scoring(BM25Base, ABC):
 
     def get_top_k(self, query: Union[List[str], str], top_k: int, normalize: bool = False):
         if isinstance(query, str):
-            query = query.lower().split(" ")
+            query = query.lower().split()
         scores = self.get_scores(query)
+        print(max(scores), min(scores))
+        print(scores)
         top_k_idxs = np.argsort(scores)[-top_k:]
         if not normalize:
             return {idx: scores[idx] for idx in top_k_idxs}
