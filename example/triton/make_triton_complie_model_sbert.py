@@ -95,7 +95,7 @@ traced_script_module = torch.jit.trace(sbert_model, (
     input_feature['token_type_ids'].to(device),
     torch.tensor([[0, 1, 2, 3, 4]]).to(device),
     torch.tensor([2]).to(device),
-    torch.tensor([0.5, 0.5, 0.6, 0.5, 0.5]).to(device)
+    torch.tensor([0.5, 0.5, 0.6, 0.5, 0.5]).reshape(1, -1).to(device)
 )
                                        )
 traced_script_module.save('model_compile/sbert/model.pt')
