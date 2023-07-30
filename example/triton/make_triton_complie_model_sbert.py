@@ -2,7 +2,7 @@ from typing import *
 from sentence_transformers import SentenceTransformer, util
 from e2eqavn.documents import Corpus
 from e2eqavn.datasets import MRCDataset
-from e2eqavn.utils.io import load_yaml_file, write_json_file
+from e2eqavn.utils.io import load_yaml_file, write_json_file, load_json_data
 from e2eqavn.keywords import *
 from e2eqavn.mrc import MRCReader
 import wandb
@@ -18,32 +18,33 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--from_mongo', default=True, type=lambda x: x.lower() == 'true')
 args = parser.parse_args()
 
-if not args.from_mongo:
-    config_pipeline = load_yaml_file('config/train_qa1.yaml')
-    corpus = Corpus.init_corpus(
-        config_pipeline[DATA][PATH_TRAIN],
-        **config_pipeline.get(CONFIG_DATA, {})
-    )
-else:
-    print('Load data from mongodb')
-    client = MongoClient(os.getenv('MONGO_URI'))
-    database = client['wikipedia']
-    # MAX_LENGTH = 350
-    wiki_collections_process = database[f'Process_Education2']
-    corpus = []
-    list_docs = []
-    for document in wiki_collections_process.find():
-        list_docs.append({
-            'context': document['text'],
-            'qas': []
-        })
-        corpus.append(document['text'])
-        if len(list_docs) > 60000:
-            break
-    with open('model_compile/corpus.json', 'w') as file:
-        json.dump(list_docs, file, indent=4, ensure_ascii=False)
-    print("Load done")
+# if not args.from_mongo:
+#     config_pipeline = load_yaml_file('config/train_qa1.yaml')
+#     corpus = Corpus.init_corpus(
+#         config_pipeline[DATA][PATH_TRAIN],
+#         **config_pipeline.get(CONFIG_DATA, {})
+#     )
+# else:
+#     print('Load data from mongodb')
+#     client = MongoClient(os.getenv('MONGO_URI'))
+#     database = client['wikipedia']
+#     # MAX_LENGTH = 350
+#     wiki_collections_process = database[f'Process_Education2']
+#     corpus = []
+#     list_docs = []
+#     for document in wiki_collections_process.find():
+#         list_docs.append({
+#             'context': document['text'],
+#             'qas': []
+#         })
+#         corpus.append(document['text'])
+#         if len(list_docs) > 60000:
+#             break
+#     with open('model_compile/corpus.json', 'w') as file:
+#         json.dump(list_docs, file, indent=4, ensure_ascii=False)
+#     print("Load done")
 
+corpus = load_json_data('model_compile/corpus.json')
 model = SentenceTransformer('khanhbk20/vn-sentence-embedding')
 device = torch.device('cuda' if torch.cuda.is_available() else "cpu")
 
