@@ -37,7 +37,7 @@ rm model/qa/*/*/optim*
 rm model/qa/*/*/train*
 
 
-
+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
 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
 git config --global user.email "khanhc1k36@gmail.com"
 git config --global user.name "daominhkhanh20"
