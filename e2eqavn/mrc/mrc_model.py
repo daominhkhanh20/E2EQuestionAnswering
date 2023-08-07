@@ -257,6 +257,7 @@ class MRCReader(BaseReader, ABC):
         for key, value in input_features.items():
             if isinstance(value, Tensor):
                 input_features[key] = value.to(self.device)
+                logger.info(f"{key} -- {input_features[key].size()}")
         outs = self.model(**input_features)
         results = self.extract_answer(input_features_raw, outs, retrieval_score=[doc.score for doc in documents])
         return results[:top_k_qa], results

@@ -1,0 +1,107 @@
+[
+    {
+        "context": "Đơn vị nhỏ nhất để biểu diễn thông tin gọi là bit, chữ viết tắt của binary digit (chữ số nhị phân). Một bit tương ứng với một sự kiện có một trong 2 trạng thái..Ví dụ: Một mạch đèn có 2 trạng thái là.Số học nhị phân sử dụng hai ký số 0 và 1 để biểu diễn các số. Vì khả năng sử dụng hai số 0 và 1 là như nhau nên một chỉ thị gồm một chữ số nhị phân có thể xem như là đơn vị chứa thông tin nhỏ nhất..Trong tin học, người ta thường sử dụng các đơn vị thông tin là các bội của bit như sau:",
+        "id": "64b2ae306ffa229514911ab5",
+        "qas": [
+            {
+                "question": "bit là cái gì?",
+                "answers": [
+                    {
+                        "text": "Đơn vị nhỏ nhất để biểu diễn thông tin gọi là bit, chữ viết tắt của binary digit (chữ số nhị phân)",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Đệ quy (tiếng Anh: recursion) là phương pháp dùng trong các chương trình máy tính trong đó có một hàm tự gọi chính nó. . Trong toán học và khoa học máy tính, các tính chất (hoặc cấu trúc) được gọi là đệ quy nếu trong đó một lớp các đối tượng hoặc phương pháp được xác định bằng việc xác định một số rất ít các trường hợp hoặc phương pháp đơn giản (thông thường chỉ một) và sau đó xác định quy tắc đưa các trường hợp phức tạp về các trường hợp đơn giản. . Chẳng hạn, định nghĩa sau là định nghĩa đệ quy của tổ tiên:. Các định nghĩa kiểu như vậy cũng thường thấy trong toán học (chính là quy nạp toán học). Một khái niệm X được định nghĩa theo đệ quy nếu trong định nghĩa X có sử dụng ngay chính khái niệm X. . Có một phương pháp chung để giải các bài toán là chia bài toán thành các bài toán con đơn giản hơn cùng loại.  Phương pháp này được gọi là Thuật toán chia để trị.  Chính nó là chìa khóa để thiết kế nhiều giải thuật quan trọng, là cơ sở của quy hoạch động. . Một ví dụ cổ điển của đệ quy là hàm giai thừa cho bằng giả mã trong C hoặc C++ sau đây:. Một ví dụ khác của giải thuật đệ quy là thủ tục duyệt (nghĩa là thực hiện một công việc nào đó với chúng) tất cả các nút của một cấu trúc dữ liệu cây:. Để duyệt một cây, gọi thủ tục này với nút gốc của cây như một tham biến khởi tạo.  Tiếp theo, thủ tục gọi đệ quy đến chính nó cho tất cả các nút con của nút vừa gọi (nghĩa là các cây con của cây vừa gọi), cho đến khi gặp trường hợp cơ bản nghĩa là nút không có con (thường gọi là \\\"lá\\\"). . Chính cấu trúc cây cũng được định nghĩa bằng đệ quy như sau:",
+        "id": "64b2ae306ffa229514911ab5",
+        "qas": [
+            {
+                "question": "đệ quy là cái gì?",
+                "answers": [
+                    {
+                        "text": "là phương pháp dùng trong các chương trình máy tính trong đó có một hàm tự gọi chính nó.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Đệ quy (tiếng Anh: recursion) là phương pháp dùng trong các chương trình máy tính trong đó có một hàm tự gọi chính nó. . Trong toán học và khoa học máy tính, các tính chất (hoặc cấu trúc) được gọi là đệ quy nếu trong đó một lớp các đối tượng hoặc phương pháp được xác định bằng việc xác định một số rất ít các trường hợp hoặc phương pháp đơn giản (thông thường chỉ một) và sau đó xác định quy tắc đưa các trường hợp phức tạp về các trường hợp đơn giản. . Chẳng hạn, định nghĩa sau là định nghĩa đệ quy của tổ tiên:. Các định nghĩa kiểu như vậy cũng thường thấy trong toán học (chính là quy nạp toán học). Một khái niệm X được định nghĩa theo đệ quy nếu trong định nghĩa X có sử dụng ngay chính khái niệm X. . Có một phương pháp chung để giải các bài toán là chia bài toán thành các bài toán con đơn giản hơn cùng loại.  Phương pháp này được gọi là Thuật toán chia để trị.  Chính nó là chìa khóa để thiết kế nhiều giải thuật quan trọng, là cơ sở của quy hoạch động. . Một ví dụ cổ điển của đệ quy là hàm giai thừa cho bằng giả mã trong C hoặc C++ sau đây:. Một ví dụ khác của giải thuật đệ quy là thủ tục duyệt (nghĩa là thực hiện một công việc nào đó với chúng) tất cả các nút của một cấu trúc dữ liệu cây:. Để duyệt một cây, gọi thủ tục này với nút gốc của cây như một tham biến khởi tạo.  Tiếp theo, thủ tục gọi đệ quy đến chính nó cho tất cả các nút con của nút vừa gọi (nghĩa là các cây con của cây vừa gọi), cho đến khi gặp trường hợp cơ bản nghĩa là nút không có con (thường gọi là \\\"lá\\\"). . Chính cấu trúc cây cũng được định nghĩa bằng đệ quy như sau:",
+        "id": "64b2ae306ffa229514911ab5",
+        "qas": [
+            {
+                "question": "đệ quy là cái gì?",
+                "answers": [
+                    {
+                        "text": "là phương pháp dùng trong các chương trình máy tính trong đó có một hàm tự gọi chính nó.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Học bổng là khoản tiền được cấp cho một học sinh, sinh viên, học viên,... để giúp họ học tiếp trong một trường nào đó. Trường, tổ chức khác, hay cá nhân cấp học bổng vì nhiều lý do, ví dụ tài năng trong thi cử hay thể thao, hay khó khăn về tài chính của sinh viên. Tiêu chuẩn cấp học bổng thường phản ánh mục đích của người cho. Học bổng được trao nhằm khuyến khích các học sinh, sinh viên cố gắng học tập..Học bổng có thể được phân thành các loại chính:",
+        "id": "64b2ae306ffa229514911ab5",
+        "qas": [
+            {
+                "question": "Học bổng là cái gì?",
+                "answers": [
+                    {
+                        "text": "Học bổng là khoản tiền được cấp cho một học sinh, sinh viên, học viên,... để giúp họ học tiếp trong một trường nào đó.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Máy tính lượng tử (còn gọi là siêu máy tính lượng tử) là một thiết bị tính toán sử dụng trực tiếp các hiệu ứng của cơ học lượng tử như tính chồng chập và vướng víu lượng tử để thực hiện các phép toán trên dữ liệu đưa vào..Tính đến năm 2014[cập nhật] tính toán lượng tử vẫn ở giai đoạn sơ khai nhưng đã có nhiều thí nghiệm nhằm thực hiện các phép tính lượng tử trên một số nhỏ các qubit..Máy tính lượng tử quy mô lớn sẽ có khả năng giải được các vấn đề phức tạp một cách nhanh hơn bất kỳ một máy tính cổ điển sử dụng các thuật toán tốt nhất hiện nay, như thuật toán Shor để phân tích số tự nhiên thành tích các số nguyên tố, hoặc mô phỏng hệ lượng tử nhiều hạt. Cũng có những thuật toán lượng tử, như thuật toán Simon, cho phép máy tính hoạt động nhanh hơn bất kỳ một máy tính dựa trên thuật toán xác suất cổ điển.",
+        "id": "64b2ae306ffa229514911ab5",
+        "qas": [
+            {
+                "question": "Máy tính lượng tư là cái gì?",
+                "answers": [
+                    {
+                        "text": "Máy tính lượng tử (còn gọi là siêu máy tính lượng tử) là một thiết bị tính toán sử dụng trực tiếp các hiệu ứng của cơ học lượng tử như tính chồng chập và vướng víu lượng tử để thực hiện các phép toán trên dữ liệu",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Trong mạng máy tính, băng thông hay còn gọi là băng thông mạng, là tốc độ truyền dữ liệu tối đa trên một đường dẫn nhất định.  Tuy nhiên, tốc độ bit thực tế có thể đạt được không chỉ phụ thuộc vào băng thông tín hiệu mà còn phụ thuộc vào lượng nhiễu trên kênh. . Định nghĩa về băng thông trong ngành mạng máy tính này trái ngược với định nghĩa băng thông trong ngành xử lý tín hiệu, với băng thông trong xử lý tín hiệu là khái niệm để chỉ băng thông tín hiệu tương tự được đo bằng hertz, có nghĩa là dải tần giữa tần số thấp nhất và cao nhất có thể đạt được trong khi đáp ứng mức suy giảm được xác định rõ về công suất tín hiệu. . Thuật ngữ băng thông đôi khi được sử dụng để xác định tốc độ bit ròng hay tốc độ bit cao nhất, tốc độ thông tin hoặc là tốc độ bit hữu ích ở lớp vật lý (trong mô hình OSI), dung lượng kênh hoặc thông lượng tối đa của đường truyền thông logic hoặc vật lý trong hệ thống truyền thông kỹ thuật số.  Ví dụ, kiểm tra băng thông đo thông lượng tối đa của mạng máy tính.  Tốc độ tối đa có thể được duy trì trên một liên kết bị giới hạn bởi dung lượng kênh Shannon-Hartley cho các hệ thống truyền thông này, phụ thuộc vào băng thông tính bằng hertz và nhiễu trên kênh. . Băng thông tiêu thụ trong bit/s, tương ứng với đạt được thông lượng hoặc lưu lượng, tức là, tỷ lệ trung bình của truyền dữ liệu thành công thông qua một con đường thông tin liên lạc.  Băng thông tiêu thụ có thể bị ảnh hưởng bởi các công nghệ như định hình băng thông, quản lý băng thông, điều chỉnh băng thông, giới hạn băng thông, phân bổ băng thông (ví dụ: giao thức phân bổ băng thông và phân bổ băng thông động), v. v",
+        "id": "64b2ae306ffa229514911ab5",
+        "qas": [
+            {
+                "question": "băng thông mạng là cái gì?",
+                "answers": [
+                    {
+                        "text": "là tốc độ truyền dữ liệu tối đa trên một đường dẫn nhất định.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "context": "Trong mạng máy tính, băng thông hay còn gọi là băng thông mạng, là tốc độ truyền dữ liệu tối đa trên một đường dẫn nhất định.  Tuy nhiên, tốc độ bit thực tế có thể đạt được không chỉ phụ thuộc vào băng thông tín hiệu mà còn phụ thuộc vào lượng nhiễu trên kênh. . Định nghĩa về băng thông trong ngành mạng máy tính này trái ngược với định nghĩa băng thông trong ngành xử lý tín hiệu, với băng thông trong xử lý tín hiệu là khái niệm để chỉ băng thông tín hiệu tương tự được đo bằng hertz, có nghĩa là dải tần giữa tần số thấp nhất và cao nhất có thể đạt được trong khi đáp ứng mức suy giảm được xác định rõ về công suất tín hiệu. . Thuật ngữ băng thông đôi khi được sử dụng để xác định tốc độ bit ròng hay tốc độ bit cao nhất, tốc độ thông tin hoặc là tốc độ bit hữu ích ở lớp vật lý (trong mô hình OSI), dung lượng kênh hoặc thông lượng tối đa của đường truyền thông logic hoặc vật lý trong hệ thống truyền thông kỹ thuật số.  Ví dụ, kiểm tra băng thông đo thông lượng tối đa của mạng máy tính.  Tốc độ tối đa có thể được duy trì trên một liên kết bị giới hạn bởi dung lượng kênh Shannon-Hartley cho các hệ thống truyền thông này, phụ thuộc vào băng thông tính bằng hertz và nhiễu trên kênh. . Băng thông tiêu thụ trong bit/s, tương ứng với đạt được thông lượng hoặc lưu lượng, tức là, tỷ lệ trung bình của truyền dữ liệu thành công thông qua một con đường thông tin liên lạc.  Băng thông tiêu thụ có thể bị ảnh hưởng bởi các công nghệ như định hình băng thông, quản lý băng thông, điều chỉnh băng thông, giới hạn băng thông, phân bổ băng thông (ví dụ: giao thức phân bổ băng thông và phân bổ băng thông động), v. v",
+        "id": "64b2ae306ffa229514911ab5",
+        "qas": [
+            {
+                "question": "băng thông mạng là cái gì?",
+                "answers": [
+                    {
+                        "text": "là tốc độ truyền dữ liệu tối đa trên một đường dẫn nhất định.",
+                        "exist": false
+                    }
+                ]
+            }
+        ]
+    }
+]
