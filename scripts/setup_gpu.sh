@@ -37,11 +37,12 @@ rm model/qa/*/*/optim*
 rm model/qa/*/*/train*
 
 
-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
+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
 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
 git config --global user.email "khanhc1k36@gmail.com"
 git config --global user.name "daominhkhanh20"
 
+sudo docker run -td -p 8000:8000 -p 4000:40000 --name triton_backend triton_server
 daominhkhanhbk20/triton_backend
 bash -c "apt update;apt install -y wget;DEBIAN_FRONTEND=noninteractive apt-get install openssh-server -y;mkdir -p ~/.ssh;cd $_;chmod 700 ~/.ssh;echo ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKvhxW8+MW8HydnawgFvHCMJ575EyQBdMlIQ1IrmBZaZ khanhc1k36@gmail.com > authorized_keys;chmod 700 authorized_keys;service ssh start;sleep infinity"
 

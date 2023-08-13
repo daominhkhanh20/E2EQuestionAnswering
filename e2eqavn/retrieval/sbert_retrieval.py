@@ -138,6 +138,7 @@ class SBertRetrieval(BaseRetrieval, ABC):
     def retrieval(self, queries: List[str], top_k: int, **kwargs) -> List[List[Document]]:
         if kwargs.get("documents", None):
             index_selection = [[doc.index for doc in list_doc] for list_doc in kwargs.get('documents')]
+            logger.info(f"Index selection: {index_selection}")
             bm25_scores = [[doc.bm25_score for doc in list_doc] for list_doc in kwargs.get('documents')]
         else:
             index_selection = None

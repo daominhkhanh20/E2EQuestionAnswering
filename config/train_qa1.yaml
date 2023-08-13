@@ -1,5 +1,5 @@
 data:
-  path_train: data/hand/edu_train.json
+  path_train: data/hand/data1.json
   path_evaluator: data/hand/edu_test.json
 
 config_data:
@@ -10,7 +10,7 @@ config_data:
 retrieval:
   is_train: true
   parameters:
-    method_generation: sbert
+    method_generation: random
     method_train: triplet
     n_negative: 4
   model:

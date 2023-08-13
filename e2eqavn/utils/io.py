@@ -23,7 +23,7 @@ def write_json_file(data: Union[Dict, List[Dict]], path_file: str):
         if os.path.exists(path_folder) is False:
             os.makedirs(path_folder, exist_ok=True)
         path_file = os.path.join(path_folder, file)
-    with open(path_file, 'w') as file:
+    with open(path_file, 'w', encoding="utf-8") as file:
         json.dump(data, file, ensure_ascii=False, indent=4)
     logger.info(f"Save data in {path_file}")
 

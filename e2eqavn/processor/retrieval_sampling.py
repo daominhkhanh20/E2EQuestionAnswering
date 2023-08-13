@@ -71,6 +71,8 @@ class RetrievalGeneration:
             )
 
         for idx, document in tqdm(enumerate(corpus.list_document), total=len(corpus.list_document)):
+            if len(document.list_pair_question_answers) == 0:
+                continue
             for list_pair_qa in document.list_pair_question_answers:
                 question = list_pair_qa.question
                 if method_generation == 'random':

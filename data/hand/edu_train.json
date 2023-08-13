@@ -622,7 +622,7 @@
         "id": "64ac38e4b0e81e1d17186909",
         "qas": [
             {
-                "question": "Hàm tính toán là gì?",
+                "question": "Hàm tính toán được là gì?",
                 "answers": [
                     {
                         "text": "Các hàm tính toán được là các đối tượng nghiên cứu cơ bản trong lý thuyết tính toán.",
