@@ -1,5 +1,5 @@
 data:
-  path_train: data/hand/data1.json
+  path_train: data/hand/data2.json
   path_evaluator: data/hand/edu_test.json
 
 config_data:
@@ -8,7 +8,7 @@ config_data:
   overlapping_size: 80
 
 retrieval:
-  is_train: true
+  is_train: false
   parameters:
     method_generation: random
     method_train: triplet
@@ -22,7 +22,7 @@ retrieval:
       name: MultipleNegativesRankingLoss
 
 reader:
-  is_train: false
+  is_train: true
   model:
     model_name_or_path: khanhbk20/mrc_large
     num_train_epochs: 10

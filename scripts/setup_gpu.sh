@@ -21,6 +21,8 @@ git checkout develop_pipeline
 pip install python-dotenv
 pip install .
 python3 -c "import nltk;nltk.download('punkt')"
+e2eqavn train --config config/train_qa1.yaml
+
 
 tmux new -s train_rcm
 export PYTHONPATH=./
@@ -46,4 +48,10 @@ sudo docker run -td -p 8000:8000 -p 4000:40000 --name triton_backend triton_serv
 daominhkhanhbk20/triton_backend
 bash -c "apt update;apt install -y wget;DEBIAN_FRONTEND=noninteractive apt-get install openssh-server -y;mkdir -p ~/.ssh;cd $_;chmod 700 ~/.ssh;echo ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKvhxW8+MW8HydnawgFvHCMJ575EyQBdMlIQ1IrmBZaZ khanhc1k36@gmail.com > authorized_keys;chmod 700 authorized_keys;service ssh start;sleep infinity"
 
+
+export KAGGLE_USERNAME='minhwiner123'
+export KAGGLE_KEY="a0a7bc62c67a24b342448c35235f67cd"
+
+
+kaggle datasets download -d daominhkhanh/model-compile-v8
 
